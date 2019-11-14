@@ -22,4 +22,4 @@ class OldTransformation:
 		return (r, theta)
 
 	def lam(self, p):
-		return (p + 1)/(mp.pi * (self.N - 1)**2)
+		return 2*(p + 1)/(mp.pi * (self.N - 1)**2)
