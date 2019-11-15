@@ -1,7 +1,6 @@
 import bisect
 import numpy as np
 import quaternion
-from mpmath import *
 from PIL import Image
 
 from RadialPolynomialValues import RadialPolynomialValues
@@ -48,12 +47,12 @@ class ZernikeMomentsMonochrome:
 			for y in range(self.N):
 				r, theta = self.trans.getPolarCoords(x,y)
 				if r > 1:
-					r = mpf(1.0)
+					r = 1.0
 				rs[x][y] = r
 				thetas[x][y] = theta
 				for q in range(0, self.maxP + 1):
-					sins[x][y][q] = mp.sin(q*theta)
-					coss[x][y][q] = mp.cos(q*theta)
+					sins[x][y][q] = np.sin(q*theta)
+					coss[x][y][q] = np.cos(q*theta)
 		
 		self.rs = rs
 		self.thetas = thetas
@@ -76,20 +75,18 @@ class ZernikeMomentsMonochrome:
 		# Calculate:
 		# q -> x -> y -> p??
 		# fix q-hoz linearisan megmondhato az osszes R_p,q(r)
-		for p in range(0, self.maxP + 1):
-			for q in range(0, p + 1):
-				if (p - q) % 2 != 0:
-					continue
-				res = []
-				ims = []
-				for x in range(self.N):
-					for y in range(self.N):
-						rval = self.Rs.radPolyVal(p, q, rs[x][y])
-						bisect.insort(res, rval * coss[x][y][q] * self.img[x, y]) # sort abs
-						bisect.insort(ims, rval * (-sins[x][y][q]) * self.img[x, y])
-				self.Zre[p][q] = sum(res)
-				self.Zim[p][q] = sum(ims)
-				print(p, q)
+		self.Rs.calculateRadialPolynomials(self.rs[x][y])
+		for x in range(self.N):
+			for y in range(self.N):
+				self.Rs.calculateRadialPolynomials(self.rs[x][y])
+				for p in range(0, self.maxP + 1):
+					for q in range(0, p + 1):
+						if (p - q) % 2 != 0:
+							continue
+						rval = self.Rs.values[p][q]
+						self.Zre[p][q] += rval * coss[x][y][q] * self.img[x, y]
+						self.Zim[p][q] += rval * (-sins[x][y][q]) * self.img[x, y]
+				print(x,y)
 					
 		# Scale:
 		for p in range(0, self.maxP + 1):
@@ -98,7 +95,7 @@ class ZernikeMomentsMonochrome:
 				self.Zre[p][q] *= l
 				self.Zim[p][q] *= l
 				self.Zre[p][-q] = self.Zre[p][q]
-				self.Zim[p][-q] = -self.Zim[p][q] # -
+				self.Zim[p][-q] = -self.Zim[p][q]
 				print(p,q,self.Zre[p][q], self.Zim[p][q])
 
 	def reconstructImage(self, filename):
@@ -109,19 +106,22 @@ class ZernikeMomentsMonochrome:
 		for x in range(self.N):
 			for y in range(self.N):
 				self.Rs.calculateRadialPolynomials(self.rs[x][y])
-				values = []
+				value = 0
 				for p in range(0, self.maxP + 1):
 					if p % 2 == 0:
 						rval = self.Rs.values[p][0]
 						tmp = rval * self.Zre[p][0]
-						bisect.insort(values, tmp)
+						value += tmp
 					for q in range(1, p + 1):
 						if (p - q) % 2 != 0:
 							continue
 						rval = self.Rs.values[p][q]
-						tmp = rval * (self.Zre[p][q] * self.coss[x][y][q] - self.Zim[p][q] * self.sins[x][y][q]) # + tukroz
-						bisect.insort(values, 2 * tmp)
-				value = sum(values)
+						tmp = rval * (self.Zre[p][q] * self.coss[x][y][q] - self.Zim[p][q] * self.sins[x][y][q])
+						value += 2*tmp
+				if value > 255:
+					value = 255
+				elif value < 0:
+					value = 0
 				imgArray[x, y, 0] = int(round(value))
 				errorNum += abs(int(round(value)) - self.img[x, y])**2
 				errorNumMod += abs(imgArray[x, y, 0] - self.img[x, y])**2
@@ -132,8 +132,8 @@ class ZernikeMomentsMonochrome:
 		img = Image.fromarray(imgArray)
 		img.save(filename, "BMP")
 
-		eps = mpf(errorNum) / mpf(errorDen)
-		epsMod = mpf(errorNumMod) / mpf(errorDen)
+		eps = float(errorNum) / float(errorDen)
+		epsMod = float(errorNumMod) / float(errorDen)
 		print("Mean square error =", eps)
 		print("Mean square error (using mod) =", epsMod)
 
