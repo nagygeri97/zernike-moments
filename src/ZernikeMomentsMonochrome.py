@@ -108,7 +108,7 @@ class ZernikeMomentsMonochrome:
 				for i in range(3):
 					imgArray[x,y,i] = image1d[x,y]
 		img = Image.fromarray(imgArray)
-		img.save(filename, "BMP")
+		img.save(fileName, "BMP")
 		print("Mean square error: ", eps)
 
 
