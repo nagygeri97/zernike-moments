@@ -3,12 +3,13 @@
 import argparse
 import numpy as np
 import timeit
-import quaternion
+# import quaternion
 from PIL import Image
 
 from RadialPolynomials import RadialPolynomials
 from Transformations import *
-from ZernikeMoments import *
+from ZernikeMomentsMonochrome import *
+from ZernikeMomentsColor import *
 
 def main():
 	start = timeit.default_timer()
@@ -18,13 +19,13 @@ def main():
 						help='The path to the image you want to process')
 	parser.add_argument('--output', '-o', required=False, type=str,
 						help='The path/name of the output image')
-	parser.add_argument('-M', required=False, type=int,
+	parser.add_argument('-M', required=True, type=int,
 						help='Max number')
 	parser.add_argument('--greyscale', '-g', action='store_true', required=False,
 						help='Specify this flag to indicate that the selected image is greyscale.')
 	args = parser.parse_args()
 	output = args.output if args.output is not None else '../test.bmp'
-	M = args.M if args.M is not None else 40
+	M = args.M
 
 	image = Image.open(args.file)
 	image.load()
@@ -32,9 +33,12 @@ def main():
 
 	(N, _, _) = img.shape # img should be square
 
-	z = ZernikeMomentsMonochrome(img, N, M)
-
-	z.reconstructImage(output)
+	if args.greyscale:
+		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
+		z.reconstructImage(output)
+	else:
+		z = ZernikeMomentsColorRight(img, N, M)
+		z.reconstructImage(output)
 
 	stop = timeit.default_timer()
 	print('Time:', stop - start, "s")  

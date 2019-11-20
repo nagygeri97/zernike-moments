@@ -1,4 +1,3 @@
-import bisect
 import numpy as np
 from PIL import Image
 
@@ -11,12 +10,16 @@ class ZernikeMomentsMonochrome:
 	needed for calculating the Zernike moments.
 	"""
 
-	def __init__(self, img, N, maxP, color='R'):
-		self.img = getColorComponent(img, color)
+	def __init__(self, img, N, maxP, transformation = None, radialPolynomials = None, rs = None, thetas = None, sins = None, coss = None):
+		self.img = img # img should be a flat NxN array
 		self.N = N
 		self.maxP = maxP
-		self.trans = OldTransformation(N)
-		self.Rs = RadialPolynomials(self.maxP)
+		self.trans = transformation if transformation is not None else OldTransformation(N)
+		self.Rs = radialPolynomials if radialPolynomials is not None else RadialPolynomials(self.maxP)
+		self.rs = rs
+		self.thetas = thetas
+		self.sins = sins
+		self.coss = coss
 		self._calculateZernikeMoments()
 
 	def _calculateZernikeMoments(self):
@@ -26,28 +29,35 @@ class ZernikeMomentsMonochrome:
 		Only moments for q = 0..p are stored, since the moment
 		for -q is the conjugate of the moment for q
 		"""
-		rs = np.empty([self.N, self.N])
-		thetas = np.empty([self.N, self.N])
-		sins = np.empty([self.N, self.N, self.maxP + 1])
-		coss = np.empty([self.N, self.N, self.maxP + 1])
+		if self.rs is None:
+			rs = np.empty([self.N, self.N])
+			thetas = np.empty([self.N, self.N])
+			sins = np.empty([self.N, self.N, self.maxP + 1])
+			coss = np.empty([self.N, self.N, self.maxP + 1])
 
-		for x in range(self.N):
-			for y in range(self.N):
-				r, theta = self.trans.getPolarCoords(x,y)
-				if r > 1:
-					r = 1.0
-				rs[x,y] = r
-				thetas[x,y] = theta
-				for q in range(0, self.maxP + 1):
-					sins[x,y,q] = np.sin(q*theta)
-					coss[x,y,q] = np.cos(q*theta)
+			for x in range(self.N):
+				for y in range(self.N):
+					r, theta = self.trans.getPolarCoords(x,y)
+					if r > 1:
+						r = 1.0
+					rs[x,y] = r
+					thetas[x,y] = theta
+					for q in range(0, self.maxP + 1):
+						sins[x,y,q] = np.sin(q*theta)
+						coss[x,y,q] = np.cos(q*theta)
 
-		self.rs = rs
-		self.thetas = thetas
-		self.sins = sins
-		self.coss = coss
+			self.rs = rs
+			self.thetas = thetas
+			self.sins = sins
+			self.coss = coss
+		else:
+			rs = self.rs
+			thetas = self.thetas
+			sins = self.sins
+			coss = self.coss
 
-		self.Z = np.zeros([self.maxP + 1, self.maxP + 1], dtype='complex')
+		self.Zre = np.zeros([self.maxP + 1, self.maxP + 1])
+		self.Zim = np.zeros([self.maxP + 1, self.maxP + 1])
 
 		# Calculate:
 		for x in range(self.N):
@@ -57,15 +67,18 @@ class ZernikeMomentsMonochrome:
 					for q in range(0, p + 1):
 						if (p - q) % 2 != 0:
 							continue
-						rval = self.Rs.values[p,q]
-						self.Z[p, q] += complex(coss[x,y,q], -sins[x,y,q]) * rval * self.img[x,y]
+						tmp = self.Rs.values[p,q] * self.img[x,y]
+						self.Zre[p, q] += coss[x,y,q] * tmp
+						self.Zim[p, q] += -sins[x,y,q] * tmp
+						# Z[p, -q] == conjugate(Z[p, q])
 				print(x,y)
 					
 		# Scale:
 		for p in range(0, self.maxP + 1):
 			for q in range(0, p + 1):
 				l = self.trans.lam(p)
-				self.Z[p, q] *= l
+				self.Zre[p, q] *= l
+				self.Zim[p, q] *= l
 
 	def reconstructImageArray(self):
 		errorNum = 0
@@ -77,24 +90,20 @@ class ZernikeMomentsMonochrome:
 				value = 0
 				for p in range(0, self.maxP + 1):
 					if p % 2 == 0:
-						rval = self.Rs.values[p,0]
-						tmp = rval * self.Z[p,0].real
-						value += tmp
+						value += self.Rs.values[p,0] * self.Zre[p,0]
 					for q in range(1, p + 1):
 						if (p - q) % 2 != 0:
 							continue
-						rval = self.Rs.values[p,q]
 						# No need to calculate the imaginary part of the product, we know it is 0
-						# Do not use np complex multiplication
-						tmp = rval * (self.Z[p,q].real * self.coss[x,y,q] - self.Z[p,q].imag * self.sins[x,y,q])
-						value += 2*tmp
+						value += 2 * self.Rs.values[p,q] * (self.Zre[p,q] * self.coss[x,y,q] - self.Zim[p,q] * self.sins[x,y,q])
+				# Question: use this?
 				if value > 255:
 					value = 255
 				elif value < 0:
 					value = 0
 				imageArray[x,y] = int(round(value))
-				errorNum += abs(int(round(value)) - self.img[x,y])**2
-				errorDen += abs(self.img[x, y])**2
+				errorNum += abs(imageArray[x,y] - self.img[x,y])**2
+				errorDen += abs(self.img[x,y])**2
 				print(x, y)
 
 		eps = float(errorNum) / float(errorDen)
@@ -117,8 +126,10 @@ def getColorComponent(img, color='R'):
 		index = 0
 	elif color == 'G':
 		index = 1
-	else:
+	elif color == 'B':
 		index = 2
+	else:
+		return
 	(heigth, width, _) = img.shape
 	monochromeImg = np.empty((heigth, width), dtype='double')
 	for i in range(heigth):
