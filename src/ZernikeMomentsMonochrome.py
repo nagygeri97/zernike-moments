@@ -1,6 +1,5 @@
 import bisect
 import numpy as np
-import quaternion
 from PIL import Image
 
 from RadialPolynomials import RadialPolynomials
@@ -68,10 +67,10 @@ class ZernikeMomentsMonochrome:
 				l = self.trans.lam(p)
 				self.Z[p, q] *= l
 
-	def reconstructImage(self, filename):
+	def reconstructImageArray(self):
 		errorNum = 0
 		errorDen = 0
-		imgArray = np.zeros((self.N, self.N, 3), dtype='uint8')
+		imageArray = np.zeros((self.N, self.N), dtype='uint8')
 		for x in range(self.N):
 			for y in range(self.N):
 				self.Rs.calculateRadialPolynomials(self.rs[x,y])
@@ -85,23 +84,32 @@ class ZernikeMomentsMonochrome:
 						if (p - q) % 2 != 0:
 							continue
 						rval = self.Rs.values[p,q]
+						# No need to calculate the imaginary part of the product, we know it is 0
+						# Do not use np complex multiplication
 						tmp = rval * (self.Z[p,q].real * self.coss[x,y,q] - self.Z[p,q].imag * self.sins[x,y,q])
 						value += 2*tmp
 				if value > 255:
 					value = 255
 				elif value < 0:
 					value = 0
-				imgArray[x,y,0] = int(round(value))
+				imageArray[x,y] = int(round(value))
 				errorNum += abs(int(round(value)) - self.img[x,y])**2
 				errorDen += abs(self.img[x, y])**2
-				imgArray[x,y,1] = imgArray[x,y,0]
-				imgArray[x,y,2] = imgArray[x,y,0]
 				print(x, y)
-		img = Image.fromarray(imgArray)
-		img.save(filename, "BMP")
 
 		eps = float(errorNum) / float(errorDen)
-		print("Mean square error =", eps)
+		return (imageArray, eps)
+
+	def reconstructImage(self, fileName):
+		imgArray = np.zeros((self.N, self.N, 3), dtype='uint8')
+		(image1d, eps) = self.reconstructImageArray()
+		for x in range(self.N):
+			for y in range(self.N):
+				for i in range(3):
+					imgArray[x,y,i] = image1d[x,y]
+		img = Image.fromarray(imgArray)
+		img.save(filename, "BMP")
+		print("Mean square error: ", eps)
 
 
 def getColorComponent(img, color='R'):
