@@ -2,6 +2,7 @@ import numpy as np
 from PIL import Image
 
 from RadialPolynomials import RadialPolynomials
+# from RadialPolynomialsSlow import RadialPolynomials
 from Transformations import *
 
 class ZernikeMomentsMonochrome:
@@ -30,31 +31,21 @@ class ZernikeMomentsMonochrome:
 		for -q is the conjugate of the moment for q
 		"""
 		if self.rs is None:
-			rs = np.empty([self.N, self.N])
-			thetas = np.empty([self.N, self.N])
-			sins = np.empty([self.N, self.N, self.maxP + 1])
-			coss = np.empty([self.N, self.N, self.maxP + 1])
+			self.rs = np.empty([self.N, self.N])
+			self.thetas = np.empty([self.N, self.N])
+			self.sins = np.empty([self.N, self.N, self.maxP + 1])
+			self.coss = np.empty([self.N, self.N, self.maxP + 1])
 
 			for x in range(self.N):
 				for y in range(self.N):
 					r, theta = self.trans.getPolarCoords(x,y)
 					if r > 1:
 						r = 1.0
-					rs[x,y] = r
-					thetas[x,y] = theta
+					self.rs[x,y] = r
+					self.thetas[x,y] = theta
 					for q in range(0, self.maxP + 1):
-						sins[x,y,q] = np.sin(q*theta)
-						coss[x,y,q] = np.cos(q*theta)
-
-			self.rs = rs
-			self.thetas = thetas
-			self.sins = sins
-			self.coss = coss
-		else:
-			rs = self.rs
-			thetas = self.thetas
-			sins = self.sins
-			coss = self.coss
+						self.sins[x,y,q] = np.sin(q*theta)
+						self.coss[x,y,q] = np.cos(q*theta)
 
 		self.Zre = np.zeros([self.maxP + 1, self.maxP + 1])
 		self.Zim = np.zeros([self.maxP + 1, self.maxP + 1])
@@ -64,12 +55,10 @@ class ZernikeMomentsMonochrome:
 			for y in range(self.N):
 				self.Rs.calculateRadialPolynomials(self.rs[x,y])
 				for p in range(0, self.maxP + 1):
-					for q in range(0, p + 1):
-						if (p - q) % 2 != 0:
-							continue
+					for q in range(p % 2, p + 1, 2):
 						tmp = self.Rs.values[p,q] * self.img[x,y]
-						self.Zre[p, q] += coss[x,y,q] * tmp
-						self.Zim[p, q] += -sins[x,y,q] * tmp
+						self.Zre[p, q] += self.coss[x,y,q] * tmp
+						self.Zim[p, q] += -self.sins[x,y,q] * tmp
 						# Z[p, -q] == conjugate(Z[p, q])
 				print(x,y)
 					
@@ -89,14 +78,11 @@ class ZernikeMomentsMonochrome:
 				self.Rs.calculateRadialPolynomials(self.rs[x,y])
 				value = 0
 				for p in range(0, self.maxP + 1):
-					if p % 2 == 0:
-						value += self.Rs.values[p,0] * self.Zre[p,0]
-					for q in range(1, p + 1):
-						if (p - q) % 2 != 0:
-							continue
+					value += (p % 2 + 1) * self.Rs.values[p,0] * self.Zre[p,0]
+					for q in range(p % (-2) + 2, p + 1, 2):
 						# No need to calculate the imaginary part of the product, we know it is 0
 						value += 2 * self.Rs.values[p,q] * (self.Zre[p,q] * self.coss[x,y,q] - self.Zim[p,q] * self.sins[x,y,q])
-				# Question: use this?
+
 				if value > 255:
 					value = 255
 				elif value < 0:

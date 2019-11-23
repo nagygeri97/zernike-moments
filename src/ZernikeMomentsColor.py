@@ -85,19 +85,20 @@ class ZernikeMomentsColorRight:
 				self.Rs.calculateRadialPolynomials(self.rs[x,y])
 				value = [0, 0, 0] # RGB
 				for p in range(0, self.maxP + 1):
-					for q in range(0, p + 1):
-						if (p - q) % 2 != 0:
-							continue
+					tmp = sqrt3inv * self.sins[x,y,0]
+					value[0] += self.Rs.values[p,0] * (tmp * (self.Zre[p,0,0] + self.Zj[p,0,0] - self.Zk[p,0,0]) + self.coss[x,y,0]*self.Zi[p,0,0])
+					value[1] += self.Rs.values[p,0] * (tmp * (self.Zre[p,0,0] + self.Zk[p,0,0] - self.Zi[p,0,0]) + self.coss[x,y,0]*self.Zj[p,0,0])
+					value[2] += self.Rs.values[p,0] * (tmp * (self.Zre[p,0,0] + self.Zi[p,0,0] - self.Zj[p,0,0]) + self.coss[x,y,0]*self.Zk[p,0,0])
+					for q in range(p % (-2) + 2, p + 1, 2):
 						tmp = sqrt3inv * self.sins[x,y,q]
 						value[0] += self.Rs.values[p,q] * (tmp * (self.Zre[p,q,0] + self.Zj[p,q,0] - self.Zk[p,q,0]) + self.coss[x,y,q]*self.Zi[p,q,0])
 						value[1] += self.Rs.values[p,q] * (tmp * (self.Zre[p,q,0] + self.Zk[p,q,0] - self.Zi[p,q,0]) + self.coss[x,y,q]*self.Zj[p,q,0])
 						value[2] += self.Rs.values[p,q] * (tmp * (self.Zre[p,q,0] + self.Zi[p,q,0] - self.Zj[p,q,0]) + self.coss[x,y,q]*self.Zk[p,q,0])
-						if q == 0:
-							continue
+
 						value[0] += self.Rs.values[p,q] * (- tmp * (self.Zre[p,q,1] + self.Zj[p,q,1] - self.Zk[p,q,1]) + self.coss[x,y,q]*self.Zi[p,q,1])
 						value[1] += self.Rs.values[p,q] * (- tmp * (self.Zre[p,q,1] + self.Zk[p,q,1] - self.Zi[p,q,1]) + self.coss[x,y,q]*self.Zj[p,q,1])
 						value[2] += self.Rs.values[p,q] * (- tmp * (self.Zre[p,q,1] + self.Zi[p,q,1] - self.Zj[p,q,1]) + self.coss[x,y,q]*self.Zk[p,q,1])
-				# Question: use this?
+
 				for i in range(3):
 					if value[i] > 255:
 						value[i] = 255

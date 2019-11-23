@@ -16,22 +16,14 @@ class RadialPolynomials:
 		for p = 0..maxP, q =  0..p,
 		where p - q is even
 		"""
-		for p in range(0,self.maxP + 1):
+		self.values[0,0] = 1
+		self.values[1,1] = r
+		for p in range(2,self.maxP + 1):
 			h = p*(p - 1)*(p - 2)
 			K2 = 2*h
-			for q in range(p,-1,-1):
-				if ((p - q) % 2) == 1:
-					self.values[p,q] = 0
-					continue
-				
-				if p == q:
-					self.values[p,q] = (r**p)
-					continue
-				
-				if p - q == 2:
-					self.values[p,q] = (q+2)*self.values[p,p] - (q+1)*self.values[q,q]
-					continue
-
+			self.values[p,p] = (r**p)
+			self.values[p,p-2] = p*self.values[p,p] - (p-1)*self.values[p-2,p-2]
+			for q in range(p-4,-1,-2):			
 				K1 = (p + q)*(p - q)*(p - 2)/2
 				K3 = (-1)*q*q*(p - 1) - h
 				K4 = (-1)*p*(p + q - 2)*(p - q - 2)/2
