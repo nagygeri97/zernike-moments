@@ -6,7 +6,7 @@ import timeit
 # import quaternion
 from PIL import Image
 
-from RadialPolynomials import RadialPolynomials
+from RadialPolynomials import *
 from Transformations import *
 from ZernikeMomentsMonochrome import *
 from ZernikeMomentsColor import *
