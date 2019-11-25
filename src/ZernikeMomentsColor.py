@@ -16,7 +16,7 @@ class ZernikeMomentsColorRight:
 		self.img = img # img should contain RGB components
 		self.N = N
 		self.maxP = maxP
-		self.trans = OldTransformation(N)
+		self.trans = EqualRadsTransformation(N)
 		self._calculateZernikeMoments()
 
 	def _calculateZernikeMoments(self):

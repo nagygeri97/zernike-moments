@@ -32,16 +32,31 @@ def main():
 	img = np.array(image)
 
 	(N, _, _) = img.shape # img should be square
-
-	if args.greyscale:
-		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
-		z.reconstructImage(output)
-	else:
-		z = ZernikeMomentsColorRight(img, N, M)
-		z.reconstructImage(output)
+	
+	transformAndPrintImage(img, output)
+	# if args.greyscale:
+	# 	z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
+	# 	z.reconstructImage(output)
+	# else:
+	# 	z = ZernikeMomentsColorRight(img, N, M)
+	# 	z.reconstructImage(output)
 
 	stop = timeit.default_timer()
 	print('Time:', stop - start, "s")  
+
+def transformAndPrintImage(img, fileName):
+	(N, _, _) = img.shape
+	newImage = np.zeros((N, N, 3), dtype='uint8')
+	trans = EqualRadsTransformation(N)
+	backTrans = ReverseTransformation(N)
+	for x in range(N):
+		for y in range(N):
+			(r,theta) = trans.getPolarCoords(x,y)
+			(nx, ny) = backTrans.getCartesianCoords(r,theta)
+			newImage[nx,ny] = img[x,y]
+	im = Image.fromarray(newImage)
+	im.save(fileName, "BMP")
+
 
 if __name__ == '__main__':
 	main()
