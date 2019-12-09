@@ -16,7 +16,7 @@ class ZernikeMomentsMonochrome:
 		self.img = img # img should be a flat NxN array
 		self.N = N
 		self.maxP = maxP
-		self.trans = transformation if transformation is not None else OldTransformation(N)
+		self.trans = transformation if transformation is not None else EqualRadsTransformation(N)
 		self.rs = rs
 		self.thetas = thetas
 		self.sins = sins

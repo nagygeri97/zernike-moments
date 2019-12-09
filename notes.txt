@@ -28,3 +28,11 @@ pepper
 256, 150, 0.00887163310876662, 26.866475377000825 s
 256, 250, 0.0037988901130460487, 64.96502834300009 s
 256, 350, 0.0025634311694657324, 125.51075721200141 s
+
+python interpolacioval atmeretezni
+	bilinear, bicubic
+	PIL image resize
+
+adott fokszamu legendre polinom gyokei
+
+kepfelismeres, cikkbeli modszerrel

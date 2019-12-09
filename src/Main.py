@@ -33,13 +33,13 @@ def main():
 
 	(N, _, _) = img.shape # img should be square
 	
-	transformAndPrintImage(img, output)
-	# if args.greyscale:
-	# 	z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
-	# 	z.reconstructImage(output)
-	# else:
-	# 	z = ZernikeMomentsColorRight(img, N, M)
-	# 	z.reconstructImage(output)
+	# transformAndPrintImage(img, output)
+	if args.greyscale:
+		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
+		z.reconstructImage(output)
+	else:
+		z = ZernikeMomentsColorRight(img, N, M)
+		z.reconstructImage(output)
 
 	stop = timeit.default_timer()
 	print('Time:', stop - start, "s")  

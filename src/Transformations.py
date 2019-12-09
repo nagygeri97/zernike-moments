@@ -30,7 +30,7 @@ class EqualRadsTransformation:
 	"""
 	def __init__(self, N):
 		self.N = N
-		self.c1 = np.sqrt(2) / (N)
+		self.c1 = np.sqrt(2) / (N - 1)
 		self.c2 = -1 / np.sqrt(2)
 
 	def getPolarCoords(self, x, y):
@@ -39,10 +39,12 @@ class EqualRadsTransformation:
 		m = max(abs(sx), abs(sy))
 		r = np.sqrt(m**2 + m**2)
 		theta = np.arctan2(sx, sy)
+		r *= 0.9
 		return (r,theta)
 
 	def lam(self, p):
-		return 2*(p + 1)/(np.pi * (self.N - 1)**2)
+		# return 2*(p + 1)/(np.pi * (self.N - 1)**2)
+		return 2*(p + 1)/(0.9**2 * np.pi * (self.N - 1)**2)
 
 class ReverseTransformation:
 	def __init__(self, N):
