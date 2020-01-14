@@ -3,7 +3,6 @@ from numba import *
 from PIL import Image
 
 from RadialPolynomials import *
-# from RadialPolynomialsSlow import RadialPolynomials
 from Transformations import *
 
 class ZernikeMomentsMonochrome:

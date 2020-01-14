@@ -33,6 +33,9 @@ python interpolacioval atmeretezni
 	bilinear, bicubic
 	PIL image resize
 
-adott fokszamu legendre polinom gyokei
+adott fokszamu legendre polinom gyokei: OK
 
 kepfelismeres, cikkbeli modszerrel
+
+Z^L nem kell?
+QZMI kene, a kepekhez
