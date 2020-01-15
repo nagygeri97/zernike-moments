@@ -59,3 +59,18 @@ class ReverseTransformation:
 		x += self.N/2
 		y += self.N/2
 		return (int(round(x)),int(round(y)))
+
+def calculateCentroid(img):
+	m00 = 0
+	m10 = 0
+	m01 = 0
+	(N, _, _) = img.shape
+	for x in range(N):
+		for y in range(N):
+			s = sum([img[x,y,z] for z in range(3)])
+			m10 += x*s
+			m01 += y*s
+			m00 += s
+	m01 = int(round(float(m01) / m00))
+	m10 = int(round(float(m10) / m00))
+	return (m10, m01)

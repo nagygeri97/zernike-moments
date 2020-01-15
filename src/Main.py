@@ -10,6 +10,7 @@ from RadialPolynomials import *
 from Transformations import *
 from ZernikeMomentsMonochrome import *
 from ZernikeMomentsColor import *
+from ImageManipulation import *
 
 def main():
 	start = timeit.default_timer()
@@ -29,17 +30,21 @@ def main():
 
 	image = Image.open(args.file)
 	image.load()
-	img = np.array(image)
 
-	(N, _, _) = img.shape # img should be square
-	
+	image = squareImage(image)
+
+	img = np.array(image) # by this point img is assumed to be square
+	(N, _, _) = img.shape
+
+	xc, yc = calculateCentroid(img)
+	print(xc,yc)
 	# transformAndPrintImage(img, output)
-	if args.greyscale:
-		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
-		z.reconstructImage(output)
-	else:
-		z = ZernikeMomentsColorRight(img, N, M)
-		z.reconstructImage(output)
+	# if args.greyscale:
+	# 	z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
+	# 	z.reconstructImage(output)
+	# else:
+	# 	z = ZernikeMomentsColorRight(img, N, M)
+	# 	z.reconstructImage(output)
 
 	stop = timeit.default_timer()
 	print('Time:', stop - start, "s")  
@@ -47,16 +52,22 @@ def main():
 def transformAndPrintImage(img, fileName):
 	(N, _, _) = img.shape
 	newImage = np.zeros((N, N, 3), dtype='uint8')
-	trans = EqualRadsTransformation(N)
+	for i in range(N):
+		for j in range(N):
+			newImage[i,j] = (255,255,255)
+	trans = OldTransformation(N)
 	backTrans = ReverseTransformation(N)
 	for x in range(N):
 		for y in range(N):
+			# print(x, y)
 			(r,theta) = trans.getPolarCoords(x,y)
 			(nx, ny) = backTrans.getCartesianCoords(r,theta)
-			newImage[nx,ny] = img[x,y]
+			if nx >= N or ny >= N:
+				pass
+			else:
+				newImage[nx,ny] = img[x,y]
 	im = Image.fromarray(newImage)
 	im.save(fileName, "BMP")
-
 
 if __name__ == '__main__':
 	main()
