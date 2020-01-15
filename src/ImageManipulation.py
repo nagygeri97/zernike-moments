@@ -3,7 +3,9 @@ import numpy as np
 from PIL import Image
 
 # Parameters (change these)
-imagePath = "../images/cups/original/small/36.png"
+imageNames = ["36", "125", "127", "153", "157", "161", "259", "262", "308", "507", "514", "774", "875"]
+imageFormat = "png"
+imagePath = "../images/cups/extended/"
 resultPath = "../images/cups/transformed/"
 rotationStep = 30 # degrees, should divide 360
 xTranslation = 8 # pixels
@@ -13,14 +15,14 @@ maxScale = 2
 scaleStep = 0.25
 # End changes here
 
-angles = [angle * 2 * np.pi / 360.0 for angle in range(0,360,rotationStep)] # in radians
+angles = [angle for angle in range(0,360,rotationStep)] # in (degs,radians)
 scales = list(np.arange(minScale, maxScale, scaleStep))
 scales.append(maxScale)
 
 
 def placeImagesOnBackground():
 	# change 96x72 img to 152x128 by adding a 28x28 black bar around
-	names = ["36", "125", "127", "153", "157", "161", "259", "262", "308", "507", "514", "774", "875"]
+	names = imageNames
 	names = [name + ".png" for name in names]
 	for name in names:
 		img = Image.open("../images/cups/small/" + name)
@@ -31,14 +33,23 @@ def placeImagesOnBackground():
 		bg.save("../images/cups/extended/" + name)
 
 def manipulate():
-	img = Image.open(imagePath)
-	img.load()
+	for imageName in imageNames:
+		img = Image.open(imagePath + imageName + "." + imageFormat)
+		img.load()
 
-	# Translate
-	img = img.transform(img.size, Image.AFFINE, (1, 0, xTranslation, 0, 1, yTranslation))
-	img.save(resultPath + "test.png")
+		# Translate
+		img = img.transform(img.size, Image.AFFINE, (1, 0, xTranslation, 0, 1, yTranslation))
+		images = []
+		for angle in angles:
+			imgR = img.rotate(angle, resample = Image.BILINEAR)
+			for scale in scales:
+				w, h = imgR.size
+				imgRS = imgR.resize((int(w*scale), int(h*scale)), resample = Image.BILINEAR)
+				bg = Image.new('RGB', imgRS.size, (0, 0, 0))
+				bg.paste(imgRS, (0, 0))
+				bg.save(resultPath + imageName + "x" + str(xTranslation) + "y" + str(yTranslation) + "r" + str(angle) + "s" + str(scale).replace('.','_') +  "." + imageFormat)
 
 
 if __name__ == '__main__':
-	# manipulate()
-	placeImagesOnBackground()
+	manipulate()
+	# placeImagesOnBackground()
