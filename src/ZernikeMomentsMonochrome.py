@@ -15,7 +15,7 @@ class ZernikeMomentsMonochrome:
 		self.img = img # img should be a flat NxN array
 		self.N = N
 		self.maxP = maxP
-		self.trans = transformation if transformation is not None else EqualRadsTransformation(N)
+		self.trans = transformation if transformation is not None else OldTransformation(N, img)
 		self.rs = rs
 		self.thetas = thetas
 		self.sins = sins
@@ -37,9 +37,7 @@ class ZernikeMomentsMonochrome:
 
 			for x in range(self.N):
 				for y in range(self.N):
-					r, theta = self.trans.getPolarCoords(x,y)
-					if r > 1:
-						r = 1.0
+					r, theta = self.trans.getPolarCoords(x,y) # maybe r > 1, handle later, at all times ignore if r > 1 
 					self.rs[x,y] = r
 					self.thetas[x,y] = theta
 			prepare(self.N, self.maxP, self.thetas, self.sins, self.coss)
@@ -89,6 +87,8 @@ def prepare(N, maxP, thetas, sins, coss):
 def calculate(N, maxP, rs, img, sins, coss, Zre, Zim, zeros):
 	for x in range(N):
 		for y in range(N):
+			if rs[x,y] > 1: # handling r > 1, do not calculate with those values
+				continue
 			values = zeros.copy()
 			calculateRadialPolynomials(rs[x,y], maxP, values)
 			for p in range(0, maxP + 1):
@@ -103,6 +103,8 @@ def calculate(N, maxP, rs, img, sins, coss, Zre, Zim, zeros):
 def reconstructImageArray(N, maxP, rs, sins, coss, Zre, Zim, imageArray, zeros):
 	for x in range(N):
 		for y in range(N):
+			if rs[x,y] > 1: # handling r > 1, do not calculate with those values
+				continue
 			values = zeros.copy()
 			calculateRadialPolynomials(rs[x,y], maxP, values)
 			value = 0

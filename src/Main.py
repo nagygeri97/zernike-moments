@@ -36,15 +36,17 @@ def main():
 	img = np.array(image) # by this point img is assumed to be square
 	(N, _, _) = img.shape
 
-	xc, yc = calculateCentroid(img)
-	print(xc,yc)
+	# xc, yc = calculateCentroid(img)
+	# print(xc,yc)
+
 	# transformAndPrintImage(img, output)
-	# if args.greyscale:
-	# 	z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
-	# 	z.reconstructImage(output)
-	# else:
-	# 	z = ZernikeMomentsColorRight(img, N, M)
-	# 	z.reconstructImage(output)
+
+	if args.greyscale:
+		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
+		z.reconstructImage(output)
+	else:
+		z = ZernikeMomentsColorRight(img, N, M)
+		z.reconstructImage(output)
 
 	stop = timeit.default_timer()
 	print('Time:', stop - start, "s")  
@@ -55,8 +57,8 @@ def transformAndPrintImage(img, fileName):
 	for i in range(N):
 		for j in range(N):
 			newImage[i,j] = (255,255,255)
-	trans = OldTransformation(N)
-	backTrans = ReverseTransformation(N)
+	trans = OldTransformation(N, img)
+	backTrans = ReverseTransformation(N, img)
 	for x in range(N):
 		for y in range(N):
 			# print(x, y)

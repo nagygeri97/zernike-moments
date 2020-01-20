@@ -16,7 +16,7 @@ class ZernikeMomentsColorRight:
 		self.img = img # img should contain RGB components
 		self.N = N
 		self.maxP = maxP
-		self.trans = OldTransformation(N)
+		self.trans = CentroidTransformation(N, img)
 		self._calculateZernikeMoments()
 
 	def _calculateZernikeMoments(self):
@@ -28,9 +28,7 @@ class ZernikeMomentsColorRight:
 
 		for x in range(self.N):
 			for y in range(self.N):
-				r, theta = self.trans.getPolarCoords(x,y)
-				if r > 1:
-					r = 1.0
+				r, theta = self.trans.getPolarCoords(x,y) # maybe r > 1, handle later, at all times ignore if r > 1 
 				self.rs[x,y] = r
 				self.thetas[x,y] = theta
 		prepare(self.N, self.maxP, self.thetas, self.sins, self.coss)
@@ -103,6 +101,8 @@ def reconstructImageArray(N, maxP, rs, sins, coss, Zre, Zi, Zj, Zk, imageArray, 
 	sqrt3inv = 1.0 / np.sqrt(3.0)
 	for x in range(N):
 		for y in range(N):
+			if rs[x,y] > 1: # handling r > 1, do not calculate with those values
+				continue
 			values = zeros.copy()
 			calculateRadialPolynomials(rs[x,y], maxP, values)
 			value = [0.0, 0.0, 0.0] # RGB

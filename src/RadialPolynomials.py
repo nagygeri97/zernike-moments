@@ -8,6 +8,8 @@ def calculateRadialPolynomials(r, maxP, values):
 	for a single given r,
 	for p = 0..maxP, q =  0..p,
 	where p - q is even
+
+	Assumes r in [0..1]
 	"""
 	values[0,0] = 1
 	values[1,1] = r

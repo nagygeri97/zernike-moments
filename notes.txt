@@ -29,13 +29,16 @@ pepper
 256, 250, 0.0037988901130460487, 64.96502834300009 s
 256, 350, 0.0025634311694657324, 125.51075721200141 s
 
-python interpolacioval atmeretezni
+python interpolacioval atmeretezni : OK
 	bilinear, bicubic
 	PIL image resize
 
 adott fokszamu legendre polinom gyokei: OK
 
-kepfelismeres, cikkbeli modszerrel
+TODO: kepfelismeres, cikkbeli modszerrel
 
-Z^L nem kell?
-QZMI kene, a kepekhez
+Z^L nem kell? -> NEM
+TODO: QZMI kene, a kepekhez
+
+centroid trans: OK
+kepeg generalasa: OK
