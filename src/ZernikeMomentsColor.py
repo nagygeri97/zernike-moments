@@ -17,9 +17,9 @@ class ZernikeMomentsColorRight:
 		self.N = N
 		self.maxP = maxP
 		self.trans = CentroidTransformation(N, img)
-		self._calculateZernikeMoments()
+		self.calculateZernikeMoments()
 
-	def _calculateZernikeMoments(self):
+	def calculateZernikeMoments(self):
 		print("Zernike moment calculation started.")
 		self.rs = np.empty([self.N, self.N])
 		self.thetas = np.empty([self.N, self.N])
@@ -42,7 +42,6 @@ class ZernikeMomentsColorRight:
 		print("G done")
 		ZfB = ZernikeMomentsMonochrome(imgB, self.N, self.maxP, self.trans, self.rs, self.thetas, self.sins, self.coss)
 		print("B done")
-		self.ZfR = ZfR
 
 		# the 3rd dim == 0 means q >= 0, ==1 means q < 0 
 		self.Zre = np.zeros([self.maxP + 1, self.maxP + 1, 2])
