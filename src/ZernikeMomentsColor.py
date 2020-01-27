@@ -12,15 +12,17 @@ class ZernikeMomentsColorRight:
 	using the ZernikeMomentsMonochrome class
 	"""
 
-	def __init__(self, img, N, maxP):
+	def __init__(self, img, N, maxP, verbose = False):
 		self.img = img # img should contain RGB components
 		self.N = N
 		self.maxP = maxP
+		self.verbose = verbose
 		self.trans = CentroidTransformation(N, img)
 		self.calculateZernikeMoments()
 
 	def calculateZernikeMoments(self):
-		print("Zernike moment calculation started.")
+		if self.verbose:
+			print("Zernike moment calculation started.")
 		self.rs = np.empty([self.N, self.N])
 		self.thetas = np.empty([self.N, self.N])
 		self.sins = np.empty([self.N, self.N, self.maxP + 1])
@@ -37,11 +39,14 @@ class ZernikeMomentsColorRight:
 		imgG = getColorComponent(self.img, 'G')
 		imgB = getColorComponent(self.img, 'B')
 		ZfR = ZernikeMomentsMonochrome(imgR, self.N, self.maxP, self.trans, self.rs, self.thetas, self.sins, self.coss)
-		print("R done")
+		if self.verbose:
+			print("R done")
 		ZfG = ZernikeMomentsMonochrome(imgG, self.N, self.maxP, self.trans, self.rs, self.thetas, self.sins, self.coss)
-		print("G done")
+		if self.verbose:
+			print("G done")
 		ZfB = ZernikeMomentsMonochrome(imgB, self.N, self.maxP, self.trans, self.rs, self.thetas, self.sins, self.coss)
-		print("B done")
+		if self.verbose:
+			print("B done")
 
 		# the 3rd dim == 0 means q >= 0, ==1 means q < 0 
 		self.Zre = np.zeros([self.maxP + 1, self.maxP + 1, 2])
@@ -67,10 +72,12 @@ class ZernikeMomentsColorRight:
 				self.Zi[p, q, 1] = ZfR.Zre[p, q] - sqrt3inv * (ZfG.Zim[p, q] - ZfB.Zim[p, q])
 				self.Zj[p, q, 1] = ZfG.Zre[p, q] - sqrt3inv * (ZfB.Zim[p, q] - ZfR.Zim[p, q])
 				self.Zk[p, q, 1] = ZfB.Zre[p, q] - sqrt3inv * (ZfR.Zim[p, q] - ZfG.Zim[p, q])
-		print("Zernike moment calculation done.")
+		if self.verbose:
+			print("Zernike moment calculation done.")
 
 	def reconstructImage(self, fileName):
-		print("Color image reconstruction started.")
+		if self.verbose:
+			print("Color image reconstruction started.")
 		errorNum = 0
 		errorDen = 0
 		imgArray = np.zeros((self.N, self.N, 3), dtype='uint8')
@@ -85,7 +92,8 @@ class ZernikeMomentsColorRight:
 		img.save(fileName, "BMP")
 
 		eps = float(errorNum) / float(errorDen)
-		print("Mean square error: ", eps)
+		if self.verbose:
+			print("Mean square error: ", eps)
 
 @jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
 def prepare(N, maxP, thetas, sins, coss):

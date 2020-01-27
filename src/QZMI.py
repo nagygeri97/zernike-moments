@@ -9,21 +9,21 @@ class QZMI:
 		self.img = img
 		self.N = N
 		self.maxP = maxP
-		self.ZM = ZernikeMomentsColor(img, N, maxP)
+		self.ZM = ZernikeMomentsColorRight(img, N, maxP)
 		self.calculateQZMI()
 
 	def calculateQZMI(self):
 		self.calculateLs()
 		self.QZMIs = np.zeros([self.maxP + 1, self.maxP + 1, self.maxP + 1, 4]) # Last index: re, i, j, k
-		for n in range(0, maxP + 1):
+		for n in range(0, self.maxP + 1):
 			for k in range(0, n + 1):
-				if (n - k) % 2 == 0:
+				if (n - k) % 2 != 0:
 					continue
 				for m in range(0, k + 1):
-					if(k - m) % 2 == 0:
+					if(k - m) % 2 != 0:
 						continue
-					a = quaternion(*(self.Ls[n,m,i] for i in range(4)))
-					b = quaternion(*(self.Ls[k,m,i] for i in range(4)))
+					a = quaternion(*self.Ls[n,m])
+					b = quaternion(*self.Ls[k,m])
 					b = b.conj()
 					qzmi = a * b
 					self.QZMIs[n,m,k,0] = qzmi.w
@@ -34,16 +34,16 @@ class QZMI:
 	def calculateLs(self):
 		Gamma = np.sqrt(qAbs(self.ZM.Zre[0,0,0], self.ZM.Zi[0,0,0], self.ZM.Zj[0,0,0], self.ZM.Zk[0,0,0]))
 		self.Ls = np.zeros([self.maxP + 1, self.maxP + 1, 4]) # Last index: re, i, j, k
-		for n in range(0,maxP + 1):
+		for n in range(0, self.maxP + 1):
 			for m in range(0,n + 1):
-				if (m - n) % 2 == 0:
+				if (m - n) % 2 != 0:
 					continue
 				l = (n - m)//2
 				for t in range(0,l + 1):
 					for k in range(t, l + 1):
 						G = Gamma**((-1)*(m + 2*k + 2))
 						CD = getCD(l, k, m, t)
-						tmp = G*CD
+						tmp = G*CD		
 						self.Ls[n,m,0] += tmp * self.ZM.Zre[m + 2*t, m, 0]
 						self.Ls[n,m,1] += tmp * self.ZM.Zi[m + 2*t, m, 0]
 						self.Ls[n,m,2] += tmp * self.ZM.Zj[m + 2*t, m, 0]
