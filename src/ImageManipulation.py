@@ -73,6 +73,28 @@ def squareImage(img, background = (0,0,0)):
 		bg.paste(img, (-x1, -y1))
 		return bg
 
+def addGaussianNoise(img, mean, stddev):
+	shape = img.shape
+	newImg = np.round(img + np.random.normal(mean, stddev, shape))
+	bounds = np.vectorize(lambda x : np.uint8((x if x > 0 else 0) if x < 255 else 255))
+	return bounds(newImg)
+
+def addSaltAndPepperNoise(img, density):
+	# density is the PERCENTAGE of pixels affected
+	density = float(density) / 100
+	(row, col, ch) = img.shape
+	amount = round(row*col*density)
+	addSalt = True
+	for i in range(amount):
+		randRow = np.random.randint(0,row)
+		randCol = np.random.randint(0,col)
+		if addSalt:
+			img[randRow,randCol] = [255,255,255]
+		else:
+			img[randRow,randCol] = [0,0,0]
+		addSalt = not addSalt
+	return img
+
 # if __name__ == '__main__':
 # 	RST()
 # 	placeImagesOnBackground()

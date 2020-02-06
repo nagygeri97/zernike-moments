@@ -16,8 +16,11 @@ from ImageManipulation import *
 def main():
 	start = timeit.default_timer()
 
+	# testImageReconstruction()
 	# testInvariance()
-	testRecognition()
+	# testRecognition()
+	# addGaussianNoiseAndPrintImage()
+	# addSaltAndPepperNoiseAndPrintImage()
 
 	stop = timeit.default_timer()
 	# print('Time:', stop - start, "s")  
@@ -41,6 +44,17 @@ def transformAndPrintImage(img, fileName):
 				newImage[nx,ny] = img[x,y]
 	im = Image.fromarray(newImage)
 	im.save(fileName, "BMP")
+
+def addGaussianNoiseAndPrintImage():
+	(img,_) = getImgFromFile('../images/cups/extended/36.png')
+	newImg = addGaussianNoise(img,mean=0,stddev=3)
+	im = Image.fromarray(newImg)
+	im.save('../test.bmp', "BMP")
+def addSaltAndPepperNoiseAndPrintImage():
+	(img,_) = getImgFromFile('../images/cups/extended/36.png')
+	newImg = addSaltAndPepperNoise(img,density=5)
+	im = Image.fromarray(newImg)
+	im.save('../test.bmp', "BMP")
 
 def testImageReconstruction():
 	parser = argparse.ArgumentParser()

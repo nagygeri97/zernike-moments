@@ -42,3 +42,6 @@ TODO: QZMI kene, a kepekhez
 
 centroid trans: OK
 kepeg generalasa: OK
+
+
+python zajgeneralas, gauss, salt pepper

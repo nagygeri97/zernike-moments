@@ -17,7 +17,8 @@ class ZernikeMomentsColorRight:
 		self.N = N
 		self.maxP = maxP
 		self.verbose = verbose
-		self.trans = CentroidTransformation(N, img)
+		# self.trans = CentroidTransformation(N, img)
+		self.trans = OldTransformation(N,img)
 		self.calculateZernikeMoments()
 
 	def calculateZernikeMoments(self):
