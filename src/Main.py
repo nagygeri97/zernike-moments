@@ -2,6 +2,7 @@
 
 import argparse
 import numpy as np
+import sys
 import timeit
 import os
 from PIL import Image
@@ -18,12 +19,14 @@ def main():
 
 	# testImageReconstruction()
 	# testInvariance()
-	# testRecognition()
+	testRecognition_Clean()
+	testRecognition_Gauss()
+	testRecognition_SaltAndPepper()
 	# addGaussianNoiseAndPrintImage()
 	# addSaltAndPepperNoiseAndPrintImage()
 
 	stop = timeit.default_timer()
-	# print('Time:', stop - start, "s")  
+	print('Time:', stop - start, "s")  
 
 def transformAndPrintImage(img, fileName):
 	(N, _, _) = img.shape
@@ -57,6 +60,7 @@ def addSaltAndPepperNoiseAndPrintImage():
 	im.save('../test.bmp', "BMP")
 
 def testImageReconstruction():
+	# Needs to use OldTransformation in ZernikeMomentsColor/ZernikeMomentsMonochrome
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--file', '-f', required=True, type=str,
 						help='The path to the image you want to process')
@@ -80,6 +84,8 @@ def testImageReconstruction():
 		z.reconstructImage(output)
 
 def testInvariance():
+	# Needs to use CentroidTransformation in ZernikeMomentsColor
+
 	path = "../images/cups/transformed/"
 	prefix = "36"
 	files = [file for file in os.listdir(path) if file.startswith(prefix)]
@@ -106,36 +112,119 @@ def testInvariance():
 		stdev = np.std(value)
 		print(key,*value, mean, stdev, stdev/mean, sep=",")
 
-def testRecognition():
-	recPath = "../images/cups/transformed/"
-	imgsToRecognize = ["36x8y5r240s1_25.png", "262x8y5r30s0_5.png", "125x8y5r180s1_75.png"] 
+def getBasicRecognitionTestingData():
+	recognizePath = "../images/cups/transformed/"
+	# recognizeFiles = ["36x8y5r240s1_25.png", "262x8y5r30s0_5.png", "125x8y5r180s1_75.png"]
+	recognizeFiles = os.listdir(recognizePath)
+
 	originalPath = "../images/cups/extended/"
-	files = os.listdir(originalPath)
-	originalVecs = {}
-	vecsToRecognize = {}
+	originalFiles = os.listdir(originalPath)
 
-	for file in files:
-		originalVecs[file] = populateInvariantVector(originalPath+file)
+	correctnessFun = isRecognitionCorrect
+
+	return (recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun)
+
+def testRecognition_Clean():
+	# Needs to use CentroidTransformation in ZernikeMomentsColor
+
+	(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun) = getBasicRecognitionTestingData()
+
+	transformationFun = lambda img : img
+
+	(correct, incorrect, pct) = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
+	print("\nNoise-free")
+	print(pct, "% recognized correctly.")
+	printerr("\nNoise-free")
+	printerr(pct, "% recognized correctly.")
+	if len(incorrect) > 0:
+		printerr("Incorrect results: ")
+	for (file, result) in incorrect:
+		printerr(file, "recognized as: ", result)
+	printerr("\n")
+
+def testRecognition_Gauss():
+	# Needs to use CentroidTransformation in ZernikeMomentsColor
 	
-	for file in imgsToRecognize:
-		vecsToRecognize[file] = populateInvariantVector(recPath+file)
+	(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun) = getBasicRecognitionTestingData()
 
-	for recFile, recVec in vecsToRecognize.items():
+	stddevs = [1,2,3,5,7,9,20,40,50,60]
+	for stddev in stddevs:
+		transformationFun = lambda img : addGaussianNoise(img, mean=0, stddev=stddev)
+
+		(correct, incorrect, pct) = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
+		print("\nGaussian noise with std dev", stddev)
+		print(pct, "% recognized correctly.")
+		printerr("\nGaussian noise with std dev", stddev)
+		printerr(pct, "% recognized correctly.")
+		if len(incorrect) > 0:
+			printerr("Incorrect results: ")
+		for (file, result) in incorrect:
+			printerr(file, "recognized as: ", result)
+		printerr("\n")
+
+def testRecognition_SaltAndPepper():
+	# Needs to use CentroidTransformation in ZernikeMomentsColor
+	
+	(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun) = getBasicRecognitionTestingData()
+
+	densities = [0.2, 0.4, 0.6, 1, 2, 3, 5, 10, 15]
+	for density in densities:
+		transformationFun = lambda img : addSaltAndPepperNoise(img, density=density)
+
+		(correct, incorrect, pct) = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
+		print("Salt and pepper noise with density", density, "%")
+		print(pct, "% recognized correctly.")
+		printerr("Salt and pepper noise with density", density, "%")
+		printerr(pct, "% recognized correctly.")
+		if len(incorrect) > 0:
+			printerr("Incorrect results: ")
+		for (file, result) in incorrect:
+			printerr(file, "recognized as: ", result)
+		printerr("\n")
+
+def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun=None):
+	originalVecs = {}
+	recognizeVecs = {}
+
+	for file in originalFiles:
+		originalVecs[file] = populateInvariantVector(originalPath + file)
+	
+	for file in recognizeFiles:
+		recognizeVecs[file] = populateInvariantVector(recognizePath + file, transformationFun)
+
+	correct = []
+	incorrect = []
+
+	for recFile, recVec in recognizeVecs.items():
 		minDist = -1
 		minFile = ""
 		for file, vec in originalVecs.items():
 			dist = vectorDistance(vec, recVec)
+			# print(recFile,file,dist)
 			if minDist == -1 or dist < minDist:
 				minDist = dist
 				minFile = file
+		if correctnessFun(recFile, minFile):
+			correct.append((recFile, minFile))
+		else:
+			incorrect.append((recFile, minFile))
 	
-		print(recFile, "recognized as:", minFile)
+	pct = float(len(correct)) / float(len(recognizeFiles)) * 100
+	return (correct, incorrect, pct)
 
-def populateInvariantVector(imgPath):
+def isRecognitionCorrect(fileToRecognize, recognizedFile):
+	id = recognizedFile.split('.')[0]
+	return fileToRecognize.startswith(id)
+
+def populateInvariantVector(imgPath, transformationFun=None):
 	relevantMoments = [(1,1,1), (2,0,0), (2,2,2), (3,1,1), (3,3,3), (4,0,0), (4,2,2), (4,4,4)]
 	maxDeg = 4
 	result = []
 	(img, N) = getImgFromFile(imgPath)
+	if transformationFun is not None:
+		img = transformationFun(img)
+		# im = Image.fromarray(img)
+		# im.save('../test.bmp', "BMP")
 	qzmi = QZMI(img, N, maxDeg)
 	for relevantMoment in relevantMoments:
 		n,m,k = relevantMoment
@@ -160,6 +249,9 @@ def getImgFromFile(fileName):
 	(N, _, _) = img.shape
 
 	return (img, N)
+
+def printerr(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 if __name__ == '__main__':
 	main()
