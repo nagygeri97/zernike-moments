@@ -1,0 +1,61 @@
+
+Noise-free
+100.0 % recognized correctly.
+
+Gaussian noise with std dev 1
+40.0 % recognized correctly.
+
+Gaussian noise with std dev 2
+25.454545454545453 % recognized correctly.
+
+Gaussian noise with std dev 3
+14.545454545454545 % recognized correctly.
+
+Gaussian noise with std dev 5
+16.363636363636363 % recognized correctly.
+
+Gaussian noise with std dev 7
+14.545454545454545 % recognized correctly.
+
+Gaussian noise with std dev 9
+14.545454545454545 % recognized correctly.
+
+Gaussian noise with std dev 20
+14.545454545454545 % recognized correctly.
+
+Gaussian noise with std dev 40
+21.818181818181817 % recognized correctly.
+
+Gaussian noise with std dev 50
+21.818181818181817 % recognized correctly.
+
+Gaussian noise with std dev 60
+21.818181818181817 % recognized correctly.
+
+Salt and pepper noise with density 0.2 %
+43.63636363636363 % recognized correctly.
+
+Salt and pepper noise with density 0.4 %
+40.0 % recognized correctly.
+
+Salt and pepper noise with density 0.6 %
+25.454545454545453 % recognized correctly.
+
+Salt and pepper noise with density 1 %
+14.545454545454545 % recognized correctly.
+
+Salt and pepper noise with density 2 %
+14.545454545454545 % recognized correctly.
+
+Salt and pepper noise with density 3 %
+14.545454545454545 % recognized correctly.
+
+Salt and pepper noise with density 5 %
+14.545454545454545 % recognized correctly.
+
+Salt and pepper noise with density 10 %
+21.818181818181817 % recognized correctly.
+
+Salt and pepper noise with density 15 %
+21.818181818181817 % recognized correctly.
+Time: 625.2912932189938 s

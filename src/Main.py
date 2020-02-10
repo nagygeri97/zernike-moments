@@ -113,11 +113,14 @@ def testInvariance():
 		print(key,*value, mean, stdev, stdev/mean, sep=",")
 
 def getBasicRecognitionTestingData():
-	recognizePath = "../images/cups/transformed/"
+	# recognizePath = "../images/cups/transformed/"
+	recognizePath = "../images/coil/rotated/"
+	# recognizePath = "../images/coil/transformed/"
 	# recognizeFiles = ["36x8y5r240s1_25.png", "262x8y5r30s0_5.png", "125x8y5r180s1_75.png"]
-	recognizeFiles = os.listdir(recognizePath)
+	recognizeFiles = os.listdir(recognizePath)[:10:]
 
-	originalPath = "../images/cups/extended/"
+	# originalPath = "../images/cups/extended/"
+	originalPath = "../images/coil/extended/"
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect
@@ -172,9 +175,9 @@ def testRecognition_SaltAndPepper():
 		transformationFun = lambda img : addSaltAndPepperNoise(img, density=density)
 
 		(correct, incorrect, pct) = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
-		print("Salt and pepper noise with density", density, "%")
+		print("\nSalt and pepper noise with density", density, "%")
 		print(pct, "% recognized correctly.")
-		printerr("Salt and pepper noise with density", density, "%")
+		printerr("\nSalt and pepper noise with density", density, "%")
 		printerr(pct, "% recognized correctly.")
 		if len(incorrect) > 0:
 			printerr("Incorrect results: ")
@@ -220,11 +223,13 @@ def populateInvariantVector(imgPath, transformationFun=None):
 	relevantMoments = [(1,1,1), (2,0,0), (2,2,2), (3,1,1), (3,3,3), (4,0,0), (4,2,2), (4,4,4)]
 	maxDeg = 4
 	result = []
-	(img, N) = getImgFromFile(imgPath)
-	if transformationFun is not None:
-		img = transformationFun(img)
-		# im = Image.fromarray(img)
-		# im.save('../test.bmp', "BMP")
+	(img, N) = getImgFromFile(imgPath, transformationFun)
+	# im = Image.fromarray(img)
+	# im.save('../test.bmp', "BMP")
+	# if transformationFun is not None:
+	# 	img = transformationFun(img)
+	# 	# im = Image.fromarray(img)
+	# 	# im.save('../test.bmp', "BMP")
 	qzmi = QZMI(img, N, maxDeg)
 	for relevantMoment in relevantMoments:
 		n,m,k = relevantMoment
@@ -241,9 +246,13 @@ def vectorDistance(vec1, vec2):
 	dist = np.sqrt(sum(diffsq))
 	return dist
 
-def getImgFromFile(fileName):
+def getImgFromFile(fileName, transformationFun=None):
 	image = Image.open(fileName)
 	image.load()
+	if transformationFun is not None:
+		imarray = np.array(image)
+		imarray = transformationFun(imarray)
+		image = Image.fromarray(imarray)
 	image = squareImage(image)
 	img = np.array(image) # by this point img is assumed to be square
 	(N, _, _) = img.shape

@@ -2,32 +2,37 @@
 import numpy as np
 from PIL import Image
 
+cupNames = ["36", "125", "127", "153", "157", "161", "259", "262", "308", "507", "514", "774", "875"]
+coilNames = ["7", "13", "22", "26", "29", "32", "39", "55", "62", "64", "65", "71", "95", "99"]
+
 def placeImagesOnBackground():
-	# change 96x72 img to 152x128 by adding a 28x28 black bar around
-	names = ["36", "125", "127", "153", "157", "161", "259", "262", "308", "507", "514", "774", "875"]
+	# extend image by adding a black bar around
+	barWitdh = 38 # 28 for cups, 38 for coil
+	names = coilNames # Change this to the correct name
 	names = [name + ".png" for name in names]
 	for name in names:
-		img = Image.open("../images/cups/small/" + name)
+		img = Image.open("../images/coil/original/" + name) # Change to the correct path
 		img.load()
-		x1, y1, x2, y2 = 0-28, 0-28, 96+28, 72+28  # cropping coordinates
+		w,h = img.size
+		x1, y1, x2, y2 = 0-barWitdh, 0-barWitdh, w+barWitdh, h+barWitdh  # cropping coordinates
 		bg = Image.new('RGB', (x2 - x1, y2 - y1), (0, 0, 0))
 		bg.paste(img, (-x1, -y1))
-		bg.save("../images/cups/extended/" + name)
+		bg.save("../images/coil/extended/" + name) # Change to the correct path
 
 def RST():
 	"""
 	Create the translated, rotated and scaled images
 	"""
 	# Parameters (change these)
-	imageNames = ["36", "125", "127", "153", "157", "161", "259", "262", "308", "507", "514", "774", "875"]
+	imageNames = coilNames
 	imageFormat = "png"
-	imagePath = "../images/cups/extended/"
-	resultPath = "../images/cups/transformed/"
+	imagePath = "../images/coil/extended/"
+	resultPath = "../images/coil/transformed/"
 	rotationStep = 30 # degrees, should divide 360
-	xTranslation = 8 # pixels
-	yTranslation = 5 # pixels
+	xTranslation = -11 # pixels
+	yTranslation = 9 # pixels
 	minScale = 0.5
-	maxScale = 2
+	maxScale = 2.0
 	scaleStep = 0.25
 	# End changes here
 
@@ -96,5 +101,5 @@ def addSaltAndPepperNoise(img, density):
 	return img
 
 # if __name__ == '__main__':
-# 	RST()
-# 	placeImagesOnBackground()
+	# RST()
+	# placeImagesOnBackground()
