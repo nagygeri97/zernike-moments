@@ -113,14 +113,14 @@ def testInvariance():
 		print(key,*value, mean, stdev, stdev/mean, sep=",")
 
 def getBasicRecognitionTestingData():
-	# recognizePath = "../images/cups/transformed/"
-	recognizePath = "../images/coil/rotated/"
+	recognizePath = "../images/cups/transformed/"
+	# recognizePath = "../images/coil/rotated/"
 	# recognizePath = "../images/coil/transformed/"
 	# recognizeFiles = ["36x8y5r240s1_25.png", "262x8y5r30s0_5.png", "125x8y5r180s1_75.png"]
-	recognizeFiles = os.listdir(recognizePath)[:10:]
+	recognizeFiles = os.listdir(recognizePath)[::20]
 
-	# originalPath = "../images/cups/extended/"
-	originalPath = "../images/coil/extended/"
+	originalPath = "../images/cups/extended/"
+	# originalPath = "../images/coil/extended/"
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect
@@ -134,16 +134,8 @@ def testRecognition_Clean():
 
 	transformationFun = lambda img : img
 
-	(correct, incorrect, pct) = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
-	print("\nNoise-free")
-	print(pct, "% recognized correctly.")
-	printerr("\nNoise-free")
-	printerr(pct, "% recognized correctly.")
-	if len(incorrect) > 0:
-		printerr("Incorrect results: ")
-	for (file, result) in incorrect:
-		printerr(file, "recognized as: ", result)
-	printerr("\n")
+	result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
+	printResultOfRecognition("Noise-free", result)
 
 def testRecognition_Gauss():
 	# Needs to use CentroidTransformation in ZernikeMomentsColor
@@ -154,16 +146,8 @@ def testRecognition_Gauss():
 	for stddev in stddevs:
 		transformationFun = lambda img : addGaussianNoise(img, mean=0, stddev=stddev)
 
-		(correct, incorrect, pct) = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
-		print("\nGaussian noise with std dev", stddev)
-		print(pct, "% recognized correctly.")
-		printerr("\nGaussian noise with std dev", stddev)
-		printerr(pct, "% recognized correctly.")
-		if len(incorrect) > 0:
-			printerr("Incorrect results: ")
-		for (file, result) in incorrect:
-			printerr(file, "recognized as: ", result)
-		printerr("\n")
+		result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
+		printResultOfRecognition("Gaussian noise with std dev {0}".format(stddev), result)
 
 def testRecognition_SaltAndPepper():
 	# Needs to use CentroidTransformation in ZernikeMomentsColor
@@ -174,16 +158,21 @@ def testRecognition_SaltAndPepper():
 	for density in densities:
 		transformationFun = lambda img : addSaltAndPepperNoise(img, density=density)
 
-		(correct, incorrect, pct) = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
-		print("\nSalt and pepper noise with density", density, "%")
-		print(pct, "% recognized correctly.")
-		printerr("\nSalt and pepper noise with density", density, "%")
-		printerr(pct, "% recognized correctly.")
-		if len(incorrect) > 0:
-			printerr("Incorrect results: ")
-		for (file, result) in incorrect:
-			printerr(file, "recognized as: ", result)
-		printerr("\n")
+		result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun)
+		printResultOfRecognition("Salt and pepper noise with density {0}%".format(density), result)
+
+def printResultOfRecognition(name, result):
+	(correct, incorrect, pct) = result
+	print("\n" + name)
+	print(pct, "% recognized correctly.", flush=True)
+	printerr("\n" + name)
+	printerr(pct, "% recognized correctly.")
+	if len(incorrect) > 0:
+		printerr("Incorrect results: ")
+	for (file, resultFile) in incorrect:
+		printerr(file, "recognized as: ", resultFile)
+	printerr("\n", flush=True)
+
 
 def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun, transformationFun=None):
 	originalVecs = {}

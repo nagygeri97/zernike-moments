@@ -7,14 +7,14 @@ Noise-free
 Gaussian noise with std dev 1
 40.0 % recognized correctly.
 Incorrect results: 
-774x8y5r240s1_5.png recognized as:  262.png
+774x8y5r240s1_5.png recognized as:  259.png
 157x8y5r300s1_75.png recognized as:  127.png
-774x8y5r120s1_25.png recognized as:  262.png
+774x8y5r120s1_25.png recognized as:  514.png
 157x8y5r180s1_25.png recognized as:  127.png
-774x8y5r150s0_75.png recognized as:  262.png
-262x8y5r240s0_75.png recognized as:  127.png
+774x8y5r150s0_75.png recognized as:  514.png
+262x8y5r240s0_75.png recognized as:  125.png
 259x8y5r300s2.png recognized as:  125.png
-774x8y5r120s0_5.png recognized as:  157.png
+774x8y5r120s0_5.png recognized as:  259.png
 36x8y5r120s1_0.png recognized as:  125.png
 157x8y5r60s1_0.png recognized as:  127.png
 36x8y5r180s0_5.png recognized as:  125.png
@@ -27,15 +27,15 @@ Incorrect results:
 125x8y5r330s2.png recognized as:  127.png
 157x8y5r270s1_0.png recognized as:  127.png
 259x8y5r30s1_25.png recognized as:  125.png
-259x8y5r300s0_5.png recognized as:  127.png
+259x8y5r300s0_5.png recognized as:  36.png
 157x8y5r210s2.png recognized as:  127.png
 125x8y5r300s1_0.png recognized as:  127.png
 127x8y5r300s2.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  262.png
+774x8y5r240s0_5.png recognized as:  259.png
 125x8y5r180s0_75.png recognized as:  127.png
 127x8y5r30s1_0.png recognized as:  507.png
 259x8y5r300s1_25.png recognized as:  125.png
-262x8y5r150s1_5.png recognized as:  127.png
+262x8y5r150s1_5.png recognized as:  125.png
 157x8y5r0s1_25.png recognized as:  127.png
 125x8y5r120s1_25.png recognized as:  127.png
 127x8y5r270s1_5.png recognized as:  507.png
@@ -44,63 +44,54 @@ Incorrect results:
 
 
 Gaussian noise with std dev 2
-25.454545454545453 % recognized correctly.
+38.18181818181819 % recognized correctly.
 Incorrect results: 
 774x8y5r240s1_5.png recognized as:  875.png
 157x8y5r300s1_75.png recognized as:  875.png
 153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  875.png
+774x8y5r120s1_25.png recognized as:  507.png
 157x8y5r180s1_25.png recognized as:  875.png
-875x8y5r30s1_5.png recognized as:  507.png
-774x8y5r150s0_75.png recognized as:  507.png
+774x8y5r150s0_75.png recognized as:  875.png
 262x8y5r240s0_75.png recognized as:  507.png
 259x8y5r300s2.png recognized as:  507.png
-153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  507.png
+774x8y5r120s0_5.png recognized as:  127.png
 36x8y5r120s1_0.png recognized as:  127.png
 157x8y5r60s1_0.png recognized as:  875.png
 36x8y5r180s0_5.png recognized as:  127.png
 308x8y5r120s1_0.png recognized as:  507.png
 308x8y5r150s2.png recognized as:  507.png
 308x8y5r270s1_0.png recognized as:  507.png
-125x8y5r210s1_0.png recognized as:  507.png
+125x8y5r210s1_0.png recognized as:  127.png
 157x8y5r60s1_5.png recognized as:  875.png
-514x8y5r330s1_0.png recognized as:  161.png
-125x8y5r210s0_75.png recognized as:  507.png
-125x8y5r330s2.png recognized as:  875.png
+125x8y5r210s0_75.png recognized as:  127.png
+125x8y5r330s2.png recognized as:  127.png
 157x8y5r270s1_0.png recognized as:  875.png
 259x8y5r30s1_25.png recognized as:  507.png
 259x8y5r300s0_5.png recognized as:  507.png
-153x8y5r150s2.png recognized as:  161.png
-514x8y5r30s0_75.png recognized as:  161.png
-875x8y5r300s1_5.png recognized as:  507.png
 157x8y5r210s2.png recognized as:  875.png
-125x8y5r300s1_0.png recognized as:  507.png
+125x8y5r300s1_0.png recognized as:  127.png
 127x8y5r300s2.png recognized as:  507.png
-875x8y5r0s0_75.png recognized as:  507.png
 774x8y5r240s0_5.png recognized as:  875.png
-125x8y5r180s0_75.png recognized as:  507.png
+125x8y5r180s0_75.png recognized as:  127.png
 127x8y5r30s1_0.png recognized as:  507.png
 259x8y5r300s1_25.png recognized as:  507.png
 262x8y5r150s1_5.png recognized as:  507.png
 157x8y5r0s1_25.png recognized as:  875.png
-125x8y5r120s1_25.png recognized as:  507.png
+125x8y5r120s1_25.png recognized as:  127.png
 127x8y5r270s1_5.png recognized as:  507.png
 36x8y5r120s0_75.png recognized as:  127.png
 
 
 
 Gaussian noise with std dev 3
-14.545454545454545 % recognized correctly.
+27.27272727272727 % recognized correctly.
 Incorrect results: 
-774x8y5r240s1_5.png recognized as:  507.png
+774x8y5r240s1_5.png recognized as:  875.png
 157x8y5r300s1_75.png recognized as:  875.png
 153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  875.png
+774x8y5r120s1_25.png recognized as:  507.png
 157x8y5r180s1_25.png recognized as:  875.png
-875x8y5r30s1_5.png recognized as:  507.png
 774x8y5r150s0_75.png recognized as:  875.png
-514x8y5r180s1_75.png recognized as:  161.png
 262x8y5r240s0_75.png recognized as:  507.png
 259x8y5r300s2.png recognized as:  507.png
 514x8y5r300s1_0.png recognized as:  161.png
@@ -115,28 +106,23 @@ Incorrect results:
 308x8y5r270s1_0.png recognized as:  507.png
 125x8y5r210s1_0.png recognized as:  875.png
 157x8y5r60s1_5.png recognized as:  875.png
-514x8y5r330s1_0.png recognized as:  161.png
-125x8y5r210s0_75.png recognized as:  507.png
-125x8y5r330s2.png recognized as:  507.png
+125x8y5r210s0_75.png recognized as:  875.png
+125x8y5r330s2.png recognized as:  875.png
 157x8y5r270s1_0.png recognized as:  875.png
 259x8y5r30s1_25.png recognized as:  507.png
 259x8y5r300s0_5.png recognized as:  507.png
-875x8y5r150s1_0.png recognized as:  507.png
 153x8y5r150s2.png recognized as:  161.png
 514x8y5r30s0_75.png recognized as:  161.png
-875x8y5r300s1_5.png recognized as:  507.png
 157x8y5r210s2.png recognized as:  875.png
 125x8y5r300s1_0.png recognized as:  507.png
 127x8y5r300s2.png recognized as:  507.png
-875x8y5r0s0_75.png recognized as:  507.png
 774x8y5r240s0_5.png recognized as:  875.png
-125x8y5r180s0_75.png recognized as:  507.png
+125x8y5r180s0_75.png recognized as:  875.png
 127x8y5r30s1_0.png recognized as:  507.png
 259x8y5r300s1_25.png recognized as:  507.png
-514x8y5r330s0_75.png recognized as:  161.png
 262x8y5r150s1_5.png recognized as:  507.png
 157x8y5r0s1_25.png recognized as:  875.png
-125x8y5r120s1_25.png recognized as:  875.png
+125x8y5r120s1_25.png recognized as:  507.png
 514x8y5r180s1_0.png recognized as:  161.png
 127x8y5r270s1_5.png recognized as:  507.png
 36x8y5r120s0_75.png recognized as:  127.png
@@ -149,7 +135,7 @@ Incorrect results:
 774x8y5r240s1_5.png recognized as:  507.png
 157x8y5r300s1_75.png recognized as:  875.png
 153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  507.png
+774x8y5r120s1_25.png recognized as:  875.png
 157x8y5r180s1_25.png recognized as:  875.png
 875x8y5r30s1_5.png recognized as:  507.png
 774x8y5r150s0_75.png recognized as:  875.png
@@ -158,7 +144,59 @@ Incorrect results:
 259x8y5r300s2.png recognized as:  507.png
 514x8y5r300s1_0.png recognized as:  161.png
 153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  875.png
+774x8y5r120s0_5.png recognized as:  507.png
+36x8y5r120s1_0.png recognized as:  507.png
+157x8y5r60s1_0.png recognized as:  875.png
+514x8y5r330s1_25.png recognized as:  161.png
+36x8y5r180s0_5.png recognized as:  507.png
+308x8y5r120s1_0.png recognized as:  507.png
+308x8y5r150s2.png recognized as:  507.png
+308x8y5r270s1_0.png recognized as:  507.png
+125x8y5r210s1_0.png recognized as:  507.png
+157x8y5r60s1_5.png recognized as:  875.png
+514x8y5r330s1_0.png recognized as:  161.png
+125x8y5r210s0_75.png recognized as:  507.png
+125x8y5r330s2.png recognized as:  875.png
+157x8y5r270s1_0.png recognized as:  875.png
+259x8y5r30s1_25.png recognized as:  507.png
+259x8y5r300s0_5.png recognized as:  507.png
+875x8y5r150s1_0.png recognized as:  507.png
+153x8y5r150s2.png recognized as:  161.png
+514x8y5r30s0_75.png recognized as:  161.png
+875x8y5r300s1_5.png recognized as:  507.png
+157x8y5r210s2.png recognized as:  875.png
+125x8y5r300s1_0.png recognized as:  507.png
+127x8y5r300s2.png recognized as:  507.png
+774x8y5r240s0_5.png recognized as:  507.png
+125x8y5r180s0_75.png recognized as:  507.png
+127x8y5r30s1_0.png recognized as:  507.png
+259x8y5r300s1_25.png recognized as:  507.png
+514x8y5r330s0_75.png recognized as:  161.png
+262x8y5r150s1_5.png recognized as:  507.png
+157x8y5r0s1_25.png recognized as:  875.png
+125x8y5r120s1_25.png recognized as:  875.png
+514x8y5r180s1_0.png recognized as:  161.png
+127x8y5r270s1_5.png recognized as:  507.png
+36x8y5r120s0_75.png recognized as:  507.png
+
+
+
+Gaussian noise with std dev 7
+14.545454545454545 % recognized correctly.
+Incorrect results: 
+774x8y5r240s1_5.png recognized as:  875.png
+157x8y5r300s1_75.png recognized as:  875.png
+153x8y5r90s1_75.png recognized as:  161.png
+774x8y5r120s1_25.png recognized as:  507.png
+157x8y5r180s1_25.png recognized as:  875.png
+875x8y5r30s1_5.png recognized as:  507.png
+774x8y5r150s0_75.png recognized as:  507.png
+514x8y5r180s1_75.png recognized as:  161.png
+262x8y5r240s0_75.png recognized as:  507.png
+259x8y5r300s2.png recognized as:  507.png
+514x8y5r300s1_0.png recognized as:  161.png
+153x8y5r270s0_75.png recognized as:  161.png
+774x8y5r120s0_5.png recognized as:  161.png
 36x8y5r120s1_0.png recognized as:  507.png
 157x8y5r60s1_0.png recognized as:  875.png
 514x8y5r330s1_25.png recognized as:  161.png
@@ -181,6 +219,7 @@ Incorrect results:
 157x8y5r210s2.png recognized as:  875.png
 125x8y5r300s1_0.png recognized as:  507.png
 127x8y5r300s2.png recognized as:  507.png
+875x8y5r0s0_75.png recognized as:  507.png
 774x8y5r240s0_5.png recognized as:  875.png
 125x8y5r180s0_75.png recognized as:  507.png
 127x8y5r30s1_0.png recognized as:  507.png
@@ -195,64 +234,11 @@ Incorrect results:
 
 
 
-Gaussian noise with std dev 7
-14.545454545454545 % recognized correctly.
-Incorrect results: 
-774x8y5r240s1_5.png recognized as:  507.png
-157x8y5r300s1_75.png recognized as:  875.png
-153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  875.png
-157x8y5r180s1_25.png recognized as:  875.png
-875x8y5r30s1_5.png recognized as:  507.png
-774x8y5r150s0_75.png recognized as:  875.png
-514x8y5r180s1_75.png recognized as:  161.png
-262x8y5r240s0_75.png recognized as:  507.png
-259x8y5r300s2.png recognized as:  507.png
-514x8y5r300s1_0.png recognized as:  161.png
-153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  875.png
-36x8y5r120s1_0.png recognized as:  507.png
-157x8y5r60s1_0.png recognized as:  875.png
-514x8y5r330s1_25.png recognized as:  161.png
-36x8y5r180s0_5.png recognized as:  507.png
-308x8y5r120s1_0.png recognized as:  507.png
-308x8y5r150s2.png recognized as:  507.png
-308x8y5r270s1_0.png recognized as:  507.png
-125x8y5r210s1_0.png recognized as:  507.png
-157x8y5r60s1_5.png recognized as:  875.png
-514x8y5r330s1_0.png recognized as:  161.png
-125x8y5r210s0_75.png recognized as:  507.png
-125x8y5r330s2.png recognized as:  507.png
-157x8y5r270s1_0.png recognized as:  875.png
-259x8y5r30s1_25.png recognized as:  507.png
-259x8y5r300s0_5.png recognized as:  507.png
-875x8y5r150s1_0.png recognized as:  507.png
-153x8y5r150s2.png recognized as:  161.png
-514x8y5r30s0_75.png recognized as:  161.png
-875x8y5r300s1_5.png recognized as:  507.png
-157x8y5r210s2.png recognized as:  875.png
-125x8y5r300s1_0.png recognized as:  507.png
-127x8y5r300s2.png recognized as:  507.png
-875x8y5r0s0_75.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  507.png
-125x8y5r180s0_75.png recognized as:  507.png
-127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  507.png
-514x8y5r330s0_75.png recognized as:  161.png
-262x8y5r150s1_5.png recognized as:  507.png
-157x8y5r0s1_25.png recognized as:  875.png
-125x8y5r120s1_25.png recognized as:  507.png
-514x8y5r180s1_0.png recognized as:  161.png
-127x8y5r270s1_5.png recognized as:  507.png
-36x8y5r120s0_75.png recognized as:  875.png
-
-
-
 Gaussian noise with std dev 9
 14.545454545454545 % recognized correctly.
 Incorrect results: 
-774x8y5r240s1_5.png recognized as:  507.png
-157x8y5r300s1_75.png recognized as:  507.png
+774x8y5r240s1_5.png recognized as:  875.png
+157x8y5r300s1_75.png recognized as:  875.png
 153x8y5r90s1_75.png recognized as:  161.png
 774x8y5r120s1_25.png recognized as:  507.png
 157x8y5r180s1_25.png recognized as:  875.png
@@ -307,10 +293,10 @@ Incorrect results:
 774x8y5r240s1_5.png recognized as:  875.png
 157x8y5r300s1_75.png recognized as:  875.png
 153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  507.png
+774x8y5r120s1_25.png recognized as:  875.png
 157x8y5r180s1_25.png recognized as:  875.png
 875x8y5r30s1_5.png recognized as:  507.png
-774x8y5r150s0_75.png recognized as:  507.png
+774x8y5r150s0_75.png recognized as:  875.png
 514x8y5r180s1_75.png recognized as:  161.png
 262x8y5r240s0_75.png recognized as:  507.png
 259x8y5r300s2.png recognized as:  507.png
@@ -329,7 +315,7 @@ Incorrect results:
 514x8y5r330s1_0.png recognized as:  161.png
 125x8y5r210s0_75.png recognized as:  507.png
 125x8y5r330s2.png recognized as:  507.png
-157x8y5r270s1_0.png recognized as:  875.png
+157x8y5r270s1_0.png recognized as:  507.png
 259x8y5r30s1_25.png recognized as:  507.png
 259x8y5r300s0_5.png recognized as:  507.png
 875x8y5r150s1_0.png recognized as:  507.png
@@ -340,13 +326,13 @@ Incorrect results:
 125x8y5r300s1_0.png recognized as:  507.png
 127x8y5r300s2.png recognized as:  507.png
 875x8y5r0s0_75.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  875.png
+774x8y5r240s0_5.png recognized as:  507.png
 125x8y5r180s0_75.png recognized as:  507.png
 127x8y5r30s1_0.png recognized as:  507.png
 259x8y5r300s1_25.png recognized as:  507.png
 514x8y5r330s0_75.png recognized as:  161.png
 262x8y5r150s1_5.png recognized as:  507.png
-157x8y5r0s1_25.png recognized as:  507.png
+157x8y5r0s1_25.png recognized as:  875.png
 125x8y5r120s1_25.png recognized as:  507.png
 514x8y5r180s1_0.png recognized as:  161.png
 127x8y5r270s1_5.png recognized as:  507.png
@@ -362,17 +348,17 @@ Incorrect results:
 153x8y5r90s1_75.png recognized as:  161.png
 774x8y5r120s1_25.png recognized as:  875.png
 157x8y5r180s1_25.png recognized as:  875.png
-774x8y5r150s0_75.png recognized as:  875.png
+774x8y5r150s0_75.png recognized as:  507.png
 514x8y5r180s1_75.png recognized as:  161.png
-262x8y5r240s0_75.png recognized as:  875.png
+262x8y5r240s0_75.png recognized as:  507.png
 259x8y5r300s2.png recognized as:  507.png
 514x8y5r300s1_0.png recognized as:  161.png
 153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  875.png
+774x8y5r120s0_5.png recognized as:  507.png
 36x8y5r120s1_0.png recognized as:  507.png
 157x8y5r60s1_0.png recognized as:  875.png
 514x8y5r330s1_25.png recognized as:  161.png
-36x8y5r180s0_5.png recognized as:  507.png
+36x8y5r180s0_5.png recognized as:  875.png
 308x8y5r120s1_0.png recognized as:  507.png
 308x8y5r150s2.png recognized as:  507.png
 308x8y5r270s1_0.png recognized as:  507.png
@@ -382,14 +368,14 @@ Incorrect results:
 125x8y5r210s0_75.png recognized as:  507.png
 125x8y5r330s2.png recognized as:  507.png
 157x8y5r270s1_0.png recognized as:  875.png
-259x8y5r30s1_25.png recognized as:  507.png
+259x8y5r30s1_25.png recognized as:  875.png
 259x8y5r300s0_5.png recognized as:  507.png
 153x8y5r150s2.png recognized as:  161.png
 514x8y5r30s0_75.png recognized as:  161.png
 157x8y5r210s2.png recognized as:  875.png
 125x8y5r300s1_0.png recognized as:  507.png
 127x8y5r300s2.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  507.png
+774x8y5r240s0_5.png recognized as:  875.png
 125x8y5r180s0_75.png recognized as:  507.png
 127x8y5r30s1_0.png recognized as:  507.png
 259x8y5r300s1_25.png recognized as:  507.png
@@ -413,13 +399,13 @@ Incorrect results:
 157x8y5r180s1_25.png recognized as:  875.png
 774x8y5r150s0_75.png recognized as:  875.png
 514x8y5r180s1_75.png recognized as:  161.png
-262x8y5r240s0_75.png recognized as:  875.png
-259x8y5r300s2.png recognized as:  875.png
+262x8y5r240s0_75.png recognized as:  507.png
+259x8y5r300s2.png recognized as:  507.png
 514x8y5r300s1_0.png recognized as:  161.png
 153x8y5r270s0_75.png recognized as:  161.png
 774x8y5r120s0_5.png recognized as:  875.png
 36x8y5r120s1_0.png recognized as:  507.png
-157x8y5r60s1_0.png recognized as:  507.png
+157x8y5r60s1_0.png recognized as:  875.png
 514x8y5r330s1_25.png recognized as:  161.png
 36x8y5r180s0_5.png recognized as:  875.png
 308x8y5r120s1_0.png recognized as:  507.png
@@ -431,24 +417,24 @@ Incorrect results:
 125x8y5r210s0_75.png recognized as:  507.png
 125x8y5r330s2.png recognized as:  507.png
 157x8y5r270s1_0.png recognized as:  875.png
-259x8y5r30s1_25.png recognized as:  875.png
-259x8y5r300s0_5.png recognized as:  507.png
+259x8y5r30s1_25.png recognized as:  507.png
+259x8y5r300s0_5.png recognized as:  875.png
 153x8y5r150s2.png recognized as:  161.png
-514x8y5r30s0_75.png recognized as:  161.png
+514x8y5r30s0_75.png recognized as:  875.png
 157x8y5r210s2.png recognized as:  875.png
-125x8y5r300s1_0.png recognized as:  875.png
+125x8y5r300s1_0.png recognized as:  507.png
 127x8y5r300s2.png recognized as:  507.png
 774x8y5r240s0_5.png recognized as:  875.png
-125x8y5r180s0_75.png recognized as:  507.png
+125x8y5r180s0_75.png recognized as:  875.png
 127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  875.png
+259x8y5r300s1_25.png recognized as:  507.png
 514x8y5r330s0_75.png recognized as:  161.png
 262x8y5r150s1_5.png recognized as:  507.png
 157x8y5r0s1_25.png recognized as:  875.png
 125x8y5r120s1_25.png recognized as:  507.png
 514x8y5r180s1_0.png recognized as:  161.png
 127x8y5r270s1_5.png recognized as:  507.png
-36x8y5r120s0_75.png recognized as:  507.png
+36x8y5r120s0_75.png recognized as:  875.png
 
 
 
@@ -462,15 +448,15 @@ Incorrect results:
 157x8y5r180s1_25.png recognized as:  875.png
 774x8y5r150s0_75.png recognized as:  875.png
 514x8y5r180s1_75.png recognized as:  161.png
-262x8y5r240s0_75.png recognized as:  507.png
+262x8y5r240s0_75.png recognized as:  875.png
 259x8y5r300s2.png recognized as:  507.png
 514x8y5r300s1_0.png recognized as:  161.png
 153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  507.png
+774x8y5r120s0_5.png recognized as:  875.png
 36x8y5r120s1_0.png recognized as:  507.png
 157x8y5r60s1_0.png recognized as:  875.png
 514x8y5r330s1_25.png recognized as:  161.png
-36x8y5r180s0_5.png recognized as:  507.png
+36x8y5r180s0_5.png recognized as:  875.png
 308x8y5r120s1_0.png recognized as:  507.png
 308x8y5r150s2.png recognized as:  507.png
 308x8y5r270s1_0.png recognized as:  507.png
@@ -481,37 +467,34 @@ Incorrect results:
 125x8y5r330s2.png recognized as:  507.png
 157x8y5r270s1_0.png recognized as:  875.png
 259x8y5r30s1_25.png recognized as:  507.png
-259x8y5r300s0_5.png recognized as:  507.png
+259x8y5r300s0_5.png recognized as:  875.png
 153x8y5r150s2.png recognized as:  161.png
 514x8y5r30s0_75.png recognized as:  161.png
 157x8y5r210s2.png recognized as:  875.png
-125x8y5r300s1_0.png recognized as:  507.png
+125x8y5r300s1_0.png recognized as:  875.png
 127x8y5r300s2.png recognized as:  507.png
 774x8y5r240s0_5.png recognized as:  875.png
 125x8y5r180s0_75.png recognized as:  875.png
 127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  875.png
+259x8y5r300s1_25.png recognized as:  507.png
 514x8y5r330s0_75.png recognized as:  161.png
 262x8y5r150s1_5.png recognized as:  507.png
 157x8y5r0s1_25.png recognized as:  875.png
 125x8y5r120s1_25.png recognized as:  507.png
-514x8y5r180s1_0.png recognized as:  161.png
+514x8y5r180s1_0.png recognized as:  875.png
 127x8y5r270s1_5.png recognized as:  507.png
-36x8y5r120s0_75.png recognized as:  875.png
+36x8y5r120s0_75.png recognized as:  507.png
 
 
 
-Salt and pepper noise with density 0.2 %
-43.63636363636363 % recognized correctly.
+Salt and pepper noise with density 0.2%
+56.36363636363636 % recognized correctly.
 Incorrect results: 
-157x8y5r300s1_75.png recognized as:  127.png
-774x8y5r120s1_25.png recognized as:  259.png
+157x8y5r300s1_75.png recognized as:  125.png
 157x8y5r180s1_25.png recognized as:  127.png
-774x8y5r150s0_75.png recognized as:  157.png
-262x8y5r240s0_75.png recognized as:  125.png
-259x8y5r300s2.png recognized as:  125.png
-36x8y5r120s1_0.png recognized as:  125.png
-157x8y5r60s1_0.png recognized as:  127.png
+262x8y5r240s0_75.png recognized as:  36.png
+259x8y5r300s2.png recognized as:  36.png
+157x8y5r60s1_0.png recognized as:  125.png
 36x8y5r180s0_5.png recognized as:  125.png
 308x8y5r120s1_0.png recognized as:  507.png
 308x8y5r150s2.png recognized as:  507.png
@@ -522,15 +505,50 @@ Incorrect results:
 125x8y5r330s2.png recognized as:  127.png
 157x8y5r270s1_0.png recognized as:  127.png
 259x8y5r30s1_25.png recognized as:  36.png
-259x8y5r300s0_5.png recognized as:  125.png
+259x8y5r300s0_5.png recognized as:  262.png
+157x8y5r210s2.png recognized as:  125.png
+125x8y5r300s1_0.png recognized as:  127.png
+125x8y5r180s0_75.png recognized as:  127.png
+259x8y5r300s1_25.png recognized as:  36.png
+262x8y5r150s1_5.png recognized as:  36.png
+157x8y5r0s1_25.png recognized as:  127.png
+125x8y5r120s1_25.png recognized as:  127.png
+36x8y5r120s0_75.png recognized as:  125.png
+
+
+
+Salt and pepper noise with density 0.4%
+40.0 % recognized correctly.
+Incorrect results: 
+774x8y5r240s1_5.png recognized as:  262.png
+157x8y5r300s1_75.png recognized as:  127.png
+774x8y5r120s1_25.png recognized as:  262.png
+157x8y5r180s1_25.png recognized as:  127.png
+774x8y5r150s0_75.png recognized as:  875.png
+262x8y5r240s0_75.png recognized as:  125.png
+259x8y5r300s2.png recognized as:  125.png
+774x8y5r120s0_5.png recognized as:  127.png
+36x8y5r120s1_0.png recognized as:  125.png
+157x8y5r60s1_0.png recognized as:  127.png
+36x8y5r180s0_5.png recognized as:  127.png
+308x8y5r120s1_0.png recognized as:  507.png
+308x8y5r150s2.png recognized as:  507.png
+308x8y5r270s1_0.png recognized as:  507.png
+125x8y5r210s1_0.png recognized as:  127.png
+157x8y5r60s1_5.png recognized as:  127.png
+125x8y5r210s0_75.png recognized as:  127.png
+125x8y5r330s2.png recognized as:  127.png
+157x8y5r270s1_0.png recognized as:  127.png
+259x8y5r30s1_25.png recognized as:  125.png
+259x8y5r300s0_5.png recognized as:  127.png
 157x8y5r210s2.png recognized as:  127.png
 125x8y5r300s1_0.png recognized as:  127.png
 127x8y5r300s2.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  259.png
+774x8y5r240s0_5.png recognized as:  125.png
 125x8y5r180s0_75.png recognized as:  127.png
 127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  125.png
-262x8y5r150s1_5.png recognized as:  125.png
+259x8y5r300s1_25.png recognized as:  127.png
+262x8y5r150s1_5.png recognized as:  127.png
 157x8y5r0s1_25.png recognized as:  127.png
 125x8y5r120s1_25.png recognized as:  127.png
 127x8y5r270s1_5.png recognized as:  507.png
@@ -538,17 +556,17 @@ Incorrect results:
 
 
 
-Salt and pepper noise with density 0.4 %
+Salt and pepper noise with density 0.6%
 40.0 % recognized correctly.
 Incorrect results: 
 774x8y5r240s1_5.png recognized as:  127.png
 157x8y5r300s1_75.png recognized as:  875.png
-774x8y5r120s1_25.png recognized as:  875.png
-157x8y5r180s1_25.png recognized as:  127.png
-774x8y5r150s0_75.png recognized as:  875.png
-262x8y5r240s0_75.png recognized as:  127.png
-259x8y5r300s2.png recognized as:  507.png
-774x8y5r120s0_5.png recognized as:  262.png
+774x8y5r120s1_25.png recognized as:  127.png
+157x8y5r180s1_25.png recognized as:  875.png
+774x8y5r150s0_75.png recognized as:  125.png
+262x8y5r240s0_75.png recognized as:  507.png
+259x8y5r300s2.png recognized as:  127.png
+774x8y5r120s0_5.png recognized as:  127.png
 36x8y5r120s1_0.png recognized as:  127.png
 157x8y5r60s1_0.png recognized as:  875.png
 36x8y5r180s0_5.png recognized as:  127.png
@@ -558,27 +576,27 @@ Incorrect results:
 125x8y5r210s1_0.png recognized as:  127.png
 157x8y5r60s1_5.png recognized as:  875.png
 125x8y5r210s0_75.png recognized as:  127.png
-125x8y5r330s2.png recognized as:  127.png
-157x8y5r270s1_0.png recognized as:  127.png
+125x8y5r330s2.png recognized as:  875.png
+157x8y5r270s1_0.png recognized as:  875.png
 259x8y5r30s1_25.png recognized as:  127.png
-259x8y5r300s0_5.png recognized as:  127.png
+259x8y5r300s0_5.png recognized as:  507.png
 157x8y5r210s2.png recognized as:  875.png
 125x8y5r300s1_0.png recognized as:  127.png
 127x8y5r300s2.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  125.png
-125x8y5r180s0_75.png recognized as:  127.png
+774x8y5r240s0_5.png recognized as:  875.png
+125x8y5r180s0_75.png recognized as:  875.png
 127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  127.png
+259x8y5r300s1_25.png recognized as:  507.png
 262x8y5r150s1_5.png recognized as:  127.png
-157x8y5r0s1_25.png recognized as:  875.png
+157x8y5r0s1_25.png recognized as:  127.png
 125x8y5r120s1_25.png recognized as:  127.png
 127x8y5r270s1_5.png recognized as:  507.png
 36x8y5r120s0_75.png recognized as:  127.png
 
 
 
-Salt and pepper noise with density 0.6 %
-25.454545454545453 % recognized correctly.
+Salt and pepper noise with density 1%
+16.363636363636363 % recognized correctly.
 Incorrect results: 
 774x8y5r240s1_5.png recognized as:  875.png
 157x8y5r300s1_75.png recognized as:  875.png
@@ -590,65 +608,18 @@ Incorrect results:
 514x8y5r180s1_75.png recognized as:  161.png
 262x8y5r240s0_75.png recognized as:  507.png
 259x8y5r300s2.png recognized as:  507.png
+514x8y5r300s1_0.png recognized as:  161.png
 153x8y5r270s0_75.png recognized as:  161.png
 774x8y5r120s0_5.png recognized as:  875.png
 36x8y5r120s1_0.png recognized as:  127.png
 157x8y5r60s1_0.png recognized as:  875.png
+514x8y5r330s1_25.png recognized as:  161.png
 36x8y5r180s0_5.png recognized as:  127.png
 308x8y5r120s1_0.png recognized as:  507.png
 308x8y5r150s2.png recognized as:  507.png
 308x8y5r270s1_0.png recognized as:  507.png
 125x8y5r210s1_0.png recognized as:  507.png
 157x8y5r60s1_5.png recognized as:  875.png
-125x8y5r210s0_75.png recognized as:  507.png
-125x8y5r330s2.png recognized as:  875.png
-157x8y5r270s1_0.png recognized as:  875.png
-259x8y5r30s1_25.png recognized as:  507.png
-259x8y5r300s0_5.png recognized as:  507.png
-875x8y5r150s1_0.png recognized as:  507.png
-153x8y5r150s2.png recognized as:  161.png
-514x8y5r30s0_75.png recognized as:  161.png
-875x8y5r300s1_5.png recognized as:  507.png
-157x8y5r210s2.png recognized as:  875.png
-125x8y5r300s1_0.png recognized as:  507.png
-127x8y5r300s2.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  875.png
-125x8y5r180s0_75.png recognized as:  507.png
-127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  507.png
-262x8y5r150s1_5.png recognized as:  507.png
-157x8y5r0s1_25.png recognized as:  875.png
-125x8y5r120s1_25.png recognized as:  875.png
-127x8y5r270s1_5.png recognized as:  507.png
-36x8y5r120s0_75.png recognized as:  127.png
-
-
-
-Salt and pepper noise with density 1 %
-14.545454545454545 % recognized correctly.
-Incorrect results: 
-774x8y5r240s1_5.png recognized as:  875.png
-157x8y5r300s1_75.png recognized as:  875.png
-153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  875.png
-157x8y5r180s1_25.png recognized as:  875.png
-875x8y5r30s1_5.png recognized as:  507.png
-774x8y5r150s0_75.png recognized as:  507.png
-514x8y5r180s1_75.png recognized as:  161.png
-262x8y5r240s0_75.png recognized as:  507.png
-259x8y5r300s2.png recognized as:  507.png
-514x8y5r300s1_0.png recognized as:  161.png
-153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  875.png
-36x8y5r120s1_0.png recognized as:  127.png
-157x8y5r60s1_0.png recognized as:  875.png
-514x8y5r330s1_25.png recognized as:  161.png
-36x8y5r180s0_5.png recognized as:  507.png
-308x8y5r120s1_0.png recognized as:  507.png
-308x8y5r150s2.png recognized as:  507.png
-308x8y5r270s1_0.png recognized as:  507.png
-125x8y5r210s1_0.png recognized as:  507.png
-157x8y5r60s1_5.png recognized as:  875.png
 514x8y5r330s1_0.png recognized as:  161.png
 125x8y5r210s0_75.png recognized as:  507.png
 125x8y5r330s2.png recognized as:  507.png
@@ -662,8 +633,7 @@ Incorrect results:
 157x8y5r210s2.png recognized as:  875.png
 125x8y5r300s1_0.png recognized as:  507.png
 127x8y5r300s2.png recognized as:  507.png
-875x8y5r0s0_75.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  875.png
+774x8y5r240s0_5.png recognized as:  507.png
 125x8y5r180s0_75.png recognized as:  507.png
 127x8y5r30s1_0.png recognized as:  507.png
 259x8y5r300s1_25.png recognized as:  507.png
@@ -677,113 +647,7 @@ Incorrect results:
 
 
 
-Salt and pepper noise with density 2 %
-14.545454545454545 % recognized correctly.
-Incorrect results: 
-774x8y5r240s1_5.png recognized as:  507.png
-157x8y5r300s1_75.png recognized as:  875.png
-153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  507.png
-157x8y5r180s1_25.png recognized as:  875.png
-875x8y5r30s1_5.png recognized as:  507.png
-774x8y5r150s0_75.png recognized as:  507.png
-514x8y5r180s1_75.png recognized as:  161.png
-262x8y5r240s0_75.png recognized as:  507.png
-259x8y5r300s2.png recognized as:  507.png
-514x8y5r300s1_0.png recognized as:  161.png
-153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  507.png
-36x8y5r120s1_0.png recognized as:  507.png
-157x8y5r60s1_0.png recognized as:  875.png
-514x8y5r330s1_25.png recognized as:  161.png
-36x8y5r180s0_5.png recognized as:  507.png
-308x8y5r120s1_0.png recognized as:  507.png
-308x8y5r150s2.png recognized as:  507.png
-308x8y5r270s1_0.png recognized as:  507.png
-125x8y5r210s1_0.png recognized as:  507.png
-157x8y5r60s1_5.png recognized as:  875.png
-514x8y5r330s1_0.png recognized as:  161.png
-125x8y5r210s0_75.png recognized as:  507.png
-125x8y5r330s2.png recognized as:  507.png
-157x8y5r270s1_0.png recognized as:  875.png
-259x8y5r30s1_25.png recognized as:  507.png
-259x8y5r300s0_5.png recognized as:  507.png
-875x8y5r150s1_0.png recognized as:  507.png
-153x8y5r150s2.png recognized as:  161.png
-514x8y5r30s0_75.png recognized as:  161.png
-875x8y5r300s1_5.png recognized as:  507.png
-157x8y5r210s2.png recognized as:  875.png
-125x8y5r300s1_0.png recognized as:  507.png
-127x8y5r300s2.png recognized as:  507.png
-875x8y5r0s0_75.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  507.png
-125x8y5r180s0_75.png recognized as:  507.png
-127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  507.png
-514x8y5r330s0_75.png recognized as:  161.png
-262x8y5r150s1_5.png recognized as:  507.png
-157x8y5r0s1_25.png recognized as:  875.png
-125x8y5r120s1_25.png recognized as:  507.png
-514x8y5r180s1_0.png recognized as:  161.png
-127x8y5r270s1_5.png recognized as:  507.png
-36x8y5r120s0_75.png recognized as:  507.png
-
-
-
-Salt and pepper noise with density 3 %
-14.545454545454545 % recognized correctly.
-Incorrect results: 
-774x8y5r240s1_5.png recognized as:  507.png
-157x8y5r300s1_75.png recognized as:  875.png
-153x8y5r90s1_75.png recognized as:  161.png
-774x8y5r120s1_25.png recognized as:  507.png
-157x8y5r180s1_25.png recognized as:  875.png
-875x8y5r30s1_5.png recognized as:  507.png
-774x8y5r150s0_75.png recognized as:  507.png
-514x8y5r180s1_75.png recognized as:  161.png
-262x8y5r240s0_75.png recognized as:  507.png
-259x8y5r300s2.png recognized as:  507.png
-514x8y5r300s1_0.png recognized as:  161.png
-153x8y5r270s0_75.png recognized as:  161.png
-774x8y5r120s0_5.png recognized as:  507.png
-36x8y5r120s1_0.png recognized as:  507.png
-157x8y5r60s1_0.png recognized as:  875.png
-514x8y5r330s1_25.png recognized as:  161.png
-36x8y5r180s0_5.png recognized as:  507.png
-308x8y5r120s1_0.png recognized as:  507.png
-308x8y5r150s2.png recognized as:  507.png
-308x8y5r270s1_0.png recognized as:  507.png
-125x8y5r210s1_0.png recognized as:  507.png
-157x8y5r60s1_5.png recognized as:  875.png
-514x8y5r330s1_0.png recognized as:  161.png
-125x8y5r210s0_75.png recognized as:  507.png
-125x8y5r330s2.png recognized as:  507.png
-157x8y5r270s1_0.png recognized as:  875.png
-259x8y5r30s1_25.png recognized as:  507.png
-259x8y5r300s0_5.png recognized as:  507.png
-875x8y5r150s1_0.png recognized as:  507.png
-153x8y5r150s2.png recognized as:  161.png
-514x8y5r30s0_75.png recognized as:  161.png
-875x8y5r300s1_5.png recognized as:  507.png
-157x8y5r210s2.png recognized as:  875.png
-125x8y5r300s1_0.png recognized as:  507.png
-127x8y5r300s2.png recognized as:  507.png
-875x8y5r0s0_75.png recognized as:  507.png
-774x8y5r240s0_5.png recognized as:  507.png
-125x8y5r180s0_75.png recognized as:  507.png
-127x8y5r30s1_0.png recognized as:  507.png
-259x8y5r300s1_25.png recognized as:  507.png
-514x8y5r330s0_75.png recognized as:  161.png
-262x8y5r150s1_5.png recognized as:  507.png
-157x8y5r0s1_25.png recognized as:  875.png
-125x8y5r120s1_25.png recognized as:  507.png
-514x8y5r180s1_0.png recognized as:  161.png
-127x8y5r270s1_5.png recognized as:  507.png
-36x8y5r120s0_75.png recognized as:  507.png
-
-
-
-Salt and pepper noise with density 5 %
+Salt and pepper noise with density 2%
 14.545454545454545 % recognized correctly.
 Incorrect results: 
 774x8y5r240s1_5.png recognized as:  875.png
@@ -836,7 +700,113 @@ Incorrect results:
 
 
 
-Salt and pepper noise with density 10 %
+Salt and pepper noise with density 3%
+14.545454545454545 % recognized correctly.
+Incorrect results: 
+774x8y5r240s1_5.png recognized as:  507.png
+157x8y5r300s1_75.png recognized as:  875.png
+153x8y5r90s1_75.png recognized as:  161.png
+774x8y5r120s1_25.png recognized as:  507.png
+157x8y5r180s1_25.png recognized as:  875.png
+875x8y5r30s1_5.png recognized as:  507.png
+774x8y5r150s0_75.png recognized as:  507.png
+514x8y5r180s1_75.png recognized as:  161.png
+262x8y5r240s0_75.png recognized as:  507.png
+259x8y5r300s2.png recognized as:  507.png
+514x8y5r300s1_0.png recognized as:  161.png
+153x8y5r270s0_75.png recognized as:  161.png
+774x8y5r120s0_5.png recognized as:  875.png
+36x8y5r120s1_0.png recognized as:  507.png
+157x8y5r60s1_0.png recognized as:  875.png
+514x8y5r330s1_25.png recognized as:  161.png
+36x8y5r180s0_5.png recognized as:  507.png
+308x8y5r120s1_0.png recognized as:  507.png
+308x8y5r150s2.png recognized as:  507.png
+308x8y5r270s1_0.png recognized as:  507.png
+125x8y5r210s1_0.png recognized as:  507.png
+157x8y5r60s1_5.png recognized as:  875.png
+514x8y5r330s1_0.png recognized as:  161.png
+125x8y5r210s0_75.png recognized as:  507.png
+125x8y5r330s2.png recognized as:  507.png
+157x8y5r270s1_0.png recognized as:  875.png
+259x8y5r30s1_25.png recognized as:  507.png
+259x8y5r300s0_5.png recognized as:  507.png
+875x8y5r150s1_0.png recognized as:  507.png
+153x8y5r150s2.png recognized as:  161.png
+514x8y5r30s0_75.png recognized as:  161.png
+875x8y5r300s1_5.png recognized as:  507.png
+157x8y5r210s2.png recognized as:  875.png
+125x8y5r300s1_0.png recognized as:  507.png
+127x8y5r300s2.png recognized as:  507.png
+875x8y5r0s0_75.png recognized as:  507.png
+774x8y5r240s0_5.png recognized as:  875.png
+125x8y5r180s0_75.png recognized as:  507.png
+127x8y5r30s1_0.png recognized as:  507.png
+259x8y5r300s1_25.png recognized as:  507.png
+514x8y5r330s0_75.png recognized as:  161.png
+262x8y5r150s1_5.png recognized as:  507.png
+157x8y5r0s1_25.png recognized as:  875.png
+125x8y5r120s1_25.png recognized as:  507.png
+514x8y5r180s1_0.png recognized as:  161.png
+127x8y5r270s1_5.png recognized as:  507.png
+36x8y5r120s0_75.png recognized as:  507.png
+
+
+
+Salt and pepper noise with density 5%
+14.545454545454545 % recognized correctly.
+Incorrect results: 
+774x8y5r240s1_5.png recognized as:  875.png
+157x8y5r300s1_75.png recognized as:  875.png
+153x8y5r90s1_75.png recognized as:  161.png
+774x8y5r120s1_25.png recognized as:  875.png
+157x8y5r180s1_25.png recognized as:  875.png
+875x8y5r30s1_5.png recognized as:  507.png
+774x8y5r150s0_75.png recognized as:  875.png
+514x8y5r180s1_75.png recognized as:  161.png
+262x8y5r240s0_75.png recognized as:  507.png
+259x8y5r300s2.png recognized as:  507.png
+514x8y5r300s1_0.png recognized as:  161.png
+153x8y5r270s0_75.png recognized as:  161.png
+774x8y5r120s0_5.png recognized as:  507.png
+36x8y5r120s1_0.png recognized as:  507.png
+157x8y5r60s1_0.png recognized as:  875.png
+514x8y5r330s1_25.png recognized as:  161.png
+36x8y5r180s0_5.png recognized as:  507.png
+308x8y5r120s1_0.png recognized as:  507.png
+308x8y5r150s2.png recognized as:  507.png
+308x8y5r270s1_0.png recognized as:  507.png
+125x8y5r210s1_0.png recognized as:  507.png
+157x8y5r60s1_5.png recognized as:  875.png
+514x8y5r330s1_0.png recognized as:  161.png
+125x8y5r210s0_75.png recognized as:  507.png
+125x8y5r330s2.png recognized as:  507.png
+157x8y5r270s1_0.png recognized as:  875.png
+259x8y5r30s1_25.png recognized as:  507.png
+259x8y5r300s0_5.png recognized as:  507.png
+875x8y5r150s1_0.png recognized as:  507.png
+153x8y5r150s2.png recognized as:  161.png
+514x8y5r30s0_75.png recognized as:  161.png
+875x8y5r300s1_5.png recognized as:  507.png
+157x8y5r210s2.png recognized as:  875.png
+125x8y5r300s1_0.png recognized as:  507.png
+127x8y5r300s2.png recognized as:  507.png
+875x8y5r0s0_75.png recognized as:  507.png
+774x8y5r240s0_5.png recognized as:  875.png
+125x8y5r180s0_75.png recognized as:  507.png
+127x8y5r30s1_0.png recognized as:  507.png
+259x8y5r300s1_25.png recognized as:  507.png
+514x8y5r330s0_75.png recognized as:  161.png
+262x8y5r150s1_5.png recognized as:  507.png
+157x8y5r0s1_25.png recognized as:  875.png
+125x8y5r120s1_25.png recognized as:  507.png
+514x8y5r180s1_0.png recognized as:  161.png
+127x8y5r270s1_5.png recognized as:  507.png
+36x8y5r120s0_75.png recognized as:  507.png
+
+
+
+Salt and pepper noise with density 10%
 21.818181818181817 % recognized correctly.
 Incorrect results: 
 774x8y5r240s1_5.png recognized as:  875.png
@@ -885,7 +855,7 @@ Incorrect results:
 
 
 
-Salt and pepper noise with density 15 %
+Salt and pepper noise with density 15%
 21.818181818181817 % recognized correctly.
 Incorrect results: 
 774x8y5r240s1_5.png recognized as:  875.png
