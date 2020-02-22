@@ -78,6 +78,8 @@ def squareImage(img, background = (0,0,0)):
 		bg.paste(img, (-x1, -y1))
 		return bg
 
+# ------ Noise ---------
+
 def addGaussianNoise(img, mean, stddev):
 	shape = img.shape
 	newImg = np.round(img + np.random.normal(mean, stddev, shape))
@@ -99,6 +101,11 @@ def addSaltAndPepperNoise(img, density):
 			img[randRow,randCol] = [0,0,0]
 		addSalt = not addSalt
 	return img
+
+
+
+
+
 
 # if __name__ == '__main__':
 	# RST()

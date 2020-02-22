@@ -20,7 +20,7 @@ class QZMI:
 				if (n - k) % 2 != 0:
 					continue
 				for m in range(0, k + 1):
-					if(k - m) % 2 != 0:
+					if (k - m) % 2 != 0:
 						continue
 					a = quaternion(*self.Ls[n,m])
 					b = quaternion(*self.Ls[k,m])
@@ -43,7 +43,7 @@ class QZMI:
 					for k in range(t, l + 1):
 						G = Gamma**((-1)*(m + 2*k + 2))
 						CD = getCD(l, k, m, t)
-						tmp = G*CD		
+						tmp = G*CD
 						self.Ls[n,m,0] += tmp * self.ZM.Zre[m + 2*t, m, 0]
 						self.Ls[n,m,1] += tmp * self.ZM.Zi[m + 2*t, m, 0]
 						self.Ls[n,m,2] += tmp * self.ZM.Zj[m + 2*t, m, 0]
@@ -54,10 +54,11 @@ def getCD(l, k, m, t):
 	Returns c*d as defined in (27) (29) (31)
 	"""
 	x = np.math.factorial(m + k + l)
+	u = np.math.factorial(l - k)
 	y = np.math.factorial(k - t)
 	z = np.math.factorial(m + k + t + 1)
-	w = 1 if (l - k % 2 == 0) else (-1)
-	return w * (m + 2*l + 1) * float(x) / float(y * z)
+	w = 1 if ((l - k) % 2 == 0) else (-1)
+	return w * (m + 2*l + 1) * float(x) / float(u * y * z)
 
 def qAbs(re, i, j, k):
 	return np.sqrt(re*re + i*i + j*j + k*k)

@@ -45,3 +45,19 @@ kepeg generalasa: OK
 
 
 python zajgeneralas, gauss, salt pepper
+
+02.13.
+vector kiiratni, megnezni -> semmi nem latszik
+feature normalization for min eucl dist
+normalizacio?
+
+2es normaval egysegre normalni a vektort -> jobb, kis hibara sokat javit!
+egyseghosszra normalni az invariansokat -> nagyon rossz
+nem normalni? -> altalaban ront
+uj_R (beleszamolja a gammat is) -> nem valtoztat, picit javitott
+uj_R v 2 (kulon momentnek veszi a konjugaltat is) -> nagy valtozas nincs, kicsit talan romlott?
+uj_R v 3 (max(n,m,k), az invarians 'foka') -> nagy valtozas nincs, kicsit talan javult?
+uj_R v 4 (fixen 2, mert mindig max ket Z szorzodik ossze) -> javult, foleg nagyobb hibara?
+uj_$ v 5 (fixen 2, kiveve ha csak egy invarianst tartalmaz a kvaternio, akkor 1) -> ???
+
+Google: similarity measure for features / feature vectors
