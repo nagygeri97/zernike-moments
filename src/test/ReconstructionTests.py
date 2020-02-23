@@ -19,7 +19,7 @@ def testImageReconstruction():
 	output = args.output if args.output is not None else '../test.bmp'
 	M = args.M
 
-	(img, N) = getImgFromFile(args.file)
+	(img, N) = getImgFromFileAsNpArray(args.file)
 
 	if args.greyscale:
 		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)

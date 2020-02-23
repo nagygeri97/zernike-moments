@@ -3,13 +3,24 @@ from numba import *
 from quaternion import *
 
 from ZernikeMomentsColor import *
+from ImageManipulation import *
 
 class QZMI:
-	def __init__(self, img, N, maxP):
+	"""
+	Quaternion Zernike Moment Invariants
+	RST invariant
+	"""
+	def __init__(self, img, N, maxP, noiseFun = None):
 		self.img = img
+
+		if noiseFun is not None:
+			self.img = noiseFun(self.img)
+
+		self.img = centroidTranslation(self.img)
+
 		self.N = N
 		self.maxP = maxP
-		self.ZM = ZernikeMomentsColorRight(img, N, maxP)
+		self.ZM = ZernikeMomentsColorRight(self.img, self.N, self.maxP)
 		self.calculateQZMI()
 
 	def calculateQZMI(self):

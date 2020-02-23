@@ -5,7 +5,7 @@ from QZMI import *
 from Utility import *
 
 def testInvariance():
-	# Needs to use CentroidTransformation in ZernikeMomentsColor
+	# Needs to use OldTransformation in ZernikeMomentsColor with centroidTranslation applied in advance
 
 	path = "../images/cups/transformed/"
 	prefix = "36"
@@ -13,7 +13,7 @@ def testInvariance():
 	maxDeg = 4
 	values = {}
 	for file in files:
-		(img, N) = getImgFromFile(path+file)
+		(img, N) = getImgFromFileAsNpArray(path+file)
 		qzmi = QZMI(img, N, maxDeg)
 		for n in range(0, maxDeg + 1):
 			for k in range(0, n + 1):

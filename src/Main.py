@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import timeit
 
+from Utility import *
+
 from test.InvarianceTests import *
 from test.NoiseGenerationTests import *
 from test.RecognitionTests import *
@@ -16,13 +18,17 @@ def main():
 	# testInvariance()
 
 	# RecognitionTests
-	# testRecognition_Clean()
-	# testRecognition_Gauss()
-	# testRecognition_SaltAndPepper()
+	testType = TestType.COIL_ROTATED
+	testRecognition(NoiseType.CLEAN, testType)
+	testRecognition(NoiseType.GAUSS, testType)
+	testRecognition(NoiseType.SALT, testType)
 
 	# NoiseGenerationTests
-	addGaussianNoiseAndPrintImage()
+	# addGaussianNoiseAndPrintImage()
 	# addSaltAndPepperNoiseAndPrintImage()
+
+	# img, N = getImgFromFileAsNpArray("../images/cups/transformed/36x8y5r30s1_0.png")
+	# centroidTranslation(img)
 
 	stop = timeit.default_timer()
 	print('Time:', stop - start, "s")  

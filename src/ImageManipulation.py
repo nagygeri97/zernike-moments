@@ -1,6 +1,9 @@
-# Script for creating all transformed versions of an image.
 import numpy as np
 from PIL import Image
+
+import Utility
+
+# ------ Test image generation ---------
 
 cupNames = ["36", "125", "127", "153", "157", "161", "259", "262", "308", "507", "514", "774", "875"]
 coilNames = ["7", "13", "22", "26", "29", "32", "39", "55", "62", "64", "65", "71", "95", "99"]
@@ -81,12 +84,14 @@ def squareImage(img, background = (0,0,0)):
 # ------ Noise ---------
 
 def addGaussianNoise(img, mean, stddev):
+	# img: an np.array
 	shape = img.shape
 	newImg = np.round(img + np.random.normal(mean, stddev, shape))
 	bounds = np.vectorize(lambda x : np.uint8((x if x > 0 else 0) if x < 255 else 255))
 	return bounds(newImg)
 
 def addSaltAndPepperNoise(img, density):
+	# img: an np.array
 	# density is the PERCENTAGE of pixels affected
 	density = float(density) / 100
 	(row, col, ch) = img.shape
@@ -102,10 +107,23 @@ def addSaltAndPepperNoise(img, density):
 		addSalt = not addSalt
 	return img
 
+# ------ Centroid ---------
 
+def centroidTranslation(img):
+	# img: an np.array
+	pilImg = Image.fromarray(img)
 
+	(cy, cx) = Utility.calculateCentroid(img)
+	N, M = pilImg.size
 
+	xTranslation = cx - (N//2)
+	yTranslation = cy - (M//2) # N, M may be mixed up
 
+	pilImg = pilImg.transform(pilImg.size, Image.AFFINE, (1, 0, xTranslation, 0, 1, yTranslation))
+
+	pilImg.save("../test.bmp", "BMP")
+	img = np.array(pilImg)
+	return img
 
 # if __name__ == '__main__':
 	# RST()
