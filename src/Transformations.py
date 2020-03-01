@@ -4,7 +4,8 @@ from Utility import *
 
 class OldTransformation:
 	"""
-	Functions calculating the transformation from cartesian to polar coordinates.
+	Transform square inside circle
+	([])
 	"""
 	def __init__(self, N, img): # img is unused
 		self.N = N
@@ -24,6 +25,30 @@ class OldTransformation:
 
 	def lam(self, p):
 		return 2*(p + 1)/(np.pi * (self.N - 1)**2)
+
+class OldTransformation2:
+	"""
+	Transform circle inside square
+	[()]
+	"""
+	def __init__(self, N, img): # img is unused
+		self.N = N
+		self.c1 = 2 / (N - 1)
+		self.c2 = -1
+
+	def getPolarCoords(self, x, y):
+		"""
+		Return the polar coordinates corresponding to the cartesian (x,y) coordinates.
+		The returned value is in the form (r, theta).
+		"""
+		s1 = self.c1*x + self.c2
+		s2 = self.c1*y + self.c2
+		r = np.sqrt(s1**2 + s2**2)
+		theta = np.arctan2(s2, s1)
+		return (r, theta)
+
+	def lam(self, p):
+		return (p + 1)/float((self.N - 1)**2)
 
 class EqualRadsTransformation:
 	"""

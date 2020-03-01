@@ -1,0 +1,70 @@
+
+CUPS_TRANSFORMED
+
+Noise-free
+99.9084249084249 % recognized correctly.
+
+Gaussian noise with std dev 1
+94.23076923076923 % recognized correctly.
+
+Gaussian noise with std dev 2
+99.54212454212454 % recognized correctly.
+
+Gaussian noise with std dev 3
+96.7948717948718 % recognized correctly.
+
+Salt and pepper noise with density 0.2%
+89.74358974358975 % recognized correctly.
+
+Salt and pepper noise with density 0.4%
+84.89010989010988 % recognized correctly.
+
+Salt and pepper noise with density 0.6%
+89.28571428571429 % recognized correctly.
+
+COIL_TRANSFORMED
+
+Noise-free
+99.06462585034014 % recognized correctly.
+
+Gaussian noise with std dev 5
+99.31972789115646 % recognized correctly.
+
+Gaussian noise with std dev 7
+96.85374149659864 % recognized correctly.
+
+Gaussian noise with std dev 9
+96.68367346938776 % recognized correctly.
+
+Salt and pepper noise with density 1%
+98.9795918367347 % recognized correctly.
+
+Salt and pepper noise with density 2%
+99.40476190476191 % recognized correctly.
+
+Salt and pepper noise with density 3%
+99.14965986394559 % recognized correctly.
+
+COIL_ROTATED
+
+Noise-free
+100.0 % recognized correctly.
+
+Gaussian noise with std dev 40
+99.8015873015873 % recognized correctly.
+
+Gaussian noise with std dev 50
+99.50396825396825 % recognized correctly.
+
+Gaussian noise with std dev 60
+99.40476190476191 % recognized correctly.
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+Time: 15204.416685033968 s

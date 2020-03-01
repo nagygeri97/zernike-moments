@@ -45,13 +45,17 @@ def getImgFromFileAsNpArray(fileName):
 
 	return (img, N)
 
+def saveImgFromNpArray(img, fileName="../test.bmp"):
+	image = Image.fromarray(img)
+	image.save(fileName, "BMP")
+
 def transformAndPrintImage(img, fileName):
 	(N, _, _) = img.shape
 	newImage = np.zeros((N, N, 3), dtype='uint8')
 	for i in range(N):
 		for j in range(N):
 			newImage[i,j] = (255,255,255)
-	trans = OldTransformation(N, img)
+	trans = OldTransformation2(N, img)
 	backTrans = ReverseTransformation(N, img)
 	for x in range(N):
 		for y in range(N):

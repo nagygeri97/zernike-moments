@@ -4,6 +4,7 @@ from quaternion import *
 
 from ZernikeMomentsColor import *
 from ImageManipulation import *
+from Utility import *
 
 class QZMI:
 	"""
@@ -13,10 +14,16 @@ class QZMI:
 	def __init__(self, img, N, maxP, noiseFun = None):
 		self.img = img
 
+		# self.img = centroidTranslation(self.img)
+
+		# Add noise before/after centroidTranslation
 		if noiseFun is not None:
 			self.img = noiseFun(self.img)
 
 		self.img = centroidTranslation(self.img)
+
+		# saveImgFromNpArray(img, "../original.bmp")
+		# saveImgFromNpArray(self.img, "../test.bmp")
 
 		self.N = N
 		self.maxP = maxP

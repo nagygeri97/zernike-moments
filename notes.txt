@@ -61,3 +61,16 @@ uj_R v 4 (fixen 2, mert mindig max ket Z szorzodik ossze) -> javult, foleg nagyo
 uj_$ v 5 (fixen 2, kiveve ha csak egy invarianst tartalmaz a kvaternio, akkor 1) -> ???
 
 Google: similarity measure for features / feature vectors
+
+02/24
+
+partNoise: a centroidTranslation elott van a zajgeneralas
+fullNoise: a centroidTranslation utan van a zajgeneralas
+bothPartNoise: az eredeti is kap  zajt
+
+a kor negyzetbe transzformalasa is megvan
+
+tf1 = OldTransformation a ZernikeMomentsColor.py-ban
+tf2 = OldTransformation2 -"-
+
+paper = csak ugyanazok zajok mint a cikkben

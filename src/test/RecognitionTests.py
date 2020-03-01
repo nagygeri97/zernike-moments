@@ -23,18 +23,18 @@ def getBasicRecognitionTestingData(testType):
 		originalPath = "../images/coil/extended/"
 		qzmiClass = QZMRI
 	elif testType == TestType.COIL_TRANSFORMED:
-		recognizePath = "../images/coil/transformed"
-		originalPath = "../images/coil/extended"
+		recognizePath = "../images/coil/transformed/"
+		originalPath = "../images/coil/extended/"
 		qzmiClass = QZMI
 	elif testType == TestType.CUPS_TRANSFORMED:
-		recognizePath = "../images/cups/transformed"
-		originalPath = "../images/cups/extended"
+		recognizePath = "../images/cups/transformed/"
+		originalPath = "../images/cups/extended/"
 		qzmiClass = QZMI
 	else:
 		printerr("ERROR: unsupported testType")
 		return
 	
-	recognizeFiles = os.listdir(recognizePath)[::20]
+	recognizeFiles = os.listdir(recognizePath)#[::20]
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect
@@ -53,7 +53,16 @@ def testRecognition(noiseType, testType):
 		printResultOfRecognition("Noise-free", result)
 
 	elif noiseType == NoiseType.GAUSS:
-		stddevs = [1, 2, 3, 5, 7, 9, 20, 40, 50, 60]
+		if testType == TestType.CUPS_TRANSFORMED:
+			stddevs = [1,2,3]
+		elif testType == TestType.COIL_TRANSFORMED:
+			stddevs = [5,7,9]
+		elif testType == TestType.COIL_ROTATED:
+			stddevs = [40,50,60]
+		else:
+			printerr("ERROR: unsupported testType")
+			return
+
 		for stddev in stddevs:
 			noiseFun = lambda img : addGaussianNoise(img, mean=0, stddev=stddev)
 
@@ -61,7 +70,16 @@ def testRecognition(noiseType, testType):
 			printResultOfRecognition("Gaussian noise with std dev {0}".format(stddev), result)
 
 	elif noiseType == NoiseType.SALT:
-		densities = [0.2, 0.4, 0.6, 1, 2, 3, 5, 10, 15]
+		if testType == TestType.CUPS_TRANSFORMED:
+			densities = [0.2, 0.4, 0.6]
+		elif testType == TestType.COIL_TRANSFORMED:
+			densities = [1, 2, 3]
+		elif testType == TestType.COIL_ROTATED:
+			densities = [5, 10, 15]
+		else:
+			printerr("ERROR: unsupported testType")
+			return
+		
 		for density in densities:
 			noiseFun = lambda img : addSaltAndPepperNoise(img, density=density)
 
@@ -92,7 +110,7 @@ def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzm
 	recognizeVecs = {}
 
 	for file in originalFiles:
-		originalVecs[file] = populateInvariantVector(originalPath + file, qzmiClass)
+		originalVecs[file] = populateInvariantVector(originalPath + file, qzmiClass, noiseFun) # Noise here?
 	
 	for file in recognizeFiles:
 		recognizeVecs[file] = populateInvariantVector(recognizePath + file, qzmiClass, noiseFun)
