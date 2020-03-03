@@ -3,6 +3,7 @@ from numba import *
 from PIL import Image
 
 from RadialPolynomials import *
+from ImageManipulation import *
 from Transformations import *
 
 class ZernikeMomentsMonochrome:
@@ -120,21 +121,3 @@ def reconstructImageArray(N, maxP, rs, sins, coss, Zre, Zim, imageArray, zeros):
 				value = 0
 			imageArray[x,y] = int(round(value))
 			# print(x, y)
-
-
-def getColorComponent(img, color='R'):
-	if color == 'R':
-		index = 0
-	elif color == 'G':
-		index = 1
-	elif color == 'B':
-		index = 2
-	else:
-		return
-	(heigth, width, _) = img.shape
-	monochromeImg = np.empty((heigth, width), dtype='double')
-	for i in range(heigth):
-		for j in range(width):
-			monochromeImg[i,j] = img[i,j][index]
-
-	return monochromeImg

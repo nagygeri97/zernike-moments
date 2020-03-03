@@ -68,6 +68,30 @@ def transformAndPrintImage(img, fileName):
 	im = Image.fromarray(newImage)
 	im.save(fileName, "BMP")
 
+def printImageFromLegendreTrans(trans, fileName="../test.bmp"):
+	n = 1000
+	# n = trans.n
+	newImage = np.zeros((n, n, 3), dtype='uint8')
+	for k in range(trans.N):
+		for j in range(4*trans.N + 1):
+			xy = trans.rs[k] * (np.exp(trans.thetas[j]  * 1j))
+			x = xy.real
+			y = xy.imag
+
+			x += 1
+			y += 1
+
+			x *= (n - 1) / 2
+			y *= (n - 1) / 2
+
+			x = int(round(x))
+			y = int(round(y))
+
+			for i in range(3):
+				newImage[x,y,i] = trans.img[k,j,i]
+	im = Image.fromarray(newImage)
+	im.save(fileName, "BMP")
+
 def calculateCentroid(img):
 	m00 = 0
 	m10 = 0
@@ -82,3 +106,21 @@ def calculateCentroid(img):
 	m01 = int(round(float(m01) / m00))
 	m10 = int(round(float(m10) / m00))
 	return (m10, m01)
+
+# ------ Recognition ---------
+
+def isRecognitionCorrect(fileToRecognize, recognizedFile):
+	id = recognizedFile.split('.')[0]
+	return fileToRecognize.startswith(id)
+
+def printResultOfRecognition(name, result):
+	(correct, incorrect, pct) = result
+	print("\n" + name)
+	print(pct, "% recognized correctly.", flush=True)
+	printerr("\n" + name)
+	printerr(pct, "% recognized correctly.")
+	if len(incorrect) > 0:
+		printerr("Incorrect results: ")
+	for (file, resultFile) in incorrect:
+		printerr(file, "recognized as: ", resultFile)
+	printerr("\n", flush=True)

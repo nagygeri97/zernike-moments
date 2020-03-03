@@ -125,6 +125,25 @@ def centroidTranslation(img):
 	img = np.array(pilImg)
 	return img
 
+# ------ RGB ---------
+
+def getColorComponent(img, color='R'):
+	if color == 'R':
+		index = 0
+	elif color == 'G':
+		index = 1
+	elif color == 'B':
+		index = 2
+	else:
+		return
+	(heigth, width, _) = img.shape
+	monochromeImg = np.empty((heigth, width), dtype='double')
+	for i in range(heigth):
+		for j in range(width):
+			monochromeImg[i,j] = img[i,j][index]
+
+	return monochromeImg
+
 # if __name__ == '__main__':
 	# RST()
 	# placeImagesOnBackground()

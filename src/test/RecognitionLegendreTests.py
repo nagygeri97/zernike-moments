@@ -2,54 +2,48 @@ import numpy as np
 import os
 from enum import Enum
 
-from QZMI import *
+from legendre.QZMILegendre import *
 from QZMRI import *
 from ImageManipulation import *
 from Utility import *
+from test.RecognitionTests import *
+from legendre.TransformationsLegendre import *
 
-class NoiseType(Enum):
-	CLEAN = 1
-	GAUSS = 2
-	SALT = 3
 
-class TestType(Enum):
-	COIL_ROTATED = 1
-	COIL_TRANSFORMED = 2
-	CUPS_TRANSFORMED = 3
 
-def getBasicRecognitionTestingData(testType):
+def getBasicRecognitionTestingDataLegendre(testType):
 	if testType == TestType.COIL_ROTATED:
 		recognizePath = "../images/coil/rotated/"
 		originalPath = "../images/coil/extended/"
-		qzmiClass = QZMRI
+		qzmiClass = QZMRI # TODO: implement QZMRILegendre
 	elif testType == TestType.COIL_TRANSFORMED:
 		recognizePath = "../images/coil/transformed/"
 		originalPath = "../images/coil/extended/"
-		qzmiClass = QZMI
+		qzmiClass = QZMILegendre
 	elif testType == TestType.CUPS_TRANSFORMED:
 		recognizePath = "../images/cups/transformed/"
 		originalPath = "../images/cups/extended/"
-		qzmiClass = QZMI
+		qzmiClass = QZMILegendre
 	else:
 		printerr("ERROR: unsupported testType")
 		return
 	
-	recognizeFiles = os.listdir(recognizePath)[:10]#[::20]
+	recognizeFiles = os.listdir(recognizePath)[::20]
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect
 
 	return (recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun)
 
-def testRecognition(noiseType, testType):
+def testRecognitionLegendre(noiseType, testType):
 	# Needs to use OldTransformation in ZernikeMomentsColor with centroidTranslation applied in advance
 
-	(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun) = getBasicRecognitionTestingData(testType)
+	(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun) = getBasicRecognitionTestingDataLegendre(testType)
 
 	if noiseType == NoiseType.CLEAN:
 		noiseFun = lambda img : img
 
-		result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
+		result = recognizeAllLegendre(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
 		printResultOfRecognition("Noise-free", result)
 
 	elif noiseType == NoiseType.GAUSS:
@@ -66,7 +60,7 @@ def testRecognition(noiseType, testType):
 		for stddev in stddevs:
 			noiseFun = lambda img : addGaussianNoise(img, mean=0, stddev=stddev)
 
-			result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
+			result = recognizeAllLegendre(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
 			printResultOfRecognition("Gaussian noise with std dev {0}".format(stddev), result)
 
 	elif noiseType == NoiseType.SALT:
@@ -83,21 +77,24 @@ def testRecognition(noiseType, testType):
 		for density in densities:
 			noiseFun = lambda img : addSaltAndPepperNoise(img, density=density)
 
-			result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
+			result = recognizeAllLegendre(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
 			printResultOfRecognition("Salt and pepper noise with density {0}%".format(density), result)
 	
 	else:
 		printerr("ERROR: unsupported noiseType")
 
-def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun=None):
+def recognizeAllLegendre(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun=None):
 	originalVecs = {}
 	recognizeVecs = {}
 
+	img, _ = getImgFromFileAsNpArray(originalPath + originalFiles[0])
+	points = LegendrePoints1(img)
+
 	for file in originalFiles:
-		originalVecs[file] = populateInvariantVector(originalPath + file, qzmiClass, noiseFun) # Noise here?
+		originalVecs[file] = populateInvariantVectorLegendre(originalPath + file, qzmiClass, noiseFun, points) # Noise here?
 	
 	for file in recognizeFiles:
-		recognizeVecs[file] = populateInvariantVector(recognizePath + file, qzmiClass, noiseFun)
+		recognizeVecs[file] = populateInvariantVectorLegendre(recognizePath + file, qzmiClass, noiseFun, points)
 
 	correct = []
 	incorrect = []
@@ -118,13 +115,13 @@ def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzm
 	pct = float(len(correct)) / float(len(recognizeFiles)) * 100
 	return (correct, incorrect, pct)
 
-def populateInvariantVector(imgPath, qzmiClass=QZMI, noiseFun=None):
+def populateInvariantVectorLegendre(imgPath, qzmiClass, noiseFun, points):
 	relevantMoments = [(1,1,1), (2,0,0), (2,2,2), (3,1,1), (3,3,3), (4,0,0), (4,2,2), (4,4,4)]
 	maxDeg = 4
 	result = []
 	(img, N) = getImgFromFileAsNpArray(imgPath)
 
-	qzmi = qzmiClass(img, N, maxDeg, noiseFun)
+	qzmi = qzmiClass(img, N, maxDeg, points, noiseFun)
 	for relevantMoment in relevantMoments:
 		n,m,k = relevantMoment
 		r = 2
