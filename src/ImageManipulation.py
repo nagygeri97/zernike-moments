@@ -83,16 +83,18 @@ def squareImage(img, background = (0,0,0)):
 
 # ------ Noise ---------
 
-def addGaussianNoise(img, mean, stddev):
+def addGaussianNoise(img, mean, stddev, seed=0):
 	# img: an np.array
+	np.random.seed(seed)
 	shape = img.shape
 	newImg = np.round(img + np.random.normal(mean, stddev, shape))
 	bounds = np.vectorize(lambda x : np.uint8((x if x > 0 else 0) if x < 255 else 255))
 	return bounds(newImg)
 
-def addSaltAndPepperNoise(img, density):
+def addSaltAndPepperNoise(img, density, seed=0):
 	# img: an np.array
 	# density is the PERCENTAGE of pixels affected
+	np.random.seed(seed)
 	density = float(density) / 100
 	(row, col, ch) = img.shape
 	amount = round(row*col*density)

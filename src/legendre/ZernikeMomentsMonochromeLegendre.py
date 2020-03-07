@@ -47,7 +47,7 @@ def calculate(N, maxP, colorIndex, rs, thetas, img, mu, sins, coss, Zre, Zim, ze
 		for j in range(4*N + 1):
 			for p in range(0, maxP + 1):
 				for q in range(p % 2, p + 1, 2):
-					tmp = values[p,q] * img[k,j,colorIndex]# * mu[k]
+					tmp = values[p,q] * img[k,j,colorIndex] * mu[k]
 					Zre[p, q] += coss[j,q] * tmp
 					Zim[p, q] += -sins[j,q] * tmp
 

@@ -20,13 +20,16 @@ def main():
 	# testInvariance()
 	# testLegendreInvariance()
 
-	# RecognitionTests
-	print("\nCUPS_TRANSFORMED")
-	printerr("\nCUPS_TRANSFORMED")
-	testType = TestType.CUPS_TRANSFORMED
-	testRecognition(NoiseType.CLEAN, testType)
-	testRecognition(NoiseType.GAUSS, testType)
-	testRecognition(NoiseType.SALT, testType)
+	# # RecognitionTests
+	# print("\n\nOLD\n\n")
+	# printerr("\n\nOLD\n\n")
+
+	# print("\nCUPS_TRANSFORMED")
+	# printerr("\nCUPS_TRANSFORMED")
+	# testType = TestType.CUPS_TRANSFORMED
+	# testRecognition(NoiseType.CLEAN, testType)
+	# testRecognition(NoiseType.GAUSS, testType)
+	# testRecognition(NoiseType.SALT, testType)
 
 	# print("\nCOIL_TRANSFORMED")
 	# printerr("\nCOIL_TRANSFORMED")
@@ -43,19 +46,22 @@ def main():
 	# testRecognition(NoiseType.SALT, testType)
 
 
-	# print("\nCUPS_TRANSFORMED")
-	# printerr("\nCUPS_TRANSFORMED")
-	# testType = TestType.CUPS_TRANSFORMED
-	# testRecognitionLegendre(NoiseType.CLEAN, testType)
-	# testRecognitionLegendre(NoiseType.GAUSS, testType)
-	# testRecognitionLegendre(NoiseType.SALT, testType)
+	# print("\n\nLEGENDRE\n\n")
+	# printerr("\n\nLEGENDRE\n\n")
 
-	# print("\nCOIL_TRANSFORMED")
-	# printerr("\nCOIL_TRANSFORMED")
-	# testType = TestType.COIL_TRANSFORMED
-	# testRecognitionLegendre(NoiseType.CLEAN, testType)
-	# testRecognitionLegendre(NoiseType.GAUSS, testType)
-	# testRecognitionLegendre(NoiseType.SALT, testType)
+	print("\nCUPS_TRANSFORMED")
+	printerr("\nCUPS_TRANSFORMED")
+	testType = TestType.CUPS_TRANSFORMED
+	testRecognitionLegendre(NoiseType.CLEAN, testType)
+	testRecognitionLegendre(NoiseType.GAUSS, testType)
+	testRecognitionLegendre(NoiseType.SALT, testType)
+
+	print("\nCOIL_TRANSFORMED")
+	printerr("\nCOIL_TRANSFORMED")
+	testType = TestType.COIL_TRANSFORMED
+	testRecognitionLegendre(NoiseType.CLEAN, testType)
+	testRecognitionLegendre(NoiseType.GAUSS, testType)
+	testRecognitionLegendre(NoiseType.SALT, testType)
 
 	# print("\nCOIL_ROTATED")
 	# printerr("\nCOIL_ROTATED")
@@ -69,7 +75,8 @@ def main():
 	# addSaltAndPepperNoiseAndPrintImage()
 
 	# LegendreTransformationTests
-	# legendreTransformation1_Test()
+	# legendreTransformationDebug_Test()
+	# legendreTransformationPrintPoints_Test()
 
 	stop = timeit.default_timer()
 	print('Time:', stop - start, "s")  

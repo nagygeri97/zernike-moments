@@ -1,0 +1,60 @@
+
+CUPS_TRANSFORMED
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 1
+96.36363636363636 % recognized correctly.
+Incorrect results: 
+262x8y5r240s0_75.png recognized as:  36.png
+259x8y5r300s0_5.png recognized as:  262.png
+
+
+
+Gaussian noise with std dev 2
+98.18181818181819 % recognized correctly.
+Incorrect results: 
+262x8y5r240s0_75.png recognized as:  125.png
+
+
+
+Gaussian noise with std dev 3
+92.72727272727272 % recognized correctly.
+Incorrect results: 
+774x8y5r120s1_25.png recognized as:  36.png
+774x8y5r150s0_75.png recognized as:  161.png
+774x8y5r120s0_5.png recognized as:  36.png
+125x8y5r180s0_75.png recognized as:  262.png
+
+
+
+Salt and pepper noise with density 0.2%
+96.36363636363636 % recognized correctly.
+Incorrect results: 
+262x8y5r240s0_75.png recognized as:  36.png
+262x8y5r150s1_5.png recognized as:  36.png
+
+
+
+Salt and pepper noise with density 0.4%
+96.36363636363636 % recognized correctly.
+Incorrect results: 
+262x8y5r240s0_75.png recognized as:  125.png
+262x8y5r150s1_5.png recognized as:  125.png
+
+
+
+Salt and pepper noise with density 0.6%
+89.0909090909091 % recognized correctly.
+Incorrect results: 
+125x8y5r210s1_0.png recognized as:  262.png
+125x8y5r330s2.png recognized as:  262.png
+259x8y5r300s0_5.png recognized as:  774.png
+125x8y5r300s1_0.png recognized as:  262.png
+774x8y5r240s0_5.png recognized as:  262.png
+125x8y5r120s1_25.png recognized as:  262.png
+
+

@@ -91,7 +91,7 @@ def recognizeAllLegendre(recognizePath, recognizeFiles, originalPath, originalFi
 	points = LegendrePoints1(img)
 
 	for file in originalFiles:
-		originalVecs[file] = populateInvariantVectorLegendre(originalPath + file, qzmiClass, noiseFun, points) # Noise here?
+		originalVecs[file] = populateInvariantVectorLegendre(originalPath + file, qzmiClass, noiseFun, points)
 	
 	for file in recognizeFiles:
 		recognizeVecs[file] = populateInvariantVectorLegendre(recognizePath + file, qzmiClass, noiseFun, points)

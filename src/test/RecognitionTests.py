@@ -34,7 +34,7 @@ def getBasicRecognitionTestingData(testType):
 		printerr("ERROR: unsupported testType")
 		return
 	
-	recognizeFiles = os.listdir(recognizePath)[:10]#[::20]
+	recognizeFiles = os.listdir(recognizePath)[::20]
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect
@@ -94,7 +94,7 @@ def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzm
 	recognizeVecs = {}
 
 	for file in originalFiles:
-		originalVecs[file] = populateInvariantVector(originalPath + file, qzmiClass, noiseFun) # Noise here?
+		originalVecs[file] = populateInvariantVector(originalPath + file, qzmiClass, noiseFun)
 	
 	for file in recognizeFiles:
 		recognizeVecs[file] = populateInvariantVector(recognizePath + file, qzmiClass, noiseFun)

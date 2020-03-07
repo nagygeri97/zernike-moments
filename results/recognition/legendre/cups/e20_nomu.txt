@@ -1,0 +1,24 @@
+
+CUPS_TRANSFORMED
+
+Noise-free
+100.0 % recognized correctly.
+
+Gaussian noise with std dev 1
+96.36363636363636 % recognized correctly.
+
+Gaussian noise with std dev 2
+98.18181818181819 % recognized correctly.
+
+Gaussian noise with std dev 3
+92.72727272727272 % recognized correctly.
+
+Salt and pepper noise with density 0.2%
+96.36363636363636 % recognized correctly.
+
+Salt and pepper noise with density 0.4%
+96.36363636363636 % recognized correctly.
+
+Salt and pepper noise with density 0.6%
+89.0909090909091 % recognized correctly.
+Time: 791.6982919489965 s
