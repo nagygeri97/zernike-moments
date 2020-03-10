@@ -5,7 +5,8 @@ from quaternion import *
 from ZernikeMomentsColor import *
 from ImageManipulation import *
 
-class QZMRI:
+# TODO: FIX THIS
+class QZMRILegendre:
 	"""
 	Quaternion Zernike Moment ROTATION Invariants
 	"""

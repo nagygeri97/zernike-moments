@@ -4,6 +4,8 @@ from enum import Enum
 
 from QZMI import *
 from QZMRI import *
+from legendre.QZMILegendre import *
+from legendre.QZMRILegendre import *
 from ImageManipulation import *
 from Utility import *
 
@@ -17,19 +19,64 @@ class TestType(Enum):
 	COIL_TRANSFORMED = 2
 	CUPS_TRANSFORMED = 3
 
+class QZMIType(Enum):
+	NORMAL = 1
+	LEGENDRE1 = 2
+	LEGENDRE2 = 3
+
+def runRecognitionTest():
+
+	tests = [
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.SALT),
+
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.SALT),
+
+		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
+	]
+
+	for (qzmiType, testType, noiseType) in tests:
+		testRecognition(noiseType, testType, qzmiType)
+
 def getBasicRecognitionTestingData(testType):
 	if testType == TestType.COIL_ROTATED:
 		recognizePath = "../images/coil/rotated/"
 		originalPath = "../images/coil/extended/"
-		qzmiClass = QZMRI
 	elif testType == TestType.COIL_TRANSFORMED:
 		recognizePath = "../images/coil/transformed/"
 		originalPath = "../images/coil/extended/"
-		qzmiClass = QZMI
 	elif testType == TestType.CUPS_TRANSFORMED:
 		recognizePath = "../images/cups/transformed/"
 		originalPath = "../images/cups/extended/"
-		qzmiClass = QZMI
 	else:
 		printerr("ERROR: unsupported testType")
 		return
@@ -39,12 +86,52 @@ def getBasicRecognitionTestingData(testType):
 
 	correctnessFun = isRecognitionCorrect
 
-	return (recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun)
+	return (recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun)
 
-def testRecognition(noiseType, testType):
+def getQZMIClass(testType, qzmiType):
+	if testType == TestType.COIL_ROTATED:
+		if qzmiType == QZMIType.NORMAL:
+			qzmiClass = QZMRI
+		elif qzmiType == QZMIType.LEGENDRE1:
+			qzmiClass = QZMRILegendre
+		elif qzmiType == QZMIType.LEGENDRE2:
+			qzmiClass = QZMRILegendre
+		else:
+			printerr("ERROR: unsupported qzmiType")
+			return
+	elif testType == TestType.COIL_TRANSFORMED:
+		if qzmiType == QZMIType.NORMAL:
+			qzmiClass = QZMI
+		elif qzmiType == QZMIType.LEGENDRE1:
+			qzmiClass = QZMILegendre
+		elif qzmiType == QZMIType.LEGENDRE2:
+			qzmiClass = QZMILegendre
+		else:
+			printerr("ERROR: unsupported qzmiType")
+			return
+	elif testType == TestType.CUPS_TRANSFORMED:
+		if qzmiType == QZMIType.NORMAL:
+			qzmiClass = QZMI
+		elif qzmiType == QZMIType.LEGENDRE1:
+			qzmiClass = QZMILegendre
+		elif qzmiType == QZMIType.LEGENDRE2:
+			qzmiClass = QZMILegendre
+		else:
+			printerr("ERROR: unsupported qzmiType")
+			return
+	else:
+		printerr("ERROR: unsupported testType")
+		return
+	return qzmiClass
+
+def testRecognition(noiseType, testType, qzmiType):
+	print(qzmiType, testType, noiseType)
+	printerr(qzmiType, testType, noiseType)
 	# Needs to use OldTransformation in ZernikeMomentsColor with centroidTranslation applied in advance
+	np.random.seed(0)
 
-	(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun) = getBasicRecognitionTestingData(testType)
+	(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun) = getBasicRecognitionTestingData(testType)
+	qzmiClass = getQZMIClass(testType, qzmiType)
 
 	if noiseType == NoiseType.CLEAN:
 		noiseFun = lambda img : img
@@ -54,7 +141,7 @@ def testRecognition(noiseType, testType):
 
 	elif noiseType == NoiseType.GAUSS:
 		if testType == TestType.CUPS_TRANSFORMED:
-			stddevs = [1,2,3]
+			stddevs = [1,2,3,5,7,9,40,50,60]
 		elif testType == TestType.COIL_TRANSFORMED:
 			stddevs = [5,7,9]
 		elif testType == TestType.COIL_ROTATED:
@@ -71,7 +158,7 @@ def testRecognition(noiseType, testType):
 
 	elif noiseType == NoiseType.SALT:
 		if testType == TestType.CUPS_TRANSFORMED:
-			densities = [0.2, 0.4, 0.6]
+			densities = [0.2, 0.4, 0.6,1,2,3,5,10,15]
 		elif testType == TestType.COIL_TRANSFORMED:
 			densities = [1, 2, 3]
 		elif testType == TestType.COIL_ROTATED:

@@ -13,12 +13,12 @@ class ZernikeMomentsColorRightLegendre:
 	using the ZernikeMomentsMonochrome class
 	"""
 
-	def __init__(self, img, maxP, points, verbose = False):
+	def __init__(self, img, maxP, verbose = False):
 		self.img = img # img should contain RGB components
 		self.maxP = maxP
 		self.verbose = verbose
 
-		self.trans = LegendreTransformation1(img, points)
+		self.trans = LegendreTransformation1(img)
 
 		self.calculateZernikeMoments()
 

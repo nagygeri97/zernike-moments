@@ -11,12 +11,11 @@ class QZMILegendre:
 	Quaternion Zernike Moment Invariants
 	RST invariant
 	"""
-	def __init__(self, img, N, maxP, points, noiseFun = None):
+	def __init__(self, img, N, maxP, noiseFun = None):
 		"""
 		N is unused, present for compatibility
 		"""
 		self.img = img
-		self.points = points
 		self.maxP = maxP
 		# self.img = centroidTranslation(self.img)
 
@@ -29,7 +28,7 @@ class QZMILegendre:
 		# saveImgFromNpArray(img, "../original.bmp")
 		# saveImgFromNpArray(self.img, "../test.bmp")
 
-		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP, self.points)
+		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP)
 		self.calculateQZMI()
 
 	def calculateQZMI(self):

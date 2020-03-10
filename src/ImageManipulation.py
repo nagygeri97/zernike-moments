@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 import Utility
 
@@ -83,18 +83,16 @@ def squareImage(img, background = (0,0,0)):
 
 # ------ Noise ---------
 
-def addGaussianNoise(img, mean, stddev, seed=0):
+def addGaussianNoise(img, mean, stddev):
 	# img: an np.array
-	np.random.seed(seed)
 	shape = img.shape
 	newImg = np.round(img + np.random.normal(mean, stddev, shape))
 	bounds = np.vectorize(lambda x : np.uint8((x if x > 0 else 0) if x < 255 else 255))
 	return bounds(newImg)
 
-def addSaltAndPepperNoise(img, density, seed=0):
+def addSaltAndPepperNoise(img, density):
 	# img: an np.array
 	# density is the PERCENTAGE of pixels affected
-	np.random.seed(seed)
 	density = float(density) / 100
 	(row, col, ch) = img.shape
 	amount = round(row*col*density)
@@ -107,6 +105,37 @@ def addSaltAndPepperNoise(img, density, seed=0):
 		else:
 			img[randRow,randCol] = [0,0,0]
 		addSalt = not addSalt
+	return img
+
+def medianFilter(img):
+	# img: an np.array
+	pilImg = Image.fromarray(img)
+	pilImg = pilImg.filter(ImageFilter.MedianFilter())
+	img = np.array(pilImg)
+	return img
+
+def gaussianBlur(img):
+	# img: an np.array
+	pilImg = Image.fromarray(img)
+	pilImg = pilImg.filter(ImageFilter.GaussianBlur())
+	img = np.array(pilImg)
+	return img
+
+def meanFilter(img):
+	# img: an np.array
+	pilImg = Image.fromarray(img)
+	pilImg = pilImg.filter(ImageFilter.Kernel((3,3), np.ones(9)))
+	img = np.array(pilImg)
+	return img
+
+def addGaussianNoiseFiltered(img, mean, stddev):
+	img = addGaussianNoise(img, mean, stddev)
+	img = meanFilter(img)
+	return img
+
+def addSaltAndPepperNoiseFiltered(img, density):
+	img = addSaltAndPepperNoise(img, density)
+	img = medianFilter(img)
 	return img
 
 # ------ Centroid ---------
@@ -123,7 +152,7 @@ def centroidTranslation(img):
 
 	pilImg = pilImg.transform(pilImg.size, Image.AFFINE, (1, 0, xTranslation, 0, 1, yTranslation))
 
-	pilImg.save("../test.bmp", "BMP")
+	# pilImg.save("../test.bmp", "BMP")
 	img = np.array(pilImg)
 	return img
 

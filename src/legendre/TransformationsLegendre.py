@@ -10,25 +10,7 @@ class LegendrePoints1():
 		self.n, _, _ = img.shape
 		# self.N = int(np.floor(float(self.n) / 4.0 * np.sqrt(np.pi)))
 		self.N = int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
-		self.rs = np.zeros(self.N)
-		self.thetas = np.zeros(4*self.N + 1)
-		self.mu = np.zeros(self.N)
-
-		self.lambdas = calculateAllLegendreRoots(self.N)
-
-		# Calculate rs
-		for k in range(self.N):
-			self.rs[k] = np.sqrt(float(1 + self.lambdas[k])/2.0)
-		
-		# Calculate thetas
-		for j in range(4*self.N + 1):
-			self.thetas[j] = float(2*np.pi*(j+1)) / (4*self.N + 1)
-
-		# Calculate mu
-		# using Gaussian quadrature formula (https://www.encyclopediaofmath.org/index.php/Gauss_quadrature_formula)
-		for k in range(self.N):
-			A = 2.0 / ((1 - self.lambdas[k]**2) * legendreDerValue(self.N, self.lambdas[k])**2)
-			self.mu[k] = A / (2.0 * (4 * self.N + 1))
+		self.rs, self.thetas, self.mu = getPoints(self.N)
 
 class LegendreTransformation1():
 	"""
@@ -99,3 +81,32 @@ def interpolate(N, n, oldImg, newImg, rs, thetas):
 					newImg[k,j,i] = 255
 				elif newImg[k,j,i] < 0:
 					newImg[k,j,i] = 0
+
+
+class LegendrePoints2():
+	def __init__(self, N=10):
+		self.N = N
+		self.rs, self.thetas, self.mu = getPoints(self.N)
+
+def getPoints(N):
+	rs = np.zeros(N)
+	thetas = np.zeros(4*N + 1)
+	mu = np.zeros(N)
+
+	lambdas = calculateAllLegendreRoots(N)
+
+	# Calculate rs
+	for k in range(N):
+		rs[k] = np.sqrt(float(1 + lambdas[k])/2.0)
+	
+	# Calculate thetas
+	for j in range(4*N + 1):
+		thetas[j] = float(2*np.pi*(j+1)) / (4*N + 1)
+
+	# Calculate mu
+	# using Gaussian quadrature formula (https://www.encyclopediaofmath.org/index.php/Gauss_quadrature_formula)
+	for k in range(N):
+		A = 2.0 / ((1 - lambdas[k]**2) * legendreDerValue(N, lambdas[k])**2)
+		mu[k] = A / (2.0 * (4 * N + 1))
+
+	return (rs, thetas, mu)

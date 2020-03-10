@@ -14,3 +14,21 @@ def addSaltAndPepperNoiseAndPrintImage():
 	newImg = addSaltAndPepperNoise(img,density=5)
 	im = Image.fromarray(newImg)
 	im.save('../test.bmp', "BMP")
+
+def addGaussianNoiseFilteTest():
+	(img,_) = getImgFromFileAsNpArray('../images/cups/extended/36.png')
+	newImg = addGaussianNoise(img,mean=0,stddev=3)
+	im = Image.fromarray(newImg)
+	im.save('../before.bmp', "BMP")
+	newImg = meanFilter(newImg)
+	im = Image.fromarray(newImg)
+	im.save('../after.bmp', "BMP")
+
+def addSaltAndPepperNoiseFilterTest():
+	(img,_) = getImgFromFileAsNpArray('../images/cups/extended/36.png')
+	newImg = addSaltAndPepperNoise(img,density=5)
+	im = Image.fromarray(newImg)
+	im.save('../before.bmp', "BMP")
+	newImg = medianFilter(newImg)
+	im = Image.fromarray(newImg)
+	im.save('../after.bmp', "BMP")
