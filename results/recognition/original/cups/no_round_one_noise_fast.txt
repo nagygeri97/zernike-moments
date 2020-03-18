@@ -1,0 +1,56 @@
+QZMIType.NORMAL TestType.CUPS_TRANSFORMED NoiseType.GAUSS
+
+Gaussian noise with std dev 1
+40.0 % recognized correctly.
+
+Gaussian noise with std dev 2
+40.0 % recognized correctly.
+
+Gaussian noise with std dev 3
+38.18181818181819 % recognized correctly.
+
+Gaussian noise with std dev 5
+27.27272727272727 % recognized correctly.
+
+Gaussian noise with std dev 7
+25.454545454545453 % recognized correctly.
+
+Gaussian noise with std dev 9
+21.818181818181817 % recognized correctly.
+
+Gaussian noise with std dev 40
+21.818181818181817 % recognized correctly.
+
+Gaussian noise with std dev 50
+21.818181818181817 % recognized correctly.
+
+Gaussian noise with std dev 60
+21.818181818181817 % recognized correctly.
+QZMIType.NORMAL TestType.CUPS_TRANSFORMED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 1
+98.18181818181819 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 2
+96.36363636363636 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 3
+89.0909090909091 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 5
+80.0 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 7
+56.36363636363636 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 9
+54.54545454545454 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 40
+29.09090909090909 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 50
+21.818181818181817 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 60
+21.818181818181817 % recognized correctly.

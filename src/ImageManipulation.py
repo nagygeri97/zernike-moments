@@ -168,7 +168,7 @@ def centroidTranslationFloat(img):
 	xTranslation = cx - (N//2)
 	yTranslation = cy - (M//2)
 
-	newImg = np.zeros((N,M,3),dtype='uint8')
+	newImg = np.zeros((N,M,3),dtype='double')
 	for x in range(N):
 		for y in range(M):
 			if x - xTranslation > 0 and y - yTranslation > 0 and x - xTranslation < N and y - yTranslation < M:
