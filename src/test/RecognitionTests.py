@@ -1,3 +1,4 @@
+import argparse
 import numpy as np
 import os
 from enum import Enum
@@ -26,6 +27,14 @@ class QZMIType(Enum):
 	LEGENDRE2 = 3
 
 def runRecognitionTest():
+	parser = argparse.ArgumentParser()
+	parser.add_argument('--file', '-f', required=True, type=str,
+						help='The file where results are printed, without extension')
+	args = parser.parse_args()
+	file = args.file
+
+	open(file + ".txt", "w").close()
+	open(file + ".err", "w").close()
 
 	tests = [
 		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
@@ -75,7 +84,7 @@ def runRecognitionTest():
 	]
 
 	for (qzmiType, testType, noiseType) in tests:
-		testRecognition(noiseType, testType, qzmiType)
+		testRecognition(noiseType, testType, qzmiType, file)
 
 def getBasicRecognitionTestingData(testType):
 	if testType == TestType.COIL_ROTATED:
@@ -134,9 +143,8 @@ def getQZMIClass(testType, qzmiType):
 		return
 	return qzmiClass
 
-def testRecognition(noiseType, testType, qzmiType):
-	print(qzmiType, testType, noiseType)
-	printerr(qzmiType, testType, noiseType)
+def testRecognition(noiseType, testType, qzmiType, file):
+	logAll(file, qzmiType, testType, noiseType)
 	# Needs to use OldTransformation in ZernikeMomentsColor with centroidTranslation applied in advance
 	np.random.seed(0)
 
@@ -165,14 +173,14 @@ def testRecognition(noiseType, testType, qzmiType):
 				noiseFun = lambda img : addGaussianNoise(img, mean=0, stddev=stddev)
 
 				result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
-				printResultOfRecognition("Gaussian noise with std dev {0}".format(stddev), result)
-				
+				printResultOfRecognition("Gaussian noise with std dev {0}".format(stddev), result, file)
+
 		elif noiseType == NoiseType.GAUSS_NO_ROUND:
 			for stddev in stddevs:
 				noiseFun = lambda img : addGaussianNoiseNoRounding(img, mean=0, stddev=stddev)
 
 				result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
-				printResultOfRecognition("Gaussian noise (no rounding) with std dev {0}".format(stddev), result)
+				printResultOfRecognition("Gaussian noise (no rounding) with std dev {0}".format(stddev), result, file)
 
 	elif noiseType == NoiseType.SALT:
 		if testType == TestType.CUPS_TRANSFORMED:
@@ -189,7 +197,7 @@ def testRecognition(noiseType, testType, qzmiType):
 			noiseFun = lambda img : addSaltAndPepperNoise(img, density=density)
 
 			result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
-			printResultOfRecognition("Salt and pepper noise with density {0}%".format(density), result)
+			printResultOfRecognition("Salt and pepper noise with density {0}%".format(density), result, file)
 	
 	else:
 		printerr("ERROR: unsupported noiseType")
