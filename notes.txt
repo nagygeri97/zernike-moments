@@ -74,3 +74,9 @@ tf1 = OldTransformation a ZernikeMomentsColor.py-ban
 tf2 = OldTransformation2 -"-
 
 paper = csak ugyanazok zajok mint a cikkben
+
+
+gauss zaj ne legyen kerekites?
+forgatas csak
+negativba is mehet a Gauss zaj
+fekete hatter - szurke hatter?

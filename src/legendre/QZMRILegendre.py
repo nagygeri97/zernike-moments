@@ -16,7 +16,7 @@ class QZMRILegendre:
 		if noiseFun is not None:
 			self.img = noiseFun(self.img)
 
-		# self.img = centroidTranslation(self.img)
+		# self.img = centroidTranslationFloat(self.img)
 
 		self.N = N
 		self.maxP = maxP

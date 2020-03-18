@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import timeit
+# import timeit
 
 from Utility import *
 
@@ -10,7 +10,7 @@ from test.RecognitionTests import *
 from test.ReconstructionTests import *
 
 def main():
-	start = timeit.default_timer()
+	# start = timeit.default_timer()
 
 	# ReconstructionTests
 	# testImageReconstruction()
@@ -31,9 +31,10 @@ def main():
 	# LegendreTransformationTests
 	# legendreTransformationDebug_Test()
 	# legendreTransformationPrintPoints_Test()
+	# legendreTransformation2PrintPoints_Test()
 
-	stop = timeit.default_timer()
-	print('Time:', stop - start, "s")  
+	# stop = timeit.default_timer()
+	# print('Time:', stop - start, "s")  
 
 if __name__ == '__main__':
 	main()

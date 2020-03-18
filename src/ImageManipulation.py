@@ -107,6 +107,12 @@ def addSaltAndPepperNoise(img, density):
 		addSalt = not addSalt
 	return img
 
+def addGaussianNoiseNoRounding(img, mean, stddev):
+	shape = img.shape
+	newImg = np.zeros(shape, dtype='double')
+	newImg += img + np.random.normal(mean, stddev, shape)
+	return newImg
+
 def medianFilter(img):
 	# img: an np.array
 	pilImg = Image.fromarray(img)
@@ -155,6 +161,23 @@ def centroidTranslation(img):
 	# pilImg.save("../test.bmp", "BMP")
 	img = np.array(pilImg)
 	return img
+
+def centroidTranslationFloat(img):
+	(cx, cy) = Utility.calculateCentroid(img)
+	N, M, _ = img.shape
+	xTranslation = cx - (N//2)
+	yTranslation = cy - (M//2)
+
+	newImg = np.zeros((N,M,3),dtype='uint8')
+	for x in range(N):
+		for y in range(M):
+			if x - xTranslation > 0 and y - yTranslation > 0 and x - xTranslation < N and y - yTranslation < M:
+				for i in range(3):
+					newImg[x - xTranslation, y - yTranslation, i] = img[x,y,i]
+	
+	# pilImg = Image.fromarray(newImg)
+	# pilImg.save("../test.bmp", "BMP")
+	return newImg
 
 # ------ RGB ---------
 

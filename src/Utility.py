@@ -10,6 +10,22 @@ from Transformations import *
 def printerr(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
+def logAll(file, *args, **kwargs):
+	outFileName = file + ".txt"
+	errFileName = file + ".err"
+	outFile = open(outFileName, 'a+')
+	errFile = open(errFileName, 'a+')
+	print(*args, file=outFile, **kwargs)
+	print(*args, file=errFile, **kwargs)
+	outFile.close()
+	errFile.close()
+
+def logError(file, *args, **kwargs):
+	errFileName = file + ".err"
+	errFile = open(errFileName, 'a+')
+	print(*args, file=errFile, **kwargs)
+	errFile.close()
+
 # ------ Vector operations ---------
 
 def normalizeVector(vec):
@@ -68,8 +84,7 @@ def transformAndPrintImage(img, fileName):
 	im = Image.fromarray(newImage)
 	im.save(fileName, "BMP")
 
-def printImageFromLegendreTrans(trans, fileName="../test.bmp"):
-	n = 1000
+def printImageFromLegendreTrans(trans, fileName="../test.bmp", n=1000):
 	# n = trans.n
 	newImage = np.zeros((n, n, 3), dtype='uint8')
 	for k in range(trans.N):
@@ -113,14 +128,12 @@ def isRecognitionCorrect(fileToRecognize, recognizedFile):
 	id = recognizedFile.split('.')[0]
 	return fileToRecognize.startswith(id)
 
-def printResultOfRecognition(name, result):
+def printResultOfRecognition(name, result, logFile):
 	(correct, incorrect, pct) = result
-	print("\n" + name)
-	print(pct, "% recognized correctly.", flush=True)
-	printerr("\n" + name)
-	printerr(pct, "% recognized correctly.")
+	logAll(logFile, "\n" + name)
+	logAll(logFile, pct, "% recognized correctly.", flush=True)
 	if len(incorrect) > 0:
-		printerr("Incorrect results: ")
+		logError(logFile, "Incorrect results: ")
 	for (file, resultFile) in incorrect:
-		printerr(file, "recognized as: ", resultFile)
-	printerr("\n", flush=True)
+		logError(logFile, file, "recognized as: ", resultFile)
+	logError(logFile, "\n", flush=True)

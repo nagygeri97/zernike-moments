@@ -17,13 +17,13 @@ class QZMILegendre:
 		"""
 		self.img = img
 		self.maxP = maxP
-		# self.img = centroidTranslation(self.img)
+		# self.img = centroidTranslationFloat(self.img)
 
 		# Add noise before/after centroidTranslation
 		if noiseFun is not None:
 			self.img = noiseFun(self.img)
 
-		self.img = centroidTranslation(self.img)
+		self.img = centroidTranslationFloat(self.img)
 
 		# saveImgFromNpArray(img, "../original.bmp")
 		# saveImgFromNpArray(self.img, "../test.bmp")

@@ -1,3 +1,4 @@
+from bisect import bisect
 from numba import *
 import numpy as np
 
@@ -17,12 +18,11 @@ class LegendreTransformation1():
 	About the same number of points as in circle inscribed in the original image
 	Bilinear interpolation is used to get the pixel values at the points
 	"""
-	def __init__(self, img, points=None):
+	def __init__(self, img):
 		"""
 		img should be centroid translated!!!
 		"""
-		if points is None:
-			points = LegendrePoints1(img)
+		points = LegendrePoints1(img)
 		self.rs = points.rs
 		self.thetas = points.thetas
 		self.mu = points.mu
@@ -85,8 +85,80 @@ def interpolate(N, n, oldImg, newImg, rs, thetas):
 
 class LegendrePoints2():
 	def __init__(self, N=10):
-		self.N = N
+		self.N = int(N)
 		self.rs, self.thetas, self.mu = getPoints(self.N)
+
+class LegendreTransformation2():
+	def __init__(self, img):
+		points = LegendrePoints2()
+		self.rs = points.rs
+		self.thetas = points.thetas
+		self.mu = points.mu
+		self.n, _, _ = img.shape
+		self.N = points.N
+
+		self.img = np.zeros((self.N, 4*self.N + 1, 3)) # RGB values for each (r,theta)
+		self.counts = np.zeros((self.N, 4*self.N + 1))
+
+
+		self.c1 = 2 / (self.n - 1)
+		for x in range(self.n):
+			for y in range(self.n):
+				s1 = self.c1*x - 1 
+				s2 = self.c1*y - 1
+				r = np.sqrt(s1**2 + s2**2)
+				theta = np.arctan2(s2, s1)
+
+				if r >= 1:
+					continue
+				
+				i = bisect(self.rs, r) # gives first index where rs[i] > r
+				j = bisect(self.thetas, theta)
+				
+				dist = 2
+				mini = 0
+				minj = 0
+				if i < len(self.rs) and j < len(self.thetas):
+					dist_ = polarDist((self.rs[i], self.thetas[j]),(r, theta))
+					if dist_ < dist:
+						dist = dist_
+						mini = i
+						minj = j
+				if i < len(self.rs) and j > 0:
+					dist_ = polarDist((self.rs[i], self.thetas[j - 1]),(r, theta))
+					if dist_ < dist:
+						dist = dist_
+						mini = i
+						minj = j - 1
+				if i > 0 and j < len(self.thetas):
+					dist_ = polarDist((self.rs[i - 1], self.thetas[j]),(r, theta))
+					if dist_ < dist:
+						dist = dist_
+						mini = i - 1
+						minj = j
+				if i > 0 and j > 0:
+					dist_ = polarDist((self.rs[i - 1], self.thetas[j - 1]),(r, theta))
+					if dist_ < dist:
+						dist = dist_
+						mini = i - 1
+						minj = j - 1
+				
+				for i in range(3):
+					self.img[mini, minj, i] += img[x,y, i]
+					# print(mini, minj, self.img[mini,minj,i])
+				self.counts[mini, minj] += 1
+
+		for k in range(self.N):
+			for j in range(4 * self.N + 1):
+				for i in range(3):
+					self.img[mini, minj, i] = float(self.img[mini, minj, i])/self.counts[mini, minj]
+
+
+def polarDist(p1, p2):
+	(r1, t1) = p1
+	(r2, t2) = p2
+	d = np.sqrt(r1*r1 + r2*r2 - r1*r2*np.cos(t2 - t1))
+	return d
 
 def getPoints(N):
 	rs = np.zeros(N)

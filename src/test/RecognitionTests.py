@@ -13,6 +13,7 @@ class NoiseType(Enum):
 	CLEAN = 1
 	GAUSS = 2
 	SALT = 3
+	GAUSS_NO_ROUND = 4
 
 class TestType(Enum):
 	COIL_ROTATED = 1
@@ -27,40 +28,49 @@ class QZMIType(Enum):
 def runRecognitionTest():
 
 	tests = [
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
 		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
 	]
 
@@ -139,7 +149,7 @@ def testRecognition(noiseType, testType, qzmiType):
 		result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
 		printResultOfRecognition("Noise-free", result)
 
-	elif noiseType == NoiseType.GAUSS:
+	elif noiseType == NoiseType.GAUSS or noiseType == NoiseType.GAUSS_NO_ROUND:
 		if testType == TestType.CUPS_TRANSFORMED:
 			stddevs = [1,2,3,5,7,9,40,50,60]
 		elif testType == TestType.COIL_TRANSFORMED:
@@ -150,11 +160,19 @@ def testRecognition(noiseType, testType, qzmiType):
 			printerr("ERROR: unsupported testType")
 			return
 
-		for stddev in stddevs:
-			noiseFun = lambda img : addGaussianNoise(img, mean=0, stddev=stddev)
+		if noiseType == NoiseType.GAUSS:
+			for stddev in stddevs:
+				noiseFun = lambda img : addGaussianNoise(img, mean=0, stddev=stddev)
 
-			result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
-			printResultOfRecognition("Gaussian noise with std dev {0}".format(stddev), result)
+				result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
+				printResultOfRecognition("Gaussian noise with std dev {0}".format(stddev), result)
+				
+		elif noiseType == NoiseType.GAUSS_NO_ROUND:
+			for stddev in stddevs:
+				noiseFun = lambda img : addGaussianNoiseNoRounding(img, mean=0, stddev=stddev)
+
+				result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
+				printResultOfRecognition("Gaussian noise (no rounding) with std dev {0}".format(stddev), result)
 
 	elif noiseType == NoiseType.SALT:
 		if testType == TestType.CUPS_TRANSFORMED:
