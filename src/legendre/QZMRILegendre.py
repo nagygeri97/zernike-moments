@@ -2,7 +2,7 @@ import numpy as np
 from numba import *
 from quaternion import *
 
-from ZernikeMomentsColor import *
+from legendre.ZernikeMomentsColorLegendre import *
 from ImageManipulation import *
 
 # TODO: FIX THIS
@@ -17,10 +17,11 @@ class QZMRILegendre:
 			self.img = noiseFun(self.img)
 
 		# self.img = centroidTranslationFloat(self.img)
+		self.img = imageToFloat(self.img)
 
 		self.N = N
 		self.maxP = maxP
-		self.ZM = ZernikeMomentsColorRight(self.img, self.N, self.maxP)
+		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.N, self.maxP)
 		self.calculateQZMRI()
 
 	def calculateQZMRI(self):
@@ -33,8 +34,8 @@ class QZMRILegendre:
 				for m in range(0, k + 1):
 					if (k - m) % 2 != 0:
 						continue
-					a = quaternion(self.ZM.Zre[n, m, 0], self.ZM.Zi[n, m, 0], self.ZM.Zj[n, m, 0], self.ZM.Zk[n, m, 0])
-					b = quaternion(self.ZM.Zre[k, m, 0], self.ZM.Zi[k, m, 0], self.ZM.Zj[k, m, 0], self.ZM.Zk[k, m, 0])
+					a = quaternion(self.ZM.Zre[n, m], self.ZM.Zi[n, m], self.ZM.Zj[n, m], self.ZM.Zk[n, m])
+					b = quaternion(self.ZM.Zre[k, m], self.ZM.Zi[k, m], self.ZM.Zj[k, m], self.ZM.Zk[k, m])
 					b = b.conj()
 					qzmri = (-1) * a * b
 					self.QZMIs[n,m,k,0] = qzmri.w

@@ -30,22 +30,26 @@ def runRecognitionTest():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--file', '-f', required=True, type=str,
 						help='The file where results are printed, without extension')
+	parser.add_argument('--append', '-a', required=False, action='store_true',
+						help='When specified, append to the file, otherwise overwrite it')
 	args = parser.parse_args()
 	file = args.file
+	append = args.append
 
-	open(file + ".txt", "w").close()
-	open(file + ".err", "w").close()
+	if not append:
+		open(file + ".txt", "w").close()
+		open(file + ".err", "w").close()
 
 	tests = [
 		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
-		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS),
@@ -57,10 +61,10 @@ def runRecognitionTest():
 		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
-		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS),
@@ -144,7 +148,7 @@ def getQZMIClass(testType, qzmiType):
 	return qzmiClass
 
 def testRecognition(noiseType, testType, qzmiType, file):
-	logAll(file, qzmiType, testType, noiseType)
+	logAll(file, '\n\n', qzmiType, testType, noiseType)
 	# Needs to use OldTransformation in ZernikeMomentsColor with centroidTranslation applied in advance
 	np.random.seed(0)
 
@@ -155,15 +159,15 @@ def testRecognition(noiseType, testType, qzmiType, file):
 		noiseFun = lambda img : img
 
 		result = recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzmiClass, correctnessFun, noiseFun)
-		printResultOfRecognition("Noise-free", result)
+		printResultOfRecognition("Noise-free", result, file)
 
 	elif noiseType == NoiseType.GAUSS or noiseType == NoiseType.GAUSS_NO_ROUND:
 		if testType == TestType.CUPS_TRANSFORMED:
 			stddevs = [1,2,3,5,7,9,40,50,60]
 		elif testType == TestType.COIL_TRANSFORMED:
-			stddevs = [5,7,9]
+			stddevs = [1,2,3,5,7,9,40,50,60]
 		elif testType == TestType.COIL_ROTATED:
-			stddevs = [40,50,60]
+			stddevs = [1,2,3,5,7,9,40,50,60]
 		else:
 			printerr("ERROR: unsupported testType")
 			return

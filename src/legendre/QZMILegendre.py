@@ -51,7 +51,7 @@ class QZMILegendre:
 					self.QZMIs[n,m,k,3] = qzmi.z
 
 	def calculateLs(self):
-		Gamma = np.sqrt(qAbs(self.ZM.Zre[0,0,0], self.ZM.Zi[0,0,0], self.ZM.Zj[0,0,0], self.ZM.Zk[0,0,0]))
+		Gamma = np.sqrt(qAbs(self.ZM.Zre[0,0], self.ZM.Zi[0,0], self.ZM.Zj[0,0], self.ZM.Zk[0,0]))
 		self.Ls = np.zeros([self.maxP + 1, self.maxP + 1, 4]) # Last index: re, i, j, k
 		for n in range(0, self.maxP + 1):
 			for m in range(0,n + 1):
@@ -63,10 +63,10 @@ class QZMILegendre:
 						G = Gamma**((-1)*(m + 2*k + 2))
 						CD = getCD(l, k, m, t)
 						tmp = G*CD
-						self.Ls[n,m,0] += tmp * self.ZM.Zre[m + 2*t, m, 0]
-						self.Ls[n,m,1] += tmp * self.ZM.Zi[m + 2*t, m, 0]
-						self.Ls[n,m,2] += tmp * self.ZM.Zj[m + 2*t, m, 0]
-						self.Ls[n,m,3] += tmp * self.ZM.Zk[m + 2*t, m, 0]
+						self.Ls[n,m,0] += tmp * self.ZM.Zre[m + 2*t, m]
+						self.Ls[n,m,1] += tmp * self.ZM.Zi[m + 2*t, m]
+						self.Ls[n,m,2] += tmp * self.ZM.Zj[m + 2*t, m]
+						self.Ls[n,m,3] += tmp * self.ZM.Zk[m + 2*t, m]
 
 def getCD(l, k, m, t):
 	"""

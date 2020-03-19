@@ -41,30 +41,30 @@ class ZernikeMomentsColorRightLegendre:
 		if self.verbose:
 			print("B done")
 
-		# the 3rd dim == 0 means q >= 0, ==1 means q < 0 
-		self.Zre = np.zeros([self.maxP + 1, self.maxP + 1, 2])
-		self.Zi  = np.zeros([self.maxP + 1, self.maxP + 1, 2])
-		self.Zj  = np.zeros([self.maxP + 1, self.maxP + 1, 2])
-		self.Zk  = np.zeros([self.maxP + 1, self.maxP + 1, 2])
+		self.Zre = np.zeros([self.maxP + 1, self.maxP + 1])
+		self.Zi  = np.zeros([self.maxP + 1, self.maxP + 1])
+		self.Zj  = np.zeros([self.maxP + 1, self.maxP + 1])
+		self.Zk  = np.zeros([self.maxP + 1, self.maxP + 1])
 
 		sqrt3inv = 1.0 / np.sqrt(3.0)
 
 		for p in range(0, self.maxP + 1):
 			# if p % 2 == 0: # logically it is needed, but bc of implementation, it can be removed
-			self.Zre[p, 0, 0] = - sqrt3inv * (ZfR.Zim[p, 0] + ZfG.Zim[p, 0] + ZfB.Zim[p, 0])
-			self.Zi[p, 0, 0] = ZfR.Zre[p, 0] + sqrt3inv * (ZfG.Zim[p, 0] - ZfB.Zim[p, 0])
-			self.Zj[p, 0, 0] = ZfG.Zre[p, 0] + sqrt3inv * (ZfB.Zim[p, 0] - ZfR.Zim[p, 0])
-			self.Zk[p, 0, 0] = ZfB.Zre[p, 0] + sqrt3inv * (ZfR.Zim[p, 0] - ZfG.Zim[p, 0])
+			self.Zre[p, 0] = - sqrt3inv * (ZfR.Zim[p, 0] + ZfG.Zim[p, 0] + ZfB.Zim[p, 0])
+			self.Zi[p, 0] = ZfR.Zre[p, 0] + sqrt3inv * (ZfG.Zim[p, 0] - ZfB.Zim[p, 0])
+			self.Zj[p, 0] = ZfG.Zre[p, 0] + sqrt3inv * (ZfB.Zim[p, 0] - ZfR.Zim[p, 0])
+			self.Zk[p, 0] = ZfB.Zre[p, 0] + sqrt3inv * (ZfR.Zim[p, 0] - ZfG.Zim[p, 0])
 			for q in range(p  % (-2) + 2, p + 1, 2):
-				self.Zre[p, q, 0] = - sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
-				self.Zi[p, q, 0] = ZfR.Zre[p, q] + sqrt3inv * (ZfG.Zim[p, q] - ZfB.Zim[p, q])
-				self.Zj[p, q, 0] = ZfG.Zre[p, q] + sqrt3inv * (ZfB.Zim[p, q] - ZfR.Zim[p, q])
-				self.Zk[p, q, 0] = ZfB.Zre[p, q] + sqrt3inv * (ZfR.Zim[p, q] - ZfG.Zim[p, q])
+				self.Zre[p, q] = - sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
+				self.Zi[p, q] = ZfR.Zre[p, q] + sqrt3inv * (ZfG.Zim[p, q] - ZfB.Zim[p, q])
+				self.Zj[p, q] = ZfG.Zre[p, q] + sqrt3inv * (ZfB.Zim[p, q] - ZfR.Zim[p, q])
+				self.Zk[p, q] = ZfB.Zre[p, q] + sqrt3inv * (ZfR.Zim[p, q] - ZfG.Zim[p, q])
 
-				self.Zre[p, q, 1] = sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
-				self.Zi[p, q, 1] = ZfR.Zre[p, q] - sqrt3inv * (ZfG.Zim[p, q] - ZfB.Zim[p, q])
-				self.Zj[p, q, 1] = ZfG.Zre[p, q] - sqrt3inv * (ZfB.Zim[p, q] - ZfR.Zim[p, q])
-				self.Zk[p, q, 1] = ZfB.Zre[p, q] - sqrt3inv * (ZfR.Zim[p, q] - ZfG.Zim[p, q])
+				# Calculation for -q, not needed
+				# self.Zre[p, q] = sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
+				# self.Zi[p, q] = ZfR.Zre[p, q] - sqrt3inv * (ZfG.Zim[p, q] - ZfB.Zim[p, q])
+				# self.Zj[p, q] = ZfG.Zre[p, q] - sqrt3inv * (ZfB.Zim[p, q] - ZfR.Zim[p, q])
+				# self.Zk[p, q] = ZfB.Zre[p, q] - sqrt3inv * (ZfR.Zim[p, q] - ZfG.Zim[p, q])
 		if self.verbose:
 			print("Zernike moment calculation done.")
 

@@ -16,6 +16,7 @@ class QZMRI:
 			self.img = noiseFun(self.img)
 
 		# self.img = centroidTranslationFloat(self.img)
+		self.img = imageToFloat(self.img)
 
 		self.N = N
 		self.maxP = maxP
@@ -32,11 +33,12 @@ class QZMRI:
 				for m in range(0, k + 1):
 					if (k - m) % 2 != 0:
 						continue
-					a = quaternion(self.ZM.Zre[n, m, 0], self.ZM.Zi[n, m, 0], self.ZM.Zj[n, m, 0], self.ZM.Zk[n, m, 0])
-					b = quaternion(self.ZM.Zre[k, m, 0], self.ZM.Zi[k, m, 0], self.ZM.Zj[k, m, 0], self.ZM.Zk[k, m, 0])
+					a = quaternion(self.ZM.Zre[n, m], self.ZM.Zi[n, m], self.ZM.Zj[n, m], self.ZM.Zk[n, m])
+					b = quaternion(self.ZM.Zre[k, m], self.ZM.Zi[k, m], self.ZM.Zj[k, m], self.ZM.Zk[k, m])
 					b = b.conj()
 					qzmri = (-1) * a * b
 					self.QZMIs[n,m,k,0] = qzmri.w
 					self.QZMIs[n,m,k,1] = qzmri.x
 					self.QZMIs[n,m,k,2] = qzmri.y
 					self.QZMIs[n,m,k,3] = qzmri.z
+

@@ -38,7 +38,7 @@ class LegendreTransformation1():
 		return (p + 1)
 		
 
-@jit(void(int64, int64, uint8[:,:,:], float64[:,:,:], float64[:], float64[:]), nopython=True)
+@jit(void(int64, int64, float64[:,:,:], float64[:,:,:], float64[:], float64[:]), nopython=True)
 def interpolate(N, n, oldImg, newImg, rs, thetas):
 	for k in range(N):
 		for j in range(4*N + 1):

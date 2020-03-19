@@ -198,6 +198,11 @@ def getColorComponent(img, color='R'):
 
 	return monochromeImg
 
+# ------ Conversion --------
+
+def imageToFloat(img):
+	return img.astype('double')
+
 # if __name__ == '__main__':
 	# RST()
 	# placeImagesOnBackground()
