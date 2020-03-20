@@ -21,7 +21,7 @@ class QZMRILegendre:
 
 		self.N = N
 		self.maxP = maxP
-		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.N, self.maxP)
+		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP)
 		self.calculateQZMRI()
 
 	def calculateQZMRI(self):

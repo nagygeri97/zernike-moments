@@ -1,6 +1,7 @@
 
 
- QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.CLEAN
+
+QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.CLEAN
 
 Noise-free
 100.0 % recognized correctly.
@@ -8,7 +9,8 @@ Noise-free
 
 
 
- QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.GAUSS
+
+QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.GAUSS
 
 Gaussian noise with std dev 1
 100.0 % recognized correctly.
@@ -93,7 +95,8 @@ Incorrect results:
 
 
 
- QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.GAUSS_NO_ROUND
+
+QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.GAUSS_NO_ROUND
 
 Gaussian noise (no rounding) with std dev 1
 100.0 % recognized correctly.
@@ -280,12 +283,26 @@ Incorrect results:
 
 
 
- QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.SALT
+
+QZMIType.NORMAL TestType.COIL_TRANSFORMED NoiseType.SALT
+
+Salt and pepper noise with density 0.2%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 0.4%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 0.6%
+100.0 % recognized correctly.
+
+
 
 Salt and pepper noise with density 1%
-98.30508474576271 % recognized correctly.
-Incorrect results: 
-55x-11y9r150s0_5.png recognized as:  64.png
+100.0 % recognized correctly.
 
 
 
@@ -299,8 +316,28 @@ Salt and pepper noise with density 3%
 
 
 
+Salt and pepper noise with density 5%
+94.91525423728814 % recognized correctly.
+Incorrect results: 
+39x-11y9r210s1_25.png recognized as:  55.png
+39x-11y9r30s1_75.png recognized as:  55.png
+39x-11y9r210s0_5.png recognized as:  55.png
 
- QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.CLEAN
+
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.CLEAN
 
 Noise-free
 100.0 % recognized correctly.
@@ -308,7 +345,8 @@ Noise-free
 
 
 
- QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.GAUSS
+
+QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.GAUSS
 
 Gaussian noise with std dev 1
 100.0 % recognized correctly.
@@ -411,7 +449,8 @@ Incorrect results:
 
 
 
- QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.GAUSS_NO_ROUND
+
+QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.GAUSS_NO_ROUND
 
 Gaussian noise (no rounding) with std dev 1
 100.0 % recognized correctly.
@@ -489,7 +528,23 @@ Incorrect results:
 
 
 
- QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.SALT
+
+QZMIType.LEGENDRE1 TestType.COIL_TRANSFORMED NoiseType.SALT
+
+Salt and pepper noise with density 0.2%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 0.4%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 0.6%
+100.0 % recognized correctly.
+
+
 
 Salt and pepper noise with density 1%
 100.0 % recognized correctly.
@@ -497,13 +552,47 @@ Salt and pepper noise with density 1%
 
 
 Salt and pepper noise with density 2%
-98.30508474576271 % recognized correctly.
+96.61016949152543 % recognized correctly.
 Incorrect results: 
 55x-11y9r210s1_5.png recognized as:  64.png
+55x-11y9r180s1_5.png recognized as:  64.png
 
 
 
 Salt and pepper noise with density 3%
+93.22033898305084 % recognized correctly.
+Incorrect results: 
+7x-11y9r240s0_75.png recognized as:  32.png
+7x-11y9r240s1_25.png recognized as:  32.png
+7x-11y9r30s1_25.png recognized as:  32.png
+7x-11y9r210s1_5.png recognized as:  32.png
+
+
+
+Salt and pepper noise with density 5%
+88.13559322033898 % recognized correctly.
+Incorrect results: 
+55x-11y9r270s2_0.png recognized as:  65.png
+55x-11y9r30s1_75.png recognized as:  65.png
+55x-11y9r0s1_25.png recognized as:  65.png
+55x-11y9r210s1_5.png recognized as:  65.png
+55x-11y9r90s0_75.png recognized as:  65.png
+55x-11y9r150s0_5.png recognized as:  65.png
+55x-11y9r180s1_5.png recognized as:  65.png
+
+
+
+Salt and pepper noise with density 10%
 100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+93.22033898305084 % recognized correctly.
+Incorrect results: 
+22x-11y9r240s1_25.png recognized as:  39.png
+22x-11y9r0s1_5.png recognized as:  39.png
+22x-11y9r330s1_75.png recognized as:  39.png
+22x-11y9r90s1_75.png recognized as:  39.png
 
 

@@ -26,6 +26,10 @@ class QZMIType(Enum):
 	LEGENDRE1 = 2
 	LEGENDRE2 = 3
 
+class BGColor(Enum):
+	BLACK = 1
+	GREY = 2
+
 def runRecognitionTest():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--file', '-f', required=True, type=str,
@@ -40,31 +44,33 @@ def runRecognitionTest():
 		open(file + ".txt", "w").close()
 		open(file + ".err", "w").close()
 
-	tests = [
-		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
-		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+	bgColor = BGColor.GREY
 
-		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
-		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+	tests = [
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
-		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
-		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS),
@@ -88,9 +94,9 @@ def runRecognitionTest():
 	]
 
 	for (qzmiType, testType, noiseType) in tests:
-		testRecognition(noiseType, testType, qzmiType, file)
+		testRecognition(noiseType, testType, qzmiType, file, bgColor)
 
-def getBasicRecognitionTestingData(testType):
+def getBasicRecognitionTestingData(testType, bgColor):
 	if testType == TestType.COIL_ROTATED:
 		recognizePath = "../images/coil/rotated/"
 		originalPath = "../images/coil/extended/"
@@ -104,6 +110,10 @@ def getBasicRecognitionTestingData(testType):
 		printerr("ERROR: unsupported testType")
 		return
 	
+	if bgColor == BGColor.GREY:
+		recognizePath = recognizePath[:-1] + "_grey/"
+		originalPath = originalPath[:-1] + "_grey/"
+
 	recognizeFiles = os.listdir(recognizePath)[::20]
 	originalFiles = os.listdir(originalPath)
 
@@ -147,12 +157,13 @@ def getQZMIClass(testType, qzmiType):
 		return
 	return qzmiClass
 
-def testRecognition(noiseType, testType, qzmiType, file):
-	logAll(file, '\n\n', qzmiType, testType, noiseType)
+def testRecognition(noiseType, testType, qzmiType, file, bgColor):
+	logAll(file, '\n\n')
+	logAll(file, qzmiType, testType, noiseType)
 	# Needs to use OldTransformation in ZernikeMomentsColor with centroidTranslation applied in advance
 	np.random.seed(0)
 
-	(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun) = getBasicRecognitionTestingData(testType)
+	(recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun) = getBasicRecognitionTestingData(testType, bgColor)
 	qzmiClass = getQZMIClass(testType, qzmiType)
 
 	if noiseType == NoiseType.CLEAN:
@@ -167,7 +178,7 @@ def testRecognition(noiseType, testType, qzmiType, file):
 		elif testType == TestType.COIL_TRANSFORMED:
 			stddevs = [1,2,3,5,7,9,40,50,60]
 		elif testType == TestType.COIL_ROTATED:
-			stddevs = [1,2,3,5,7,9,40,50,60]
+			stddevs = [40,50,60,70,80,90,100,110,120]
 		else:
 			printerr("ERROR: unsupported testType")
 			return
@@ -190,9 +201,9 @@ def testRecognition(noiseType, testType, qzmiType, file):
 		if testType == TestType.CUPS_TRANSFORMED:
 			densities = [0.2, 0.4, 0.6,1,2,3,5,10,15]
 		elif testType == TestType.COIL_TRANSFORMED:
-			densities = [1, 2, 3]
+			densities = [0.2, 0.4, 0.6,1,2,3,5,10,15]
 		elif testType == TestType.COIL_ROTATED:
-			densities = [5, 10, 15]
+			densities = [5, 10, 15, 20, 25, 30]
 		else:
 			printerr("ERROR: unsupported testType")
 			return

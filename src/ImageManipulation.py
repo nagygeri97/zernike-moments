@@ -9,18 +9,25 @@ cupNames = ["36", "125", "127", "153", "157", "161", "259", "262", "308", "507",
 coilNames = ["7", "13", "22", "26", "29", "32", "39", "55", "62", "64", "65", "71", "95", "99"]
 
 def placeImagesOnBackground():
-	# extend image by adding a black bar around
-	barWitdh = 38 # 28 for cups, 38 for coil
-	names = coilNames # Change this to the correct name
+	# extend image by adding a black/grey bar around
+
+	# Parameters (change these)
+	barWitdh = 38 # pixels, 28 for cups, 38 for coil
+	names = coilNames
+	bgColor = (127,127,127) # (127,127,127) for grey, (0,0,0) for black
+	inPath = "../images/coil/original/"
+	outPath = "../images/coil/extended_grey/"
+	# End changes here
+
 	names = [name + ".png" for name in names]
 	for name in names:
-		img = Image.open("../images/coil/original/" + name) # Change to the correct path
+		img = Image.open(inPath + name)
 		img.load()
 		w,h = img.size
 		x1, y1, x2, y2 = 0-barWitdh, 0-barWitdh, w+barWitdh, h+barWitdh  # cropping coordinates
-		bg = Image.new('RGB', (x2 - x1, y2 - y1), (0, 0, 0))
+		bg = Image.new('RGB', (x2 - x1, y2 - y1), bgColor)
 		bg.paste(img, (-x1, -y1))
-		bg.save("../images/coil/extended/" + name) # Change to the correct path
+		bg.save(outPath + name)
 
 def RST():
 	"""
@@ -29,14 +36,15 @@ def RST():
 	# Parameters (change these)
 	imageNames = coilNames
 	imageFormat = "png"
-	imagePath = "../images/coil/extended/"
-	resultPath = "../images/coil/transformed/"
+	imagePath = "../images/coil/extended_grey/"
+	resultPath = "../images/coil/transformed_grey/"
 	rotationStep = 30 # degrees, should divide 360
 	xTranslation = -11 # pixels
 	yTranslation = 9 # pixels
 	minScale = 0.5
 	maxScale = 2.0
 	scaleStep = 0.25
+	bgColor = (127,127,127) # (127,127,127) for grey, (0,0,0) for black
 	# End changes here
 
 	angles = [angle for angle in range(0,360,rotationStep)] # in (degs,radians)
@@ -49,18 +57,57 @@ def RST():
 		img.load()
 
 		# Translate
-		img = img.transform(img.size, Image.AFFINE, (1, 0, xTranslation, 0, 1, yTranslation))
+		imgAlpha = img.convert('RGBA')
+		imgTtmp = imgAlpha.transform(img.size, Image.AFFINE, (1, 0, xTranslation, 0, 1, yTranslation))
+		bgT = Image.new('RGBA', imgTtmp.size, (*bgColor, 255))
+		imgT = Image.composite(imgTtmp, bgT, imgTtmp)
+		imgT = imgT.convert(img.mode)
 		images = []
 		for angle in angles:
-			imgR = img.rotate(angle, resample = Image.BILINEAR)
+			imgAlpha = imgT.convert('RGBA')
+			imgRtmp = imgAlpha.rotate(angle, resample = Image.BILINEAR)
+			bgR = Image.new('RGBA', imgRtmp.size, (*bgColor, 255))
+			imgR = Image.composite(imgRtmp, bgR, imgRtmp)
+			imgR = imgR.convert(imgT.mode)
+
 			for scale in scales:
 				w, h = imgR.size
 				imgRS = imgR.resize((int(w*scale), int(h*scale)), resample = Image.BILINEAR)
-				bg = Image.new('RGB', imgRS.size, (0, 0, 0))
+				bg = Image.new('RGB', imgRS.size, bgColor)
 				bg.paste(imgRS, (0, 0))
 				bg.save(resultPath + imageName + "x" + str(xTranslation) + "y" + str(yTranslation) + "r" + str(angle) + "s" + str(scale).replace('.','_') +  "." + imageFormat)
 
+def rotate():
+	"""
+	Create the rotated images
+	"""
+	# Parameters (change these)
+	imageNames = coilNames
+	imageFormat = "png"
+	imagePath = "../images/coil/extended_grey/"
+	resultPath = "../images/coil/rotated_grey/"
+	rotationStep = 5 # degrees, should divide 360
+	bgColor = (127,127,127) # (127,127,127) for grey, (0,0,0) for black
+	# End changes here
+
+	angles = [angle for angle in range(0,360,rotationStep)] # in (degs,radians)
+
+
+	for imageName in imageNames:
+		img = Image.open(imagePath + imageName + "." + imageFormat)
+		img.load()
+
+		for angle in angles:
+			imgAlpha = img.convert('RGBA')
+			imgRtmp = imgAlpha.rotate(angle, resample = Image.BILINEAR)
+			bgR = Image.new('RGBA', imgRtmp.size, (*bgColor, 255))
+			imgR = Image.composite(imgRtmp, bgR, imgRtmp)
+			imgR = imgR.convert(img.mode)
+			imgR.save(resultPath + imageName + "r" + str(angle) + "." + imageFormat)
+
+
 def squareImage(img, background = (0,0,0)):
+	background = tuple(np.array(img)[0,0])
 	w, h = img.size
 	if w == h:
 		return img
@@ -71,6 +118,7 @@ def squareImage(img, background = (0,0,0)):
 		x1, y1, x2, y2 = 0, 0-offset1, w, h+offset2
 		bg = Image.new('RGB', (x2 - x1, y2 - y1), background)
 		bg.paste(img, (-x1, -y1))
+		# bg.save("../tmp.bmp")
 		return bg
 	elif h > w:
 		diff = h - w
@@ -79,6 +127,7 @@ def squareImage(img, background = (0,0,0)):
 		x1, y1, x2, y2 = 0-offset1, 0, w+offset2, h
 		bg = Image.new('RGB', (x2 - x1, y2 - y1), background)
 		bg.paste(img, (-x1, -y1))
+		# bg.save("../tmp.bmp")
 		return bg
 
 # ------ Noise ---------
@@ -203,6 +252,7 @@ def getColorComponent(img, color='R'):
 def imageToFloat(img):
 	return img.astype('double')
 
-# if __name__ == '__main__':
-	# RST()
+if __name__ == '__main__':
 	# placeImagesOnBackground()
+	# RST()
+	rotate()
