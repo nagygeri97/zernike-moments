@@ -44,13 +44,13 @@ def runRecognitionTest():
 		open(file + ".txt", "w").close()
 		open(file + ".err", "w").close()
 
-	bgColor = BGColor.GREY
+	bgColor = BGColor.BLACK
 
 	tests = [
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
@@ -62,10 +62,10 @@ def runRecognitionTest():
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.SALT),
 
-		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
-		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
@@ -82,10 +82,10 @@ def runRecognitionTest():
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
-		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
@@ -126,9 +126,9 @@ def getQZMIClass(testType, qzmiType):
 		if qzmiType == QZMIType.NORMAL:
 			qzmiClass = QZMRI
 		elif qzmiType == QZMIType.LEGENDRE1:
-			qzmiClass = QZMRILegendre
+			qzmiClass = QZMRILegendre1
 		elif qzmiType == QZMIType.LEGENDRE2:
-			qzmiClass = QZMRILegendre
+			qzmiClass = QZMRILegendre2
 		else:
 			printerr("ERROR: unsupported qzmiType")
 			return
@@ -136,9 +136,9 @@ def getQZMIClass(testType, qzmiType):
 		if qzmiType == QZMIType.NORMAL:
 			qzmiClass = QZMI
 		elif qzmiType == QZMIType.LEGENDRE1:
-			qzmiClass = QZMILegendre
+			qzmiClass = QZMILegendre1
 		elif qzmiType == QZMIType.LEGENDRE2:
-			qzmiClass = QZMILegendre
+			qzmiClass = QZMILegendre2
 		else:
 			printerr("ERROR: unsupported qzmiType")
 			return
@@ -146,9 +146,9 @@ def getQZMIClass(testType, qzmiType):
 		if qzmiType == QZMIType.NORMAL:
 			qzmiClass = QZMI
 		elif qzmiType == QZMIType.LEGENDRE1:
-			qzmiClass = QZMILegendre
+			qzmiClass = QZMILegendre1
 		elif qzmiType == QZMIType.LEGENDRE2:
-			qzmiClass = QZMILegendre
+			qzmiClass = QZMILegendre2
 		else:
 			printerr("ERROR: unsupported qzmiType")
 			return

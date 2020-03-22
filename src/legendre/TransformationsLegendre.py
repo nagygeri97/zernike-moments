@@ -100,14 +100,15 @@ class LegendreTransformation2():
 		self.img = np.zeros((self.N, 4*self.N + 1, 3)) # RGB values for each (r,theta)
 		self.counts = np.zeros((self.N, 4*self.N + 1))
 
-
-		self.c1 = 2 / (self.n - 1)
+		self.c1 = 2.0 / float(self.n - 1)
 		for x in range(self.n):
 			for y in range(self.n):
 				s1 = self.c1*x - 1 
 				s2 = self.c1*y - 1
 				r = np.sqrt(s1**2 + s2**2)
 				theta = np.arctan2(s2, s1)
+				if(theta < 0):
+					theta = 2*np.pi + theta
 
 				if r >= 1:
 					continue
@@ -145,14 +146,16 @@ class LegendreTransformation2():
 				
 				for i in range(3):
 					self.img[mini, minj, i] += img[x,y, i]
-					# print(mini, minj, self.img[mini,minj,i])
 				self.counts[mini, minj] += 1
 
 		for k in range(self.N):
 			for j in range(4 * self.N + 1):
 				for i in range(3):
-					self.img[mini, minj, i] = float(self.img[mini, minj, i])/self.counts[mini, minj]
+					if self.counts[k, j] > 0:
+						self.img[k, j, i] = float(self.img[k, j, i])/self.counts[k, j]
 
+	def lam(self, p):
+		return (p + 1)
 
 def polarDist(p1, p2):
 	(r1, t1) = p1

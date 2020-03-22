@@ -428,3 +428,241 @@ Salt and pepper noise with density 30%
 100.0 % recognized correctly.
 
 
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.CLEAN
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.GAUSS
+
+Gaussian noise with std dev 40
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 50
+96.07843137254902 % recognized correctly.
+Incorrect results: 
+7r130.png recognized as:  29.png
+7r255.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 60
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 70
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 80
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 90
+96.07843137254902 % recognized correctly.
+Incorrect results: 
+7r105.png recognized as:  29.png
+7r255.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 100
+96.07843137254902 % recognized correctly.
+Incorrect results: 
+55r120.png recognized as:  22.png
+7r105.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 110
+98.0392156862745 % recognized correctly.
+Incorrect results: 
+7r155.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 120
+98.0392156862745 % recognized correctly.
+Incorrect results: 
+7r130.png recognized as:  29.png
+
+
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 40
+98.0392156862745 % recognized correctly.
+Incorrect results: 
+29r130.png recognized as:  7.png
+
+
+
+Gaussian noise (no rounding) with std dev 50
+92.15686274509804 % recognized correctly.
+Incorrect results: 
+29r325.png recognized as:  7.png
+55r120.png recognized as:  22.png
+7r130.png recognized as:  29.png
+7r255.png recognized as:  29.png
+
+
+
+Gaussian noise (no rounding) with std dev 60
+84.31372549019608 % recognized correctly.
+Incorrect results: 
+55r200.png recognized as:  22.png
+39r255.png recognized as:  55.png
+29r325.png recognized as:  7.png
+7r130.png recognized as:  29.png
+71r80.png recognized as:  95.png
+32r135.png recognized as:  29.png
+39r170.png recognized as:  55.png
+39r275.png recognized as:  71.png
+
+
+
+Gaussian noise (no rounding) with std dev 70
+90.19607843137256 % recognized correctly.
+Incorrect results: 
+7r155.png recognized as:  29.png
+7r130.png recognized as:  29.png
+71r80.png recognized as:  95.png
+62r55.png recognized as:  29.png
+7r255.png recognized as:  29.png
+
+
+
+Gaussian noise (no rounding) with std dev 80
+82.35294117647058 % recognized correctly.
+Incorrect results: 
+55r200.png recognized as:  71.png
+64r90.png recognized as:  22.png
+29r325.png recognized as:  7.png
+29r165.png recognized as:  62.png
+7r155.png recognized as:  32.png
+32r50.png recognized as:  29.png
+7r105.png recognized as:  62.png
+55r295.png recognized as:  71.png
+7r255.png recognized as:  32.png
+
+
+
+Gaussian noise (no rounding) with std dev 90
+84.31372549019608 % recognized correctly.
+Incorrect results: 
+64r90.png recognized as:  22.png
+29r165.png recognized as:  62.png
+7r155.png recognized as:  29.png
+29r130.png recognized as:  7.png
+32r5.png recognized as:  29.png
+7r105.png recognized as:  29.png
+62r285.png recognized as:  29.png
+71r10.png recognized as:  55.png
+
+
+
+Gaussian noise (no rounding) with std dev 100
+78.43137254901961 % recognized correctly.
+Incorrect results: 
+55r165.png recognized as:  71.png
+55r200.png recognized as:  71.png
+64r90.png recognized as:  22.png
+29r165.png recognized as:  7.png
+55r120.png recognized as:  71.png
+7r155.png recognized as:  29.png
+7r130.png recognized as:  29.png
+32r135.png recognized as:  29.png
+7r105.png recognized as:  29.png
+55r295.png recognized as:  71.png
+62r285.png recognized as:  29.png
+
+
+
+Gaussian noise (no rounding) with std dev 110
+72.54901960784314 % recognized correctly.
+Incorrect results: 
+39r130.png recognized as:  55.png
+55r200.png recognized as:  13.png
+39r255.png recognized as:  55.png
+29r165.png recognized as:  62.png
+55r120.png recognized as:  39.png
+7r155.png recognized as:  32.png
+39r140.png recognized as:  55.png
+7r130.png recognized as:  29.png
+71r80.png recognized as:  95.png
+29r130.png recognized as:  62.png
+39r105.png recognized as:  71.png
+39r170.png recognized as:  55.png
+7r255.png recognized as:  29.png
+39r275.png recognized as:  55.png
+
+
+
+Gaussian noise (no rounding) with std dev 120
+78.43137254901961 % recognized correctly.
+Incorrect results: 
+64r90.png recognized as:  22.png
+7r155.png recognized as:  32.png
+39r140.png recognized as:  95.png
+7r130.png recognized as:  62.png
+71r80.png recognized as:  95.png
+32r5.png recognized as:  29.png
+7r105.png recognized as:  29.png
+95r235.png recognized as:  71.png
+7r255.png recognized as:  29.png
+26r345.png recognized as:  32.png
+62r190.png recognized as:  29.png
+
+
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 20%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 25%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 30%
+100.0 % recognized correctly.
+
+

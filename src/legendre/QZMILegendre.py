@@ -3,6 +3,7 @@ from numba import *
 from quaternion import *
 
 from legendre.ZernikeMomentsColorLegendre import *
+from legendre.TransformationsLegendre import *
 from ImageManipulation import *
 from Utility import *
 
@@ -11,7 +12,7 @@ class QZMILegendre:
 	Quaternion Zernike Moment Invariants
 	RST invariant
 	"""
-	def __init__(self, img, N, maxP, noiseFun = None):
+	def __init__(self, img, N, maxP, transformationClass, noiseFun = None):
 		"""
 		N is unused, present for compatibility
 		"""
@@ -28,7 +29,7 @@ class QZMILegendre:
 		# saveImgFromNpArray(img, "../original.bmp")
 		# saveImgFromNpArray(self.img, "../test.bmp")
 
-		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP)
+		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP, transformationClass)
 		self.calculateQZMI()
 
 	def calculateQZMI(self):
@@ -81,3 +82,11 @@ def getCD(l, k, m, t):
 
 def qAbs(re, i, j, k):
 	return np.sqrt(re*re + i*i + j*j + k*k)
+
+class QZMILegendre1(QZMILegendre):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, LegendreTransformation1, noiseFun)
+
+class QZMILegendre2(QZMILegendre):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, LegendreTransformation2, noiseFun)

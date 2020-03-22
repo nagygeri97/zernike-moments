@@ -12,10 +12,10 @@ def legendreTransformationPrintPoints_Test():
 def legendreTransformationDebug_Test():
 	img, _ = getImgFromFileAsNpArray("../images/coil/extended/55.png")
 	lt = LegendreTransformation1(img)
-	import pdb; pdb.set_trace()
+	# import pdb; pdb.set_trace()
 
 def legendreTransformation2PrintPoints_Test():
 	img, _ = getImgFromFileAsNpArray("../images/coil/extended/55.png")
 	lt = LegendreTransformation2(img)
 	printImageFromLegendreTrans(lt, "../test.bmp", 100)
-	import pdb; pdb.set_trace()
+	# import pdb; pdb.set_trace()

@@ -5,12 +5,11 @@ from quaternion import *
 from legendre.ZernikeMomentsColorLegendre import *
 from ImageManipulation import *
 
-# TODO: FIX THIS
 class QZMRILegendre:
 	"""
 	Quaternion Zernike Moment ROTATION Invariants
 	"""
-	def __init__(self, img, N, maxP, noiseFun = None):
+	def __init__(self, img, N, maxP, transformationClass, noiseFun = None):
 		self.img = img
 
 		if noiseFun is not None:
@@ -21,7 +20,7 @@ class QZMRILegendre:
 
 		self.N = N
 		self.maxP = maxP
-		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP)
+		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP, transformationClass)
 		self.calculateQZMRI()
 
 	def calculateQZMRI(self):
@@ -42,3 +41,11 @@ class QZMRILegendre:
 					self.QZMIs[n,m,k,1] = qzmri.x
 					self.QZMIs[n,m,k,2] = qzmri.y
 					self.QZMIs[n,m,k,3] = qzmri.z
+
+class QZMRILegendre1(QZMRILegendre):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, LegendreTransformation1, noiseFun)
+
+class QZMRILegendre2(QZMRILegendre):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, LegendreTransformation2, noiseFun)

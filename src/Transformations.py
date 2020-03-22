@@ -21,6 +21,8 @@ class OldTransformation:
 		s2 = self.c1*y + self.c2
 		r = np.sqrt(s1**2 + s2**2)
 		theta = np.arctan2(s2, s1)
+		if theta < 0:
+			theta = 2*np.pi + theta
 		return (r, theta)
 
 	def lam(self, p):
@@ -45,6 +47,8 @@ class OldTransformation2:
 		s2 = self.c1*y + self.c2
 		r = np.sqrt(s1**2 + s2**2)
 		theta = np.arctan2(s2, s1)
+		if theta < 0:
+			theta = 2*np.pi + theta
 		return (r, theta)
 
 	def lam(self, p):

@@ -198,3 +198,103 @@ Salt and pepper noise with density 10%
 
 Salt and pepper noise with density 15%
 93.22033898305084 % recognized correctly.
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_TRANSFORMED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_TRANSFORMED NoiseType.GAUSS
+
+Gaussian noise with std dev 1
+96.61016949152543 % recognized correctly.
+
+Gaussian noise with std dev 2
+100.0 % recognized correctly.
+
+Gaussian noise with std dev 3
+100.0 % recognized correctly.
+
+Gaussian noise with std dev 5
+98.30508474576271 % recognized correctly.
+
+Gaussian noise with std dev 7
+98.30508474576271 % recognized correctly.
+
+Gaussian noise with std dev 9
+93.22033898305084 % recognized correctly.
+
+Gaussian noise with std dev 40
+84.7457627118644 % recognized correctly.
+
+Gaussian noise with std dev 50
+76.27118644067797 % recognized correctly.
+
+Gaussian noise with std dev 60
+69.49152542372882 % recognized correctly.
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_TRANSFORMED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 1
+98.30508474576271 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 2
+100.0 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 3
+96.61016949152543 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 5
+96.61016949152543 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 7
+93.22033898305084 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 9
+83.05084745762711 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 40
+47.45762711864407 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 50
+32.20338983050847 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 60
+42.3728813559322 % recognized correctly.
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_TRANSFORMED NoiseType.SALT
+
+Salt and pepper noise with density 0.2%
+96.61016949152543 % recognized correctly.
+
+Salt and pepper noise with density 0.4%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 0.6%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 1%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 2%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 3%
+93.22033898305084 % recognized correctly.
+
+Salt and pepper noise with density 5%
+91.52542372881356 % recognized correctly.
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
