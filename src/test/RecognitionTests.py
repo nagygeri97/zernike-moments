@@ -44,7 +44,7 @@ def runRecognitionTest():
 		open(file + ".txt", "w").close()
 		open(file + ".err", "w").close()
 
-	bgColor = BGColor.BLACK
+	bgColor = BGColor.GREY
 
 	tests = [
 		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
@@ -82,15 +82,15 @@ def runRecognitionTest():
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
-		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
-		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
+		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
 	]
 
 	for (qzmiType, testType, noiseType) in tests:

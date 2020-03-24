@@ -1,3 +1,5 @@
+*.~lock*
+
 # VS Code
 .vscode/
 
