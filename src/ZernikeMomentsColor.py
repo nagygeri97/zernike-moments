@@ -48,6 +48,10 @@ class ZernikeMomentsColorRight:
 		ZfB = ZernikeMomentsMonochrome(imgB, self.N, self.maxP, self.trans, self.rs, self.thetas, self.sins, self.coss)
 		if self.verbose:
 			print("B done")
+		
+		self.ZfR = ZfR
+		self.ZfG = ZfG
+		self.ZfB = ZfB
 
 		self.Zre = np.zeros([self.maxP + 1, self.maxP + 1])
 		self.Zi  = np.zeros([self.maxP + 1, self.maxP + 1])
@@ -76,13 +80,12 @@ class ZernikeMomentsColorRight:
 			print("Zernike moment calculation done.")
 
 	def reconstructImage(self, fileName):
-		if self.verbose:
-			print("Color image reconstruction started.")
+		print("Color image reconstruction started.")
 		errorNum = 0
 		errorDen = 0
 		imgArray = np.zeros((self.N, self.N, 3), dtype='uint8')
 		zeros = np.zeros([self.maxP + 1, self.maxP + 1], dtype='float')
-		reconstructImageArray(self.N, self.maxP, self.rs, self.sins, self.coss, self.Zre, self.Zi, self.Zj, self.Zk, imgArray, zeros)
+		reconstructImageArray(self.N, self.maxP, self.rs, self.sins, self.coss, self.Zre, self.Zi, self.Zj, self.Zk, self.ZfR.Zre, self.ZfG.Zre, self.ZfB.Zre, imgArray, zeros)
 		for x in range(self.N):
 			for y in range(self.N):
 				for i in range(3):
@@ -92,8 +95,7 @@ class ZernikeMomentsColorRight:
 		img.save(fileName, "BMP")
 
 		eps = float(errorNum) / float(errorDen)
-		if self.verbose:
-			print("Mean square error: ", eps)
+		print("Mean square error: ", eps)
 
 @jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
 def prepare(N, maxP, thetas, sins, coss):
@@ -103,8 +105,8 @@ def prepare(N, maxP, thetas, sins, coss):
 				sins[x,y,q] = np.sin(q*thetas[x,y])
 				coss[x,y,q] = np.cos(q*thetas[x,y])
 
-@jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], uint8[:,:,:], float64[:,:]), nopython=False)
-def reconstructImageArray(N, maxP, rs, sins, coss, Zre, Zi, Zj, Zk, imageArray, zeros):
+@jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], uint8[:,:,:], float64[:,:]), nopython=False)
+def reconstructImageArray(N, maxP, rs, sins, coss, Zre, Zi, Zj, Zk, ZRRe, ZGRe, ZBRe, imageArray, zeros):
 	sqrt3inv = 1.0 / np.sqrt(3.0)
 	for x in range(N):
 		for y in range(N):
@@ -115,18 +117,24 @@ def reconstructImageArray(N, maxP, rs, sins, coss, Zre, Zi, Zj, Zk, imageArray, 
 			value = [0.0, 0.0, 0.0] # RGB
 			for p in range(0, maxP + 1):
 				tmp = sqrt3inv * sins[x,y,0]
-				value[0] += values[p,0] * (tmp * (Zre[p,0,0] + Zj[p,0,0] - Zk[p,0,0]) + coss[x,y,0]*Zi[p,0,0])
-				value[1] += values[p,0] * (tmp * (Zre[p,0,0] + Zk[p,0,0] - Zi[p,0,0]) + coss[x,y,0]*Zj[p,0,0])
-				value[2] += values[p,0] * (tmp * (Zre[p,0,0] + Zi[p,0,0] - Zj[p,0,0]) + coss[x,y,0]*Zk[p,0,0])
+				value[0] += values[p,0] * (tmp * (Zre[p,0] + Zj[p,0] - Zk[p,0]) + coss[x,y,0]*Zi[p,0])
+				value[1] += values[p,0] * (tmp * (Zre[p,0] + Zk[p,0] - Zi[p,0]) + coss[x,y,0]*Zj[p,0])
+				value[2] += values[p,0] * (tmp * (Zre[p,0] + Zi[p,0] - Zj[p,0]) + coss[x,y,0]*Zk[p,0])
 				for q in range(p % (-2) + 2, p + 1, 2):
 					tmp = sqrt3inv * sins[x,y,q]
-					value[0] += values[p,q] * (tmp * (Zre[p,q,0] + Zj[p,q,0] - Zk[p,q,0]) + coss[x,y,q]*Zi[p,q,0])
-					value[1] += values[p,q] * (tmp * (Zre[p,q,0] + Zk[p,q,0] - Zi[p,q,0]) + coss[x,y,q]*Zj[p,q,0])
-					value[2] += values[p,q] * (tmp * (Zre[p,q,0] + Zi[p,q,0] - Zj[p,q,0]) + coss[x,y,q]*Zk[p,q,0])
+					# New formula without explicitly calculating negative qs
+					value[0] += 2 * values[p,q] * (tmp * (Zre[p,q] + (Zj[p,q] - ZGRe[p,q]) - (Zk[p,q] - ZBRe[p,q])) + coss[x,y,q] * ZRRe[p,q])
+					value[1] += 2 * values[p,q] * (tmp * (Zre[p,q] + (Zk[p,q] - ZBRe[p,q]) - (Zi[p,q] - ZRRe[p,q])) + coss[x,y,q] * ZGRe[p,q])
+					value[2] += 2 * values[p,q] * (tmp * (Zre[p,q] + (Zi[p,q] - ZRRe[p,q]) - (Zj[p,q] - ZGRe[p,q])) + coss[x,y,q] * ZBRe[p,q])
 
-					value[0] += values[p,q] * (- tmp * (Zre[p,q,1] + Zj[p,q,1] - Zk[p,q,1]) + coss[x,y,q]*Zi[p,q,1])
-					value[1] += values[p,q] * (- tmp * (Zre[p,q,1] + Zk[p,q,1] - Zi[p,q,1]) + coss[x,y,q]*Zj[p,q,1])
-					value[2] += values[p,q] * (- tmp * (Zre[p,q,1] + Zi[p,q,1] - Zj[p,q,1]) + coss[x,y,q]*Zk[p,q,1])
+					# Old formula for calculating with Z values for negative qs
+					# value[0] += values[p,q] * (tmp * (Zre[p,q,0] + Zj[p,q,0] - Zk[p,q,0]) + coss[x,y,q]*Zi[p,q,0])
+					# value[1] += values[p,q] * (tmp * (Zre[p,q,0] + Zk[p,q,0] - Zi[p,q,0]) + coss[x,y,q]*Zj[p,q,0])
+					# value[2] += values[p,q] * (tmp * (Zre[p,q,0] + Zi[p,q,0] - Zj[p,q,0]) + coss[x,y,q]*Zk[p,q,0])
+
+					# value[0] += values[p,q] * (- tmp * (Zre[p,q,1] + Zj[p,q,1] - Zk[p,q,1]) + coss[x,y,q]*Zi[p,q,1])
+					# value[1] += values[p,q] * (- tmp * (Zre[p,q,1] + Zk[p,q,1] - Zi[p,q,1]) + coss[x,y,q]*Zj[p,q,1])
+					# value[2] += values[p,q] * (- tmp * (Zre[p,q,1] + Zi[p,q,1] - Zj[p,q,1]) + coss[x,y,q]*Zk[p,q,1])
 
 			for i in range(3):
 				if value[i] > 255:

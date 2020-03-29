@@ -2,10 +2,11 @@ import argparse
 
 from ZernikeMomentsColor import *
 from ZernikeMomentsMonochrome import *
+from legendre.ZernikeMomentsColorLegendre import *
+from legendre.TransformationsLegendre import *
 from Utility import *
 
-def testImageReconstruction():
-	# Needs to use OldTransformation in ZernikeMomentsColor/ZernikeMomentsMonochrome
+def parseArgsForReconstructionTest():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--file', '-f', required=True, type=str,
 						help='The path to the image you want to process')
@@ -16,6 +17,12 @@ def testImageReconstruction():
 	parser.add_argument('--greyscale', '-g', action='store_true', required=False,
 						help='Specify this flag to indicate that the selected image is greyscale.')
 	args = parser.parse_args()
+	return args
+
+def testImageReconstruction():
+	# Needs to use OldTransformation in ZernikeMomentsColor/ZernikeMomentsMonochrome
+	args = parseArgsForReconstructionTest()
+
 	output = args.output if args.output is not None else '../test.bmp'
 	M = args.M
 
@@ -27,3 +34,27 @@ def testImageReconstruction():
 	else:
 		z = ZernikeMomentsColorRight(img, N, M)
 		z.reconstructImage(output)
+
+def testImageReconstructionLegendre1():
+	args = parseArgsForReconstructionTest()
+	
+	output = args.output if args.output is not None else '../test.bmp'
+	M = args.M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+	img = np.array(img, dtype='double')
+
+	z = ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation1)
+	z.reconstructImage(output, N)
+
+def testImageReconstructionLegendre2():
+	args = parseArgsForReconstructionTest()
+	
+	output = args.output if args.output is not None else '../test.bmp'
+	M = args.M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+	img = np.array(img, dtype='double')
+
+	z = ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation2)
+	z.reconstructImage(output, N)

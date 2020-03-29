@@ -14,13 +14,15 @@ def main():
 
 	# ReconstructionTests
 	# testImageReconstruction()
+	# testImageReconstructionLegendre1()
+	testImageReconstructionLegendre2()
 	
 	# InvarianceTests
 	# testInvariance()
 	# testLegendreInvariance()
 
 	# RecognitionTests
-	runRecognitionTest()
+	# runRecognitionTest()
 
 	# NoiseGenerationTests
 	# addGaussianNoiseAndPrintImage()

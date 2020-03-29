@@ -80,3 +80,6 @@ gauss zaj ne legyen kerekites?
 forgatas csak
 negativba is mehet a Gauss zaj
 fekete hatter - szurke hatter?
+
+kepen pontok teszt
+kep visszaallitas
