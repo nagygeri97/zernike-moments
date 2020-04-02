@@ -1,4 +1,5 @@
 import argparse
+import csv
 
 from ZernikeMomentsColor import *
 from ZernikeMomentsMonochrome import *
@@ -19,7 +20,7 @@ def parseArgsForReconstructionTest():
 	args = parser.parse_args()
 	return args
 
-def testImageReconstruction():
+def testImageReconstructionTf1():
 	# Needs to use OldTransformation in ZernikeMomentsColor/ZernikeMomentsMonochrome
 	args = parseArgsForReconstructionTest()
 
@@ -32,7 +33,23 @@ def testImageReconstruction():
 		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
 		z.reconstructImage(output)
 	else:
-		z = ZernikeMomentsColorRight(img, N, M)
+		z = ZernikeMomentsColorRight(img, N, M, OldTransformation)
+		z.reconstructImage(output)
+
+def testImageReconstructionTf2():
+	# Needs to use OldTransformation in ZernikeMomentsColor/ZernikeMomentsMonochrome
+	args = parseArgsForReconstructionTest()
+
+	output = args.output if args.output is not None else '../test.bmp'
+	M = args.M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+
+	if args.greyscale:
+		z = ZernikeMomentsMonochrome(getColorComponent(img), N, M)
+		z.reconstructImage(output)
+	else:
+		z = ZernikeMomentsColorRight(img, N, M, OldTransformation2)
 		z.reconstructImage(output)
 
 def testImageReconstructionLegendre1():
@@ -58,3 +75,38 @@ def testImageReconstructionLegendre2():
 
 	z = ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation2)
 	z.reconstructImage(output, N)
+
+def testImageReconstructionErrors():
+	tests = [
+		("lenna_color_64", [10,25,50,100]),
+		("lenna_color_128", [25,50,100,150,250]),
+		("lenna_color_256", [50,100,150,250,350]),
+		("pepper_color_64", [10,25,50,100]),
+		("pepper_color_128", [25,50,100,150,250]),
+		("pepper_color_256", [50,100,150,250,350]),
+	]
+	path = "../images/lenna_pepper/"
+	extension = ".bmp"
+	tmpOut = "../tmp.bmp"
+
+	parser = argparse.ArgumentParser()
+	parser.add_argument('--output', '-o', required=True, type=str,
+						help='The path to the result csv file')
+	args = parser.parse_args()
+	outFile = args.output
+
+	with open(outFile, mode='w') as file:
+		csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+		csv_writer.writerow(['File', 'M', 'Original_tf1', 'Original_tf2', 'Legendre1'])
+		for (file, Ms) in tests:
+			print(file)
+			filePath = path + file + extension
+			(img, N) = getImgFromFileAsNpArray(filePath)
+			for M in Ms:
+				epss = []
+				epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation).reconstructImage(tmpOut))
+				epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation2).reconstructImage(tmpOut))
+				img = np.array(img, dtype='double')
+				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation1).reconstructImage(tmpOut, N))
+				csv_writer.writerow((file, str(M), *epss))

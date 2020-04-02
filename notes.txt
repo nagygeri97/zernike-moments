@@ -83,3 +83,7 @@ fekete hatter - szurke hatter?
 
 kepen pontok teszt
 kep visszaallitas
+
+Kerdesek:
+Template matching: scaling? kepek honnan?
+sajat kep keszitese

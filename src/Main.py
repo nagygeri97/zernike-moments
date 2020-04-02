@@ -14,9 +14,11 @@ def main():
 	# start = timeit.default_timer()
 
 	# ReconstructionTests
-	# testImageReconstruction()
+	# testImageReconstructionTf1()
+	# testImageReconstructionTf2()
 	# testImageReconstructionLegendre1()
 	# testImageReconstructionLegendre2()
+	# testImageReconstructionErrors()
 	
 	# InvarianceTests
 	# testInvariance()

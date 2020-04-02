@@ -105,6 +105,7 @@ class ZernikeMomentsColorRightLegendre:
 
 		eps = float(errorNum) / float(errorDen)
 		print("Mean square error: ", eps)
+		return eps
 
 @jit(void(int64, int64, float64[:], float64[:,:], float64[:,:]), nopython=True)
 def prepare(N, maxP, thetas, sins, coss):

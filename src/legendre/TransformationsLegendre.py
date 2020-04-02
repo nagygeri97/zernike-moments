@@ -10,6 +10,7 @@ class LegendrePoints1():
 	def __init__(self, img):
 		self.n, _, _ = img.shape
 		# self.N = int(np.floor(float(self.n) / 4.0 * np.sqrt(np.pi)))
+		# Same number of points as in the inscribed circle of the image
 		self.N = int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
 		self.rs, self.thetas, self.mu = getPoints(self.N)
 

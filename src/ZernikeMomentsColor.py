@@ -12,13 +12,15 @@ class ZernikeMomentsColorRight:
 	using the ZernikeMomentsMonochrome class
 	"""
 
-	def __init__(self, img, N, maxP, verbose = False):
+	def __init__(self, img, N, maxP, trans = None, verbose = False):
 		self.img = img # img should contain RGB components
 		self.N = N
 		self.maxP = maxP
 		self.verbose = verbose
 		# self.trans = CentroidTransformation(N, img)
-		self.trans = OldTransformation(N,img)
+		if trans is None:
+			trans = OldTransformation
+		self.trans = trans(N,img)
 		self.calculateZernikeMoments()
 
 	def calculateZernikeMoments(self):
@@ -88,6 +90,8 @@ class ZernikeMomentsColorRight:
 		reconstructImageArray(self.N, self.maxP, self.rs, self.sins, self.coss, self.Zre, self.Zi, self.Zj, self.Zk, self.ZfR.Zre, self.ZfG.Zre, self.ZfB.Zre, imgArray, zeros)
 		for x in range(self.N):
 			for y in range(self.N):
+				if self.rs[x,y] > 1: # handling r > 1, do not calculate with those values
+					continue
 				for i in range(3):
 					errorNum += abs(imgArray[x,y,i] - float(self.img[x,y,i]))**2
 					errorDen += abs(float(self.img[x,y,i]))**2
@@ -96,6 +100,7 @@ class ZernikeMomentsColorRight:
 
 		eps = float(errorNum) / float(errorDen)
 		print("Mean square error: ", eps)
+		return eps
 
 @jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
 def prepare(N, maxP, thetas, sins, coss):
