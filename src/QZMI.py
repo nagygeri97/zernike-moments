@@ -11,7 +11,7 @@ class QZMI:
 	Quaternion Zernike Moment Invariants
 	RST invariant
 	"""
-	def __init__(self, img, N, maxP, noiseFun = None):
+	def __init__(self, img, N, maxP, noiseFun = None, centroidTranslate = True):
 		self.img = img
 
 		# self.img = centroidTranslationFloat(self.img)
@@ -20,7 +20,8 @@ class QZMI:
 		if noiseFun is not None:
 			self.img = noiseFun(self.img)
 
-		self.img = centroidTranslationFloat(self.img)
+		if centroidTranslate:
+			self.img = centroidTranslationFloat(self.img)
 
 		# saveImgFromNpArray(img, "../original.bmp")
 		# saveImgFromNpArray(self.img, "../test.bmp")
@@ -80,3 +81,7 @@ def getCD(l, k, m, t):
 
 def qAbs(re, i, j, k):
 	return np.sqrt(re*re + i*i + j*j + k*k)
+
+class QZMI_NoCentroid(QZMI):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, noiseFun, False)

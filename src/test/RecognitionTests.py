@@ -44,7 +44,7 @@ def runRecognitionTest():
 		open(file + ".txt", "w").close()
 		open(file + ".err", "w").close()
 
-	bgColor = BGColor.GREY
+	bgColor = BGColor.BLACK
 
 	tests = [
 		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
@@ -69,7 +69,7 @@ def runRecognitionTest():
 
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.CLEAN),
@@ -87,10 +87,10 @@ def runRecognitionTest():
 		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
-		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
-		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
-		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
-		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
 	]
 
 	for (qzmiType, testType, noiseType) in tests:
@@ -222,10 +222,12 @@ def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzm
 	recognizeVecs = {}
 
 	for file in originalFiles:
-		originalVecs[file] = populateInvariantVector(originalPath + file, qzmiClass, noiseFun)
+		(img, _) = getImgFromFileAsNpArray(originalPath + file)
+		originalVecs[file] = populateInvariantVector(img, qzmiClass, noiseFun)
 	
 	for file in recognizeFiles:
-		recognizeVecs[file] = populateInvariantVector(recognizePath + file, qzmiClass, noiseFun)
+		(img, _) = getImgFromFileAsNpArray(recognizePath + file)
+		recognizeVecs[file] = populateInvariantVector(img, qzmiClass, noiseFun)
 
 	correct = []
 	incorrect = []
@@ -246,22 +248,3 @@ def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzm
 	pct = float(len(correct)) / float(len(recognizeFiles)) * 100
 	return (correct, incorrect, pct)
 
-def populateInvariantVector(imgPath, qzmiClass=QZMI, noiseFun=None):
-	relevantMoments = [(1,1,1), (2,0,0), (2,2,2), (3,1,1), (3,3,3), (4,0,0), (4,2,2), (4,4,4)]
-	maxDeg = 4
-	result = []
-	(img, N) = getImgFromFileAsNpArray(imgPath)
-
-	qzmi = qzmiClass(img, N, maxDeg, noiseFun)
-	for relevantMoment in relevantMoments:
-		n,m,k = relevantMoment
-		r = 2
-
-		normalizedInvs = [np.sign(i)*(abs(i)**(1.0/r)) for i in  qzmi.QZMIs[n,m,k]]
-
-		if n == k:
-			# If n == k only the real part contains information
-			normalizedInvs = normalizedInvs[:1]
-
-		result.extend(normalizedInvs)
-	return result

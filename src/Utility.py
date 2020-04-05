@@ -2,6 +2,10 @@ import numpy as np
 from PIL import Image
 import sys
 
+from QZMI import *
+from QZMRI import *
+from legendre.QZMILegendre import *
+from legendre.QZMRILegendre import *
 import ImageManipulation as IM
 from Transformations import *
 
@@ -60,6 +64,13 @@ def getImgFromFileAsNpArray(fileName):
 	(N, _, _) = img.shape
 
 	return (img, N)
+
+def getImgFromFileAsRawNpArray(fileName):
+	image = Image.open(fileName)
+	image.load()
+	# NO SQUARING
+	img = np.array(image)
+	return img
 
 def saveImgFromNpArray(img, fileName="../test.bmp"):
 	image = Image.fromarray(img)
@@ -137,3 +148,25 @@ def printResultOfRecognition(name, result, logFile):
 	for (file, resultFile) in incorrect:
 		logError(logFile, file, "recognized as: ", resultFile)
 	logError(logFile, "\n", flush=True)
+
+def populateInvariantVector(img, qzmiClass=QZMI, noiseFun=None):
+	# img: an NxNx3 np.array
+	relevantMoments = [(1,1,1), (2,0,0), (2,2,2), (3,1,1), (3,3,3), (4,0,0), (4,2,2), (4,4,4)]
+	maxDeg = 4
+	result = []
+
+	(N,_,_) = img.shape
+
+	qzmi = qzmiClass(img, N, maxDeg, noiseFun)
+	for relevantMoment in relevantMoments:
+		n,m,k = relevantMoment
+		r = 2
+
+		normalizedInvs = [np.sign(i)*(abs(i)**(1.0/r)) for i in  qzmi.QZMIs[n,m,k]]
+
+		if n == k:
+			# If n == k only the real part contains information
+			normalizedInvs = normalizedInvs[:1]
+
+		result.extend(normalizedInvs)
+	return result

@@ -12,7 +12,7 @@ class QZMILegendre:
 	Quaternion Zernike Moment Invariants
 	RST invariant
 	"""
-	def __init__(self, img, N, maxP, transformationClass, noiseFun = None):
+	def __init__(self, img, N, maxP, transformationClass, noiseFun = None, centroidTranslate = True):
 		"""
 		N is unused, present for compatibility
 		"""
@@ -24,7 +24,8 @@ class QZMILegendre:
 		if noiseFun is not None:
 			self.img = noiseFun(self.img)
 
-		self.img = centroidTranslationFloat(self.img)
+		if centroidTranslate:
+			self.img = centroidTranslationFloat(self.img)
 
 		# saveImgFromNpArray(img, "../original.bmp")
 		# saveImgFromNpArray(self.img, "../test.bmp")
@@ -90,3 +91,11 @@ class QZMILegendre1(QZMILegendre):
 class QZMILegendre2(QZMILegendre):
 	def __init__(self, img, N, maxP, noiseFun = None):
 		super().__init__(img, N, maxP, LegendreTransformation2, noiseFun)
+
+class QZMILegendre1_NoCentroid(QZMILegendre):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, LegendreTransformation1, noiseFun, False)
+
+class QZMILegendre2_NoCentroid(QZMILegendre):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, LegendreTransformation2, noiseFun, False)

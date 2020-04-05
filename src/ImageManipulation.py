@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image, ImageFilter
+import os
 
 import Utility
 
@@ -130,6 +131,20 @@ def squareImage(img, background = (0,0,0)):
 		# bg.save("../tmp.bmp")
 		return bg
 
+def scale():
+	imageDir = "../images/templates/original/"
+	outDir = "../images/templates/small/"
+	scale = 1/5
+
+	imageFiles = os.listdir(imageDir)
+	
+	for file in imageFiles:
+		image = Image.open(imageDir + file)
+		image.load()
+		w, h = image.size
+		image = image.resize((int(w*scale), int(h*scale)), resample = Image.BILINEAR).rotate(-90, expand = True)
+		image.save(outDir + file)
+
 # ------ Noise ---------
 
 def addGaussianNoise(img, mean, stddev):
@@ -255,4 +270,5 @@ def imageToFloat(img):
 if __name__ == '__main__':
 	# placeImagesOnBackground()
 	# RST()
-	rotate()
+	# rotate()
+	scale()
