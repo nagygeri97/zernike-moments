@@ -152,6 +152,8 @@ def addGaussianNoise(img, mean, stddev):
 	shape = img.shape
 	newImg = np.round(img + np.random.normal(mean, stddev, shape))
 	bounds = np.vectorize(lambda x : np.uint8((x if x > 0 else 0) if x < 255 else 255))
+	# pilImg = Image.fromarray(bounds(newImg))
+	# pilImg.save("../test.bmp", "BMP")
 	return bounds(newImg)
 
 def addSaltAndPepperNoise(img, density):

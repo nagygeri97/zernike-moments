@@ -95,7 +95,21 @@ def transformAndPrintImage(img, fileName):
 	im = Image.fromarray(newImage)
 	im.save(fileName, "BMP")
 
-def printImageFromLegendreTrans(trans, fileName="../test.bmp", n=1000):
+def printCircleGrid(fileName="../test.bmp"):
+	n = 256
+	newImage = np.zeros((n, n, 3), dtype='uint8')
+	img = getImgFromFileAsRawNpArray("../images/lenna_pepper/lenna_color_64.bmp")
+	m, _, _ = img.shape
+	for x in range(m):
+		for y in range(m):
+			if (x - m//2)**2 + (y - m//2)**2 > (m//2)**2:
+				continue
+			for i in range(3):
+				newImage[n//m*x, n//m*y, i] = img[x,y,i]
+	im = Image.fromarray(newImage)
+	im.save(fileName, "BMP")
+
+def printImageFromLegendreTrans(trans, fileName="../test.bmp", n=1024):
 	# n = trans.n
 	newImage = np.zeros((n, n, 3), dtype='uint8')
 	for k in range(trans.N):

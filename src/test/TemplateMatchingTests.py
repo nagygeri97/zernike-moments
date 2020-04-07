@@ -34,16 +34,17 @@ def getTemplateData(templateType):
 							]
 	elif templateType == TemplateType.FLAG:
 		templateFile = "flag1.jpg"
-		matchingFiles = ["flag" + str(i) + ".jpg" for i in range(2,5)]
+		matchingFiles = ["flag" + str(i) + ".jpg" for i in range(2,5)][:1]
+		# matchingFiles = ["flag1.jpg"]
 		templatePositions = [(400,220), # EU flag
-							 (313,290), # Yellow car
+							 (315,290), # Yellow car
 							 (290, 35), # Building top open window (missing in zoomed)
-							 ( 53,320), # Bin (missing in zoomed)
-							 (225,204), # Tree top
-							 (260,344), # Plants in grass
+							 ( 55,320), # Bin (missing in zoomed)
+							 (225,205), # Tree top
+							 (260,345), # Plants in grass
 							 (130,270), # Sign
-							 (264,205), # Balcony with lamppost
-							 (332,308), # Bottom of post
+							 (265,205), # Balcony with lamppost
+							 (330,310), # Bottom of post
 							] 
 	elif templateType == TemplateType.STREET:
 		templateFile = "street1.jpg"
@@ -74,19 +75,21 @@ def getTemplateData(templateType):
 	return (path, templateFile, matchingFiles, templatePositions, outPath)
 
 def templateMatchingTest():
-	templateType = TemplateType.STREET
-	qzmiClass = QZMI_NoCentroid
+	templateType = TemplateType.FLAG
+	qzmiClass = QZMILegendre1
+	resultSuffix = "_leg1_cent"
 
 	(path, templateFile, matchingFiles, templatePositions, outPath) = getTemplateData(templateType)
-	circleRadius = 10
+	circleRadius = 11
+	stepSize = 5
 
-	printImageWithTemplates(path + templateFile, circleRadius, templatePositions, outPath + templateFile[:-4] + "_template.bmp")
+	printImageWithTemplates(path + templateFile, circleRadius, templatePositions, outPath + templateFile[:-4] + "_template.png")
 	# return
 	
 	img = getImgFromFileAsRawNpArray(path + templateFile)
 	originalVecs = []
 	for position in templatePositions:
-		(x,y) = position
+		(y,x) = position
 		croppedImg = np.array(img[(x - circleRadius):(x + circleRadius + 1), (y - circleRadius):(y + circleRadius + 1), :], dtype="double")
 		originalVecs.append(populateInvariantVector(croppedImg, qzmiClass))
 	
@@ -96,9 +99,9 @@ def templateMatchingTest():
 		img = getImgFromFileAsRawNpArray(path + matchingFile)
 		(h, w, _) = img.shape
 		matchingVecs = {}
-		for x in range(matchingRadius, h - matchingRadius,5):
+		for x in range(matchingRadius, h - matchingRadius,stepSize):
 			print(x)
-			for y in range(matchingRadius, w - matchingRadius,5):
+			for y in range(matchingRadius, w - matchingRadius,stepSize):
 				croppedImg = np.array(img[(x - matchingRadius):(x + matchingRadius + 1), (y - matchingRadius):(y + matchingRadius + 1), :], dtype="double")
 				matchingVecs[(y,x)] = populateInvariantVector(croppedImg, qzmiClass)
 
@@ -113,11 +116,11 @@ def templateMatchingTest():
 					minPos = pos
 			points.append(minPos)
 		print(points)
-		printImageWithTemplates(path + matchingFile, matchingRadius, points, outPath + matchingFile[:-4] + "_result.bmp")
+		printImageWithTemplates(path + matchingFile, matchingRadius, points, outPath + matchingFile[:-4] + "_result" + resultSuffix + ".png")
 
 		
 
-def printImageWithTemplates(fileName, radius, positions, outFile = "../tmp.bmp"):
+def printImageWithTemplates(fileName, radius, positions, outFile = "../tmp.png"):
 	img = Image.open(fileName)
 	img.load()
 

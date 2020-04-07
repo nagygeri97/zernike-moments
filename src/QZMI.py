@@ -4,6 +4,7 @@ from quaternion import *
 
 from ZernikeMomentsColor import *
 from ImageManipulation import *
+from Transformations import *
 from Utility import *
 
 class QZMI:
@@ -11,7 +12,7 @@ class QZMI:
 	Quaternion Zernike Moment Invariants
 	RST invariant
 	"""
-	def __init__(self, img, N, maxP, noiseFun = None, centroidTranslate = True):
+	def __init__(self, img, N, maxP, noiseFun = None, transformation = None, centroidTranslate = True):
 		self.img = img
 
 		# self.img = centroidTranslationFloat(self.img)
@@ -28,7 +29,7 @@ class QZMI:
 
 		self.N = N
 		self.maxP = maxP
-		self.ZM = ZernikeMomentsColorRight(self.img, self.N, self.maxP)
+		self.ZM = ZernikeMomentsColorRight(self.img, self.N, self.maxP, transformation)
 		self.calculateQZMI()
 
 	def calculateQZMI(self):
@@ -84,4 +85,12 @@ def qAbs(re, i, j, k):
 
 class QZMI_NoCentroid(QZMI):
 	def __init__(self, img, N, maxP, noiseFun = None):
-		super().__init__(img, N, maxP, noiseFun, False)
+		super().__init__(img, N, maxP, noiseFun, OldTransformation, False)
+
+class QZMI2_NoCentroid(QZMI):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, noiseFun, OldTransformation2, False)
+
+class QZMI2(QZMI):
+	def __init__(self, img, N, maxP, noiseFun = None):
+		super().__init__(img, N, maxP, noiseFun, OldTransformation2)

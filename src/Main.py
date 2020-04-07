@@ -37,6 +37,7 @@ def main():
 	# legendreTransformationDebug_Test()
 	# legendreTransformationPrintPoints_Test()
 	# legendreTransformation2PrintPoints_Test()
+	# printCircleGrid()
 
 	# TemplateMatchingTests
 	templateMatchingTest()
