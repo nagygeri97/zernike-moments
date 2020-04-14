@@ -81,7 +81,8 @@ def templateMatchingTest():
 
 	(path, templateFile, matchingFiles, templatePositions, outPath) = getTemplateData(templateType)
 	circleRadius = 11
-	stepSize = 5
+	stepSize = 1
+	resultSuffix += "_s" + str(stepSize) + "_r" + str(circleRadius)
 
 	printImageWithTemplates(path + templateFile, circleRadius, templatePositions, outPath + templateFile[:-4] + "_template.png")
 	# return

@@ -87,3 +87,6 @@ kep visszaallitas
 Kerdesek:
 Template matching: scaling? kepek honnan?
 sajat kep keszitese
+
+
+https://www.mathworks.com/help/vision/examples/find-image-rotation-and-scale-using-automated-feature-matching.html
