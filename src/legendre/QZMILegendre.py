@@ -62,7 +62,10 @@ class QZMILegendre:
 				l = (n - m)//2
 				for t in range(0,l + 1):
 					for k in range(t, l + 1):
-						G = Gamma**((-1)*(m + 2*k + 2))
+						if Gamma != 0:
+							G = Gamma**((-1)*(m + 2*k + 2))
+						else:
+							G = 0
 						CD = getCD(l, k, m, t)
 						tmp = G*CD
 						self.Ls[n,m,0] += tmp * self.ZM.Zre[m + 2*t, m]

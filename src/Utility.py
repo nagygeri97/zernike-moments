@@ -143,8 +143,12 @@ def calculateCentroid(img):
 			m10 += x*s
 			m01 += y*s
 			m00 += s
-	m01 = int(round(float(m01) / m00))
-	m10 = int(round(float(m10) / m00))
+	if m00 > 0:
+		m01 = int(round(float(m01) / m00))
+		m10 = int(round(float(m10) / m00))
+	else: 
+		m01 = int(round(m01))
+		m10 = int(round(m10))
 	return (m10, m01)
 
 # ------ Recognition ---------

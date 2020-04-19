@@ -17,6 +17,14 @@ class TemplateType(Enum):
 	CARS = 4
 
 def getTemplateData(templateType):
+	scalesFilePath = "../images/templates/scales.txt"
+	scalesDict = {}
+	with open(scalesFilePath, 'r') as scalesFile:
+		for line in scalesFile:
+			(fileName, scale) = line.split(' ')
+			scale = float(scale)
+			scalesDict[fileName] = scale
+
 	path = "../images/templates/small/"
 	outPath = "../results/images/template/"
 	if templateType == TemplateType.PARK:
@@ -34,8 +42,8 @@ def getTemplateData(templateType):
 							]
 	elif templateType == TemplateType.FLAG:
 		templateFile = "flag1.jpg"
-		matchingFiles = ["flag" + str(i) + ".jpg" for i in range(2,5)][:1]
-		# matchingFiles = ["flag1.jpg"]
+		# matchingFiles = ["flag" + str(i) + ".jpg" for i in range(2,5)][:1]
+		matchingFiles = ["flag4.jpg"]
 		templatePositions = [(400,220), # EU flag
 							 (315,290), # Yellow car
 							 (290, 35), # Building top open window (missing in zoomed)
@@ -72,19 +80,24 @@ def getTemplateData(templateType):
 							 (200,100), # Tree top
 							 (384,375), # White car plate
 							]
-	return (path, templateFile, matchingFiles, templatePositions, outPath)
+
+	return (path, templateFile, matchingFiles, templatePositions, outPath, scalesDict)
 
 def templateMatchingTest():
 	templateType = TemplateType.FLAG
-	qzmiClass = QZMILegendre1
-	resultSuffix = "_leg1_cent"
+	qzmiClass = QZMILegendre1_NoCentroid
+	# qzmiClass = QZMI_NoCentroid
+	# qzmiClass = QZMRILegendre1
+	# qzmiClass = QZMRI
+	resultSuffix = "_leg1_scaled_rad"
 
-	(path, templateFile, matchingFiles, templatePositions, outPath) = getTemplateData(templateType)
-	circleRadius = 11
+	(path, templateFile, matchingFiles, templatePositions, outPath, scales) = getTemplateData(templateType)
+	circleRadius = 10
 	stepSize = 1
 	resultSuffix += "_s" + str(stepSize) + "_r" + str(circleRadius)
+	templateSuffix = "_r" + str(circleRadius)
 
-	printImageWithTemplates(path + templateFile, circleRadius, templatePositions, outPath + templateFile[:-4] + "_template.png")
+	printImageWithTemplates(path + templateFile, circleRadius, templatePositions, outPath + templateFile[:-4] + "_template" + templateSuffix + ".png")
 	# return
 	
 	img = getImgFromFileAsRawNpArray(path + templateFile)
@@ -95,8 +108,7 @@ def templateMatchingTest():
 		originalVecs.append(populateInvariantVector(croppedImg, qzmiClass))
 	
 	for matchingFile in matchingFiles:
-		# TODO: calculate scaling!
-		matchingRadius = circleRadius
+		matchingRadius = int(np.round(circleRadius * scales[matchingFile]))
 		img = getImgFromFileAsRawNpArray(path + matchingFile)
 		(h, w, _) = img.shape
 		matchingVecs = {}

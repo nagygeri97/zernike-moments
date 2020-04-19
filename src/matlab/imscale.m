@@ -1,4 +1,4 @@
-function imscale(originalFile, distortedFile)
+function scaleRecovered = imscale(originalFile, distortedFile)
 % Source: https://www.mathworks.com/help/vision/examples/find-image-rotation-and-scale-using-automated-feature-matching.html
 
 path = "../../images/templates/small/";
@@ -38,15 +38,15 @@ Tinv  = tform.invert.T;
 
 ss = Tinv(2,1);
 sc = Tinv(1,1);
-scaleRecovered = sqrt(ss*ss + sc*sc)
-thetaRecovered = atan2(ss,sc)*180/pi
+scaleRecovered = sqrt(ss*ss + sc*sc);
+thetaRecovered = atan2(ss,sc)*180/pi;
 
 outputView = imref2d(size(original));
 recovered  = imwarp(distortedColor,tform,'OutputView',outputView);
 
-% figure, imshowpair(originalColor,recovered,'montage')
+% figure, imshowpair(originalColor,recovered,'montage');
 
-imwrite(recovered, outPath + distortedFile);
+% imwrite(recovered, outPath + distortedFile);
 end
 
 

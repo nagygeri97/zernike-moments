@@ -90,3 +90,14 @@ sajat kep keszitese
 
 
 https://www.mathworks.com/help/vision/examples/find-image-rotation-and-scale-using-automated-feature-matching.html
+
+Templaet matching:
+Csak rotation inv-el jobb,
+ha nagy a stepsize, akkor nem mindig talal bele a pontos helybe
+
+flag2: qzmri - 3/9 correct + 2/9 almost
+	   new qzmri - 6/9 correct
+
+
+matching Circle scalelve:
+rotation + scale invarianssal:
