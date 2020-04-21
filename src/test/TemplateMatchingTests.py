@@ -43,7 +43,7 @@ def getTemplateData(templateType):
 	elif templateType == TemplateType.FLAG:
 		templateFile = "flag1.jpg"
 		# matchingFiles = ["flag" + str(i) + ".jpg" for i in range(2,5)][:1]
-		matchingFiles = ["flag4.jpg"]
+		# matchingFiles = ["flag4.jpg"]
 		templatePositions = [(400,220), # EU flag
 							 (315,290), # Yellow car
 							 (290, 35), # Building top open window (missing in zoomed)
@@ -72,24 +72,24 @@ def getTemplateData(templateType):
 		matchingFiles = ["cars" + str(i) + ".jpg" for i in range(2,4)]
 		templatePositions = [(330,365), # White car light
 							 (100,345), # Black car wheel
-							 (144,152), # Balcony
+							 (145,150), # Balcony
 							 (175,340), # Black car lamp
 							 (360,555), # Manhole cover
-							 (285,128), # Green building window
+							 (285,130), # Green building window
 							 (135,285), # Yellow building door
 							 (200,100), # Tree top
-							 (384,375), # White car plate
+							 (385,375), # White car plate
 							]
 
 	return (path, templateFile, matchingFiles, templatePositions, outPath, scalesDict)
 
 def templateMatchingTest():
-	templateType = TemplateType.FLAG
+	templateType = TemplateType.CARS
 	qzmiClass = QZMILegendre1_NoCentroid
-	# qzmiClass = QZMI_NoCentroid
+	qzmiClass = QZMI_NoCentroid
 	# qzmiClass = QZMRILegendre1
 	# qzmiClass = QZMRI
-	resultSuffix = "_leg1_scaled_rad"
+	resultSuffix = "_qzmi1_rot"
 
 	(path, templateFile, matchingFiles, templatePositions, outPath, scales) = getTemplateData(templateType)
 	circleRadius = 10
