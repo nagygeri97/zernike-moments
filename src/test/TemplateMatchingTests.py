@@ -16,16 +16,52 @@ class TemplateType(Enum):
 	STREET = 3
 	CARS = 4
 
-def getTemplateData(templateType):
-	scalesFilePath = "../images/templates/scales.txt"
-	scalesDict = {}
-	with open(scalesFilePath, 'r') as scalesFile:
-		for line in scalesFile:
-			(fileName, scale) = line.split(' ')
-			scale = float(scale)
-			scalesDict[fileName] = scale
+class InvarianceType(Enum):
+	R = 1
+	RST = 2
+	RS  = 3
 
-	path = "../images/templates/small/"
+class QZMIType(Enum):
+	ORIGINAL = 1
+	NEW = 2
+
+def getTemplateData(templateType, invarianceType, qzmiType):
+	if invarianceType != InvarianceType.R:
+		path = "../images/templates/small/"
+		scalesFilePath = "../images/templates/scales.txt"
+		scalesDict = {}
+		with open(scalesFilePath, 'r') as scalesFile:
+			for line in scalesFile:
+				(fileName, scale) = line.split(' ')
+				scale = float(scale)
+				scalesDict[fileName] = scale
+	else:
+		path = "../images/templates/scaled/"
+		scalesDict = None
+
+	if invarianceType == InvarianceType.R:
+		if qzmiType == QZMIType.ORIGINAL:
+			qzmiClass = QZMRI
+			resultSuffix = "_qzmi1_rot"
+		else:
+			qzmiClass = QZMRILegendre1
+			resultSuffix = "_leg1_rot"
+	elif invarianceType == InvarianceType.RS:
+		if qzmiType == QZMIType.ORIGINAL:
+			qzmiClass = QZMI_NoCentroid
+			resultSuffix = "_qzmi1_scaled"
+		else:
+			qzmiClass = QZMILegendre1_NoCentroid
+			resultSuffix = "_leg1_scaled"
+	elif invarianceType == InvarianceType.RST:
+		if qzmiType == QZMIType.ORIGINAL:
+			qzmiClass = QZMI
+			resultSuffix = "_qzmi1_scaled_cent"
+		else:
+			qzmiClass = QZMILegendre1
+			resultSuffix = "_leg1_scaled_cent"
+
+
 	outPath = "../results/images/template/"
 	if templateType == TemplateType.PARK:
 		templateFile = "park1.jpg"
@@ -69,7 +105,7 @@ def getTemplateData(templateType):
 							]
 	elif templateType == TemplateType.CARS:
 		templateFile = "cars1.jpg"
-		matchingFiles = ["cars" + str(i) + ".jpg" for i in range(2,4)]
+		matchingFiles = ["cars" + str(i) + ".jpg" for i in range(2,4)][:1]
 		templatePositions = [(330,365), # White car light
 							 (100,345), # Black car wheel
 							 (145,150), # Balcony
@@ -81,17 +117,14 @@ def getTemplateData(templateType):
 							 (385,375), # White car plate
 							]
 
-	return (path, templateFile, matchingFiles, templatePositions, outPath, scalesDict)
+	return (path, templateFile, matchingFiles, templatePositions, outPath, scalesDict, qzmiClass, resultSuffix)
 
 def templateMatchingTest():
 	templateType = TemplateType.CARS
-	qzmiClass = QZMILegendre1_NoCentroid
-	qzmiClass = QZMI_NoCentroid
-	# qzmiClass = QZMRILegendre1
-	# qzmiClass = QZMRI
-	resultSuffix = "_qzmi1_rot"
+	invarianceType = InvarianceType.RS
+	qzmiType = QZMIType.NEW
 
-	(path, templateFile, matchingFiles, templatePositions, outPath, scales) = getTemplateData(templateType)
+	(path, templateFile, matchingFiles, templatePositions, outPath, scales, qzmiClass, resultSuffix) = getTemplateData(templateType, invarianceType, qzmiType)
 	circleRadius = 10
 	stepSize = 1
 	resultSuffix += "_s" + str(stepSize) + "_r" + str(circleRadius)
@@ -108,7 +141,11 @@ def templateMatchingTest():
 		originalVecs.append(populateInvariantVector(croppedImg, qzmiClass))
 	
 	for matchingFile in matchingFiles:
-		matchingRadius = int(np.round(circleRadius * scales[matchingFile]))
+		if scales is not None:
+			matchingRadius = int(np.round(circleRadius * scales[matchingFile]))
+		else:
+			matchingRadius = circleRadius
+
 		img = getImgFromFileAsRawNpArray(path + matchingFile)
 		(h, w, _) = img.shape
 		matchingVecs = {}
