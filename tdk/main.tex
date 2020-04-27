@@ -39,6 +39,10 @@
 \usepackage{amsmath}
 \usepackage{latexsym}
 
+\usepackage{dsfont}
+\usepackage{commath}
+\usepackage{bm}
+
 %% See http://tex.stackexchange.com/questions/43835/conflict-between-amsthm-and-some-other-package
 \let\proof\relax 
 \let\endproof\relax
@@ -263,17 +267,16 @@ literate=
   \vfill
 
   \begin{center}
-    {\LARGE \bfseries TODO Title} 
-    \\[0.5cm]
-    {\Large \bfseries TODO Title title title}
-    \\[1.5cm]
+    {\LARGE \bfseries Color image analysis and recognition using Zernike moments} 
+    % \\[0.5cm]
+    \\[2.0cm]
     {\Large TDK thesis}
     \\[3cm]
     %%\\[6cm]
     \begin{minipage}[t]{0.45 \textwidth}
       \emph{Supervisor:} \\[0.25 \baselineskip]
       {\large Zsolt Németh} \\[0.5 \baselineskip]
-      TODO? Assistant professor
+      Title title title
     \end{minipage}
     \begin{minipage}[t]{0.45 \textwidth}
       \begin{flushright}
@@ -318,10 +321,6 @@ literate=
 
 \chapter{Tests/improvements?}
 \input{tests.tex}
-
-\chapter{Related work}
-\label{sec:related}
-\input{related.tex}
 
 \chapter{Conclusion}
 \label{sec:conclusion}

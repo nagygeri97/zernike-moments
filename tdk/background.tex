@@ -1,3 +1,84 @@
+This chapter contains a summary and overview of the concepts used in this thesis and previous results this work is based on, such as image moments and their relevance in image analysis, and more specifically Zernike moments and the state-of-the-art of their application for both grayscale and color image analysis. Furthermore, some examples are provided to show the relevance and use cases of such image moments.
+
+\section{Image moments}
+In general, image moments are certain descriptive values calculated using the pixel intensities of an image. Different moments can be used to extract certain properties from a picture, for example the centroid of a greyscale image can be calculated as
+$$
+\left\{ \overline{x}, \overline{y} \right\} = \left\{ \frac{M_{10}}{M_{00}},  \frac{M_{01}}{M_{00}} \right\}
+$$ where $M_{ij}$ are the regular image moments defined as
+$$
+M_{ij} =  \sum_x \sum_y x^i y^j I(x,y) 
+$$ with $I(x,y)$ being the pixel value at the coordinates $(x,y)$.
+
+\subsection{Moment invariants}
+Using the image moments, moment invariants can be defined, which are invariant to certain transformations, such as rotation, scaling, and translation.
+
+These moment invariants are widely used in applications for pattern matching and image recognition~\cite{app1, app2, app3}. In particular, moment invariants can be used in medical applications, such as solving the Pathological Brain Detection problem~\cite{med_app_1}.
+
+\section{Zernike moments}
+Zernike moments are image moments, defined for greyscale images inside the unit circle, using the Zernike polynomials~\cite{zernike_moments}.
+
+Zernike polynomials are complex polynomials, which are orthogonal over the unit circle. In polar coordinates:
+\begin{gather*}
+  n \in \mathds{N}, m \in \mathds{Z},\text{   } n \geq |m|,\text{   } n - |m| \text{ is even} \\
+  V_{n,m}(\rho,\theta) = R_{n,m}(\rho) e^{i m\theta}
+\end{gather*}
+where $ R_{n,m}(\rho) $ are the radial polynomials defined as
+\begin{gather*}
+  R_{n,m}(\rho) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}\rho^{n-2k}
+\end{gather*}
+
+The Zernike moment of order $n$ and repetition $m$ of a greyscale, continuous image function $f(\rho,\theta)$ given in polar coordinates, is defined as
+\begin{gather*}
+  Z_{n,m}(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}f(\rho,\theta)\overline{V_{n,m}(\rho,\theta)}\rho\dif\rho\dif\theta
+\end{gather*}
+
+Because the Zernike polynomials are orthogonal, the following reconstruction of the image function is possible, using a finite $M$ number of Zernike moments:
+
+\begin{gather*}
+  f(\rho,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}(f)V_{n,m}(\rho,\theta)
+\end{gather*}
+
+Since digital images are not represented in polar coordinates, a transformation of the image is needed in order to calculate its Zernike moments. The most commonly used transformation is a linear transformation from the image coordinates to a suitable square inside the unit circle. % TODO:  figure maybe, exact transformation detail?
+After this linear transformation, the following discrete approximation is used to calculate the Zernike moments of a digital image $f(x,y)$
+\begin{gather*}
+  Z_{n,m}(f) = \frac{n+1}{\pi(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)\overline{V_{n,m}(\rho_{x,y},\theta_{x,y})}
+\end{gather*}
+where $N$ is the size of the image, and $(\rho_{x,y},\theta_{x,y})$ are the polar coordinates corresponding to the $(x,y)$ image coordinates.
+
+\section{Quaternion Zernike moments}
+The previously defined Zernike moments can only be used for greyscale images. For color images, quaternion Zernike moments (QZMs) can be used~\cite{qzm}.
+
+Quaternions are a generalization of complex numbers, consisting of one real and three imaginary parts. A quaternion $q$ can be represented in the form $q = a + b\mathbf{i} + c\mathbf{j} + d\mathbf{k}$, where $a,b,c,d \in \mathds{R}$ and $\mathbf{i}, \mathbf{j}, \mathbf{k}$ are the imaginary units, defined by the multiplication rules $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$. The set of quaternions is denoted by $\mathds{H}$.
+
+Let $f(\rho,\theta)$ be a pure quaternion valued, continuous RGB image function, defined in polar coordinates on the unit circle. Each color component corresponds to one of the imaginary units. Let $\bm{\mu} = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$ be a unit pure quaternion.
+
+Since the multiplication of quaternions is not commutative, right-side and left-side quaternion Zernike moments can also be defined. The right-side QZM of order $n$ and repetition $m$ is defined as
+\begin{gather*}
+  Z_{n,m}^R(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(\rho)f(\rho,\theta)e^{-\bm{\mu}m\theta}\rho\dif\rho\dif\theta, \\
+  n \geq |m| \text{  and  } n - |m| \text{  is even}
+\end{gather*}
+
+The left-side QZMs are defined as 
+\begin{gather*}
+  Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(\rho)e^{-\bm{\mu}m\theta}f(\rho,\theta)\rho\dif\rho\dif\theta
+\end{gather*}
+
+Similarly to non-quaternion Zernike moments, the original image can be approximated by using only a finite $M$ number of QZMs.
+\begin{gather*}
+  f(\rho,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(\rho)e^{\bm{\mu}m\theta} \\
+  f(\rho,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}e^{\bm{\mu}m\theta}Z_{n,m}^L(f)R_{n,m}(\rho)
+\end{gather*}
+
+\subsection{Discretization}
+
+
+\section{Quaternion Zernike Moment Invariants}
+
+\section{Applications}
+
+
+
+
 TODO Background
 
 Image moments in general
