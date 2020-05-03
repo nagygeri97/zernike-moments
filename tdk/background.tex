@@ -1,7 +1,7 @@
 This chapter contains a summary and overview of the concepts used in this thesis and previous results this work is based on, such as image moments and their relevance in image analysis, and more specifically Zernike moments and the state-of-the-art of their application for both grayscale and color image analysis. Furthermore, some examples are provided to show the relevance and use cases of such image moments.
 
 \section{Image moments}
-In general, image moments are certain descriptive values calculated using the pixel intensities of an image. Different moments can be used to extract certain properties from a picture, for example the centroid of a greyscale image can be calculated as
+In general, image moments are certain descriptive values calculated using the pixel intensities of an image. Different moments can be used to extract certain properties from a picture, for example the centroid of a grayscale image can be calculated as
 $$
 \left\{ \overline{x}, \overline{y} \right\} = \left\{ \frac{M_{10}}{M_{00}},  \frac{M_{01}}{M_{00}} \right\}
 $$ where $M_{ij}$ are the regular image moments defined as
@@ -15,64 +15,191 @@ Using the image moments, moment invariants can be defined, which are invariant t
 These moment invariants are widely used in applications for pattern matching and image recognition~\cite{app1, app2, app3}. In particular, moment invariants can be used in medical applications, such as solving the Pathological Brain Detection problem~\cite{med_app_1}.
 
 \section{Zernike moments}
-Zernike moments are image moments, defined for greyscale images inside the unit circle, using the Zernike polynomials~\cite{zernike_moments}.
-
-Zernike polynomials are complex polynomials, which are orthogonal over the unit circle. In polar coordinates:
+Zernike polynomials, first introduce by Zernike in 1934~\cite{zernike} are a system of complex, orthogonal polynomials defined on the unit disc. In polar coordinates the Zernike polynomial $V_{n,m}$ ($n \in \mathds{N}$, $m \in \mathds{Z}$, $n \geq |m|$ and $n - |m|$ is even) is defined as
 \begin{gather*}
-  n \in \mathds{N}, m \in \mathds{Z},\text{   } n \geq |m|,\text{   } n - |m| \text{ is even} \\
-  V_{n,m}(\rho,\theta) = R_{n,m}(\rho) e^{i m\theta}
+  V_{n,m}(r,\theta) = R_{n,m}(r) e^{i m\theta}
 \end{gather*}
-where $ R_{n,m}(\rho) $ are the radial polynomials defined as
+where $ R_{n,m}(r) $ are the radial polynomials defined as
 \begin{gather*}
-  R_{n,m}(\rho) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}\rho^{n-2k}
+  R_{n,m}(r) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}r^{n-2k}
 \end{gather*}
 
-The Zernike moment of order $n$ and repetition $m$ of a greyscale, continuous image function $f(\rho,\theta)$ given in polar coordinates, is defined as
+Zernike moments are image moments, defined for grayscale images inside the unit circle, using the Zernike polynomials.
+The system of Zernike polynomials proved to be a suitable basis for series expansions, as moment invariants could easily be constructed using the Zernike moments~\cite{zernike_moments}. 
+
+The Zernike moment of order $n$ and repetition $m$ of a grayscale, continuous image function $f(r,\theta)$ given in polar coordinates, is defined as
 \begin{gather*}
-  Z_{n,m}(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}f(\rho,\theta)\overline{V_{n,m}(\rho,\theta)}\rho\dif\rho\dif\theta
+  Z_{n,m}(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)V_{n,m}^{*}(r,\theta)r\dif r\dif\theta
 \end{gather*}
 
-Because the Zernike polynomials are orthogonal, the following reconstruction of the image function is possible, using a finite $M$ number of Zernike moments:
+Because the Zernike polynomials are orthogonal, the following reconstruction of the image function is possible, using Zernike moments only up to a finite $M$ degree:
 
 \begin{gather*}
-  f(\rho,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}(f)V_{n,m}(\rho,\theta)
+  f(r,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}(f)V_{n,m}(r,\theta)
 \end{gather*}
 
-Since digital images are not represented in polar coordinates, a transformation of the image is needed in order to calculate its Zernike moments. The most commonly used transformation is a linear transformation from the image coordinates to a suitable square inside the unit circle. % TODO:  figure maybe, exact transformation detail?
-After this linear transformation, the following discrete approximation is used to calculate the Zernike moments of a digital image $f(x,y)$
+Since digital images are not represented in polar coordinates and are not defined only over the unit disc, a transformation of the image onto the unit disk is needed. The most commonly used transformation is a linear transformation from the image coordinates to a suitable square inside the unit circle. This transformation is described in more detail in Section~\ref{sec:discretization}.
+After the linear transformation, the following discrete approximation can be used to calculate the Zernike moments of a digital image $f(x,y)$
 \begin{gather*}
-  Z_{n,m}(f) = \frac{n+1}{\pi(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)\overline{V_{n,m}(\rho_{x,y},\theta_{x,y})}
+  Z_{n,m}(f) = \frac{2(n+1)}{\pi(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)V_{n,m}^{*}(r_{x,y},\theta_{x,y})
 \end{gather*}
-where $N$ is the size of the image, and $(\rho_{x,y},\theta_{x,y})$ are the polar coordinates corresponding to the $(x,y)$ image coordinates.
+where $N$ is the size of the image, and $(r_{x,y},\theta_{x,y})$ are the polar coordinates corresponding to the $(x,y)$ image coordinates.
 
-\section{Quaternion Zernike moments}
-The previously defined Zernike moments can only be used for greyscale images. For color images, quaternion Zernike moments (QZMs) can be used~\cite{qzm}.
+\section{Quaternions and color image moments}
+The previously defined Zernike moments can only be used for grayscale images, but nowadays most images are RGB, so a method is needed to use image moments for color images.
+
+Conventionally, for multichannel, color images, two main approaches can be used. Either the image is converted to grayscale so that the moments defined for grayscale images could be used or, after RGB-decomposition, the grayscale method is used on each channel of the image~\cite{affine_color}.
+
+More recently, the algebra of quaternions was employed to various conventional moments so that color images can be analysed holistically.
 
 Quaternions are a generalization of complex numbers, consisting of one real and three imaginary parts. A quaternion $q$ can be represented in the form $q = a + b\mathbf{i} + c\mathbf{j} + d\mathbf{k}$, where $a,b,c,d \in \mathds{R}$ and $\mathbf{i}, \mathbf{j}, \mathbf{k}$ are the imaginary units, defined by the multiplication rules $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$. The set of quaternions is denoted by $\mathds{H}$.
 
-Let $f(\rho,\theta)$ be a pure quaternion valued, continuous RGB image function, defined in polar coordinates on the unit circle. Each color component corresponds to one of the imaginary units. Let $\bm{\mu} = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$ be a unit pure quaternion.
+For example, \citeauthor{qfmm}~\cite{qfmm} introduced quaternion Fourier-Mellin moments (QFMMs) which are an extension of the conventional Fourier-Mellin moments. Similarly, the same quaternion techniques were applied successfully to other function systems (e.g.~\cite{bessel-fourier, chebyshev-fourier}), yielding similar results.
+
+\citeauthor{qzm}~\cite{qzm,qzmi} proposed the quaternion Zernike moments (QZMs), the extension of conventional Zernike moments to color images using quaternions. Generally, this method overperforms other similar approaches in color image recognition, due to the natural invariances of Zernike functions.
+
+The main idea behind these extensions is that an RGB image can be viewed as a pure quaternion valued function, with each color component corresponding to one of the imaginary units.
+
+\subsection{Quaternion Zernike moments}
+Let $f(r,\theta)$ be a pure quaternion valued, continuous RGB image function, defined in polar coordinates on the unit circle. Each color component corresponds to one of the imaginary units. Let $\bm{\mu} = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$ be a unit pure quaternion.
 
 Since the multiplication of quaternions is not commutative, right-side and left-side quaternion Zernike moments can also be defined. The right-side QZM of order $n$ and repetition $m$ is defined as
 \begin{gather*}
-  Z_{n,m}^R(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(\rho)f(\rho,\theta)e^{-\bm{\mu}m\theta}\rho\dif\rho\dif\theta, \\
+  Z_{n,m}^R(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)f(r,\theta)e^{-\bm{\mu}m\theta}r\dif r\dif\theta, \\
   n \geq |m| \text{  and  } n - |m| \text{  is even}
 \end{gather*}
 
 The left-side QZMs are defined as 
 \begin{gather*}
-  Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(\rho)e^{-\bm{\mu}m\theta}f(\rho,\theta)\rho\dif\rho\dif\theta
+  Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)e^{-\bm{\mu}m\theta}f(r,\theta)r\dif r\dif\theta
 \end{gather*}
 
-Similarly to non-quaternion Zernike moments, the original image can be approximated by using only a finite $M$ number of QZMs.
+The main difference, compared to the conventional Zernike moments is that instead of the complex-valued Zernike polynomials, QZMs use the quaternion valued generalization of the Zernike polynomials as a basis for the series expansion. 
+
+Similarly to non-quaternion Zernike moments, the original image can be approximated by using either right-side or left-side QZMs only up to a finite $M$ degree.
 \begin{gather*}
-  f(\rho,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(\rho)e^{\bm{\mu}m\theta} \\
-  f(\rho,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}e^{\bm{\mu}m\theta}Z_{n,m}^L(f)R_{n,m}(\rho)
+  f(r,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r)e^{\bm{\mu}m\theta} \\
+  f(r,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}e^{\bm{\mu}m\theta}Z_{n,m}^L(f)R_{n,m}(r)
 \end{gather*}
 
-\subsection{Discretization}
+In this thesis, only the right-side QZMs will be used, because of the following relation between right- and left-side QZMs:
+\begin{gather*}
+  Z_{n,m}^L(f) = -(Z_{n,m}^R(f))^{*}
+\end{gather*}
+
+The discretization of the QZMs and the transformation of arbitrary digital RGB images onto the unit disk is described in detail in Section~\ref{sec:discretization} 
+
+\section{Discretization of QZMs}\label{sec:discretization}
+The conventional Zernike moments and the QZMs are defined in terms of polar coordinates, for image functions, whose domain is the unit disk. On the other hand, digital images are usually defined in image coordinates, with the coordinates being integers ranging from $0$ to $N - 1$ (the number of pixels along each axis).
+
+There are two common ways to linearly transform a square image from image coordinates to polar coordinates inside the unit circle, using only translation and scaling~\cite{kintner}.
+
+The first method is to transform the entire image inside the unit circle, as shown on Figure~\ref{fig:transform1}. This way all of the pixels will be used for calculating the (quaternion) Zernike moments, but some areas of the unit disk will remain empty, no pixels fall on those areas.
+
+The other method is to transform the image such that the unit disk becomes the inscribed circle of the square image, as shown on Figure~\ref{fig:transform2}. This method fills the entire unit disk with pixels, but some pixels fall outside the unit cirle and thus will not be used for the calculation of (quaternion) Zernike moments.
+
+The polar coordinates $(r,\theta)$ corresponding to the image coordinates $(x,y)$ can be calculated by the following formulas:
+\begin{gather*}
+  r = \sqrt{(c_1x + c_2)^2 + (c_1y + c_2)^2} \\
+  \theta = \tan^{-1}\left(\frac{c_1y + c_2}{c_1x + c_2}\right)
+\end{gather*}
+where $c_1$, $c_2 \in \mathds{R}$ depend on which of the previously mentioned transformations is used. A $\lambda \in \mathds{R}$ scaling factor is also defined for each transformation.
+For the first one (Figure~\ref{fig:transform1}): $c_1 = \frac{\sqrt{2}}{N - 1}$, $c_2 = -\frac{1}{\sqrt{2}}$, and $\lambda = \frac{2}{\pi}$. While for the other transformation (Figure~\ref{fig:transform2}): $c_1 = \frac{2}{N - 1}$, $c_2 = -1$ and $\lambda = 1$.
+
+\begin{figure}[tb]
+  \begin{subfigure}{.43\textwidth}
+  \centering
+    \begin{tikzpicture}
+      \draw[step=0.2cm,black] (0,0) grid (4,4);
+      \draw[thick,->] (0,0) -- (4.5,0) node[anchor=north west] {x};
+      \draw[thick,->] (0,0) -- (0,4.5) node[anchor=south east] {y};
+      \draw (4cm,1pt) -- (4cm,-1pt) node[anchor=north] {$N$};
+      \draw (1pt,4cm) -- (-1pt,4cm) node[anchor=east] {$N$};
+      \draw (0,0) -- (0,0) node[anchor=north] {$0$};
+    \end{tikzpicture}
+  \caption{An $N \times N$ image on the image plane}
+  \end{subfigure}
+  \begin{subfigure}{.05\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \draw[thick,->] (0,0) -- (0.5,0);
+    \end{tikzpicture}
+  \end{subfigure}
+  \begin{subfigure}{.50\textwidth}
+    \centering
+      \begin{tikzpicture}
+        \draw[step=0.15cm,black] (-1.5,-1.5) grid (1.5,1.5);
+        \draw[thick,->] (-2.5,0) -- (2.5,0) node[anchor=north west] {x};
+        \draw[thick,->] (0,-2.5) -- (0,2.5) node[anchor=south east] {y};
+        \draw (0,0) circle (2.121cm);
+        \draw (2.121cm,1pt) -- (2.121cm,-1pt) node[anchor=north west] {$1$};
+        \draw (1pt,2.121cm) -- (-1pt,2.121cm) node[anchor=south west] {$1$};
+      \end{tikzpicture}
+    \caption{The image transformed inside the unit circle}
+    \end{subfigure}
+  \caption{The image before and after applying the transformation inside the unit disk}
+  \label{fig:transform1}
+\end{figure}
+
+\begin{figure}[tb]
+  \begin{subfigure}{.43\textwidth}
+  \centering
+    \begin{tikzpicture}
+      \draw[step=0.2cm,black] (0,0) grid (4,4);
+      \draw[thick,->] (0,0) -- (4.5,0) node[anchor=north west] {x};
+      \draw[thick,->] (0,0) -- (0,4.5) node[anchor=south east] {y};
+      \draw (4cm,1pt) -- (4cm,-1pt) node[anchor=north] {$N$};
+      \draw (1pt,4cm) -- (-1pt,4cm) node[anchor=east] {$N$};
+      \draw (0,0) -- (0,0) node[anchor=north] {$0$};
+    \end{tikzpicture}
+  \caption{An $N \times N$ image on the image plane}
+  \end{subfigure}
+  \begin{subfigure}{.05\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \draw[thick,->] (0,0) -- (0.5,0);
+    \end{tikzpicture}
+  \end{subfigure}
+  \begin{subfigure}{.50\textwidth}
+    \centering
+      \begin{tikzpicture}
+        \draw[thin,step=0.2cm,black] (-2,-2) grid (2,2);
+        \draw[thick,->] (-2.5,0) -- (2.5,0) node[anchor=north west] {x};
+        \draw[thick,->] (0,-2.5) -- (0,2.5) node[anchor=south east] {y};
+        \draw[thick] (0,0) circle (2cm);
+        \draw (2cm,1pt) -- (2cm,-1pt) node[anchor=north west] {$1$};
+        \draw (1pt,2cm) -- (-1pt,2cm) node[anchor=south west] {$1$};
+      \end{tikzpicture}
+    \caption{The image transformed onto the unit disk}
+    \end{subfigure}
+  \caption{The image before and after applying the transformation onto the unit disk}
+  \label{fig:transform2}
+\end{figure}
+
+Using either one of the previously defined transformations, a points system on the unit disk is obtained, and for each point exactly one pixel value is assigned. When this points system is used for the discretization of QZMs, the following formula can be used to approximate the QZMs of the original image function:
+\begin{gather*}
+  Z_{n,m}^R(f) = \lambda\frac{n + 1}{(N - 1)^2}\sum_{x = 0}^{N-1}\sum_{y = 0}^{N-1}R_{n,m}(r_{x,y})f(x,y)e^{-\bm{\mu}m\theta_{x,y}}
+\end{gather*}
+where $f \in \mathds{R}^2 \rightarrow \mathds{H}$ is the RGB image defined in image coordinates, $(r_{x,y},\theta_{x,y})$ are the polar coordinates belonging to the image coordinates $(x,y)$, and $\lambda$ is the previously defined scaling factor.
+
+In the rest of this thesis, for comparison purposes, the transformation of the image inside the unit circle will be used as \citeauthor{qzmi}~\cite{qzmi} used this discretization to present their results.
+
+\subsection{Discrete orthogonality}
+Even though the Zernike polynomials are a set of orthogonal polynomials on the complex unit disk, the previously defined points systems do not provide discrete orthogonality. This lack of discrete orthogonality means that the discretization of the series expansion based on the Zernike polynomials will introduce some errors and redundancy, thus decreasing the image reconstruction and pattern recognition capabilities of the method.
 
 
-\section{Quaternion Zernike Moment Invariants}
+\section{Quaternion Zernike Moment Invariants (QZMIs)}
+\citeauthor{qzmi}~\cite{qzm, qzmi} proposed the constructions described in this section in order to create rotation, scaling and translation invariant moment invariants using the quaternion Zernike moments.
+\subsection{Translation invariance}
+In order to achieve translation invariance, the common centroid of all three color channels can be calculated by using zero-order and first-order geometric moments, as described by \citeauthor{affine_color}~\cite{affine_color}.
+If the origin of the polar coordinate system is placed on this common centroid $(x_c, y_c)$, then the QZMs calculated in this coordinate system will be translation invariant. Let $\overline{Z}_{n,m}^R(f)$ denote the translation invariant QZMs.
+
+\subsection{Rotation invariance}
+
+
+\subsection{Scaling invariance}
+\subsection{Combined RST invariance}
+
 
 \section{Applications}
 
@@ -86,6 +213,6 @@ Image moments in general
 Explain Zernike moments
 
 QZMI, QZMRI:
-greyscale, color, etc
+grayscale, color, etc
 
 examples, use cases

@@ -14,7 +14,7 @@ def main():
 	# start = timeit.default_timer()
 
 	# ReconstructionTests
-	# testImageReconstructionTf1()
+	testImageReconstructionTf1()
 	# testImageReconstructionTf2()
 	# testImageReconstructionLegendre1()
 	# testImageReconstructionLegendre2()
@@ -40,7 +40,7 @@ def main():
 	# printCircleGrid()
 
 	# TemplateMatchingTests
-	templateMatchingTest()
+	# templateMatchingTest()
 
 	# stop = timeit.default_timer()
 	# print('Time:', stop - start, "s")  

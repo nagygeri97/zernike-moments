@@ -122,7 +122,7 @@ def getTemplateData(templateType, invarianceType, qzmiType):
 def templateMatchingTest():
 	templateType = TemplateType.CARS
 	invarianceType = InvarianceType.RS
-	qzmiType = QZMIType.NEW
+	qzmiType = QZMIType.ORIGINAL
 
 	(path, templateFile, matchingFiles, templatePositions, outPath, scales, qzmiClass, resultSuffix) = getTemplateData(templateType, invarianceType, qzmiType)
 	circleRadius = 10
