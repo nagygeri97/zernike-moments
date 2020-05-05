@@ -43,7 +43,7 @@
 \usepackage{commath}
 \usepackage{bm}
 \usepackage{subcaption}
-
+\usepackage{upgreek}
 
 %% See http://tex.stackexchange.com/questions/43835/conflict-between-amsthm-and-some-other-package
 \let\proof\relax 
@@ -318,10 +318,10 @@ literate=
 
 \chapter{Math?}
 
-\chapter{Implementation?}
+\chapter{Implementation}
 \input{implementation.tex}
 
-\chapter{Tests/improvements?}
+\chapter{Tests/improvements}
 \input{tests.tex}
 
 \chapter{Conclusion}
@@ -329,8 +329,15 @@ literate=
 \input{conclusion.tex}
 
 \chapter*{Acknowledgment}
-TODO EFOP
+The project was made possible by the support of the European Union and the cofounding of the European Social Fund (EFOP-3.6.3-VEKOP-16-2017-00001)
+\usetikzlibrary{backgrounds,calc}
+\begin{tikzpicture}[remember picture,overlay]
+  \begin{pgfonlayer}{background}
+    \node[anchor=south east,outer sep=0pt,inner sep=0pt] at (current page.south east) {\includegraphics[width=12cm]{figures/efop_logo.png}};
+  \end{pgfonlayer}
+\end{tikzpicture}
 
+% A projekt az Európai Unió támogatásával, az Európai Szociális Alap társfinanszírozásával valósult meg (EFOP-3.6.3-VEKOP-16-2017-00001).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

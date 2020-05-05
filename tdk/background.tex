@@ -190,29 +190,29 @@ Even though the Zernike polynomials are a set of orthogonal polynomials on the c
 
 \section{Quaternion Zernike Moment Invariants (QZMIs)}
 \citeauthor{qzmi}~\cite{qzm, qzmi} proposed the constructions described in this section in order to create rotation, scaling and translation invariant moment invariants using the quaternion Zernike moments.
+
 \subsection{Translation invariance}
 In order to achieve translation invariance, the common centroid of all three color channels can be calculated by using zero-order and first-order geometric moments, as described by \citeauthor{affine_color}~\cite{affine_color}.
 If the origin of the polar coordinate system is placed on this common centroid $(x_c, y_c)$, then the QZMs calculated in this coordinate system will be translation invariant. Let $\overline{Z}_{n,m}^R(f)$ denote the translation invariant QZMs.
 
 \subsection{Rotation invariance}
+To achieve rotation invariance consider the image rotated by $\alpha$: $f'(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f') = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f') = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. Because of the these properties $$\Phi_{n,k}^m = Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*$$ is invariant to rotation.
 
+Previously, the modulus $|Z_{n,m}^R(f)|$ was used to achieve rotation invariance~\cite{qzm}, but this provided only one real-valued invariant, wheres the following construction provides a quaternion-values invariant.
 
 \subsection{Scaling invariance}
+For non-negative integers $m$ and $l$, \citeauthor{qzmi}~\cite{qzmi} constructed the following scaling invariants utilizing the symmetric property of the radial polynomials with respect to $m$ and an alternate form of the QZMs.
+
+\begin{gather*}
+  \begin{split}
+  &L_{m + 2l,m}^R(f) = \\ 
+  &\sum_{t=0}^l\sum_{k=t}^l\left(\sqrt{|Z_{0,0}^R(f)|}\right)^{-(m+2k+2)}(-1)^{l-k}\frac{(m + 2l + 1)(m + k + l)!}{(l - k)!(k - t)!(m + k + t + 1)!}Z_{m+2t,m}^R(f)
+  \end{split}
+\end{gather*}
+
 \subsection{Combined RST invariance}
+Similarly to using QZMs to define rotation invariants, the previously defined scaling invariants can also be used to construct $\upvarphi_{n,k}^m = L_{n,m}^R(f)(L_{k,m}^R(f))^*$, which is invariant to rotation and scaling.
 
+In order to achieve translation invariance, throughout the construction of the scaling invariants $L_{n,m}^R$ the translation invariant QZMs ($\overline{Z}_{n,m}^R(f)$) can be used, thus defining the $\overline{L}_{n,m}^R$ translation and scaling invariants.
 
-\section{Applications}
-
-
-
-
-TODO Background
-
-Image moments in general
-
-Explain Zernike moments
-
-QZMI, QZMRI:
-grayscale, color, etc
-
-examples, use cases
+Furthermore, $\overline{\upvarphi}_{n,k}^m = \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^*$ is invariant to rotation, scaling and translation~\cite{qzmi}.
