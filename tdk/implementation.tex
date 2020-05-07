@@ -1,17 +1,86 @@
 This chapter presents the tools and methods used for implementing a program for calculating the QZMIs of an image using both methods of discretization.
 
-\section{Programming language and libraries}
-The implementation was created using the Python programming language and relying on the Numpy and Numba libraries to achieve efficient and fast computation of the moment invariants.
+\section{Programming language and libraries used}
+The implementation was created using the Python programming language~\cite{python} and relying on the Numpy~\cite{numpy} and Numba~\cite{numba} libraries to achieve efficient and fast computation of the moment invariants, as well as the Python Imaging Library (PIL, Pillow)~\cite{pil} for image manipulation.
 
 Numpy provided a way to efficiently work with arrays and matrices. It also provided the quaternion package, which supports the quaternion data type.
 
-Using the just-in-time compilation (JIT) features of Numba, the computationally heavy parts of the implementation could be made almost as fast as native code.
+Using the just-in-time compilation (JIT) capabilities of Numba (i.e. the \texttt{@jit} annotation), the computationally heavy parts of the implementation could be made almost as fast as native code. The disadvantage of using JIT is that it limits the available types and functions, so in the implementation the use of \texttt{@jit} is kept only to the critical, computationally intensive functions. 
 
-\section{QZMI calculation}
+\section{Calculating moments and moment invariants}
+\begin{figure}[tbp]
+    \centering
+        \includegraphics[width=0.5\textwidth]{figures/qzmi_classes.png}
+    \caption{The relationships between the classes used to calculate QZMIs and QZMRIs}
+    \label{fig:classes}
+\end{figure}
+To obtain the quaternion Zernike moment invariants (QZMIs) of an image as described in Section~\ref{sec:invariance}, the quaternion Zernike moments (QZMs) must be calculated first. \citeauthor{qzmi}~\cite{qzmi} showed that instead of calculating the QZMs directly by using the algebra of quaternions, it is possible to calculate the real and the imaginary parts of the quaternion-valued QZM individually by using some linear combination of the real and imaginary parts of the complex-valued, single channel Zernike moments. This means that the single channel Zernike moments have to be calculated for all three of the RGB color channels.
+Furthermore, the calculation of the Zernike moments requires the computation of the radial polynomials, introduced in~(\ref{eq:radial_poly}).
 
-\section{Roots of legendre polynomials}
+To calculate the required values, the following four classes were created, each relying on the next one to perform the computation.
+\begin{itemize}
+    \item \texttt{QZMI}, for calculating the quaternion Zernike moment invariants
+    \item \texttt{ZernikeMomentsColor}, for calculating the quaternion-valued Zernike moments
+    \item \texttt{ZernikeMomentsMonochrome}, for calculating the complex-valued, single channel Zernike moments
+    \item \texttt{RadialPolynomials}, for calculating the values of the radial polynomials at a given point
+\end{itemize}
+The relationships between these classes are shown on Figure~\ref{fig:classes}, as well as the \texttt{QZMRI} class, which calculates the rotation invariant QZMs needed for some test cases. A description of the algorithms used in these classes and the data stored by them is given below.
 
-\section{Gaussian quadratures}
+Since the work presented in this thesis involves changing the way an image is transformed from image coordinates to polar coordinates inside the unit circle, the classes were made modular with respect to the transformation used. This makes it easy to create and test a new image transformation function with the interface expected by the calculating classes.
+
+\subsection{Radial polynomials}
+To calculate the value of all $R_{n,m}$ radial polynomials up to some maximal degree $P$ at a point $r \in [0,1]$, the modified Kintner's method was used, as described in~\cite{kintner}. This algorithm computes the value of $R_{n,m}(r)$ for all $0 \leq |m| \leq n \leq P$, ($n - |m|$ is even) with complexity $\mathcal{O}(N^2)$. This method is ideal for the computation of all radial polynomial values up to a maximum degree.
+
+Since this method is called many times during the calculation of Zernike moments, just-in-time compilation was used to further increase efficiency. Figure~\ref{fig:radial_code} shows the JIT-enabled function.
+
+\begin{figure}[tbp]
+    \centering
+    \begin{lstlisting}[language=Python]
+@jit(void(float64, int32, float64[:,:]), nopython=True)
+def calculateRadialPolynomials(r, P, values):
+  values[0,0] = 1
+  values[1,1] = r
+  for n in range(2,P + 1):
+    h = n*(n - 1)*(n - 2)
+    K2 = 2*h
+    values[n,n] = (r**n)
+    values[n,n-2] = n*values[n,n] - (n-1)*values[n-2,n-2]
+    for m in range(n-4,-1,-2):			
+      K1 = (n + m)*(n - m)*(n - 2)/2
+      K3 = (-1)*m*m*(n - 1) - h
+      K4 = (-1)*n*(n + m - 2)*(n - m - 2)/2
+      r2 = r**2
+      values[n,m] = ((K2*r2+K3)*values[n-2,m]+K4*values[n-4,m])/K1\end{lstlisting}
+    \caption{Function for calculating radial polynomial values}
+    \label{fig:radial_code}
+\end{figure}
+
+\subsection{Complex Zernike moments}
+The \texttt{ZernikeMomentsMonochrome} class calculates the Zernike moments of degree at most $P$ of a square $N \times N$, single channel (grayscale) image. The algorithm is based directly on the discretized definition of the Zernike moments.
+For the original linear transformation of the image onto the unit disk, this gives:
+\begin{gather*}
+    \begin{split}
+    Z_{n,m}(f) &= \lambda\frac{(n+1)}{(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)V_{n,m}^{*}(r_{x,y},\theta_{x,y}) \\
+    &= \lambda\frac{(n+1)}{(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)R_{n,m}(r_{x,y})e^{-\bm{i}m\theta_{x,y}} \\
+    &= \lambda\frac{(n+1)}{(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)R_{n,m}(r_{x,y})(\cos (m\theta_{x,y}) - \bm{i}\sin (m\theta_{x,y}))
+    \end{split}
+\end{gather*}
+where $0\leq |m| \leq n \leq P$, $n - |m|$ is even, $(r_{x,y},\theta_{x,y})$ are the $(x,y)$ coordinates transformed to the unit disk, $\lambda$ is the scaling parameter also given by the transformation (as described in Section~\ref{sec:discretization}) and $f$ is the real-valued, grayscale image.
+
+By precomputing the sin and cos values for all possible $m$ and $\theta_{x,y}$ values, as well as the values of the radial polynomials, this formula gives an efficient way of calculating the real and imaginary parts of the Zernike moments separately. This way only primitive data types have to be used during the computation and it can be made more efficient using JIT.
+
+Also, there is no need to calculate the Zernike moments for negative $m$ values, as the $Z_{n,m}(f) = Z_{n,-m}^{*}$ identity can be used later to obtain those values.
+
+\subsection{Quaternion Zernike moments}
+\subsection{QZMRIs}
+
+\section{New image transformation}
++ New, slightly modified classes
++ Transformation
+
+\subsection{Roots of legendre polynomials}
+
+\subsection{Gaussian quadratures}
 
 
 
