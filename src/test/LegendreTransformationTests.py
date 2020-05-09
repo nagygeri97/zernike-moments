@@ -4,11 +4,11 @@ from Utility import *
 from legendre.TransformationsLegendre import *
 
 def legendreTransformationPrintPoints_Test():
-	img, _ = getImgFromFileAsNpArray("../images/coil/extended/55.png")
-	# img, _ = getImgFromFileAsNpArray("../images/lenna_pepper/lenna_color_64.bmp")
-	# img = np.array(img, dtype="double")
+	# img, _ = getImgFromFileAsNpArray("../images/coil/extended/55.png")
+	img, _ = getImgFromFileAsNpArray("../images/lenna_pepper/pepper_color_64.bmp")
+	img = np.array(img, dtype="double")
 	lt = LegendreTransformation1(img)
-	printImageFromLegendreTrans(lt, "../test.bmp")
+	printImageFromLegendreTrans(lt, "../test.png",256)
 	# import pdb; pdb.set_trace()
 
 def legendreTransformationDebug_Test():
@@ -17,9 +17,9 @@ def legendreTransformationDebug_Test():
 	# import pdb; pdb.set_trace()
 
 def legendreTransformation2PrintPoints_Test():
-	img, _ = getImgFromFileAsNpArray("../images/coil/extended/55.png")
-	# img, _ = getImgFromFileAsNpArray("../images/lenna_pepper/lenna_color_64.bmp")
-	# img = np.array(img, dtype="double")
+	# img, _ = getImgFromFileAsNpArray("../images/coil/extended/55.png")
+	img, _ = getImgFromFileAsNpArray("../images/lenna_pepper/pepper_color_64.bmp")
+	img = np.array(img, dtype="double")
 	lt = LegendreTransformation2(img)
-	printImageFromLegendreTrans(lt, "../test.bmp", 64)
+	printImageFromLegendreTrans(lt, "../test.png", 128)
 	# import pdb; pdb.set_trace()
