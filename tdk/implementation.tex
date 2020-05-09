@@ -56,7 +56,7 @@ def calculateRadialPolynomials(r, P, values):
 \end{figure}
 
 \subsection{Complex Zernike moments}
-The \texttt{ZernikeMomentsMonochrome} class calculates the Zernike moments of degree at most $P$ of a square $N \times N$, single channel (grayscale) image. The algorithm is based directly on the discretized definition of the Zernike moments.
+The \texttt{ZernikeMomentsMonochrome} class calculates the conventional Zernike moments of degree at most $P$ of a square $N \times N$, single channel (grayscale) image. The algorithm is based directly on the discretized definition of the Zernike moments.
 For the original linear transformation of the image onto the unit disk, this gives:
 \begin{gather*}
     \begin{split}
@@ -69,20 +69,55 @@ where $0\leq |m| \leq n \leq P$, $n - |m|$ is even, $(r_{x,y},\theta_{x,y})$ are
 
 By precomputing the sin and cos values for all possible $m$ and $\theta_{x,y}$ values, as well as the values of the radial polynomials, this formula gives an efficient way of calculating the real and imaginary parts of the Zernike moments separately. This way only primitive data types have to be used during the computation and it can be made more efficient using JIT.
 
-Also, there is no need to calculate the Zernike moments for negative $m$ values, as the $Z_{n,m}(f) = Z_{n,-m}^{*}$ identity can be used later to obtain those values.
+Also, there is no need to calculate the Zernike moments for negative $m$ values, as the $Z_{n,m}(f) = Z_{n,-m}(f)^{*}$ identity can be used later to obtain those values.
 
 \subsection{Quaternion Zernike moments}
-\subsection{QZMRIs}
+The class \texttt{ZernikeMomentsColor} calculates the quaternion Zernike moments of an RGB image. First, the conventional Zernike moments for each of the three color channels are calculated, then the relationship between QZMs and Zernike moments is used to construct the quaternions~\cite{qzmi}.
+\begin{gather*}
+    \begin{split}
+        Z_{n,m}^R(f) = &-\frac{1}{\sqrt{3}}\left( Im(Z_{n,m}(f_R)) + Im(Z_{n,m}(f_G)) + Im(Z_{n,m}(f_B)) \right)\\
+        &+\left[Re(Z_{n,m}(f_R)) + \frac{1}{\sqrt{3}}\left(Im(Z_{n,m}(f_G)) - Im(Z_{n,m}(f_B))\right)\right]\bm{i}\\
+        &+\left[Re(Z_{n,m}(f_G)) + \frac{1}{\sqrt{3}}\left(Im(Z_{n,m}(f_B)) - Im(Z_{n,m}(f_R))\right)\right]\bm{j}\\
+        &+\left[Re(Z_{n,m}(f_B)) + \frac{1}{\sqrt{3}}\left(Im(Z_{n,m}(f_R)) - Im(Z_{n,m}(f_G))\right)\right]\bm{k}\\
+    \end{split}
+\end{gather*}
+where $f$ is an RGB image and $f_R, f_G, f_B$ are the red, green and blue color channels respectively.
+
+Again, only the QZMs $Z_{n,m}^R$ ($m \geq 0$) are calculated, because for $m < 0$ the $Z_{n,m}^R(f) = Z_{n,-m}^R(f)^{*}$ equality can be used.
+
+\subsection{Invariants}
+The class \texttt{QZMI} is responsible for computing the combined rotation, scaling and translation (RST) invariant moments, while the class \texttt{QZMRI} computes the moments which are invariant only to rotation.
+The invariants for scaling and rotation are calculated directly using the QZMs, based on the formulas described in Section~\ref{sec:invariance}.
+
+To achieve translation invariance, the common centroid of the RGB image is calculated based on the formulas described by ~\citeauthor{affine_color}~\cite{affine_color}.
+\begin{gather*}
+    \left\{x_c,y_c\right\} = \left\{\frac{M_{10}(f_R)+M_{10}(f_G)+M_{10}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}, \frac{M_{01}(f_R)+M_{01}(f_G)+M_{01}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}\right\}
+\end{gather*}
+where $f_R, f_G, f_B$ are the grayscale images corresponding to the red, green and blue color channels respectively, and $M_{10}, M_{01}, M_{00}$ are the regular image moments introduced in~(\ref{eq:regular_moment}).
+The original image $f$ is then translated in image coordinates such that the origin falls on the common centroid $\{x_c,y_c\}$, and the other invariants are then calculated based on this translated image.
+
 
 \section{New image transformation}
-+ New, slightly modified classes
-+ Transformation
+The new image transformation, as described in Section~\ref{sec:new_transformation}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange interpolating polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete points system, other interpolating methods have to be used to approximate the image values at these points.
 
-\subsection{Roots of legendre polynomials}
+Because of the modularity of the previously described classes, it is possible to swap the old transformation to the new one. With some minor modifications during the calculation of the conventional Zernike moments because of the new discretization formula containing a different measure, %TODO: ref equation
+the previous classes can be used to obtain the QZMIs using the new method of discretization.
+
+\subsection{Roots of Legendre polynomials}
+The roots of the Legendre polynomial $P_n$ are essential for the calculation of the new points system. An explicit formula, which gives the roots does not exist, thus an efficient and fast iterative algorithm is needed to calculate these roots.
+
+The $n^{th}$ degree Legendre polynomial $P_n$ satisfies the following differential equation:
+\begin{gather}
+    (1-x^2)P_n''(x) - 2xP_n'(x) + n(n+1)P_n(x) = 0\label{eq:legendre_de}
+\end{gather}
+A fast algorithm for calculating the roots of $P_n$, based on this differential equation was presented by \citeauthor{legendre_algo}~\cite{legendre_algo}. The algorithm uses a second-order Runge-Kutta method (namely the midpoint method) to solve the Prüfer-transformed version of~(\ref{eq:legendre_de}) for some given initial condition. A first approximation for a root of $P_n$ can be obtained from the solution of the initial value problem. This approximation is then further refined by Newton's method.
+Subsequent roots can be calculated using the same method but starting from different initial conditions defined by the previous root.
+
+In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only a fix, limited number of iterations for both the Runge-Kutta and the Newton's method.
 
 \subsection{Gaussian quadratures}
 
-
+\section{Tests}
 
 Methods for calculating roots of Legendre poly
 

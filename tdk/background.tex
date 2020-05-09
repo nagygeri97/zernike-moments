@@ -5,9 +5,9 @@ In general, image moments are certain descriptive values calculated using the pi
 $$
 \left\{ \overline{x}, \overline{y} \right\} = \left\{ \frac{M_{10}}{M_{00}},  \frac{M_{01}}{M_{00}} \right\}
 $$ where $M_{ij}$ are the regular image moments defined as
-$$
-M_{ij} =  \sum_x \sum_y x^i y^j I(x,y) 
-$$ with $I(x,y)$ being the pixel value at the coordinates $(x,y)$.
+\begin{gather}
+M_{ij} =  \sum_x \sum_y x^i y^j I(x,y) \label{eq:regular_moment}
+\end{gather} with $I(x,y)$ being the pixel value at the coordinates $(x,y)$.
 
 \subsection{Moment invariants}
 Using the image moments, moment invariants can be defined, which are invariant to certain transformations, such as rotation, scaling, and translation.
@@ -196,7 +196,7 @@ In order to achieve translation invariance, the common centroid of all three col
 If the origin of the polar coordinate system is placed on this common centroid $(x_c, y_c)$, then the QZMs calculated in this coordinate system will be translation invariant. Let $\overline{Z}_{n,m}^R(f)$ denote the translation invariant QZMs.
 
 \subsection{Rotation invariance}
-To achieve rotation invariance consider the image rotated by $\alpha$: $f'(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f') = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f') = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. Because of the these properties $$\Phi_{n,k}^m = Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*$$ is invariant to rotation. In the following chapters, this will be referred to as a quaternon Zernike moment rotation invariant (QZMRI).
+To achieve rotation invariance consider the image rotated by some degree $\alpha$: $f'(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f') = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f') = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. Because of the these properties $$\Phi_{n,k}^m = Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*$$ is invariant to rotation. In the following chapters, this will be referred to as a quaternon Zernike moment rotation invariant (QZMRI).
 
 Previously, the modulus $|Z_{n,m}^R(f)|$ was used to achieve rotation invariance~\cite{qzm}, but this provided only one real-valued invariant, whereas the following construction provides a quaternion-values invariant.
 
