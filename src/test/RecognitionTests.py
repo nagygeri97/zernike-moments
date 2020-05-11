@@ -114,7 +114,7 @@ def getBasicRecognitionTestingData(testType, bgColor):
 		recognizePath = recognizePath[:-1] + "_grey/"
 		originalPath = originalPath[:-1] + "_grey/"
 
-	recognizeFiles = os.listdir(recognizePath)[::20]
+	recognizeFiles = os.listdir(recognizePath)[:100:1]
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect

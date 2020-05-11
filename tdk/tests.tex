@@ -1,4 +1,4 @@
-In this chapter we present the different tests that were performed to compare the capabilities of the old and new methods.
+In this chapter we present the different tests that were performed to compare the capabilities of the old and new methods. For each test, the results of both methods of discretization are compared.
 
 In total, four kinds of tests were conducted:
 \begin{itemize}
@@ -7,9 +7,269 @@ In total, four kinds of tests were conducted:
 	\item Image recognition
 	\item Template matching
 \end{itemize}
-All of these tests were run for both the old and new methods and the results have been compared.
 
-\section{Invariance}
+\section{Test images}\label{sec:test_images}
+The images for testing were acquired from multiple online image libraries. The Lenna and Pepper images~\cite{usc_sipi} (shown on Figure~\ref{fig:lena_pepper_original}) were used to test image reconstruction as well as to demonstrate the different points systems.
+
+\begin{figure}[tbp]
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+    \includegraphics[width=128pt]{figures/lenna_color_256.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{0.49\textwidth}
+        \centering
+    \includegraphics[width=128pt]{figures/pepper_color_256.png}
+    \caption{}
+	\end{subfigure}
+	\caption{The Lenna and Pepper images}
+	\label{fig:lena_pepper_original}
+\end{figure}
+
+For the image recognition tests, two sets of images were used. The first set consists of 14 images chosen from the Columbia Object Image Library (COIL-100)~\cite{coil}, shown on Figure~\ref{fig:coil_original}. These images are originally $128 \times 128$ pixels, but they were placed on a $204 \times 204$ black background so that the rotated, scaled and translated versions of the images remain completely within these dimensions. 
+
+A set of 1008 rotated images was created by rotating each of the 14 images by a degree $\alpha\in\{0,5,10,\ldots,350,355\}$. Some examples of the extended and rotated images are shown on Figure~\ref{fig:coil_rot}.
+
+Another set of 1176 rotated, scaled and translated images was created by translating each image by -11 pixels in the $x$ direction and 9 pixels in the $y$ direction. Then the translated images were rotated by $\alpha \in \{0,30,60,\ldots,300,330\}$. Finally, each rotated and translated image was scaled by $\lambda \in \{0.5, 0.75, \ldots, 1.75, 2\}$. Some examples of the RST transformed images are shown on Figure~\ref{fig:coil_rst}.
+
+\begin{figure}[tbp]
+    \begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/7.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/13.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/22.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/26.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/29.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/32.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/39.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/55.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/62.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/64.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/65.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/71.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/95.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/coil_original/99.png}
+    \caption{}
+    \end{subfigure}
+	\caption{The 14 selected images from the Columbia Object Image Library (COIL-100)}
+	\label{fig:coil_original}
+\end{figure}
+
+\begin{figure}[tbp]
+	\begin{subfigure}{0.30\textwidth}
+        \centering
+    \includegraphics[width=102pt]{figures/coil_rot/7r0.png}
+    \caption{$\alpha=0^{\circ}$}
+	\end{subfigure}
+	\begin{subfigure}{0.30\textwidth}
+        \centering
+    \includegraphics[width=102pt]{figures/coil_rot/7r35.png}
+    \caption{$\alpha=35^{\circ}$}
+	\end{subfigure}
+	\begin{subfigure}{0.30\textwidth}
+        \centering
+    \includegraphics[width=102pt]{figures/coil_rot/7r255.png}
+    \caption{$\alpha=255^{\circ}$}
+	\end{subfigure}
+	\caption{Some extended and rotated images from COIL}
+	\label{fig:coil_rot}
+\end{figure}
+
+\begin{figure}[tbp]
+	\begin{subfigure}{0.30\textwidth}
+        \centering
+    \includegraphics[width=102pt]{figures/coil_rst/26x-11y9r0s1_0.png}
+    \caption{$\alpha=0^{\circ}$, $\lambda=1$}
+	\end{subfigure}
+	\begin{subfigure}{0.29\textwidth}
+        \centering
+    \includegraphics[width=51pt]{figures/coil_rst/26x-11y9r150s0_5.png}
+    \caption{$\alpha=150^{\circ}$, $\lambda=0.5$}
+	\end{subfigure}
+	\begin{subfigure}{0.40\textwidth}
+        \centering
+    \includegraphics[width=153pt]{figures/coil_rst/26x-11y9r270s1_75.png}
+    \caption{$\alpha=270^{\circ}$, $\lambda=1.5$}
+	\end{subfigure}
+	\caption{Some RST transformed images from COIL. All images are translated by $\Delta x = -11$, $\Delta y = 9$}
+	\label{fig:coil_rst}
+\end{figure}
+
+Another set of 13 images was acquired from the Amsterdam Library of Object Images (ALOI)~\cite{aloi}. These are shown on Figure~\ref{fig:aloi_original}. Originally, these size of these images was $768 \times 576$ pixels, but the were downscaled to $96 \times 72$ and subsequently extended to $152 \times 128$ by placing the images on a black background. Similarly to the test sets created using the COIL-100 images, the ALOI images were also translated, rotated and scaled, yielding a set of 1092 RST transformed images. The parameters of the transformation were the same as for the COIL-100 images, except for the translation, where $\Delta x = 8$ and $\Delta y = 5$ was used.
+
+\begin{figure}[tbp]
+    \begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/36.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/125.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/127.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/153.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/157.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/161.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/259.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/262.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/308.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/507.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/514.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/774.png}
+    \caption{}
+	\end{subfigure}
+	\begin{subfigure}{80pt}
+        \centering
+    \includegraphics[width=\textwidth]{figures/aloi_original/875.png}
+    \caption{}
+	\end{subfigure}
+	\caption{The 13 selected images from the Amsterdam Library of Object Images (ALOI)}
+	\label{fig:aloi_original}
+
+\end{figure}
+
+\section{Invariance test}
+In order to test the invariance of the quaternion Zernike moment invariants with respect to rotation, scaling and translation, the QZMIs of order 1 to 4 were calculated for a given image and all of its RST transformations. Then, the modulus of these QZMIs was calculated, as well as the mean ($\mu$), standard deviation ($\sigma$) and $\frac{\sigma}{\mu}$ for the same moment of all transformed images.
+
+\subsection{Results}
+The modulus of the QZMIs for the transformed images shown on Figure %TODO: make figure
+is shown in Table~\ref{tab:inv_old} for the old method of discretization and in Table~\ref{tab:inv_new} for the new, proposed method of discretization. The coefficient of variation ($\frac{\sigma}{\mu}$) shows that using both methods, the moments are invariant to RST transformation, but comparing the two methods, the proposed one yields slightly lower coefficient of variation for most moments.
+
+\begin{table}
+	\centering
+\begin{tabular}{| c || c | c | c | c | c | c || c | } \hline
+& a & b & c & d & e & f & $\frac{\sigma}{\mu}$ \\ \hline\hline
+$|\overline{\Psi}_{1,1}^1|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{2,0}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{2,2}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{2,2}^2|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{3,1}^1|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{3,3}^1|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{3,3}^3|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,0}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,2}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,2}^2|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,4}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,4}^2|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,4}^4|$ & a & b & c & d & e & f & g \\ \hline
+\end{tabular}
+\caption{The modulus of QZMIs using the old method for discretization. Note that $\frac{\sigma}{\mu}$ was calculated using the QZMIs for all transformation of the image, not juts the values shown in the table.}
+\label{tab:inv_old}
+\end{table} % TODO fill out table based on original_inv.csv
+
+\begin{table}
+	\centering
+\begin{tabular}{| c || c | c | c | c | c | c || c | } \hline
+& a & b & c & d & e & f & $\frac{\sigma}{\mu}$ \\ \hline\hline
+$|\overline{\Psi}_{1,1}^1|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{2,0}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{2,2}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{2,2}^2|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{3,1}^1|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{3,3}^1|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{3,3}^3|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,0}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,2}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,2}^2|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,4}^0|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,4}^2|$ & a & b & c & d & e & f & g \\ \hline
+$|\overline{\Psi}_{4,4}^4|$ & a & b & c & d & e & f & g \\ \hline
+\end{tabular}
+\caption{The modulus of QZMIs using the new method for discretization. Note that $\frac{\sigma}{\mu}$ was calculated using the QZMIs for all transformation of the image, not juts the values shown in the table.}
+\label{tab:inv_new}
+\end{table} % TODO fill out table based on leg_inv.csv
 
 \section{Image reconstruction}
 

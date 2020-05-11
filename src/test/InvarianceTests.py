@@ -37,15 +37,13 @@ def testInvariance():
 
 def testLegendreInvariance():
 	path = "../images/cups/transformed/"
-	prefix = "161"
+	prefix = "36"
 	files = [file for file in os.listdir(path) if file.startswith(prefix)]
 	maxDeg = 4
 	values = {}
-	imgOrig, _ = getImgFromFileAsNpArray("../images/cups/extended/161.png")
-	points = LegendrePoints1(imgOrig)
 	for file in files:
 		(img, N) = getImgFromFileAsNpArray(path+file)
-		qzmi = QZMILegendre(img, N, maxDeg, points)
+		qzmi = QZMILegendre(img, N, maxDeg, LegendreTransformation1)
 		for n in range(0, maxDeg + 1):
 			for k in range(0, n + 1):
 				if (n - k) % 2 != 0:

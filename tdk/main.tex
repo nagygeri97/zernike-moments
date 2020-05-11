@@ -119,6 +119,21 @@
   \captionof{figure}{#2}%
 } %% Customization: Using the same figure twice with no new number. See http://tex.stackexchange.com/a/200229
 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Hq}{\mathbb{H}}
+\newcommand{\D}{\mathbb{D}}
+
+\newcommand{\qi}{\textbf{i}}
+\newcommand{\qj}{\textbf{j}}
+\newcommand{\qk}{\textbf{k}}
+\newcommand{\qmu}{\boldsymbol{\mu}}
+
+\DeclareMathOperator{\rp}{Re}
+\DeclareMathOperator{\ip}{Im}
+
 %%%%
 %% Provides directives to display followable URL references.
 \usepackage{url}
@@ -322,7 +337,7 @@ literate=
 \chapter{Implementation}
 \input{implementation.tex}
 
-\chapter{Tests/improvements}
+\chapter{Tests and comparison with the previous method}
 \input{tests.tex}
 
 \chapter{Conclusion}

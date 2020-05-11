@@ -52,15 +52,44 @@ Conventionally, for multichannel, color images, two main approaches can be used.
 
 More recently, the algebra of quaternions was employed to various conventional moments so that color images can be analysed holistically.
 
-Quaternions are a generalization of complex numbers, consisting of one real and three imaginary parts. A quaternion $q$ can be represented in the form $q = a + b\mathbf{i} + c\mathbf{j} + d\mathbf{k}$, where $a,b,c,d \in \mathds{R}$ and $\mathbf{i}, \mathbf{j}, \mathbf{k}$ are the imaginary units, defined by the multiplication rules $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$. The set of quaternions is denoted by $\mathds{H}$.
+\subsection{Quaternion representation of color images}
+
+A quaternion, $q$, was defined by \citeauthor{Hamilton} \cite{Hamilton} as a generalization of the complex numbers: 
+\[
+	q = a+b\qi +c\qj+d\qk
+\]
+The real number $a , b , c$ and $d$ are called the components of $q$ , and the imaginary units $i , j$ and $k$ are defined according to the following rules:
+\[
+\begin{gathered}
+	\qi^2 = \qj^2 = \qk^2 = \qi\qj\qk = -1,\\
+	\qi\qj = -\qj\qi = \qk,\ \qj\qk = -\qk\qj = \qi,\ \qk\qi = -\qi\qk = \qj.
+\end{gathered}
+\]
+
+Therefore, the set of quaternions $\Hq$ is an \textit{algebra}, where a quaternion is called pure quaternion when $a=0$. 
+The conjugate and modulus of a quaternion are respectively defined by 
+\[
+\begin{gathered}
+q^* = a-b\qi-c\qj-d\qk, \\
+|q| = \sqrt{a^2+b^2+c^2+d^2}.
+\end{gathered}
+\]
+
+\citeauthor{EllSangwine} \cite{EllSangwine} utilized quaternions to represent a color image, $f: \R^2\to\R^3$ , as follows:
+\[
+f(x,y) = \qi f_R(x,y) + \qj f_G(x,y) + \qk f_B(x,y),
+\]
+where functions $f_R , f_G, f_B:\R^2\to\R$ represent the red, green and blue components of the $(x,y)$ pixel, respectively.
+
+% Quaternions are a generalization of complex numbers, consisting of one real and three imaginary parts. A quaternion $q$ can be represented in the form $q = a + b\mathbf{i} + c\mathbf{j} + d\mathbf{k}$, where $a,b,c,d \in \mathds{R}$ and $\mathbf{i}, \mathbf{j}, \mathbf{k}$ are the imaginary units, defined by the multiplication rules $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$. The set of quaternions is denoted by $\mathds{H}$.
 
 For example, \citeauthor{qfmm}~\cite{qfmm} introduced quaternion Fourier-Mellin moments (QFMMs) which are an extension of the conventional Fourier-Mellin moments. Similarly, the same quaternion techniques were applied successfully to other function systems (e.g.~\cite{bessel-fourier, chebyshev-fourier}), yielding similar results.
 
-\citeauthor{qzm}~\cite{qzm,qzmi} proposed the quaternion Zernike moments (QZMs), the extension of conventional Zernike moments to color images using quaternions. Generally, this method overperforms other similar approaches in color image recognition, due to the natural invariances of Zernike functions.
-
-The main idea behind these extensions is that an RGB image can be viewed as a pure quaternion valued function, with each color component corresponding to one of the imaginary units.
+% The main idea behind these extensions is that an RGB image can be viewed as a pure quaternion valued function, with each color component corresponding to one of the imaginary units.
 
 \subsection{Quaternion Zernike moments}
+\citeauthor{qzm}~\cite{qzm,qzmi} proposed the quaternion Zernike moments (QZMs), the extension of conventional Zernike moments to color images using quaternions. Generally, this method overperforms other similar approaches in color image recognition, due to the natural invariances of Zernike functions.
+
 Let $f(r,\theta)$ be a pure quaternion valued, continuous RGB image function, defined in polar coordinates on the unit circle. Each color component corresponds to one of the imaginary units. Let $\bm{\mu} = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$ be a unit pure quaternion.
 
 Since the multiplication of quaternions is not commutative, right-side and left-side quaternion Zernike moments can also be defined. The right-side QZM of order $n$ and repetition $m$ is defined as
@@ -211,11 +240,11 @@ For non-negative integers $m$ and $l$, \citeauthor{qzmi}~\cite{qzmi} constructed
 \end{gather*}
 
 \subsection{Combined RST invariance}
-Similarly to using QZMs to define rotation invariants, the previously defined scaling invariants can also be used to construct $\upvarphi_{n,k}^m = L_{n,m}^R(f)(L_{k,m}^R(f))^*$, which is invariant to rotation and scaling.
+Similarly to using QZMs to define rotation invariants, the previously defined scaling invariants can also be used to construct $\Psi_{n,k}^m = L_{n,m}^R(f)(L_{k,m}^R(f))^*$, which is invariant to rotation and scaling.
 
 In order to achieve translation invariance, throughout the construction of the scaling invariants $L_{n,m}^R$ the translation invariant QZMs ($\overline{Z}_{n,m}^R(f)$) can be used, thus defining the $\overline{L}_{n,m}^R$ translation and scaling invariants.
 
-Furthermore, $\overline{\upvarphi}_{n,k}^m = \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^*$ is invariant to rotation, scaling and translation~\cite{qzmi}. This is called a quaternion Zernike moment invariant (QZMI).
+Furthermore, $\overline{\Psi}_{n,k}^m = \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^*$ is invariant to rotation, scaling and translation~\cite{qzmi}. This is called a quaternion Zernike moment invariant (QZMI).
 
 \section{Applications}
 Invarianst ad vissza, pl neural networkbe, gepi tanulasba jo

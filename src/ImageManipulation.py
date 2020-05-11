@@ -213,6 +213,7 @@ def addSaltAndPepperNoiseFiltered(img, density):
 # ------ Centroid ---------
 
 def centroidTranslation(img):
+	# valoszinuleg rossz?
 	# img: an np.array
 	pilImg = Image.fromarray(img)
 
@@ -229,10 +230,11 @@ def centroidTranslation(img):
 	return img
 
 def centroidTranslationFloat(img):
+	# ez talan jo
 	(cx, cy) = Utility.calculateCentroid(img)
 	N, M, _ = img.shape
-	xTranslation = cx - (N//2)
-	yTranslation = cy - (M//2)
+	xTranslation = (cx - (N//2)) # kell a minusz ele?
+	yTranslation = (cy - (M//2))
 
 	newImg = np.zeros((N,M,3),dtype='double')
 	for x in range(N):
@@ -242,7 +244,7 @@ def centroidTranslationFloat(img):
 					newImg[x - xTranslation, y - yTranslation, i] = img[x,y,i]
 	
 	# pilImg = Image.fromarray(newImg)
-	# pilImg.save("../test.bmp", "BMP")
+	# pilImg.save("../test2.bmp", "BMP")
 	return newImg
 
 # ------ RGB ---------

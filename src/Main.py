@@ -21,7 +21,7 @@ def main():
 	# testImageReconstructionErrors()
 	
 	# InvarianceTests
-	# testInvariance()
+	testInvariance()
 	# testLegendreInvariance()
 
 	# RecognitionTests
