@@ -1,0 +1,327 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+
+
+%\newtheorem{theorem}{\noindent Theorem}
+%\newtheorem{proposition}{\noindent Proposition}%[section]
+%%\newtheorem{lemma}[theorem]{\indent Lemma}
+%\newtheorem{lemma}{\noindent Lemma}
+%\newtheorem{corollary}{\noindent Corollary}
+%\newtheorem{conjecture}{\noindent Conjecture}%[section]
+
+
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{\indent Definition}
+%\newtheorem{definition}{\noindent Definition}%[section]
+%\newtheorem{example}{\noindent Example}%[section]
+%\newtheorem{remark}{\indent Remark}%[section]
+
+
+
+
+% --------------------------------------
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Hq}{\mathbb{H}}
+\newcommand{\D}{\mathbb{D}}
+
+\newcommand{\qi}{\textbf{i}}
+\newcommand{\qj}{\textbf{j}}
+\newcommand{\qk}{\textbf{k}}
+\newcommand{\qmu}{\boldsymbol{\mu}}
+
+\DeclareMathOperator{\rp}{Re}
+\DeclareMathOperator{\ip}{Im}
+
+
+% --------------------------------------
+
+
+
+
+\begin{document}
+
+\section{Introduction}
+
+
+
+\section{Preliminaries}
+
+\subsection{Quaternion representation of color images}
+
+A quaternion, $q$, was defined by Hamilton \cite{Hamilton} as a generalization of the complex numbers: 
+\[
+	q = a+b\qi +c\qj+d\qk
+\]
+The real number $a , b , c$ and $d$ are called the components of $q$ , and the imaginary units $i , j$ and $k$ are defined according to the following rules:
+\[
+\begin{gathered}
+	\qi^2 = \qj^2 = \qk^2 = \qi\qj\qk = -1,\\
+	\qi\qj = -\qj\qi = \qk,\ \qj\qk = -\qk\qj = \qi,\ \qk\qi = -\qi\qk = \qj.
+\end{gathered}
+\]
+
+Therefore, the set of quaternoins $\Hq$ is an \textit{algebra}, where a quaternion is called pure quaternion when $a=0$. 
+The conjugate and modulus of a quaternion are respectively defined by 
+\[
+\begin{gathered}
+q^* = a-b\qi-c\qj-d\qk, \\
+|q| = \sqrt{a^2+b^2+c^2+d^2}.
+\end{gathered}
+\]
+
+Ell and Sangwine \cite{EllSangwine} utilized quaternions to represent a color image, $f: \R^2\to\R^3$ , as follows:
+\[
+f(x,y) = \qi f_R(x,y) + \qj f_G(x,y) + \qk f_B(x,y),
+\]
+where functions $f_R , f_G, f_B:\R^2\to\R$ represent the red, green and blue components of the $(x,y)$ pixel, respectively.
+
+\subsection{Quaternion Zernike moments}
+
+Quaternion Zernike moments, just as regular Zernike moments, are defined over the complex unit disk
+\[
+	\D = \left\{ z = re^{i\theta}\in\C \ :\ r\in[0,1],\theta\in[0,2\pi)\right\},
+\]
+and should be expressed using polar coordinates as in \cite{ChenOriginal}: for an $f: (r,\theta)\mapsto\R^3$, the right-side QZMs of order $n$ with repetition $m$ are
+\begin{equation}\label{QZRM}
+	Z_{n,m}^R (f) = \frac{n+1}{\pi} \int_0^1 \int_0^{2\pi} f(r,\theta) R_{n,m}(r) e^{-\qmu m\theta} r \ d\theta dr,
+\end{equation}
+where $|m|\leq n$ and $n-|m|$ being even, $\qmu$ is an arbitrary unit pure quaternion, regularly chosen as $\qmu = (\qi+\qj+\qk)/\sqrt{3}$ in the literature and so in this paper too, and $R_{n,m}(r)$ is the real-valued radial polynomial given by
+\[
+	R_{n,m}(r) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}r^{n-2k}.
+\]
+It is important to note that these radial polynomials are symmetric in terms of $m$ and satisfy an orthogonality relation over $[0,1]$ w.r.t the weight $r$ (see e.g. \cite{PapSchipp}), i.e.
+\[
+	\int_0^1 R_n^{|m|} R_{n'}^{|m|}  = \frac{1}{2n+1} \delta_{n,n'},
+\]
+and can be expressed in terms of the shifted Jacobi polynomials in the following way:
+\[
+	R_{n,m}(r) = r^{|m|} P_{\frac{n - |m|}{2}}^{(0,|m|)}(2r^2-1),
+\]
+where we denoted the $k$-th degree classical Jacobi polynomials by $P_k^{(\alpha,\beta)}$ (see e.g. \cite{Szego}).
+
+Consequently, the quaternion generalizations of classical Zernike functions
+\[
+	\phi_{n,m}(r,\theta) = R_{n,m}(r) e^{-\qmu m\theta}
+\]
+satisfy the orthogonality relation
+\[
+	\frac{n+1}{\pi} \int_0^1 \int_0^{2\pi} \phi_{n,m}(r,\theta) \phi^*_{n',m'}(r,\theta) r \ d\theta dr = \delta_{n,n'}\delta_{m,m'},
+\]
+and we have
+\[
+	f(r,\theta) = \sum_{n=0}^{\infty}\sum_{m=-\infty}^{\infty} Z_{n,m}^R(f) R_{n,m}(r)e^{\qmu m\theta} =
+		\sum_{n=0}^{\infty}\sum_{m=-\infty}^{\infty} Z_{n,m}^R(f) \phi^*_{n,m}(r,\theta)
+\]
+w.r.t. norm convergence in the Hilbert space of square integrable functions.
+
+Since multiplication in $\Hq$ is not commutative, a similar set of left-side quaternion Zernike moments can also be defined as
+\begin{equation}\label{QZLM}
+	Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi} \phi_{n,m}(r,\theta) f(r,\theta)r \ d\theta dr,
+\end{equation}
+having
+\[
+	f(r,\theta) = \sum_{n=0}^{\infty}\sum_{m=-\infty}^{\infty} \phi^*_{n,m}(r,\theta) Z_{n,m}^L(f).
+\]
+
+For computation purposes, it is important to recall \cite{ChenOriginal} that the left- and right-side moments can be obtained by computing the conventional complex moments for the individual color channel functions $f_R, f_G$ and $f_B$ respectively:
+\[
+	Z_{n,m}^R = A_{n,m}^R + \qi B_{n,m}^R + \qj C_{n,m}^R + \qk Z_{n,m}^R,
+\]
+where
+\[
+\begin{gathered}
+	A_{n,m}^R = -\frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_R)) + \ip(Z_{n,m}(f_G)) + \ip(Z_{n,m}(f_B)) \right], \\
+	B_{n,m}^R = \rp(Z_{n,m}(f_R)) + \frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_G)) - \ip(Z_{n,m}(f_B)) \right], \\
+	C_{n,m}^R = \rp(Z_{n,m}(f_G)) + \frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_B)) - \ip(Z_{n,m}(f_R)) \right], \\
+	D_{n,m}^R = \rp(Z_{n,m}(f_B)) + \frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_R)) - \ip(Z_{n,m}(f_G)) \right],
+\end{gathered}
+\]
+and similarly for the left-side ones
+\[
+	Z_{n,m}^L = A_{n,m}^L + \qi B_{n,m}^L + \qj C_{n,m}^L + \qk Z_{n,m}^L,
+\]
+where
+\[
+\begin{gathered}
+	A_{n,m}^L = -\frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_R)) + \ip(Z_{n,m}(f_G)) + \ip(Z_{n,m}(f_B)) \right], \\
+	B_{n,m}^L = \rp(Z_{n,m}(f_R)) + \frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_B)) - \ip(Z_{n,m}(f_G)) \right], \\
+	C_{n,m}^L = \rp(Z_{n,m}(f_G)) + \frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_R)) - \ip(Z_{n,m}(f_B)) \right], \\
+	D_{n,m}^L = \rp(Z_{n,m}(f_B)) + \frac{1}{\sqrt{3}} \left[ \ip(Z_{n,m}(f_G)) - \ip(Z_{n,m}(f_R)) \right].
+\end{gathered}
+\]
+
+\subsection{Invariance properties}
+
+The previously defined QZMs should be used to obtain certain invariants for similarity transforms. The proofs of these results are found in \cite{ChenOriginal}.
+
+For a function rotated around the origin, i.e. for $f' (r,\theta) = f(r,\theta-\alpha)$ with some rotation angle $\alpha$, we have
+\[
+\begin{gathered}
+	Z_{n,m}^R(f') = Z_{n,m}^R(f) e^{-\qmu m\theta}, \\ 
+	Z_{n,m}^L(f') = e^{-\qmu m\theta} Z_{n,m}^L(f).
+\end{gathered}
+\]
+It is easy to spot that the moduli of moments are left unchanged, and so they could be used as rotational invariants, just as the combined values
+\[
+	\Phi_{n,k}^m = Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*,
+\]
+for any $|m|\leq n, |m|\leq k$ and $n - |m|, k-|m|$ even. These will be referred to as quaternon Zernike moment rotation invariant (QZMRI). Note that the latter are quaternion-valued invariants, which could be identified with $4$ real values.
+
+
+For non-negative integers $m$ and $l$, the quaternions defined by
+\[
+  \begin{split}
+  c_{m,l}^{t,k} &= (-1)^{l-k}\frac{(m + 2l + 1)(m + k + l)!}{(l - k)!(k - t)!(m + k + t + 1)!}, \\
+  L_{m + 2l,m}^R(f) &= \sum_{t=0}^l\sum_{k=t}^l\left(\sqrt{|Z_{0,0}^R(f)|}\right)^{-(m+2k+2)}c_{m,l}^{t,k}Z_{m+2t,m}^R(f)
+  \end{split}
+\]
+are invariant under scaling of the function, i.e. they are the same for $f$ and $f'' (r,\theta) = f(r/\lambda,\theta)$ with some scaling factor $\lambda>0$.
+
+Similarly to using QZMs to define rotation invariants, the previously defined scaling invariants can also be used to construct quaternions $$\Psi_{n,k}^m = L_{n,m}^R(f)(L_{k,m}^R(f))^*,$$ which are in fact invariant to \textit{both} rotation and scaling, and is called quaternion Zernike moment invariant (QZMI).
+
+In order to to ensure certain translation invariance, Suk and Flusser \cite{SukFlusser} defined the common centroid $(x_c, y_c)$ of all three channels as follows:
+\[
+\begin{split}
+	m_{0,0} &= m_{0,0}(f_R)+m_{0,0}(f_G)+m_{0,0}(f_B), \\
+	x_c &= \left( m_{1,0}(f_R)+m_{1,0}(f_G)+m_{1,0}(f_B) \right) / m_{0,0}, \\
+	y_c &= \left( m_{0,1}(f_R)+m_{0,1}(f_G)+m_{0,1}(f_B) \right) / m_{0,0}, \\
+\end{split}
+\]
+where the $m_{i,j}$-s are the respective values of the zero-order and first-order geometric moments. Translation invariance is then obtained by translating every $f$ such that the point $(x_c,y_c)$ is mapped to the origin $(0,0)$.
+
+\section{Discretization}
+
+In the applications of such theoretical results belonging to continuous domains, an actual image of size $N\times N$ pixels is generally considered as a sample, obtained by the equidistant sampling of a continuous function along both axis. In order to make use of QZMs and their invariants, a linear transformation is required to map the pixels to a suitable domain inside the complex unit circle $\D$.
+
+Afterwards, using the polar form of the transformed coordinates, the continuous integrals of \eqref{QZRM} and \eqref{QZLM} are replaced by discrete approximations of form
+\[
+	Z_{n,m}^R(f) \approx \sum_{x=1}^N \sum_{y=1}^N f(r_{x,y},\theta_{x,y}) \phi(r_{x,y},\theta_{x,y}) w_{n,m}(r_{x,y},\theta_{x,y}),
+\]
+with some discretization weight function $w_{n,m}$. E.g. in \cite{ChenOriginal} this is done as
+\[
+	Z_{n,m}^R(f) \approx \frac{2n+2}{\pi (N-1)^2}  \sum_{x=1}^N \sum_{y=1}^N f(r_{x,y},\theta_{x,y}) \phi(r_{x,y},\theta_{x,y}),
+\]
+which is actually the conventional Cartesian coordinate-based calculation method, coupled with the mapping proposed by Chong et al. \cite{Chong}
+\[
+\begin{split}
+	r_{x,y} &= \sqrt{(c_1x + c_2)^2 + (c_1y + c_2)^2}, \\
+	\theta_{x,y} &= \tan^{-1}\left(\frac{c_1y + c_2}{c_1x + c_2}\right),
+\end{split}
+\]
+with $c_1=\sqrt{2}/(N-1)$ and $c_2=-1/\sqrt{2}$. 
+
+A similar approach was utilized numerous times in the literature, substituting the radial polynomial system $R_{n,m}$ of Zernike functions with other well-known orthogonal systems over the radial interval $[0,1]$. For color image analysis, further examples of this include the QFMMs \cite{GuoZhu}, the QPETs, QPCTs and QPSTs \cite{Li}, the QCMs \cite{Guo}, the QBFMs \cite{Shao}, the QRHFMs \cite{Wang}, the QG-CHFMs and QG-PJFMs \cite{Singh} and the QSBFMs \cite{Yang}.
+
+This natural method was proven suspectible to inaccuracies of both geometric and numeric nature when applied to greyscale images (see e.g.  \cite{LiaoPawlak}, \cite{PawlakLiao}), and these are carried over to the quaternion generalizations as well. Later in \cite{Xin}, a more accurate computational technique was proposed, where $\D$ is partitioned into polar sectors of approximately equal areas, and the original pixels are transformed to the centroids of these via cubic interpolation, and the weights are computed by performing the integration of functions $\phi_{n,m}$ over the respective polar sectors. 
+
+The same idea, adapted to quaternion-type moments for any aforementioned radial system, could substantially improve performances for tasks like image reconstruction, as well as recognition after rotation, scaling and translation (RST) transformations and addition of different kinds of noise; and the reason for this is essentially the improved accuracy gained for the computation of respective moments and invariants. Examples of this technique applied for color images include the papers of Hosny et al. for Legendre \cite{HosnyLegendre} and Chebyshev \cite{HosnyChebyshev} radial systems.
+
+A drawback of this approach is that the cubic interpolation applied for coordiante transformation is irreversible, so another transformation with further introduced error is required if one wishes to reconstruct the original sqare/rectangle shaped image. Instead, in the previous works \cite{LiaoPawlak}-\cite{HosnyChebyshev}, reconstruction error was measured for the transformed image and its reconstructions on disc $\D$ only. Another, although minor issue is the natural smoothing provided by the cubic interpolation, which unintentionally improves the obtained results for any noisy experiments by reducing the effect of noise, a sometimes unwanted side effect for one who wants to compare the performances of the moments themselves. To ensure fair comparisons with the first transformation group, linear interpolation should be used, ensuring invertible coordinate transformation, and also excluding unwanted side effects.
+
+Finally, the results of Wang et al. \cite{WangAcc} and Liu et al. \cite{LiuAcc} for radial harmonic Fourier moments are some recent advances in the study of quaternion moments, introducing a novel coordinate transformation which seems to improve accuracy for this specific function system maintaining fast computation times, without utilizing cubic interpolation at all.
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{GuoZhu}
+L.Q. Guo, M. Zhu,
+Quaternion Fourier--Mellin moments for color images,
+Pattern Recognit. 44 (2011), 187--195.
+
+\bibitem{ChenOriginal}
+B.J. Chen, H.Z. Shu, H. Zhang, G. Chen, C. Toumoulin, J.L. Dillenseger, L.M. Luo, Quaternion Zernike moments and their invariants for color image analysis and object recognition, Signal Processing 92 (2) (2012), 308--318.
+
+\bibitem{Li}
+Y.N. Li,
+Quaternion polar harmonic transforms for color images,
+IEEE Signal Process. Lett. 20 (2013), 803--806.
+
+\bibitem{Guo}
+L. Guo, M. Dai, M. Zhu,
+Quaternion moment and its invariants for color object classification,
+Inf. Sci. (Ny) 273 (2014), 132--143.
+
+\bibitem{Shao}
+Z. Shao, H. Shu, J. Wu, B. Chen, J. Louis,
+Quaternion Bessel--Fourier moments and their invariant descriptors for object reconstruction and recognition,
+Pattern Recognit. 47 (2014), 603--611.
+
+\bibitem{Wang}
+Wang X, W. Li, H. Yang, P. Niu, Y. Li,  Invariant quaternion radial harmonic Fourier moments for color image retrieval,
+Opt. Laser Technol. 66 (2015), 78--88.
+
+\bibitem{Singh}
+C. Singh, J. Singh,
+Quaternion generalized Chebyshev-Fourier and pseudo-Jacobi-Fourier moments for color object recognition,
+Opt. Laser Technol. 106 (2018), 234--250.
+
+\bibitem{Yang}
+T. Yang, J. Ma, Y. Miao, X. Wang, B. Xiao, B. He, Q. Meng, 
+Quaternion weighted spherical Bessel--Fourier moment and its invariant for color image reconstruction and object recognition, 
+Inf. Sci. 505 (2019), 388--405.
+
+\bibitem{Hamilton}
+W.R. Hamilton, Elements of Quaternions, Longmans Green, London, U.K., 1866.
+
+\bibitem{EllSangwine}
+T.A. Ell, S.J. Sangwine, Hypercomplex Fourier transforms of color images, IEEE Trans. Image Process 16 (2007), 22--35.
+
+\bibitem{ChenOriginal}
+B.J. Chen, H.Z. Shu, H. Zhang, G. Chen, C. Toumoulin, J.L. Dillenseger, L.M. Luo, Quaternion Zernike moments and their invariants for color image analysis and object recognition, Signal Processing 92 (2) (2012), 308--318.
+
+\bibitem{PapSchipp}
+M. Pap, F. Schipp, Discrete orthogonality of Zernike functions, Mathematica Pannonica 16(1) (2005), 137--144.
+
+\bibitem{Szego}
+G. Szeg\H o, Orthogonal Polynomials, Amer. Math. Soc. Colloq. Publ. 23, AMS, Cambridge, R.I., 1967.
+
+\bibitem{SukFlusser}
+T. Suk, J. Flusser, Affine moment invariants of color images, in: Proceedings of CAIP 2009, LNCS5702, 2009, pp. 334--341.
+
+\bibitem{Chong}
+C.W. Chong, P. Raveendran, R. Mukundan, Translation invariants of Zernike moments, Pattern Recognit. 36 (2003), 1765--1773.
+
+\bibitem{LiaoPawlak}
+S.X. Liao, M. Pawlak, On the accuracy of Zernike moments for image analysis, IEEE Trans. Pattern Anal. Mach. Intell. 20(12) (1998), 1358--1364.
+
+\bibitem{PawlakLiao}
+M. Pawlak, S.X. Liao, On the recovery of a function on a circular domain, IEEE Trans. Inf. Theory 48(10) (2002), 2736–2753.
+
+\bibitem{Xin}
+Y. Xin, M. Pawlak, S. Liao, Accurate computation of Zernike moments in polar coordinates, IEEE Trans. Image Proc. 16(2) (2007), 581--587.
+
+\bibitem{HosnyLegendre}
+K. Hosny, M. Darwish, 
+Invariant color images representation using accurate quaternion Legendre--Fourier moments, 
+Pattern Anal. Appl. 22(3) (2019), 1105--1122.
+
+\bibitem{HosnyChebyshev}
+K. Hosny, M. Darwish, 
+Resilient Color Image Watermarking Using Accurate Quaternion Radial Substituted Chebyshev Moments,
+ACM Trans. Multimedia Comput. Commun. Appl. 15(2), Article 46 (2019), 1--25.
+
+\bibitem{WangAcc}
+C. Wang, X. Wang, Z. Xia, Geometrically invariant image watermarking based on fast radial harmonic Fourier moments, 
+Signal Process Image Commun. 45 (2016), 10--23.
+
+\bibitem{LiuAcc}
+
+Accurate quaternion radial harmonic Fourier moments for color image reconstruction and object recognition,
+Pattern Anal. Appl. (2020), DOI 10.1007/s10044-020-00877-6.
+
+
+\end{thebibliography}
+
+
+\end{document}
