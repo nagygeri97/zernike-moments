@@ -119,7 +119,7 @@ def squareImage(img, background = (0,0,0)):
 		x1, y1, x2, y2 = 0, 0-offset1, w, h+offset2
 		bg = Image.new('RGB', (x2 - x1, y2 - y1), background)
 		bg.paste(img, (-x1, -y1))
-		# bg.save("../tmp.bmp")
+		# bg.save("../tmp.png")
 		return bg
 	elif h > w:
 		diff = h - w
@@ -128,7 +128,7 @@ def squareImage(img, background = (0,0,0)):
 		x1, y1, x2, y2 = 0-offset1, 0, w+offset2, h
 		bg = Image.new('RGB', (x2 - x1, y2 - y1), background)
 		bg.paste(img, (-x1, -y1))
-		# bg.save("../tmp.bmp")
+		# bg.save("../tmp.png")
 		return bg
 
 def scale():
@@ -153,7 +153,7 @@ def addGaussianNoise(img, mean, stddev):
 	newImg = np.round(img + np.random.normal(mean, stddev, shape))
 	bounds = np.vectorize(lambda x : np.uint8((x if x > 0 else 0) if x < 255 else 255))
 	# pilImg = Image.fromarray(bounds(newImg))
-	# pilImg.save("../test.bmp", "BMP")
+	# pilImg.save("../test.png")
 	return bounds(newImg)
 
 def addSaltAndPepperNoise(img, density):
@@ -225,7 +225,7 @@ def centroidTranslation(img):
 
 	pilImg = pilImg.transform(pilImg.size, Image.AFFINE, (1, 0, xTranslation, 0, 1, yTranslation))
 
-	# pilImg.save("../test.bmp", "BMP")
+	# pilImg.save("../test.png")
 	img = np.array(pilImg)
 	return img
 
@@ -244,7 +244,7 @@ def centroidTranslationFloat(img):
 					newImg[x - xTranslation, y - yTranslation, i] = img[x,y,i]
 	
 	# pilImg = Image.fromarray(newImg)
-	# pilImg.save("../test2.bmp", "BMP")
+	# pilImg.save("../test2.png")
 	return newImg
 
 # ------ RGB ---------

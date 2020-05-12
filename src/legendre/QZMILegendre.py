@@ -27,8 +27,8 @@ class QZMILegendre:
 		if centroidTranslate:
 			self.img = centroidTranslationFloat(self.img)
 
-		# saveImgFromNpArray(img, "../original.bmp")
-		# saveImgFromNpArray(self.img, "../test.bmp")
+		# saveImgFromNpArray(img, "../original.png")
+		# saveImgFromNpArray(self.img, "../test.png")
 
 		self.ZM = ZernikeMomentsColorRightLegendre(self.img, self.maxP, transformationClass)
 		self.calculateQZMI()

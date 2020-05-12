@@ -24,8 +24,8 @@ class QZMI:
 		if centroidTranslate:
 			self.img = centroidTranslationFloat(self.img)
 
-		# saveImgFromNpArray(img, "../original.bmp")
-		# saveImgFromNpArray(self.img, "../test.bmp")
+		# saveImgFromNpArray(img, "../original.png")
+		# saveImgFromNpArray(self.img, "../test.png")
 
 		self.N = N
 		self.maxP = maxP

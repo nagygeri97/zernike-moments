@@ -307,6 +307,103 @@ $|\overline{\Psi}_{4,4}^4|$ & 1.28e-8 & 1.52e-8 & 1.37e-8 & 1.56e-8 & 1.50e-8 & 
 \end{table}
 
 \section{Image reconstruction}
+As described in Section~\ref{sec:qzm}, the quaternion Zernike moments of an image can be used to approximately reconstruct the original image using the formulas in (\ref{eq:qzm_reconstruction}). This reconstruction requires QZMs of up to a finite degree $M$.
+
+In order to calculate the reconstructed discrete image, the 
+$$
+f(r_{x,y},\theta_{x,y}) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r_{x,y})e^{\bm{\mu}m\theta_{x,y}}
+$$
+formula was used for each pixel with image coordinates $(x,y)$, where $(r_{x,y},\theta_{x,y})$ are the polar coordinates obtained by performing the linear transformation of the image onto the unit disk, using the transformation shown on Figure~\ref{fig:transform1} (\textit{tf\textsubscript{1}}) for the old method and the transformation shown on Figure~\ref{fig:transform2} (\textit{tf\textsubscript{2}}) for the new one. The reason for this difference in transformation is that for the proposed discrete orthogonal points system, the interpolated pixel values are calculated using \textit{tf\textsubscript{2}}, while conventionally for (quaternion) Zernike moments, \textit{tf\textsubscript{1}} is used~\cite{qzmi}.
+
+To measure the error of the reconstruction the normalized mean squared error ($\varepsilon^2$) was used. If $f(x,y)$ is the original and $\widehat{f}(x,y)$ is the reconstructed image, both with size $N \times N$, then the normalized mean squared error is defined as:
+\begin{gather*}
+    \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}
+\end{gather*}
+
+In the cases, where \textit{tf\textsubscript{2}} is used only the part of the image falling inside the unit circle is reconstructed and thus the mean squared error is calculated over only this part of the image.
+
+For the new method of discretization the number of points on the unit disk was chosen to be approximately the same as the number of pixels falling inside the inscribed circle of the image. 
+
+\subsection{Results}
+Image reconstruction was performed for both the Lena and the Pepper images, using image sizes ranging from $64\times 64$ up to $256 \times 256$. Depending on the size of the image, QZMs of up to degree 350 were used reconstruct the image. However, in the case of smaller images, for example a $64\times 64$ image, only QZMs of up to 100 degree could be used, as using higher degrees would result in trying to extract more information from the original image than there is information contained in the pixel values, thus increasing the error of reconstruction. This phenomenon is visible, for example on Figure~\ref{fig:reconstruction_new} for the $64 \times 64$ Lenna, M = 100 case.
+
+Figure~\ref{fig:reconstruction_old} shows some of the reconstructed images and their normalized mean squared error when using the old method of discretization, while Figure~\ref{fig:reconstruction_new} shows the same data using the new method.
+
+Comparing the error of reconstruction between the two methods, using the discrete orthogonal points system provides much lower normalized mean squared errors for almost all levels of reconstruction. 
+Table~\ref{tab:epsilons} shows the comparison between the $\varepsilon^2$ values and the change in the error when using the proposed method instead of the old one. The decrease in the error of reconstruction is is significant for both low and high maximal degrees of QZMs. 
+
+Due to the lower number of points used by the second method (because of the different transformation of the image onto the unit disk) the previously described increase in reconstruction error occurs for lower $M$s than in the original method.
+
+\newcolumntype{Q}{>{\centering\arraybackslash} m{64pt} }
+\newcolumntype{q}{>{\centering\arraybackslash} m{50pt} }
+
+\begin{figure}
+	\centering
+\begin{tabular}{q | Q Q Q Q }
+M & Lenna $64\times 64$& Lenna $128\times 128$ & Lenna $256 \times 256$ & Pepper $256 \times 256$\\ \hline\hline
+Original & 
+\includegraphics[width=64pt]{figures/reconstruction/lo64.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256.png} & \includegraphics[width=64pt]{figures/reconstruction/po256.png}\\\hline
+M = 50 & 
+\includegraphics[width=64pt]{figures/reconstruction/lo6450.png} & \includegraphics[width=64pt]{figures/reconstruction/lo12850.png} & \includegraphics[width=64pt]{figures/reconstruction/lo25650.png} & \includegraphics[width=64pt]{figures/reconstruction/po25650.png}\\
+& 0.01257 & 0.01948 & 0.02659 & 0.03777\\
+M = 100 & 
+\includegraphics[width=64pt]{figures/reconstruction/lo64100.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128100.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256100.png} & \includegraphics[width=64pt]{figures/reconstruction/po256100.png}\\
+& 0.00468 & 0.00719 & 0.01341 & 0.01596\\
+M = 150 & & 
+\includegraphics[width=64pt]{figures/reconstruction/lo128150.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256150.png} & \includegraphics[width=64pt]{figures/reconstruction/po256150.png}\\
+& & 0.00388 & 0.00868 & 0.00885\\
+M = 250 & & & 
+\includegraphics[width=64pt]{figures/reconstruction/lo256250.png} & \includegraphics[width=64pt]{figures/reconstruction/po256250.png}\\
+& & & 0.00428 & 0.00378\\
+M = 350 & & & 
+\includegraphics[width=64pt]{figures/reconstruction/lo256350.png} & \includegraphics[width=64pt]{figures/reconstruction/po256350.png}\\
+& & & 0.00279 & 0.00253\\
+& \\
+
+\end{tabular}
+\caption{Reconstructed images using the old method, with the normalized mean squared error shown below each image.}
+\label{fig:reconstruction_old}
+\end{figure}
+
+\begin{figure}
+	\centering
+\begin{tabular}{q | Q Q Q Q }
+M & Lenna $64\times 64$& Lenna $128\times 128$ & Lenna $256 \times 256$ & Pepper $256 \times 256$\\ \hline\hline
+Original & 
+\includegraphics[width=64pt]{figures/reconstruction/lo64.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256.png} & \includegraphics[width=64pt]{figures/reconstruction/po256.png}\\\hline
+M = 50 &
+\includegraphics[width=64pt]{figures/reconstruction/ln6450.png} & \includegraphics[width=64pt]{figures/reconstruction/ln12850.png} & \includegraphics[width=64pt]{figures/reconstruction/ln25650.png} & \includegraphics[width=64pt]{figures/reconstruction/pn25650.png}\\
+& 0.00380 & 0.00901 & 0.01611 & 0.01778\\
+M = 100 & 
+\includegraphics[width=64pt]{figures/reconstruction/ln64100.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128100.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256100.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256100.png}\\
+& 0.01181 & 0.00246 & 0.00790 & 0.00681\\
+M = 150 & & 
+\includegraphics[width=64pt]{figures/reconstruction/ln128150.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256150.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256150.png}\\
+& & 0.00152 & 0.00463 & 0.00349\\
+M = 250 & & & 
+\includegraphics[width=64pt]{figures/reconstruction/ln256250.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256250.png}\\
+& & & 0.00190 & 0.00131\\
+M = 350 & & & 
+\includegraphics[width=64pt]{figures/reconstruction/ln256350.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256350.png}\\
+& & & 0.00238 & 0.00229\\
+& \\
+
+\end{tabular}
+\caption{Reconstructed images using the proposed new method, with the normalized mean squared error shown below each image.}
+\label{fig:reconstruction_new}
+\end{figure}
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|}
+        M & 50 & 100 & 150 & 250 & 350 \\ \hline
+        old method $\varepsilon^2$ & 0.02659 & 0.01341 & 0.00868 & 0.00428 & 0.00279 \\ 
+        new method $\varepsilon^2$ & 0.01611 & 0.00790 & 0.00463 & 0.00190 & 0.00238 \\ \hline
+        change & -39.4\% & -41.1\% & -46.7\% & -55.6\% & -14.7\% \\
+    \end{tabular}
+    \caption{Comparison of the normalized mean squared errors between the two method, for the $256 \times 256$ Lenna image.}
+    \label{tab:epsilons}
+\end{table}
 
 \section{Image recognition}
 

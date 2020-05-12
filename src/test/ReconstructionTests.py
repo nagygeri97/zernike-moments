@@ -24,7 +24,7 @@ def testImageReconstructionTf1():
 	# Needs to use OldTransformation in ZernikeMomentsColor/ZernikeMomentsMonochrome
 	args = parseArgsForReconstructionTest()
 
-	output = args.output if args.output is not None else '../test.bmp'
+	output = args.output if args.output is not None else '../test.png'
 	M = args.M
 
 	(img, N) = getImgFromFileAsNpArray(args.file)
@@ -40,7 +40,7 @@ def testImageReconstructionTf2():
 	# Needs to use OldTransformation in ZernikeMomentsColor/ZernikeMomentsMonochrome
 	args = parseArgsForReconstructionTest()
 
-	output = args.output if args.output is not None else '../test.bmp'
+	output = args.output if args.output is not None else '../test.png'
 	M = args.M
 
 	(img, N) = getImgFromFileAsNpArray(args.file)
@@ -55,7 +55,7 @@ def testImageReconstructionTf2():
 def testImageReconstructionLegendre1():
 	args = parseArgsForReconstructionTest()
 	
-	output = args.output if args.output is not None else '../test.bmp'
+	output = args.output if args.output is not None else '../test.png'
 	M = args.M
 
 	(img, N) = getImgFromFileAsNpArray(args.file)
@@ -67,7 +67,7 @@ def testImageReconstructionLegendre1():
 def testImageReconstructionLegendre2():
 	args = parseArgsForReconstructionTest()
 	
-	output = args.output if args.output is not None else '../test.bmp'
+	output = args.output if args.output is not None else '../test.png'
 	M = args.M
 
 	(img, N) = getImgFromFileAsNpArray(args.file)
@@ -86,8 +86,8 @@ def testImageReconstructionErrors():
 		("pepper_color_256", [50,100,150,250,350]),
 	]
 	path = "../images/lenna_pepper/"
-	extension = ".bmp"
-	tmpOut = "../tmp.bmp"
+	extension = ".png"
+	tmpOut = "../tmp.png"
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--output', '-o', required=True, type=str,

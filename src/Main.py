@@ -16,12 +16,12 @@ def main():
 	# ReconstructionTests
 	# testImageReconstructionTf1()
 	# testImageReconstructionTf2()
-	# testImageReconstructionLegendre1()
+	testImageReconstructionLegendre1()
 	# testImageReconstructionLegendre2()
 	# testImageReconstructionErrors()
 	
 	# InvarianceTests
-	testInvariance()
+	# testInvariance()
 	# testLegendreInvariance()
 
 	# RecognitionTests

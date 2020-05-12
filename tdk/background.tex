@@ -87,7 +87,7 @@ For example, \citeauthor{qfmm}~\cite{qfmm} introduced quaternion Fourier-Mellin 
 
 % The main idea behind these extensions is that an RGB image can be viewed as a pure quaternion valued function, with each color component corresponding to one of the imaginary units.
 
-\subsection{Quaternion Zernike moments}
+\subsection{Quaternion Zernike moments}\label{sec:qzm}
 \citeauthor{qzm}~\cite{qzm,qzmi} proposed the quaternion Zernike moments (QZMs), the extension of conventional Zernike moments to color images using quaternions. Generally, this method overperforms other similar approaches in color image recognition, due to the natural invariances of Zernike functions.
 
 Let $f(r,\theta)$ be a pure quaternion valued, continuous RGB image function, defined in polar coordinates on the unit circle. Each color component corresponds to one of the imaginary units. Let $\bm{\mu} = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$ be a unit pure quaternion.
@@ -106,10 +106,12 @@ The left-side QZMs are defined as
 The main difference, compared to the conventional Zernike moments is that instead of the complex-valued Zernike polynomials, QZMs use the quaternion valued generalization of the Zernike polynomials as a basis for the series expansion. 
 
 Similarly to non-quaternion Zernike moments, the original image can be approximated by using either right-side or left-side QZMs only up to a finite $M$ degree.
-\begin{gather*}
-  f(r,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r)e^{\bm{\mu}m\theta} \\
-  f(r,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}e^{\bm{\mu}m\theta}Z_{n,m}^L(f)R_{n,m}(r)
-\end{gather*}
+\begin{gather}
+\begin{split}
+  f(r,\theta) &\approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r)e^{\bm{\mu}m\theta} \\
+  f(r,\theta) &\approx \sum_{n=0}^{M}\sum_{m=-n}^{n}e^{\bm{\mu}m\theta}Z_{n,m}^L(f)R_{n,m}(r)
+\end{split}\label{eq:qzm_reconstruction}
+\end{gather}
 
 In this thesis, only the right-side QZMs will be used, because of the following relation between right- and left-side QZMs:
 \begin{gather*}

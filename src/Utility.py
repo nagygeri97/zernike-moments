@@ -72,9 +72,9 @@ def getImgFromFileAsRawNpArray(fileName):
 	img = np.array(image)
 	return img
 
-def saveImgFromNpArray(img, fileName="../test.bmp"):
+def saveImgFromNpArray(img, fileName="../test.png"):
 	image = Image.fromarray(img)
-	image.save(fileName, "BMP")
+	image.save(fileName)
 
 def transformAndPrintImage(img, fileName):
 	(N, _, _) = img.shape
@@ -93,7 +93,7 @@ def transformAndPrintImage(img, fileName):
 			else:
 				newImage[nx,ny] = img[x,y]
 	im = Image.fromarray(newImage)
-	im.save(fileName, "BMP")
+	im.save(fileName)
 
 def printCircleGrid(fileName="../test.png"):
 	n = 256

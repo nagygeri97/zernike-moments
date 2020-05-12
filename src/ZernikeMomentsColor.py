@@ -96,7 +96,7 @@ class ZernikeMomentsColorRight:
 					errorNum += abs(imgArray[x,y,i] - float(self.img[x,y,i]))**2
 					errorDen += abs(float(self.img[x,y,i]))**2
 		img = Image.fromarray(imgArray)
-		img.save(fileName, "BMP")
+		img.save(fileName)
 
 		eps = float(errorNum) / float(errorDen)
 		print("Mean square error: ", eps)

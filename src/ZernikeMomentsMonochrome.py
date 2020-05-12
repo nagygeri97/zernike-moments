@@ -71,7 +71,7 @@ class ZernikeMomentsMonochrome:
 				errorNum += abs(image1d[x,y] - self.img[x,y])**2
 				errorDen += abs(self.img[x,y])**2
 		img = Image.fromarray(imgArray)
-		img.save(fileName, "BMP")
+		img.save(fileName)
 
 		eps = float(errorNum) / float(errorDen)
 		print("Mean square error: ", eps)
