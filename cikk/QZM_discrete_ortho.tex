@@ -99,14 +99,14 @@ where $|m|\leq n$ and $n-|m|$ being even, $\qmu$ is an arbitrary unit pure quate
 \[
 	R_{n,m}(r) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}r^{n-2k}.
 \]
-It is important to note that these radial polynomials are symmetric in terms of $m$ and satisfy an orthogonality relation over $[0,1]$ w.r.t the weight $r$ (see e.g. \cite{PapSchipp}), i.e.
-\[
-	\int_0^1 R_n^{|m|} R_{n'}^{|m|}  = \frac{1}{2n+1} \delta_{n,n'},
-\]
+It is important to note that these radial polynomials are the same for $m$ and $-m$, and satisfy an orthogonality relation over $[0,1]$ w.r.t the weight $r$ (see e.g. \cite{PapSchipp}), i.e. for a fixed $m$ we have
+\begin{equation}\label{Rortho}
+	\int_0^1 R_{n,|m|}(r) R_{n',|m|}(r)r\ dr  = \frac{1}{2n+2} \delta_{n,n'},
+\end{equation}
 and can be expressed in terms of the shifted Jacobi polynomials in the following way:
-\[
+\begin{equation}\label{RJacobi}
 	R_{n,m}(r) = r^{|m|} P_{\frac{n - |m|}{2}}^{(0,|m|)}(2r^2-1),
-\]
+\end{equation}
 where we denoted the $k$-th degree classical Jacobi polynomials by $P_k^{(\alpha,\beta)}$ (see e.g. \cite{Szego}).
 
 Consequently, the quaternion generalizations of classical Zernike functions
@@ -239,36 +239,73 @@ Fix a positive integer $N$. Let us denote by $\rho_{k,N}$, $k=1,\ldots,N$ the ro
 
 Then, the system of sampling points $X_N$ over the unit disk $\D$ is defined in polar form by
 \[
-	X_N\ni (r_k, \theta_j) = \left(\sqrt{\frac{1+\rho_{k,N}}{2}} , \frac{2\pi j}{4N} \right), \qquad (k=1,\ldots,N,j=1\ldots,4N),
+	X_N\ni (r_{k,N}, \theta_{j,N}) = \left(\sqrt{\frac{1+\rho_{k,N}}{2}} , \frac{2\pi j}{4N} \right), \qquad (k=1,\ldots,N,j=1\ldots,4N),
 \]
 and the respective weight values and constants are
 \[
-	w(r_k,\theta_j) = \frac{\mathcal{A}_{k,N}}{8N},\qquad \lambda_{n,m} = 2n+2,
+	w(r_{k,N},\theta_{j,N}) = \frac{\mathcal{A}_{k,N}}{8N},\qquad \lambda_{n,m} = n+1,
 \]
 so the generated integral approximation is
 \[
-	Z_{n,m}^R(f) \approx (2n+2) \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_k,\theta_j) \phi(r_k,\theta_j) \frac{\mathcal{A}_{k,N}}{8N},
+	Z_{n,m}^R(f) \approx (n+1) \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_{k,N},\theta_{j,N}) \phi(r_{k,N},\theta_{j,N}) \frac{\mathcal{A}_{k,N}}{8N},
 \]
 and in fact any integral over $\D$ can be approximated by the discretization
 \[
-	\int_\D f \approx \int_{X_N} f = \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_k,\theta_j) \frac{\mathcal{A}_{k,N}}{8N}.
+	\frac{1}{\pi} \int_{0}^1 \int_0^{2\pi} f(r,\theta)\ d\theta dr \approx \int_{X_N} f = \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_{k,N},\theta_{j,N}) \frac{\mathcal{A}_{k,N}}{8N}.
 \]
-We remark that the values $\mathcal{A}_{k,N}$ are somewhat close to $\frac{2}{N}$, so the weighting is close to being uniform.
+We remark that the values $\mathcal{A}_{k,N}$ are somewhat close to $\frac{1}{N}$, so the weighting is close to being uniform.
 
 What is appealing in this choice of $X_N$ is the fact that the orthogonality of quaternion Zernike functions \eqref{QZortho} is preserved under changing to  discrete integration over this set of points, i.e.
 \begin{theorem}\label{QZdisc-ortho}
-Suppose that for $n,n'$ naturals and $m,m'$ integers we have $n-|m|+n'+|m'|<4N$ and $n+|m|+n'-|m'|<4N$. Then
+Suppose that for $n,n'$ naturals and $m,m'$ integers we have $\frac{n+n'}{2}+\min(|m|,|m'|) < 2N$. Then
 \[
-	(2n+2) \int_{X_N} \phi_{n,m} \phi^*_{n',m'} =\delta_{n,n'}\delta_{m,m'}.
+	(n+1) \int_{X_N} \phi_{n,m} \phi^*_{n',m'} =\delta_{n,n'}\delta_{m,m'}.
 \]
 \end{theorem}
 \noindent\textbf{Proof.}
+Let us consider the radial orthogonality relation \eqref{Rortho} expressed with the Jacobi polynomials of \eqref{RJacobi}, i.e.
+\[
+\begin{gathered}
+	\frac{1}{2n+2} \delta_{n,n'} = \int_0^1 R_{n,|m|}(r) R_{n',|m|}(r)r\ dr  = \\
+	\int_0^1 r^{2|m|} P_{\frac{n - |m|}{2}}^{(0,|m|)}(2r^2-1) P_{\frac{n' - |m|}{2}}^{(0,|m|)}(2r^2-1) r\ dr,
+\end{gathered}
+\]
+and apply a change of variable $u=2r^2-1$, to obtain
+\[
+	\frac{1}{2n+2} \delta_{n,n'} = \frac{1}{4} \int_{-1}^1 \left(\frac{1+u}{2}\right)^{2|m|} P_{\frac{n - |m|}{2}}^{(0,|m|)}(u) P_{\frac{n' - |m|}{2}}				^{(0,|m|)}(u)\ du.
+\]
+Notice that here the integrand is a polynomial of degree $\frac{n+n'}{2}+|m| < 2N$, so the exact value of the integral equals to the value of the Gauss-Legendre quadrature (see e.g. \cite{Szego}), i.e.
+\[
+	\frac{1}{2n+2} \delta_{n,n'} = \frac{1}{4} \sum_{k=1}^{N} \mathcal{A}_{k,N} \left(\frac{1+\rho_{k,N}}{2}\right)^{2|m|} P_{\frac{n - |m|}{2}}				^{(0,|m|)}(\rho_{k,N}) P_{\frac{n' - |m|}{2}}^{(0,|m|)}(\rho_{k,N}).
+\]
+Rewriting this in terms of $r_{k,N} = \sqrt{\frac{1+\rho_{k,N}}{2}}$ gives a discrete orthogonality relation for the radial polynomials, as
+\begin{equation}\label{Rdisc-ortho}
+	\frac{1}{2n+2} \delta_{n,n'} = \frac{1}{4} \sum_{k=1}^{N} \mathcal{A}_{k,N} R_{n,m}(r_{k,N}) R_{n',m}(r_{k,N}).
+\end{equation}
 
+Now we can proceed with proving the statement. 
+\[
+\begin{gathered}
+	\int_{X_N} \phi_{n,m} \phi^*_{n',m'} = \sum_{k=1}^{N} \sum_{j=1}^{4N} \phi_{n,m}(r_{k,N},\theta_{j,N}) \phi^*_{n',m'}(r_{k,N},					\theta_{j,N}) \frac{\mathcal{A}_{k,N}}{8N} = \\
+	\frac{1}{8N} \sum_{j=1}^{4N} e^{-\qmu m\theta_{j,N}}e^{\qmu m' \theta_{j,N}} \times \sum_{k=1}^N \mathcal{A}_{k,N} R_{n,m}(r_{k,N}) R_{n',m'}				(r_{k,N}),
+\end{gathered}
+\]
+and since quaternions $-\qmu m\theta_{j,N}$ and $\qmu m' \theta_{j,N}$ commute, we have
+\[
+	\sum_{j=1}^{4N} e^{-\qmu (m-m')\frac{2\pi j}{4N}} = 4N\delta_{m,m'}
+\]
+for the first sum, so if $m\neq m'$, the discrete integral equals to $0$ and we are done.
+
+Suppose $m=m'$, now we are left with
+\[
+	\int_{X_N} \phi_{n,m} \phi^*_{n',m} = \frac{1}{2} \sum_{k=1}^N \mathcal{A}_{k,N} R_{n,m}(r_{k,N}) R_{n',m}(r_{k,N}) = \frac{1}{n+1}\delta_{n,n'},
+\]
+where we used \eqref{Rdisc-ortho} for the last equation as we have $\frac{n+n'}{2}+|m| < 2N$.
 \qed
 
 Theoretically, the discrete orthogonality relation of Theorem \ref{QZdisc-ortho} means that the exact values of right and left moments can be computed, provided we can measure the function values over $X_N$, for a sufficiently large $N$: let us consider an arbitrary linear combination of right moments \eqref{QZRM} in the form
 \[
-	f \approx f_N(r,\theta) = \mathop{\sum\sum}_{n<\frac{4N}{3}} Z^R_{n,m}(f) \phi^*_{n,m} (r,\theta),
+	f \approx f_N(r,\theta) = \mathop{\sum\sum}_{n+m<2N} Z^R_{n,m}(f) \phi^*_{n,m} (r,\theta),
 \]
 then the exact value of the moment $Z^R_{n,m}(f)$, using the previous result, is
 \[
