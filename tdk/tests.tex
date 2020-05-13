@@ -425,8 +425,9 @@ $$
 This invariant vector is calculated for an RST transformed image and all of the original images. Then the minimum Euclidean distance is used to choose from the original images. The recognition algorithm classifies the transformed image as this chosen image.
 
 \subsection{Noise generation}
-To test the robustness of the methods against noise the tests were also performed with different levels of real-valued Gaussian noise added to all images. The parameters of the Gaussian noise were as follows: the mean of the distribution was always at 0, while standard deviation ($\sigma$) values from 1 up to 60 were used, depending on the test case.
-Instead of using Gaussian noise, for some test cases salt-and-pepper noise was added with densities ($p$) ranging from 0.2\% up to 15\%. Some examples for both types of noise are shown on Figure~\ref{fig:noise}.
+To test the robustness of the methods against noise the tests were also performed with different levels of real-valued Gaussian noise added to all images. The parameters of the Gaussian noise were as follows: the mean of the distribution was always at 0, while standard deviation ($\sigma$) values from 1 up to 60 were used for the QZMIs and standard deviation ranging from 40 to 120 was used to test the QZMRIs. QZMRIs are more robust against noise than QZMIs, so higher noise values could be used.
+Instead of using Gaussian noise, for some test cases salt-and-pepper noise was added with densities ($p$) ranging from 0.2\% up to 15\% for the QZMIs and ranging from 5\% to 30\% for the QZMRIs. Some examples for both types of noise are shown on Figure~\ref{fig:noise}.
+
 
 The tests were performed directly using the raw, noisy images, without any kind of filtering applied to the image. The goal was to see the robustness of these methods against noise. 
 
@@ -498,26 +499,26 @@ For the set where only rotation was applied to the images, instead of using QZMI
     \centering
     \begin{tabular}{|p{2.15cm}|p{1.8cm}|p{3cm}|p{2.74cm}|p{2.6cm}|} \hline
         \textbf{Image set} & \textbf{Noise stdev.} & \textbf{Old method} (\%) & \textbf{New method} many points (\%)& \textbf{New method} few points (\%) \\ \hline\hline
-        COIL - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
-        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 7 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 9 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 40 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 50 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 60 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
-        ALOI - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
-        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 7 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 9 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 40 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 50 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 60 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+        COIL - RST & No noise & 99.06 & 99.15 &  \\ \cline{2-5}
+        & 1 & 98.98 & 99.49 &  \\ \cline{2-5}
+        & 2 & 98.98 & 99.74 &  \\ \cline{2-5}
+        & 3 & 98.55 & 99.83 &  \\ \cline{2-5}
+        & 5 & 95.15 & 99.49 &  \\ \cline{2-5}
+        & 7 & 95.15 &  &  \\ \cline{2-5}
+        & 9 & 76.87 &  &  \\ \cline{2-5}
+        & 40 & 52.89 &  &  \\ \cline{2-5}
+        & 50 & 48.21 &  &  \\ \cline{2-5}
+        & 60 & 41.58 &  &  \\ \cline{1-5}
+        ALOI - RST & No noise & 99.91 & 100.00 &  \\ \cline{2-5}
+        & 1 & 94.51 & 99.08 &  \\ \cline{2-5}
+        & 2 & 84.89 & 93.13 &  \\ \cline{2-5}
+        & 3 & 78.85 & 88.55 &  \\ \cline{2-5}
+        & 5 & 72.07 & 93.31 &  \\ \cline{2-5}
+        & 7 & 63.28 & 94.23 &  \\ \cline{2-5}
+        & 9 & 55.04 & 94.32 &  \\ \cline{2-5}
+        & 40 & 18.41 & 90.84 &  \\ \cline{2-5}
+        & 50 & 19.32 & 82.51 &  \\ \cline{2-5}
+        & 60 & 13.19 & 84.89 &  \\ \cline{1-5}
     \end{tabular}
     \caption{Percentage of images recognized correctly by QZMIs in the case of using the RST transformed image sets with added Gaussian noise.}
     \label{tab:recognition_gauss}
@@ -538,25 +539,22 @@ The results for salt-and-pepper noise are shown for QZMIs and QZMRIs in Table~\r
     \centering
     \begin{tabular}{|p{2.15cm}|p{1.8cm}|p{3cm}|p{2.74cm}|p{2.6cm}|} \hline
         \textbf{Noise type} & \textbf{Noise param.} & \textbf{Old method} (\%) & \textbf{New method} many points (\%)& \textbf{New method} few points (\%) \\ \hline\hline
-        No noise & & 100.00 & 100.00 & 96.36\\ \cline{1-5}
-        Gauss & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 7 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 9 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 40 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 50 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 60 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
-        Salt & 0.2 & 100.00 & 100.00 & 96.36\\ \cline{2-5}
-        & 0.4 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 0.6 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 10 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 15 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+        No noise & 100.00 &  &  & \\ \cline{1-5}
+        Gauss & 40 & 91.37 &  &  \\ \cline{2-5}
+        & 50 & 86.51 &  &  \\ \cline{2-5}
+        & 60 & 84.42 &  &  \\ \cline{2-5}
+        & 70 & 80.85 &  &  \\ \cline{2-5}
+        & 80 & 76.98 &  &  \\ \cline{2-5}
+        & 90 & 75.79 &  &  \\ \cline{2-5}
+        & 100 & 64.98 &  &  \\ \cline{2-5}
+        & 110 & 64.78 &  &  \\ \cline{2-5}
+        & 120 & 68.55 &  &  \\ \cline{1-5}
+        Salt & 5 & 100.00 &  & \\ \cline{2-5}
+        & 10 & 100.00 &  &  \\ \cline{2-5}
+        & 15 & 100.00 &  &  \\ \cline{2-5}
+        & 20 & 100.00 &  &  \\ \cline{2-5}
+        & 25 & 100.00 &  &  \\ \cline{2-5}
+        & 30 & 100.00 &  &  \\ \cline{1-5}
     \end{tabular}
     \caption{Percentage of images recognized correctly by QZMRIs in the case of using the rotated COIL image set with either Gaussian or salt-and-pepper noise. The noise parameter means the standard deviation in case of the Gaussian noise, and the density in case of the salt-and-pepper noise.}
     \label{tab:recognition_rot}
@@ -566,26 +564,26 @@ The results for salt-and-pepper noise are shown for QZMIs and QZMRIs in Table~\r
     \centering
     \begin{tabular}{|p{2.15cm}|p{1.8cm}|p{3cm}|p{2.74cm}|p{2.6cm}|} \hline
         \textbf{Image set} & \textbf{Noise density} & \textbf{Old method} (\%) & \textbf{New method} many points (\%)& \textbf{New method} few points (\%) \\ \hline\hline
-        COIL - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
-        & 0.2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 0.4 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 0.6 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 10 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 15 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
-        ALOI - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
-        & 0.2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 0.4 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 0.6 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 10 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
-        & 15 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+        COIL - RST & No noise & 99.06 & 99.15 & \\ \cline{2-5}
+        & 0.2 & 99.66 &  &  \\ \cline{2-5}
+        & 0.4 & 99.91 &  &  \\ \cline{2-5}
+        & 0.6 & 99.91 &  &  \\ \cline{2-5}
+        & 1 & 98.98 &  &  \\ \cline{2-5}
+        & 2 & 99.66 &  &  \\ \cline{2-5}
+        & 3 & 99.40 &  &  \\ \cline{2-5}
+        & 5 & 97.87 &  &  \\ \cline{2-5}
+        & 10 & 99.91 &  &  \\ \cline{2-5}
+        & 15 & 99.91 &  &  \\ \cline{1-5}
+        ALOI - RST & No noise & 99.91 & 100.00 & \\ \cline{2-5}
+        & 0.2 & 88.64 & 90.75 &  \\ \cline{2-5}
+        & 0.4 & 86.08 & 91.30 &  \\ \cline{2-5}
+        & 0.6 & 83.97 & 90.11 &  \\ \cline{2-5}
+        & 1 & 95.97 & 94.60 &  \\ \cline{2-5}
+        & 2 & 98.44 & 94.96 &  \\ \cline{2-5}
+        & 3 & 97.61 & 96.06 &  \\ \cline{2-5}
+        & 5 & 97.99 & 97.25 &  \\ \cline{2-5}
+        & 10 & 98.44 & 87.27 &  \\ \cline{2-5}
+        & 15 & 93.50 & 91.30 &  \\ \cline{1-5}
     \end{tabular}
     \caption{Percentage of images recognized correctly by QZMIs in the case of using the RST transformed image sets with added salt-and-pepper noise.}
     \label{tab:recognition_salt}
