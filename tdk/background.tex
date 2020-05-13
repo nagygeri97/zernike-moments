@@ -24,13 +24,24 @@ where $ R_{n,m}(r) $ are the radial polynomials defined as
   R_{n,m}(r) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}r^{n-2k} \label{eq:radial_poly}.
 \end{gather}
 
+It is important to note that these radial polynomials are the same for $m$ and $-m$, and satisfy an orthogonality relation over $[0,1]$ with respect to the weight $r$ (see e.g. \cite{schipp}), i.e. for a fixed $m$ we have
+\begin{equation}\label{Rortho}
+	\int_0^1 R_{n,|m|}(r) R_{n',|m|}(r)r\ dr  = \frac{1}{2n+2} \delta_{n,n'},
+\end{equation}
+and can be expressed in terms of the shifted Jacobi polynomials in the following way:
+\begin{equation}\label{RJacobi}
+	R_{n,m}(r) = r^{|m|} P_{\frac{n - |m|}{2}}^{(0,|m|)}(2r^2-1),
+\end{equation}
+where we denoted the $k$-th degree classical Jacobi polynomials by $P_k^{(\alpha,\beta)}$ (see e.g. \cite{Szego}).
+
+
 Zernike moments are image moments, defined for grayscale images inside the unit circle, using the Zernike polynomials.
 The system of Zernike polynomials proved to be a suitable basis for series expansions in numerous optical applications (see for example %TODO cikkeket atemelni PapSchippbol
 ), and moment invariants could easily be constructed using the Zernike moments~\cite{zernike_moments}. 
 
-The Zernike moment of order $n$ and repetition $m$ of a grayscale, continuous image function $f(r,\theta)$ given in polar coordinates, is defined as
+The Zernike moment of order $n$ and repetition $m$ of a grayscale, continuous image function $f(r,\theta)$ given in polar coordinates is defined as
 \begin{gather*}
-  Z_{n,m}(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)V_{n,m}^{*}(r,\theta)r\dif r\dif\theta.
+  Z_{n,m}(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)V_{n,m}^{*}(r,\theta)r\ dr\ d\theta.
 \end{gather*}
 
 Since the Zernike polynomials are orthogonal, the following approximate reconstruction of the image function is possible, using Zernike moments only up to a finite $M$ degree:
@@ -96,20 +107,30 @@ Quaternion Zernike moments, just as regular Zernike moments, are defined over th
 	\D = \left\{ z = re^{i\theta}\in\C \ :\ r\in[0,1],\theta\in[0,2\pi)\right\}.
 \]
 
+The main difference, compared to the conventional Zernike moments is that instead of the complex-valued Zernike functions, QZMs use a quaternion-valued generalization of the Zernike functions as a basis for the series expansion. The quaternion generalizations of classical Zernike functions, defined as 
+\[
+	\phi_{n,m}(r,\theta) = R_{n,m}(r) e^{-\qmu m\theta},
+\]
+satisfy the orthogonality relation
+\begin{equation}\label{QZortho}
+	\frac{n+1}{\pi} \int_0^1 \int_0^{2\pi} \phi_{n,m}(r,\theta) \phi^*_{n',m'}(r,\theta) r \ d\theta dr = \delta_{n,n'}\delta_{m,m'}.
+\end{equation}
+
 Let $f(r,\theta)$ be a pure quaternion valued, RGB image function with a continuous domain, defined in polar coordinates on the unit circle $\D$. Each color component corresponds to one of the imaginary units. Let $\bm{\mu} = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$ be a unit pure quaternion.
 
 Since the multiplication of quaternions is not commutative, both right-side and left-side quaternion Zernike moments can be defined. The right-side QZM of order $n$ and repetition $m$ is defined as
-\begin{gather*}
-  Z_{n,m}^R(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)f(r,\theta)e^{-\bm{\mu}m\theta}r\dif r\dif\theta, \\
-  n \geq |m| \text{  and  } n - |m| \text{  is even.}
-\end{gather*}
+\begin{gather}
+  \begin{split}
+  Z_{n,m}^R(f) &= \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)f(r,\theta)e^{-\bm{\mu}m\theta}r\ dr\ d\theta, \\
+  &n \geq |m| \text{  and  } n - |m| \text{  is even.}
+  \end{split}
+  \label{eq:QZRM}
+\end{gather}
 
 The left-side QZMs are defined as 
 \begin{gather*}
-  Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)e^{-\bm{\mu}m\theta}f(r,\theta)r\dif r\dif\theta.
+  Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)e^{-\bm{\mu}m\theta}f(r,\theta)r\ dr\ d\theta.
 \end{gather*}
-
-The main difference, compared to the conventional Zernike moments is that instead of the complex-valued Zernike polynomials, QZMs use the quaternion valued generalization of the Zernike polynomials as a basis for the series expansion. 
 
 Similarly to non-quaternion Zernike moments, the original image can be approximated by using either right-side or left-side QZMs only up to a finite $M$ degree.
 \begin{gather}
@@ -213,11 +234,16 @@ For the first one (Figure~\ref{fig:transform1}): $c_1 = \frac{\sqrt{2}}{N - 1}$,
   \label{fig:transform2}
 \end{figure}
 
+In general, using the polar form of the transformed coordinates, the continuous integral of \eqref{eq:QZRM} can be replaced by discrete approximations of form
+\begin{equation}\label{eq:QZMappr}
+	Z_{n,m}^R(f) \approx \lambda_{n,m} \sum_{k=1}^{N_1} \sum_{j=1}^{N_2} f(r_k,\theta_j) \phi(r_k,\theta_j) w(r_k,\theta_j),
+\end{equation}
+with some discretization weight function $w$ and normalization constants $\lambda_{n,m}$.
+
 Using either one of the previously defined transformations, a points system on the unit disk is obtained, and for each point exactly one pixel value is assigned. When this points system is used for the discretization of QZMs, the following formula can be used to approximate the QZMs of the original image function:
-\begin{gather}
+\begin{gather*}
   Z_{n,m}^R(f) \approx \lambda\frac{n + 1}{(N - 1)^2}\sum_{x = 0}^{N-1}\sum_{y = 0}^{N-1}R_{n,m}(r_{x,y})f(x,y)e^{-\bm{\mu}m\theta_{x,y}},
-  \label{eq:QZMappr}
-\end{gather}
+\end{gather*}
 where $f \in \mathds{R}^2 \rightarrow \mathds{H}$ is the RGB image defined in image coordinates, $(r_{x,y},\theta_{x,y})$ are the polar coordinates belonging to the image coordinates $(x,y)$, and $\lambda$ is the previously defined scaling factor.
 
 In the rest of this thesis, for comparison purposes, the transformation of the image inside the unit circle will be used as \citeauthor{qzmi}~\cite{qzmi} used this discretization to present their results.

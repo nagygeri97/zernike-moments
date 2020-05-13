@@ -119,18 +119,18 @@ In practice, this algorithm calculates the roots of $P_n$ with accuracy up to ma
 To calculate the Zernike moments over the discrete orthogonal points system, instead of the $\lambda$ scaling factor used in the linear transformation, a different measure is used. To calculate this $\mu_{k,N}$ measure (defined in% TODO: keplet hivatkozni, jeloles egyeztetni
 ), the following integral has to be calculated:
 \begin{gather*}
-    \mathcal{A}_{k,N} = \int_{-1}^{1}\ell_{k,N}(x)\dif x,
+    \mathcal{A}_{k,N} = \int_{-1}^{1}\ell_{k,N}(x)\ dx,
 \end{gather*}
 where $\ell_{k,N}$ is the $k^{th}$ Lagrange basis polynomial corresponding to the roots of the Legendre polynomial $P_N$.
 
 The Gauss-Legendre quadrature is based on the roots of the Legendre polynomial $P_n$ of degree $n$. Let $x_1,x_2,\ldots,x_n$ be the roots of $P_n$.
 \begin{gather*}
-    \int_{-1}^{1}f(x)\dif x \approx \sum_{k=1}^n w_k f(x_k), \\
+    \int_{-1}^{1}f(x)\ dx \approx \sum_{k=1}^n w_k f(x_k), \\
     w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}.
 \end{gather*}
 The quadrature is exact for all polynomials whose degree is at most $2n-1$. Now $\ell_{k,N}(x)$ is an $N-1$ degree polynomial, so the Gauss-Legendre quadrature with $n=N$ is exact for $\ell_{k,N}$. Furthermore, $\ell_{k,N}$ is defined such that $\ell_{k,N}(x_i) = 0$ for $i \neq k$, and $\ell_{k,N}(x_k) = 1$ Thus:
 \begin{gather*}
-    \int_{-1}^{1}\ell_{k,N}(x)\dif x = w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}.
+    \int_{-1}^{1}\ell_{k,N}(x)\ dx = w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}.
 \end{gather*}
 
 Since the roots of the Legendre polynomial $P_N$ must be computed to obtain the points system, this formula gives an easy and fast way to calculate the exact values of $\mu_{k,N}$.

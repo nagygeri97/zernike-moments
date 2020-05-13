@@ -486,3 +486,22 @@ Gaussian noise (no rounding) with std dev 3
 
 Gaussian noise (no rounding) with std dev 5
 94.64285714285714 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 7
+91.66666666666666 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 9
+89.20068027210884 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 40
+51.87074829931972 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 50
+45.06802721088435 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 60
+39.1156462585034 % recognized correctly.
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_TRANSFORMED NoiseType.SALT
