@@ -307,7 +307,7 @@ $|\overline{\Psi}_{4,4}^4|$ & 1.28e-8 & 1.52e-8 & 1.37e-8 & 1.56e-8 & 1.50e-8 & 
 \end{table}
 
 \section{Image reconstruction}
-As described in Section~\ref{sec:qzm}, the quaternion Zernike moments of an image can be used to approximately reconstruct the original image using the formulas in (\ref{eq:qzm_reconstruction}). This reconstruction requires QZMs of up to a finite degree $M$.
+As described in Section~\ref{sec:qzm}, the quaternion Zernike moments of an image can be used to approximately reconstruct the original image using the formulas in \eqref{eq:qzm_reconstruction}. This reconstruction requires QZMs of up to a finite degree $M$.
 
 In order to calculate the reconstructed discrete image, the 
 $$
@@ -325,7 +325,7 @@ In the cases, where \textit{tf\textsubscript{2}} is used only the part of the im
 For the new method of discretization the number of points on the unit disk was chosen to be approximately the same as the number of pixels falling inside the inscribed circle of the image. 
 
 \subsection{Results}
-Image reconstruction was performed for both the Lena and the Pepper images, using image sizes ranging from $64\times 64$ up to $256 \times 256$. Depending on the size of the image, QZMs of up to degree 350 were used reconstruct the image. However, in the case of smaller images, for example a $64\times 64$ image, only QZMs of up to 100 degree could be used, as using higher degrees would result in trying to extract more information from the original image than there is information contained in the pixel values, thus increasing the error of reconstruction. This phenomenon is visible, for example on Figure~\ref{fig:reconstruction_new} for the $64 \times 64$ Lenna, M = 100 case.
+Image reconstruction was performed for both the Lenna and the Pepper images~\cite{usc_sipi}, using image sizes ranging from $64\times 64$ up to $256 \times 256$. Depending on the size of the image, QZMs of up to degree 350 were used reconstruct the image. However, in the case of smaller images, for example a $64\times 64$ image, only QZMs of up to 100 degree could be used, as using higher degrees would result in trying to extract more information from the original image than there is information contained in the pixel values, thus increasing the error of reconstruction. This phenomenon is visible, for example on Figure~\ref{fig:reconstruction_new} for the $64 \times 64$ Lenna, M = 100 case.
 
 Figure~\ref{fig:reconstruction_old} shows some of the reconstructed images and their normalized mean squared error when using the old method of discretization, while Figure~\ref{fig:reconstruction_new} shows the same data using the new method.
 
@@ -406,5 +406,216 @@ M = 350 & & &
 \end{table}
 
 \section{Image recognition}
+In order to test the image recognition capabilities of the methods, the COIL-100~\cite{coil} and ALOI~\cite{aloi} images and the RST transformed sets of images were used. The exact parameters for the transformations performed to obtain these sets of images is described in Section~\ref{sec:test_images}.
+The goal of the image recognition test is to see what percentage of the transformed images can each method correctly identify from the original, non-transformed images.
+
+To recognize an image, first the QZMIs have to be calculated. In this thesis, we used QZMIs of up to degree 4, but not all possible QZMIs were used. The selected QZMIs were: $\overline{\Psi}_{1,1}^1, \overline{\Psi}_{2,0}^0, \overline{\Psi}_{2,2}^2, \overline{\Psi}_{3,1}^1, \overline{\Psi}_{3,3}^3, \overline{\Psi}_{4,0}^0, \overline{\Psi}_{4,2}^2, \overline{\Psi}_{4,4}^4$. These 8 quaternion valued invariants contain a total of 20 real valued invariants, since while each quaternion could provide of 4 real invariants, the QZMIs $\overline{\Psi}_{n,k}^m$ with $n = k$ necessarily have $\ip{\overline{\Psi}_{n,n}^m} = 0$.
+This follows directly from the definition (see Section~\ref{sec:invariance}): 
+\begin{gather*}
+    \begin{split}
+        \overline{\Psi}_{n,n}^m &= \overline{L}_{n,m}^R(f)(\overline{L}_{n,m}^R(f))^* = \left|\overline{L}_{n,m}^R(f)\right|^2 \in \R
+    \end{split}
+\end{gather*}
+Thus from the selected 8 QZMIs four provide a single real-valued invariant and another four provide 4 real-valued invariants. These 20 real invariants are then used to construct a vector $I$ of length 20.
+This vector is normalized using the method presented by \citeauthor{affine_color}~\cite{affine_color}.
+$$
+I_k = sgn(I_k)\left|I_k\right|^\frac{1}{2} \;\;\;\; (k = 1,2,\ldots,20)
+$$
+
+This invariant vector is calculated for an RST transformed image and all of the original images. Then the minimum Euclidean distance is used to choose from the original images. The recognition algorithm classifies the transformed image as this chosen image.
+
+\subsection{Noise generation}
+To test the robustness of the methods against noise the tests were also performed with different levels of real-valued Gaussian noise added to all images. The parameters of the Gaussian noise were as follows: the mean of the distribution was always at 0, while standard deviation ($\sigma$) values from 1 up to 60 were used, depending on the test case.
+Instead of using Gaussian noise, for some test cases salt-and-pepper noise was added with densities ($p$) ranging from 0.2\% up to 15\%. Some examples for both types of noise are shown on Figure~\ref{fig:noise}.
+
+The tests were performed directly using the raw, noisy images, without any kind of filtering applied to the image. The goal was to see the robustness of these methods against noise. 
+
+\begin{figure}[tbp]
+	\begin{subfigure}{0.329\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/gauss3.png}
+	\caption{$\sigma = 3$}
+	\end{subfigure}
+    \begin{subfigure}{0.329\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/gauss5.png}
+	\caption{$\sigma = 5$}
+    \end{subfigure}
+    \begin{subfigure}{0.329\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/gauss7.png}
+	\caption{$\sigma = 7$}
+    \end{subfigure}
+    \begin{subfigure}{0.329\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/pepper04.png}
+	\caption{$p = 0.4\%$}
+    \end{subfigure}
+    \begin{subfigure}{0.329\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/pepper1.png}
+	\caption{$p = 1\%$}
+    \end{subfigure}
+    \begin{subfigure}{0.329\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/pepper3.png}
+	\caption{$p = 3\%$}
+	\end{subfigure}
+	\caption{Some test images with Gaussian noise (top row) or salt-and-pepper noise (bottom row) with different parameters added to them.}
+	\label{fig:noise}
+\end{figure}
+
+\subsection{Test cases}
+The recognition tests were performed using both the old and the proposed method for discretization. Furthermore, the new method was tested with with two different $N$ values for creating the discrete orthogonal system of $N(4N + 1)$ %TODO: check, ref
+points.
+
+In the first case $N$ was chosen such that the total number of points in the system should be approximately the same as the pixels of the image falling inside its inscribed circle.
+\begin{gather*}
+    \begin{split}
+    N &\in \N \\
+    (4N + 1)N &\approx n^2\frac{\pi}{4} \\
+    N &= \left\lfloor \frac{\sqrt{4n^2\pi + 1} - 1}{8}\right\rfloor
+    \end{split}
+\end{gather*}
+where the size of the image is $n \times n$. Based on the interpolating methods described in Section~\ref{sec:new_trans} this means that bilinear interpolation should be used.
+
+In the other case $N$ was chosen such that the number of points is the minimum required for the method to be accurate. In the case of using QZMIs up to degree 4, this means $N = 10$. %Why, hogy jott ez ki? 
+In this case, based on Section~\ref{sec:new_trans} the interpolation should be done using the integral interpolation formula.
+
+Note that for the old method, the number of points used is the same as the number of pixels in the image.
+
+Three sets of transformed images were tested, which were generated as described in Section~\ref{sec:test_images}:
+\begin{itemize}
+    \item COIL-100 rotated (1008 images)
+    \item COIL-100 rotated, scaled, translated (1176 images)
+    \item ALOI rotated, scaled, translated (1092 images)
+\end{itemize} 
+For the set where only rotation was applied to the images, instead of using QZMIs the rotation invariant QZMRIs were used.
+
+\subsection{Results}
+
+\begin{table}[tbp]
+    \centering
+    \begin{tabular}{|p{2.15cm}|p{1.8cm}|p{3cm}|p{2.74cm}|p{2.6cm}|} \hline
+        \textbf{Image set} & \textbf{Noise stdev.} & \textbf{Old method} (\%) & \textbf{New method} many points (\%)& \textbf{New method} few points (\%) \\ \hline\hline
+        COIL - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
+        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 7 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 9 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 40 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 50 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 60 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+        ALOI - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
+        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 7 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 9 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 40 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 50 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 60 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+    \end{tabular}
+    \caption{Percentage of images recognized correctly by QZMIs in the case of using the RST transformed image sets with added Gaussian noise.}
+    \label{tab:recognition_gauss}
+\end{table}
+When the images have Gaussian noise, the new method with the higher number of points performs the best for all levels of noise, far outperforming the original method in recognition capabilities. 
+The rate of recognition for Gaussian noise in case of the RST transformed image sets is shown in Table~\ref{tab:recognition_gauss}. The recognition rate of the new method remains relatively high (around 80\%) even for high noise values, while the recognition rate of the original method drops significantly (below 20\%).
+
+When using only the minimal possible number of points in the new method, for all noise levels the recognition rate remains around the same level as with the original method, but the computation required to achieve such levels of image recognition is much lower for the new method with minimal number of points.
+
+The same observation can be made about the QZMRIs used to recognize the rotated images. Even for extremely high noise values, the recognition rate of the new method remains well above 90\%. The results for the QZMRIs are shown in Table~\ref{tab:recognition_rot}.
+
+
+When salt-and-pepper noise is added to the images, the recognition capabilities of both methods are high, but no clear difference is visible between them. Even using the minimal possible number of points in the new method, the recognition rates are almost the same as with the other two methods. 
+These same observation can be made about the recognition capabilities of the QZMRIs.
+The results for salt-and-pepper noise are shown for QZMIs and QZMRIs in Table~\ref{tab:recognition_salt} and Table~\ref{tab:recognition_rot} respectively.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|p{2.15cm}|p{1.8cm}|p{3cm}|p{2.74cm}|p{2.6cm}|} \hline
+        \textbf{Noise type} & \textbf{Noise param.} & \textbf{Old method} (\%) & \textbf{New method} many points (\%)& \textbf{New method} few points (\%) \\ \hline\hline
+        No noise & & 100.00 & 100.00 & 96.36\\ \cline{1-5}
+        Gauss & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 7 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 9 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 40 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 50 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 60 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+        Salt & 0.2 & 100.00 & 100.00 & 96.36\\ \cline{2-5}
+        & 0.4 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 0.6 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 10 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 15 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+    \end{tabular}
+    \caption{Percentage of images recognized correctly by QZMRIs in the case of using the rotated COIL image set with either Gaussian or salt-and-pepper noise. The noise parameter means the standard deviation in case of the Gaussian noise, and the density in case of the salt-and-pepper noise.}
+    \label{tab:recognition_rot}
+\end{table}
+
+\begin{table}
+    \centering
+    \begin{tabular}{|p{2.15cm}|p{1.8cm}|p{3cm}|p{2.74cm}|p{2.6cm}|} \hline
+        \textbf{Image set} & \textbf{Noise density} & \textbf{Old method} (\%) & \textbf{New method} many points (\%)& \textbf{New method} few points (\%) \\ \hline\hline
+        COIL - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
+        & 0.2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 0.4 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 0.6 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 10 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 15 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+        ALOI - RST & No noise & 100.00 & 100.00 & 96.36\\ \cline{2-5}
+        & 0.2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 0.4 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 0.6 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 1 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 2 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 3 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 5 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 10 & 98.18 & 100.00 & 89.09 \\ \cline{2-5}
+        & 15 & 98.18 & 100.00 & 89.09 \\ \cline{1-5}
+    \end{tabular}
+    \caption{Percentage of images recognized correctly by QZMIs in the case of using the RST transformed image sets with added salt-and-pepper noise.}
+    \label{tab:recognition_salt}
+\end{table}
+% TODO tablazatok kitolteni, futnak a tesztek
 
 \section{Template matching}
+This final test aims to present some possible application of the pattern matching capabilities of the QZMIs. Some pictures were taken using a the camera on a Xiaomi Mi 9 smartphone with autofocus enabled. The images were taken of the same scene but with different focus and different rotation of the camera.
+
+A total of 9 circles with radii of 10 pixels were chosen so that they represent some unique area on the pictures. Then, on another picture taken with different rotation and focus, after determining the scaling factor between the two images, a sliding circular window was moved across the second image. The invariant vector described in the image recognition test was constructed for each window, and then the minimal Euclidean distance was used to find each area of the original image on the second image.
+
+The original image and the results of both methods are shown on Figure~\ref{fig:template_match}.
+Both methods managed to correctly find 8 out of the 9 templates on the other image. Neither managed to correctly locate template number 8.
+\begin{figure}[tbp]
+    \centering
+    \begin{subfigure}{0.68\textwidth}
+        \centering
+    \includegraphics[width=0.8\textwidth, trim=0 200 0 80, clip]{figures/templates/template.png}
+	\caption{Original image}
+    \end{subfigure}\\
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+    \includegraphics[width=\textwidth, trim=0 200 0 80, clip]{figures/templates/old.png}
+	\caption{Old method}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+    \includegraphics[width=\textwidth, trim=0 200 0 80, clip]{figures/templates/new.png}
+	\caption{New method}
+    \end{subfigure}
+    \caption{The original image with the templates and the result of both methods.}
+    \label{fig:template_match}
+\end{figure}

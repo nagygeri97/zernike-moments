@@ -15,7 +15,7 @@ Using the just-in-time compilation (JIT) capabilities of Numba (i.e. the \texttt
     \label{fig:classes}
 \end{figure}
 To obtain the quaternion Zernike moment invariants (QZMIs) of an image as described in Section~\ref{sec:invariance}, the quaternion Zernike moments (QZMs) must be calculated first. \citeauthor{qzmi}~\cite{qzmi} showed that instead of calculating the QZMs directly by using the algebra of quaternions, it is possible to calculate the real and the imaginary parts of the quaternion-valued QZM individually by using some linear combination of the real and imaginary parts of the complex-valued, single channel Zernike moments. This means that the single channel Zernike moments have to be calculated for all three of the RGB color channels.
-Furthermore, the calculation of the Zernike moments requires the computation of the radial polynomials, introduced in~(\ref{eq:radial_poly}).
+Furthermore, the calculation of the Zernike moments requires the computation of the radial polynomials, introduced in~\eqref{eq:radial_poly}.
 
 To calculate the required values, the following four classes were created, each relying on the next one to perform the computation.
 \begin{itemize}
@@ -93,11 +93,11 @@ To achieve translation invariance, the common centroid of the RGB image is calcu
 \begin{gather*}
     \left\{x_c,y_c\right\} = \left\{\frac{M_{10}(f_R)+M_{10}(f_G)+M_{10}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}, \frac{M_{01}(f_R)+M_{01}(f_G)+M_{01}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}\right\}
 \end{gather*}
-where $f_R, f_G, f_B$ are the grayscale images corresponding to the red, green and blue color channels respectively, and $M_{10}, M_{01}, M_{00}$ are the regular image moments introduced in~(\ref{eq:regular_moment}).
+where $f_R, f_G, f_B$ are the grayscale images corresponding to the red, green and blue color channels respectively, and $M_{10}, M_{01}, M_{00}$ are the regular image moments introduced in~\eqref{eq:regular_moment}.
 The original image $f$ is then translated in image coordinates such that the origin falls on the common centroid $\{x_c,y_c\}$, and the other invariants are then calculated based on this translated image.
 
 
-\section{New image transformation}
+\section{New image transformation}\label{sec:new_trans}
 The new image transformation, as described in Section~\ref{sec:new_transformation}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete points system, other interpolating methods have to be used to approximate the image values at these points.
 
 Because of the modularity of the previously described classes, it is possible to swap the old transformation to the new one. With some minor modifications during the calculation of the conventional Zernike moments because of the new discretization formula containing a different measure, %TODO: ref equation
@@ -110,7 +110,7 @@ The $n^{th}$ degree Legendre polynomial $P_n$ satisfies the following differenti
 \begin{gather}
     (1-x^2)P_n''(x) - 2xP_n'(x) + n(n+1)P_n(x) = 0\label{eq:legendre_de}
 \end{gather}
-A fast algorithm for calculating the roots of $P_n$, based on this differential equation was presented by \citeauthor{legendre_algo}~\cite{legendre_algo}. The algorithm uses a second-order Runge-Kutta method (namely the midpoint method) to solve the Prüfer-transformed version of~(\ref{eq:legendre_de}) for some given initial condition. A first approximation for a root of $P_n$ can be obtained from the solution of the initial value problem. This approximation is then further refined by Newton's method.
+A fast algorithm for calculating the roots of $P_n$, based on this differential equation was presented by \citeauthor{legendre_algo}~\cite{legendre_algo}. The algorithm uses a second-order Runge-Kutta method (namely the midpoint method) to solve the Prüfer-transformed version of~\eqref{eq:legendre_de} for some given initial condition. A first approximation for a root of $P_n$ can be obtained from the solution of the initial value problem. This approximation is then further refined by Newton's method.
 Subsequent roots can be calculated using the same method but starting from different initial conditions defined by the previous root.
 
 In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only a fix, limited number of iterations for both the Runge-Kutta and the Newton's method.

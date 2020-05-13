@@ -47,50 +47,50 @@ def runRecognitionTest():
 	bgColor = BGColor.BLACK
 
 	tests = [
-		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.NORMAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.NORMAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		(QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS),
-		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.SALT),
+		(QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.NORMAL, TestType.COIL_ROTATED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE1, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
 		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.LEGENDRE1, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.SALT),
+		(QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE1, TestType.COIL_ROTATED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE2, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE2, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.CLEAN),
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS),
-		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
+		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
 	]
 
 	for (qzmiType, testType, noiseType) in tests:
@@ -114,7 +114,7 @@ def getBasicRecognitionTestingData(testType, bgColor):
 		recognizePath = recognizePath[:-1] + "_grey/"
 		originalPath = originalPath[:-1] + "_grey/"
 
-	recognizeFiles = os.listdir(recognizePath)[:100:1]
+	recognizeFiles = os.listdir(recognizePath)
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect
