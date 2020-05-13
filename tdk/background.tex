@@ -36,8 +36,7 @@ where we denoted the $k$-th degree classical Jacobi polynomials by $P_k^{(\alpha
 
 
 Zernike moments are image moments, defined for grayscale images inside the unit circle, using the Zernike polynomials.
-The system of Zernike polynomials proved to be a suitable basis for series expansions in numerous optical applications (see for example %TODO cikkeket atemelni PapSchippbol
-), and moment invariants could easily be constructed using the Zernike moments~\cite{zernike_moments}. 
+The system of Zernike polynomials proved to be a suitable basis for series expansions in numerous optical applications (see for example~\cite{wavefront,optical_human_eye,opt_surf}), and moment invariants could easily be constructed using the Zernike moments~\cite{zernike_moments}. 
 
 The Zernike moment of order $n$ and repetition $m$ of a grayscale, continuous image function $f(r,\theta)$ given in polar coordinates is defined as
 \begin{gather*}
@@ -296,4 +295,10 @@ In order to achieve translation invariance, throughout the construction of the s
 Furthermore, $\overline{\Psi}_{n,k}^m = \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^*$ is invariant to rotation, scaling and translation~\cite{qzmi}. This is called a quaternion Zernike moment invariant (QZMI).
 
 \section{Applications}
-Invarianst ad vissza, pl neural networkbe, gepi tanulasba jo
+Zernike moments and moment invariants are a useful tool in optical and medical applications. Specifically, Zernike moments can be used in the representation of optical aberration~\cite{wavefront,optical_human_eye,opt_surf}.
+
+Furthermore, applications in pattern recognition have shown that in noisy environments Zernike moment yield the best results~\cite{pattern_recognition}. \citeauthor{hand_vein}~\cite{hand_vein} have used Zernike moment invariants to extract descriptions of hand vein patterns.
+
+Another application is in image watermarking so that the watermark is invariant to transformations and robust against noise~\cite{watermarking_auth, robust_watermarking, invariant_watermark}.
+
+Finally, one possible application is to use Zernike moments in conjunction with neural networks. The robustness of neural networks with respect to noise is a known shortcoming of current systems~\cite{nn_robust,nn_noise_robust}. Zernike moments can be used to extract features of images with high robustness to noise, so these extracted features can be used as input for neural networks~\cite{zernike_nn,zernike_nn2}. 

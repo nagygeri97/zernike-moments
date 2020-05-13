@@ -505,3 +505,18 @@ Gaussian noise (no rounding) with std dev 60
 
 
 QZMIType.LEGENDRE2 TestType.COIL_TRANSFORMED NoiseType.SALT
+
+Salt and pepper noise with density 0.2%
+94.98299319727892 % recognized correctly.
+
+Salt and pepper noise with density 0.4%
+99.14965986394559 % recognized correctly.
+
+Salt and pepper noise with density 0.6%
+99.40476190476191 % recognized correctly.
+
+Salt and pepper noise with density 1%
+99.65986394557824 % recognized correctly.
+
+Salt and pepper noise with density 2%
+99.74489795918367 % recognized correctly.
