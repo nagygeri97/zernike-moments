@@ -26,7 +26,7 @@ The images for testing were acquired from multiple online image libraries. The L
 	\label{fig:lena_pepper_original}
 \end{figure}
 
-For the image recognition tests, two sets of images were used. The first set consists of 14 images chosen from the Columbia Object Image Library (COIL-100)~\cite{coil}, shown on Figure~\ref{fig:coil_original}. These images are originally $128 \times 128$ pixels, but they were placed on a $204 \times 204$ black background so that the rotated, scaled and translated versions of the images remain completely within these dimensions. 
+For the image recognition tests, two sets of images were used. The first set consists of 14 images chosen from the Columbia Object Image Library (COIL-100)~\cite{coil}, shown on Figure~\ref{fig:coil_original}. These images are originally $128 \times 128$ pixels, but they were placed on a $204 \times 204$ black background so that the rotated, scaled and translated versions of the images stay completely within these dimensions. 
 
 A set of 1008 rotated images was created by rotating each of the 14 images by a degree $\alpha\in\{0,5,10,\ldots,350,355\}$. Some examples of the extended and rotated images are shown on Figure~\ref{fig:coil_rot}.
 
@@ -222,7 +222,7 @@ Another set of 13 images was acquired from the Amsterdam Library of Object Image
 \end{figure}
 
 \section{Invariance test}
-In order to test the invariance of the quaternion Zernike moment invariants with respect to rotation, scaling and translation, the QZMIs of order 1 to 4 were calculated for a given image and all of its RST transformations. Then, the modulus of these QZMIs was calculated, as well as the mean ($\mu$), standard deviation ($\sigma$) and $\frac{\sigma}{\mu}$ for the same moment of all transformed images.
+In order to test quaternion Zernike moment invariants with respect to rotation, scaling and translation, the QZMIs of order 1 to 4 were calculated for a given image and all of its RST transformations. Then, the modulus of these QZMIs was calculated, as well as the mean ($\mu$), standard deviation ($\sigma$) and $\frac{\sigma}{\mu}$ for the same moment of all transformed images.
 
 \begin{figure}[tbp]
 	\begin{subfigure}{0.4\textwidth}
@@ -260,7 +260,7 @@ In order to test the invariance of the quaternion Zernike moment invariants with
 \end{figure}
 
 \subsection{Results}
-The modulus of the QZMIs for the transformed images shown on Figure~\ref{fig:inv_img} is shown in Table~\ref{tab:inv_old} for the old method of discretization and in Table~\ref{tab:inv_new} for the new, proposed method of discretization. The coefficient of variation ($\frac{\sigma}{\mu}$) shows that using both methods, the moments are invariant to RST transformation. The only rows where $\frac{\sigma}{\mu}$ is higher are the ones where the modulus of the moment is very close to zero, and thus small numerical errors impact this number significantly. Comparing the two methods, the proposed one yields slightly lower values for the coefficient of variation for all moments.
+The moduli of the QZMIs for the transformed images shown on Figure~\ref{fig:inv_img} is shown in Table~\ref{tab:inv_old} for the old method of discretization and in Table~\ref{tab:inv_new} for the new, proposed method of discretization. The coefficient of variation ($\frac{\sigma}{\mu}$) shows that using both methods, the moments are invariant to RST transformation. The only rows where $\frac{\sigma}{\mu}$ is higher are the ones where the modulus of the moment is very close to zero, and thus small numerical errors impact this number significantly. Comparing the two methods, the proposed one yields slightly lower values for the coefficient of variation for all moments.
 
 \begin{table}
 	\centering
@@ -307,17 +307,17 @@ $|\overline{\Psi}_{4,4}^4|$ & 1.28e-8 & 1.52e-8 & 1.37e-8 & 1.56e-8 & 1.50e-8 & 
 \end{table}
 
 \section{Image reconstruction}
-As described in Section~\ref{sec:qzm}, the quaternion Zernike moments of an image can be used to approximately reconstruct the original image using the formulas in \eqref{eq:qzm_reconstruction}. This reconstruction requires QZMs of up to a finite degree $M$.
+As described in Section~\ref{sec:qzm}, the quaternion Zernike moments of an image can be used to approximately reconstruct the original image using the formulas in \eqref{eq:qzm_reconstruction}. This reconstruction requires the computation of QZMs of up to a finite degree $M$.
 
-In order to calculate the reconstructed discrete image, the 
+In order to reconstruct the discrete image, formula 
 $$
 f(r_{x,y},\theta_{x,y}) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r_{x,y})e^{\bm{\mu}m\theta_{x,y}}
 $$
-formula was used for each pixel with image coordinates $(x,y)$, where $(r_{x,y},\theta_{x,y})$ are the polar coordinates obtained by performing the linear transformation of the image onto the unit disk, using the transformation shown on Figure~\ref{fig:transform1} (\textit{tf\textsubscript{1}}) for the old method and the transformation shown on Figure~\ref{fig:transform2} (\textit{tf\textsubscript{2}}) for the new one. The reason for this difference in transformation is that for the proposed discrete orthogonal points system, the interpolated pixel values are calculated using \textit{tf\textsubscript{2}}, while conventionally for (quaternion) Zernike moments, \textit{tf\textsubscript{1}} is used~\cite{qzmi}.
+was used for each pixel with image coordinates $(x,y)$, where $(r_{x,y},\theta_{x,y})$ are the polar coordinates obtained by performing the linear transformation of the image onto the unit disk, using the transformation shown on Figure~\ref{fig:transform1} (\textit{tf\textsubscript{1}}) for the old method and the transformation shown on Figure~\ref{fig:transform2} (\textit{tf\textsubscript{2}}) for the new one. The reason for this difference in transformation is that for the proposed discrete orthogonal points system, the interpolated pixel values are calculated using \textit{tf\textsubscript{2}}, while conventionally for (quaternion) Zernike moments, \textit{tf\textsubscript{1}} is used~\cite{qzmi}.
 
 To measure the error of the reconstruction the normalized mean squared error ($\varepsilon^2$) was used. If $f(x,y)$ is the original and $\widehat{f}(x,y)$ is the reconstructed image, both with size $N \times N$, then the normalized mean squared error is defined as:
 \begin{gather*}
-    \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}
+    \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}.
 \end{gather*}
 
 In the cases, where \textit{tf\textsubscript{2}} is used only the part of the image falling inside the unit circle is reconstructed and thus the mean squared error is calculated over only this part of the image.
@@ -406,26 +406,26 @@ M = 350 & & &
 \end{table}
 
 \section{Image recognition}
-In order to test the image recognition capabilities of the methods, the COIL-100~\cite{coil} and ALOI~\cite{aloi} images and the RST transformed sets of images were used. The exact parameters for the transformations performed to obtain these sets of images is described in Section~\ref{sec:test_images}.
-The goal of the image recognition test is to see what percentage of the transformed images can each method correctly identify from the original, non-transformed images.
+In order to test image recognition capabilities, the COIL-100~\cite{coil} and ALOI~\cite{aloi} images and the RST transformed sets of images were used. The exact parameters for the transformations performed to obtain these sets of images is described in Section~\ref{sec:test_images}.
+The goal of the image recognition test is to see what percentage of the transformed images can each method correctly identify by comparing their moment invariants to the ones of the original, non-transformed images.
 
 To recognize an image, first the QZMIs have to be calculated. In this thesis, we used QZMIs of up to degree 4, but not all possible QZMIs were used. The selected QZMIs were: $\overline{\Psi}_{1,1}^1, \overline{\Psi}_{2,0}^0, \overline{\Psi}_{2,2}^2, \overline{\Psi}_{3,1}^1, \overline{\Psi}_{3,3}^3, \overline{\Psi}_{4,0}^0, \overline{\Psi}_{4,2}^2, \overline{\Psi}_{4,4}^4$. These 8 quaternion valued invariants contain a total of 20 real valued invariants, since while each quaternion could provide of 4 real invariants, the QZMIs $\overline{\Psi}_{n,k}^m$ with $n = k$ necessarily have $\ip{\overline{\Psi}_{n,n}^m} = 0$.
 This follows directly from the definition (see Section~\ref{sec:invariance}): 
 \begin{gather*}
     \begin{split}
-        \overline{\Psi}_{n,n}^m &= \overline{L}_{n,m}^R(f)(\overline{L}_{n,m}^R(f))^* = \left|\overline{L}_{n,m}^R(f)\right|^2 \in \R
+        \overline{\Psi}_{n,n}^m &= \overline{L}_{n,m}^R(f)(\overline{L}_{n,m}^R(f))^* = \left|\overline{L}_{n,m}^R(f)\right|^2 \in \R.
     \end{split}
 \end{gather*}
 Thus from the selected 8 QZMIs four provide a single real-valued invariant and another four provide 4 real-valued invariants. These 20 real invariants are then used to construct a vector $I$ of length 20.
 This vector is normalized using the method presented by \citeauthor{affine_color}~\cite{affine_color}.
 $$
-I_k = sgn(I_k)\left|I_k\right|^\frac{1}{2} \;\;\;\; (k = 1,2,\ldots,20)
+I_k = sgn(I_k)\left|I_k\right|^\frac{1}{2} \;\;\;\; (k = 1,2,\ldots,20).
 $$
 
 This invariant vector is calculated for an RST transformed image and all of the original images. Then the minimum Euclidean distance is used to choose from the original images. The recognition algorithm classifies the transformed image as this chosen image.
 
 \subsection{Noise generation}
-To test the robustness of the methods against noise the tests were also performed with different levels of real-valued Gaussian noise added to all images. The parameters of the Gaussian noise were as follows: the mean of the distribution was always at 0, while standard deviation ($\sigma$) values from 1 up to 60 were used for the QZMIs and standard deviation ranging from 40 to 120 was used to test the QZMRIs. QZMRIs are more robust against noise than QZMIs, so higher noise values could be used.
+To test robustness against noise the tests were also performed with different levels of real-valued Gaussian noise added to all images. The parameters of the Gaussian noise were as follows: the mean of the distribution was always at 0, while standard deviation ($\sigma$) values from 1 up to 60 were used for the QZMIs and standard deviation ranging from 40 to 120 was used to test the QZMRIs. QZMRIs are more robust against noise than QZMIs, so higher noise values could be used.
 Instead of using Gaussian noise, for some test cases salt-and-pepper noise was added with densities ($p$) ranging from 0.2\% up to 15\% for the QZMIs and ranging from 5\% to 30\% for the QZMRIs. Some examples for both types of noise are shown on Figure~\ref{fig:noise}.
 
 
@@ -467,21 +467,20 @@ The tests were performed directly using the raw, noisy images, without any kind 
 \end{figure}
 
 \subsection{Test cases}
-The recognition tests were performed using both the old and the proposed method for discretization. Furthermore, the new method was tested with with two different $N$ values for creating the discrete orthogonal system of $N(4N + 1)$ %TODO: check, ref
-points.
+The recognition tests were performed using both the old and the proposed method for discretization. Furthermore, the new method was tested with with two different $N$ values for creating the discrete orthogonal system of $8N^2$ points.
 
 In the first case $N$ was chosen such that the total number of points in the system should be approximately the same as the pixels of the image falling inside its inscribed circle.
 \begin{gather*}
     \begin{split}
     N &\in \N \\
-    (4N + 1)N &\approx n^2\frac{\pi}{4} \\
-    N &= \left\lfloor \frac{\sqrt{4n^2\pi + 1} - 1}{8}\right\rfloor
+    8N^2 &\approx n^2\frac{\pi}{4} \\
+    N &= \left\lfloor 2n\sqrt{\pi}\right\rfloor.
     \end{split}
 \end{gather*}
 where the size of the image is $n \times n$. Based on the interpolating methods described in Section~\ref{sec:new_trans} this means that bilinear interpolation should be used.
 
-In the other case $N$ was chosen such that the number of points is the minimum required for the method to be accurate. In the case of using QZMIs up to degree 4, this means $N = 10$. %Why, hogy jott ez ki? 
-In this case, based on Section~\ref{sec:new_trans} the interpolation should be done using the integral interpolation formula.
+In the other case $N$ was chosen such that the number of points is close to the minimum required to achieve discrete orthogonality of moments up to degree 4. In this case $N = 10$ was chosen.
+Since the number of points is far less then the number of pixels, based on Section~\ref{sec:new_trans} the interpolation should be done using the integral interpolation formula.
 
 Note that for the old method, the number of points used is the same as the number of pixels in the image.
 
@@ -524,7 +523,7 @@ For the set where only rotation was applied to the images, instead of using QZMI
     \label{tab:recognition_gauss}
 \end{table}
 When the images have Gaussian noise, the new method with the higher number of points performs the best for all levels of noise, far outperforming the original method in recognition capabilities. 
-The rate of recognition for Gaussian noise in case of the RST transformed image sets is shown in Table~\ref{tab:recognition_gauss}. The recognition rate of the new method remains relatively high (around 80\%) even for high noise values, while the recognition rate of the original method drops significantly (below 20\%).
+The rate of recognition for Gaussian noise in case of the RST transformed image sets is shown in Table~\ref{tab:recognition_gauss}. The recognition rate of the new method remains relatively high (around 80\%) even for high noise values, while the recognition rate of the original method drops significantly (below 20\% in some cases).
 
 When using only the minimal possible number of points in the new method, for all noise levels the recognition rate remains roughly around the same level as with the original method, but the computation required to achieve such levels of image recognition is much lower because of the lower number of points.
 

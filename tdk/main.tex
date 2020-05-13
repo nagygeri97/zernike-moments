@@ -9,7 +9,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\usepackage[numbers]{natbib}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{graphicx}
 \usepackage{subcaption}
 
@@ -285,7 +285,7 @@ literate=
   \vfill
 
   \begin{center}
-    {\LARGE \bfseries Color image analysis and recognition using Zernike moments} 
+    {\LARGE \bfseries Color image analysis and recognition using quaternion Zernike moments} 
     % \\[0.5cm]
     \\[2.0cm]
     {\Large TDK thesis}
@@ -294,7 +294,7 @@ literate=
     \begin{minipage}[t]{0.45 \textwidth}
       \emph{Supervisor:} \\[0.25 \baselineskip]
       {\large Zsolt Németh} \\[0.5 \baselineskip]
-      Title title title
+      Assistant Professor
     \end{minipage}
     \begin{minipage}[t]{0.45 \textwidth}
       \begin{flushright}
@@ -309,7 +309,7 @@ literate=
   \vfill
 
   \begin{center}
-    \large Budapest
+    \large Budapest, 2020
 
     % \large Date of closing: 23 May 2019 
   \end{center}
@@ -332,13 +332,14 @@ literate=
 \label{sec:background}
 \input{background.tex}
 
-\chapter{Math?}
+\chapter{Proposed method for discretization}
+\label{sec:maths}
 \input{math.tex}
 
 \chapter{Implementation}
 \input{implementation.tex}
 
-\chapter{Tests and comparison with the previous method}
+\chapter{Tests and comparison with the original method}
 \input{tests.tex}
 
 \chapter{Conclusion}

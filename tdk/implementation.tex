@@ -62,7 +62,7 @@ For the original linear transformation of the image onto the unit disk, this giv
     \begin{split}
     Z_{n,m}(f) &= \lambda\frac{(n+1)}{(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)V_{n,m}^{*}(r_{x,y},\theta_{x,y}) \\
     &= \lambda\frac{(n+1)}{(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)R_{n,m}(r_{x,y})e^{-\bm{i}m\theta_{x,y}} \\
-    &= \lambda\frac{(n+1)}{(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)R_{n,m}(r_{x,y})(\cos (m\theta_{x,y}) - \bm{i}\sin (m\theta_{x,y}))
+    &= \lambda\frac{(n+1)}{(N-1)^2}\sum_{x=1}^{N}\sum_{y=1}^{N}f(x,y)R_{n,m}(r_{x,y})(\cos (m\theta_{x,y}) - \bm{i}\sin (m\theta_{x,y})),
     \end{split}
 \end{gather*}
 where $0\leq |m| \leq n \leq P$, $n - |m|$ is even, $(r_{x,y},\theta_{x,y})$ are the $(x,y)$ coordinates transformed to the unit disk, $\lambda$ is the scaling parameter also given by the transformation (as described in Section~\ref{sec:discretization}) and $f$ is the real-valued, grayscale image.
@@ -75,10 +75,10 @@ Also, there is no need to calculate the Zernike moments for negative $m$ values,
 The class \texttt{ZernikeMomentsColor} calculates the quaternion Zernike moments of an RGB image. First, the conventional Zernike moments for each of the three color channels are calculated, then the relationship between QZMs and Zernike moments is used to construct the quaternions~\cite{qzmi}.
 \begin{gather*}
     \begin{split}
-        Z_{n,m}^R(f) = &-\frac{1}{\sqrt{3}}\left( Im(Z_{n,m}(f_R)) + Im(Z_{n,m}(f_G)) + Im(Z_{n,m}(f_B)) \right)\\
-        &+\left[Re(Z_{n,m}(f_R)) + \frac{1}{\sqrt{3}}\left(Im(Z_{n,m}(f_G)) - Im(Z_{n,m}(f_B))\right)\right]\bm{i}\\
-        &+\left[Re(Z_{n,m}(f_G)) + \frac{1}{\sqrt{3}}\left(Im(Z_{n,m}(f_B)) - Im(Z_{n,m}(f_R))\right)\right]\bm{j}\\
-        &+\left[Re(Z_{n,m}(f_B)) + \frac{1}{\sqrt{3}}\left(Im(Z_{n,m}(f_R)) - Im(Z_{n,m}(f_G))\right)\right]\bm{k}\\
+        Z_{n,m}^R(f) = &-\frac{1}{\sqrt{3}}\left( \ip(Z_{n,m}(f_R)) + \ip(Z_{n,m}(f_G)) + \ip(Z_{n,m}(f_B)) \right)\\
+        &+\left[\rp(Z_{n,m}(f_R)) + \frac{1}{\sqrt{3}}\left(\ip(Z_{n,m}(f_G)) - \ip(Z_{n,m}(f_B))\right)\right]\bm{i}\\
+        &+\left[\rp(Z_{n,m}(f_G)) + \frac{1}{\sqrt{3}}\left(\ip(Z_{n,m}(f_B)) - \ip(Z_{n,m}(f_R))\right)\right]\bm{j}\\
+        &+\left[\rp(Z_{n,m}(f_B)) + \frac{1}{\sqrt{3}}\left(\ip(Z_{n,m}(f_R)) - \ip(Z_{n,m}(f_G))\right)\right]\bm{k},\\
     \end{split}
 \end{gather*}
 where $f$ is an RGB image and $f_R, f_G, f_B$ are the red, green and blue color channels respectively.
@@ -91,14 +91,14 @@ The invariants for scaling and rotation are calculated directly using the QZMs, 
 
 To achieve translation invariance, the common centroid of the RGB image is calculated based on the formulas described by ~\citeauthor{affine_color}~\cite{affine_color}.
 \begin{gather*}
-    \left\{x_c,y_c\right\} = \left\{\frac{M_{10}(f_R)+M_{10}(f_G)+M_{10}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}, \frac{M_{01}(f_R)+M_{01}(f_G)+M_{01}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}\right\}
+    \left\{x_c,y_c\right\} = \left\{\frac{M_{10}(f_R)+M_{10}(f_G)+M_{10}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}, \frac{M_{01}(f_R)+M_{01}(f_G)+M_{01}(f_B)}{M_{00}(f_R)+M_{00}(f_G)+M_{00}(f_B)}\right\},
 \end{gather*}
 where $f_R, f_G, f_B$ are the grayscale images corresponding to the red, green and blue color channels respectively, and $M_{10}, M_{01}, M_{00}$ are the regular image moments introduced in~\eqref{eq:regular_moment}.
 The original image $f$ is then translated in image coordinates such that the origin falls on the common centroid $\{x_c,y_c\}$, and the other invariants are then calculated based on this translated image.
 
 
 \section{New image transformation}\label{sec:new_trans}
-The new image transformation, as described in Section~\ref{sec:new_transformation}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete points system, other interpolating methods have to be used to approximate the image values at these points.
+The new image transformation, as described in Chapter~\ref{sec:maths}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete points system, other interpolating methods have to be used to approximate the image values at these points.
 
 Because of the modularity of the previously described classes, it is possible to swap the old transformation to the new one. With some minor modifications during the calculation of the conventional Zernike moments because of the new discretization formula containing a different measure, %TODO: ref equation
 the previous classes can be used to obtain the QZMIs using the new method of discretization.
@@ -108,7 +108,7 @@ The roots of the Legendre polynomial $P_n$ are essential for the calculation of 
 
 The $n^{th}$ degree Legendre polynomial $P_n$ satisfies the following differential equation:
 \begin{gather}
-    (1-x^2)P_n''(x) - 2xP_n'(x) + n(n+1)P_n(x) = 0\label{eq:legendre_de}
+    (1-x^2)P_n''(x) - 2xP_n'(x) + n(n+1)P_n(x) = 0.\label{eq:legendre_de}
 \end{gather}
 A fast algorithm for calculating the roots of $P_n$, based on this differential equation was presented by \citeauthor{legendre_algo}~\cite{legendre_algo}. The algorithm uses a second-order Runge-Kutta method (namely the midpoint method) to solve the Prüfer-transformed version of~\eqref{eq:legendre_de} for some given initial condition. A first approximation for a root of $P_n$ can be obtained from the solution of the initial value problem. This approximation is then further refined by Newton's method.
 Subsequent roots can be calculated using the same method but starting from different initial conditions defined by the previous root.
@@ -119,24 +119,24 @@ In practice, this algorithm calculates the roots of $P_n$ with accuracy up to ma
 To calculate the Zernike moments over the discrete orthogonal points system, instead of the $\lambda$ scaling factor used in the linear transformation, a different measure is used. To calculate this $\mu_{k,N}$ measure (defined in% TODO: keplet hivatkozni, jeloles egyeztetni
 ), the following integral has to be calculated:
 \begin{gather*}
-    \mathcal{A}_{k,N} = \int_{-1}^{1}\ell_{k,N}(x)\dif x
+    \mathcal{A}_{k,N} = \int_{-1}^{1}\ell_{k,N}(x)\dif x,
 \end{gather*}
 where $\ell_{k,N}$ is the $k^{th}$ Lagrange basis polynomial corresponding to the roots of the Legendre polynomial $P_N$.
 
 The Gauss-Legendre quadrature is based on the roots of the Legendre polynomial $P_n$ of degree $n$. Let $x_1,x_2,\ldots,x_n$ be the roots of $P_n$.
 \begin{gather*}
-    \int_{-1}^{1}f(x)\dif x \approx \sum_{k=1}^n w_k f(x_k) \\
-    w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}
+    \int_{-1}^{1}f(x)\dif x \approx \sum_{k=1}^n w_k f(x_k), \\
+    w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}.
 \end{gather*}
 The quadrature is exact for all polynomials whose degree is at most $2n-1$. Now $\ell_{k,N}(x)$ is an $N-1$ degree polynomial, so the Gauss-Legendre quadrature with $n=N$ is exact for $\ell_{k,N}$. Furthermore, $\ell_{k,N}$ is defined such that $\ell_{k,N}(x_i) = 0$ for $i \neq k$, and $\ell_{k,N}(x_k) = 1$ Thus:
 \begin{gather*}
-    \int_{-1}^{1}\ell_{k,N}(x)\dif x = w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}
+    \int_{-1}^{1}\ell_{k,N}(x)\dif x = w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}.
 \end{gather*}
 
 Since the roots of the Legendre polynomial $P_N$ must be computed to obtain the points system, this formula gives an easy and fast way to calculate the exact values of $\mu_{k,N}$.
 
 \subsection{Image interpolation}
-After obtaining the discrete orthogonal points system the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points.
+After obtaining the discrete orthogonal points system the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.
 
 First, the image is linearly transformed onto the unit disk using the transformation shown on Figure~\ref{fig:transform2}, so that the the transformed image covers the entire unit disk. This transformation is used as opposed to the one on Figure~\ref{fig:transform1}, because the points system covers the entire unit disk, so the image also has to cover the whole disk.
 
@@ -173,7 +173,7 @@ First, the four pixels of the image that are closest to the given point $(x,y)$ 
 
 
 \paragraph{Much less points than the number of pixels.}
-If the number of points is far fewer than the number of pixels, then using bilinear interpolation many of the original pixel values would not be represented in the final approximate function values. Therefore, the following algorithm is used to approximate function values using discrete integration.
+If the number of points is far less than the number of pixels, then using bilinear interpolation many of the original pixel values would not be represented in the final approximate function values. Therefore, the following algorithm is used to approximate function values using discrete integration.
 
 First, for each pixel in the original image, determine which point it falls closest to after the linear transformation. Then, for each point in the discrete orthogonal points system, calculate the average of the pixels that are closest to that point. This algorithm divides the unit disk into annular sections based on the proximity to the new points. This is shown on Figure~\ref{fig:interpolation_integral}.
 
