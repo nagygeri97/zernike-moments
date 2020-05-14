@@ -555,3 +555,40 @@ Gaussian noise (no rounding) with std dev 60
 
 Gaussian noise (no rounding) with std dev 70
 83.92857142857143 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 80
+80.45634920634922 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 90
+83.82936507936508 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 100
+79.46428571428571 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 110
+69.94047619047619 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 120
+72.12301587301587 % recognized correctly.
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 20%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 25%
+100.0 % recognized correctly.
+
+Salt and pepper noise with density 30%
+100.0 % recognized correctly.
