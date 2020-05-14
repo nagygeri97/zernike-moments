@@ -1,3 +1,21 @@
-TODO conclusion
+In this chapter we summarize the work and results presented in this thesis. We also present a short overview of further possibilities based on this work.
 
-Future work, hogyan tovabb ... (akar sajat fejezetebe is)
+We have constructed a points system on the unit disk, over which the quaternion extension of the Zernike functions is discrete orthogonal. Using this method of discretization, the quaternion Zernike moments are more robust to noise than with the previously used method.
+
+Many tests have been performed on large sets of images to verify and quantify the improvements of the method.
+First, the invariance properties of the QZMIs have been verified empirically using the proposed method.
+
+By comparing the image reconstruction capabilities of the original and the proposed method, we found that the mean square error of reconstruction can decrease significantly, by more than 50\% in some cases, when using the proposed method.
+
+Significant improvements in image recognition have also been achieved by the new method, especially under highly noisy environments. With respect to Gaussian noise the new method is much more robust, achieving a recognition rate of more than 80\% even for extreme noise values, where the original method only achieved a rate of recognition of around 15\%. The reason for this improvement is that due to the discrete orthogonality property of the new method, there is no redundancy between different moments.
+
+With respect to salt-and-pepper noise, no significant difference could be determined between the methods, since this kind of noise adds a very high frequency component to the image, which is filtered by using only moments with low orders in both methods.
+
+We have also found that in order to achieve almost the same recognition rate with the new method as the original one, the number of points in the system can be reduced to almost the minimum number required to still achieve discrete orthogonality. This reduces the computational costs significantly. 
+
+\section{Future possibilities}
+One possibility for future work is to employ the techniques described in this thesis in some applications, which currently use other Zernike moment based methods.
+
+It is also possible to utilize the techniques described in this thesis to try and improve other quaternion moment invariant based methods, such as the quaternion Fourier-Mellin moments~\cite{qfmm}.
+
+Finally, the methods described could be further generalized to three dimensional space, where possible applications include pattern recognition in point clouds produced by LiDAR sensors~\cite{zernike_lidar}.
