@@ -1,9 +1,8 @@
 This chapter presents the tools and methods used for implementing a program for calculating the QZMIs of an image using both methods of discretization.
 
 \section{Programming language and libraries used}
-The implementation was created using the Python programming language~\cite{python} and relying on the Numpy~\cite{numpy} and Numba~\cite{numba} libraries to achieve efficient and fast computation of the moment invariants, as well as the Python Imaging Library (PIL, Pillow)~\cite{pil} for image manipulation.
-
-Numpy provided a way to efficiently work with arrays and matrices. It also provided the quaternion package, which supports the quaternion data type.
+The implementation was created using the Python programming language~\cite{python} and relies on the Numpy~\cite{numpy} and Numba~\cite{numba} libraries to achieve efficient and fast computation of the moment invariants, as well as the Python Imaging Library (PIL, Pillow)~\cite{pil} for image manipulation.
+Numpy provided a way to efficiently work with arrays and matrices, as well as the quaternion package, which supports the quaternion data type.
 
 Using the just-in-time compilation (JIT) capabilities of Numba (i.e. the \texttt{@jit} annotation), the computationally heavy parts of the implementation could be made almost as fast as native code. The disadvantage of using JIT is that it limits the available types and functions, so in the implementation the use of \texttt{@jit} is kept only to the critical, computationally intensive functions. 
 
@@ -29,9 +28,9 @@ The relationships between these classes are shown on Figure~\ref{fig:classes}, a
 Since the work presented in this thesis involves changing the way an image is transformed from image coordinates to polar coordinates inside the unit circle, the classes were made modular with respect to the transformation used. This makes it easy to create and test a new image transformation function with the interface expected by the calculating classes.
 
 \subsection{Radial polynomials}
-To calculate the value of all $R_{n,m}$ radial polynomials up to some maximal degree $P$ at a point $r \in [0,1]$, the modified Kintner's method was used, as described in~\cite{kintner}. This algorithm computes the value of $R_{n,m}(r)$ for all $0 \leq |m| \leq n \leq P$, ($n - |m|$ is even) with complexity $\mathcal{O}(N^2)$. This method is ideal for the computation of all radial polynomial values up to a maximum degree.
+To calculate the value of all $R_{n,m}$ radial polynomials up to some maximal degree $P$ at a point $r \in [0,1]$, the modified Kintner's method was used, as described in~\cite{kintner}. This algorithm computes the value of $R_{n,m}(r)$ for all $0 \leq |m| \leq n \leq P$, ($n - |m|$ is even) with complexity $\mathcal{O}(N^2)$. This method is ideal for the precomputation of all radial polynomial values up to a maximum degree.
 
-Since this method is called many times during the calculation of Zernike moments, just-in-time compilation was used to further increase efficiency. Figure~\ref{fig:radial_code} shows the JIT-enabled function.
+Since this routine is called many times during the calculation of Zernike moments, just-in-time compilation was used to further increase efficiency. Figure~\ref{fig:radial_code} shows the JIT-enabled function.
 
 \begin{figure}[tbp]
     \centering
@@ -72,7 +71,7 @@ By precomputing the sin and cos values for all possible $m$ and $\theta_{x,y}$ v
 Also, there is no need to calculate the Zernike moments for negative $m$ values, as the $Z_{n,m}(f) = Z_{n,-m}(f)^{*}$ identity can be used later to obtain those values.
 
 \subsection{Quaternion Zernike moments}
-The class \texttt{ZernikeMomentsColor} calculates the quaternion Zernike moments of an RGB image. First, the conventional Zernike moments for each of the three color channels are calculated, then the relationship between QZMs and Zernike moments is used to construct the quaternions~\cite{qzmi}.
+The class \texttt{ZernikeMomentsColor} calculates the quaternion Zernike moments of an RGB image. First, the conventional Zernike moments for each of the three color channels are calculated, then the relationship between QZMs and Zernike moments is applied to construct the quaternions~\cite{qzmi}.
 \begin{gather*}
     \begin{split}
         Z_{n,m}^R(f) = &-\frac{1}{\sqrt{3}}\left( \ip(Z_{n,m}(f_R)) + \ip(Z_{n,m}(f_G)) + \ip(Z_{n,m}(f_B)) \right)\\
@@ -98,13 +97,12 @@ The original image $f$ is then translated in image coordinates such that the ori
 
 
 \section{New image transformation}\label{sec:new_trans}
-The new image transformation, as described in Chapter~\ref{sec:maths}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete points system, other interpolating methods have to be used to approximate the image values at these points.
+The new image transformation, as described in Chapter~\ref{sec:maths}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete points system, some interpolating methods have to be used to approximate the image values at these points.
 
-Because of the modularity of the previously described classes, it is possible to swap the old transformation to the new one. With some minor modifications during the calculation of the conventional Zernike moments because of the new discretization formula containing a different measure, %TODO: ref equation
-the previous classes can be used to obtain the QZMIs using the new method of discretization.
+Because of the modularity of the previously described classes, it is possible to swap the old transformation with the new one. With some minor modifications during the calculation of the conventional Zernike moments -- because of the new discretization formula containing a different measure -- the previous classes can be used to obtain the QZMIs using the new method of discretization.
 
 \subsection{Roots of Legendre polynomials}
-The roots of the Legendre polynomial $P_n$ are essential for the calculation of the new points system. An explicit formula, which gives the roots does not exist, thus an efficient and fast iterative algorithm is needed to calculate these roots.
+The roots of the Legendre polynomial $P_n$ are essential for the calculation of the new points system. An explicit formula for the roots does not exist, thus an efficient and fast iterative algorithm is utilized to calculate these roots.
 
 The $n^{th}$ degree Legendre polynomial $P_n$ satisfies the following differential equation:
 \begin{gather}
@@ -113,7 +111,7 @@ The $n^{th}$ degree Legendre polynomial $P_n$ satisfies the following differenti
 A fast algorithm for calculating the roots of $P_n$, based on this differential equation was presented by \citeauthor{legendre_algo}~\cite{legendre_algo}. The algorithm uses a second-order Runge-Kutta method (namely the midpoint method) to solve the Prüfer-transformed version of~\eqref{eq:legendre_de} for some given initial condition. A first approximation for a root of $P_n$ can be obtained from the solution of the initial value problem. This approximation is then further refined by Newton's method.
 Subsequent roots can be calculated using the same method but starting from different initial conditions defined by the previous root.
 
-In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only a fix, limited number of iterations for both the Runge-Kutta and the Newton's method.
+In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only a just a few, predefined number of iterations for both the Runge-Kutta and the Newton's method.
 
 \subsection{Computing the discrete measure}
 To calculate the Zernike moments over the discrete orthogonal points system, besides the $\lambda_{n,m} = n + 1$ scaling factor, a weight function is used as well (as described in \eqref{eq:QZMappr}). To calculate these $w(r_{k,N},\theta_{j,N})$ weight values (defined in \eqref{weight}), the following integral has to be calculated:
@@ -132,7 +130,7 @@ The quadrature is exact for all polynomials whose degree is at most $2n-1$. Now 
     \int_{-1}^{1}\ell_{k,N}(x)\ dx = w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}.
 \end{gather*}
 
-Since the roots of the Legendre polynomial $P_N$ must be computed to obtain the points system, this formula gives an easy and fast way to calculate the exact values of $\mu_{k,N}$.
+Since the roots of the Legendre polynomial $P_N$ must be computed to obtain the points system, this formula gives an easy and fast way to calculate the exact values of the weight function $w$.
 
 \subsection{Image interpolation}
 After obtaining the discrete orthogonal points system the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.

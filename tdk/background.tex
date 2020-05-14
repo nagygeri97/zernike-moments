@@ -10,21 +10,21 @@ M_{ij} =  \sum_x \sum_y x^i y^j I(x,y) \label{eq:regular_moment},
 \end{gather} with $I(x,y)$ being the pixel value at the coordinates $(x,y)$.
 
 \subsection{Moment invariants}
-Using specific image moments, so-called moment invariants can be defined, which are invariant under certain transformations, such as rotation, scaling, and translation.
+Using specific image moments, so-called moment invariants can be defined, which are invariant under certain transformations, such as rotation, scaling, and translation. For further details on these, see Section~\ref{sec:invariance}.
 
 These invariants are widely used in applications for pattern matching and image recognition~\cite{app1, app2, app3}. In particular, moment invariants can be used in medical applications, such as solving the Pathological Brain Detection problem~\cite{med_app_1}.
 
 \section{Zernike moments}
-Zernike functions, first introduced by Zernike~\cite{zernike} in 1934 are a system of complex, orthogonal polynomials defined on the unit disc. Using polar coordinates the Zernike polynomials $V_{n,m}$ ($n \in \mathds{N}$, $m \in \mathds{Z}$, $n \geq |m|$ and $n - |m|$ is even) are defined as
+Zernike functions, first introduced by F. Zernike~\cite{zernike} in 1934 are a system of complex, orthogonal functions defined on the unit disc. Using polar coordinates the Zernike functions $V_{n,m}$ ($n \in \mathds{N}$, $m \in \mathds{Z}$, $n \geq |m|$ and $n - |m|$ is even) are defined as
 \begin{gather*}
   V_{n,m}(r,\theta) = R_{n,m}(r) e^{i m\theta},
 \end{gather*}
-where $ R_{n,m}(r) $ are the radial polynomials defined as
+where $ R_{n,m}(r) $ are the radial polynomials
 \begin{gather}
   R_{n,m}(r) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}r^{n-2k} \label{eq:radial_poly}.
 \end{gather}
 
-It is important to note that these radial polynomials are the same for $m$ and $-m$, and satisfy an orthogonality relation over $[0,1]$ with respect to the weight $r$ (see e.g. \cite{schipp}), i.e. for a fixed $m$ we have
+It is important to note that these polynomials are the same for $m$ and $-m$, and satisfy an orthogonality relation over $[0,1]$ with respect to the weight $r$ (see e.g. \cite{schipp}), i.e. for a fixed $m$ we have
 \begin{equation}\label{Rortho}
 	\int_0^1 R_{n,|m|}(r) R_{n',|m|}(r)r\ dr  = \frac{1}{2n+2} \delta_{n,n'},
 \end{equation}
@@ -35,7 +35,7 @@ and can be expressed in terms of the shifted Jacobi polynomials in the following
 where we denoted the $k$-th degree classical Jacobi polynomials by $P_k^{(\alpha,\beta)}$ (see e.g. \cite{Szego}).
 
 
-Zernike moments are image moments, defined for grayscale images inside the unit circle, using the Zernike polynomials.
+Zernike moments are image moments, defined for grayscale images inside the unit circle.
 The system of Zernike polynomials proved to be a suitable basis for series expansions in numerous optical applications (see for example~\cite{wavefront,optical_human_eye,opt_surf}), and moment invariants could easily be constructed using the Zernike moments~\cite{zernike_moments}. 
 
 The Zernike moment of order $n$ and repetition $m$ of a grayscale, continuous image function $f(r,\theta)$ given in polar coordinates is defined as
@@ -61,7 +61,7 @@ The previously defined Zernike moments can only be used for grayscale images, an
 
 Conventionally, for multichannel, color images, two main approaches are being used. Either the image is converted to grayscale so that the moments defined for grayscale images could be used, or (after RGB-decomposition) the grayscale method is used on each channel of the image~\cite{affine_color}.
 
-More recently, the algebra of quaternions was employed to various conventional moments so that color images can be analysed holistically.
+More recently, the algebra of quaternions was employed to generalize various conventional moments so that color images can be analysed holistically.
 
 \subsection{Quaternion representation of color images}
 
@@ -94,7 +94,7 @@ where functions $f_R , f_G, f_B:\R^2\to\R$ represent the red, green and blue com
 
 % Quaternions are a generalization of complex numbers, consisting of one real and three imaginary parts. A quaternion $q$ can be represented in the form $q = a + b\mathbf{i} + c\mathbf{j} + d\mathbf{k}$, where $a,b,c,d \in \mathds{R}$ and $\mathbf{i}, \mathbf{j}, \mathbf{k}$ are the imaginary units, defined by the multiplication rules $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$. The set of quaternions is denoted by $\mathds{H}$.
 
-For example, \citeauthor{qfmm}~\cite{qfmm} introduced quaternion Fourier-Mellin moments (QFMMs) which are an extension of the conventional Fourier-Mellin moments. Similarly, the same quaternion techniques were applied successfully to other function systems (e.g.~\cite{bessel-fourier, chebyshev-fourier}), yielding similar results.
+For example, \citeauthor{qfmm}~\cite{qfmm} introduced quaternion Fourier-Mellin moments (QFMMs) which are an extension of the conventional Fourier-Mellin moments. Similarly, the same quaternion techniques were applied successfully to other function systems (e.g.~\cite{Shao, chebyshev-fourier}), yielding similar results.
 
 % The main idea behind these extensions is that an RGB image can be viewed as a pure quaternion valued function, with each color component corresponding to one of the imaginary units.
 
@@ -110,12 +110,12 @@ The main difference, compared to the conventional Zernike moments is that instea
 \[
 	\phi_{n,m}(r,\theta) = R_{n,m}(r) e^{-\qmu m\theta},
 \]
-satisfy the orthogonality relation
+where $\qmu$ is an arbitrary unit pure quaternion, satisfy the orthogonality relation
 \begin{equation}\label{QZortho}
 	\frac{n+1}{\pi} \int_0^1 \int_0^{2\pi} \phi_{n,m}(r,\theta) \phi^*_{n',m'}(r,\theta) r \ d\theta dr = \delta_{n,n'}\delta_{m,m'}.
 \end{equation}
 
-Let $f(r,\theta)$ be a pure quaternion valued, RGB image function with a continuous domain, defined in polar coordinates on the unit circle $\D$. Each color component corresponds to one of the imaginary units. Let $\bm{\mu} = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$ be a unit pure quaternion.
+Let $f(r,\theta)$ be a pure quaternion valued, RGB image function with a continuous domain, defined in polar coordinates on the unit circle $\D$. Each color component corresponds to one of the imaginary units. The usual choice for $\qmu$ is the value $\frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$.
 
 Since the multiplication of quaternions is not commutative, both right-side and left-side quaternion Zernike moments can be defined. The right-side QZM of order $n$ and repetition $m$ is defined as
 \begin{gather}
@@ -131,7 +131,7 @@ The left-side QZMs are defined as
   Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)e^{-\bm{\mu}m\theta}f(r,\theta)r\ dr\ d\theta.
 \end{gather*}
 
-Similarly to non-quaternion Zernike moments, the original image can be approximated by using either right-side or left-side QZMs only up to a finite $M$ degree.
+Similarly to the non-quaternion case, the original image can be approximated by using either right-side or left-side QZMs only up to a finite $M$ degree.
 \begin{gather}
 \begin{split}
   f(r,\theta) &\approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r)e^{\bm{\mu}m\theta} \\
@@ -139,15 +139,15 @@ Similarly to non-quaternion Zernike moments, the original image can be approxima
 \end{split}\label{eq:qzm_reconstruction}
 \end{gather}
 
-In this thesis, only the right-side QZMs will be used, because of the following relation between right- and left-side QZMs:
+In this thesis, only the right-side QZMs will be studied, based on the following relation between right- and left-side QZMs:
 \begin{gather*}
   Z_{n,m}^L(f) = -(Z_{n,m}^R(f))^{*}
 \end{gather*}
 
-The discretization of the QZMs and the transformation of arbitrary digital RGB images onto the unit disk is described in detail in Section~\ref{sec:discretization} 
+The importance of proper discretization of the QZMs and the transformation of arbitrary digital RGB images onto the unit disk is described in detail in Section~\ref{sec:discretization} 
 
 \section{Discretization of QZMs}\label{sec:discretization}
-The conventional Zernike moments and the QZMs are defined in terms of polar coordinates, for image functions, whose domain is the unit disk. On the other hand, digital images are usually defined in image coordinates, with the coordinates being integers ranging from $0$ to $N - 1$ (the number of pixels along each axis).
+As it was already mentioned, the conventional Zernike moments and the QZMs are defined in terms of polar coordinates, for image functions, whose domain is the unit disk. On the other hand, digital images are usually defined in image coordinates, with the coordinates being integers ranging from $0$ to $N - 1$ (the number of pixels along each axis).
 
 There are two "natural" ways to linearly transform a square image from image coordinates to polar coordinates inside the unit circle, using only translation and scaling~\cite{kintner}.
 
@@ -247,8 +247,8 @@ where $f \in \mathds{R}^2 \rightarrow \mathds{H}$ is the RGB image defined in im
 
 In the rest of this thesis, for comparison purposes, the transformation of the image inside the unit circle will be used as \citeauthor{qzmi}~\cite{qzmi} used this discretization to present their results.
 
-\subsection{Other approaches for discretization}
-A similar approach was utilized numerous times in the literature, substituting the radial polynomial system $R_{n,m}$ of Zernike functions with other well-known orthogonal systems over the radial interval $[0,1]$. For color image analysis, further examples of this include the QFMMs \cite{qfmm}, the QPETs, QPCTs and QPSTs \cite{Li}, the QCMs \cite{Guo}, the QBFMs \cite{Shao}, the QRHFMs \cite{Wang}, the QG-CHFMs and QG-PJFMs \cite{Singh} and the QSBFMs \cite{Yang}.
+\subsection{Other function systems and discretization strategies}
+Over the past 8 years, a similar approach was utilized numerous times in the literature, substituting the radial polynomial system $R_{n,m}$ of Zernike functions with other well-known orthogonal systems over the radial interval $[0,1]$. For color image analysis, further examples of this include the QFMMs \cite{qfmm}, the QPETs, QPCTs and QPSTs \cite{Li}, the QCMs \cite{Guo}, the QBFMs \cite{Shao}, the QRHFMs \cite{Wang}, the QG-CHFMs and QG-PJFMs \cite{Singh} and the QSBFMs \cite{Yang}.
 
 This natural method was proven susceptible to inaccuracies of both geometric and numeric nature when applied to grayscale images (see e.g.  \cite{LiaoPawlak}, \cite{PawlakLiao}), and these problems are carried over to the quaternion generalizations as well. Later in \cite{Xin}, a more accurate computational technique was proposed, where $\D$ is partitioned into polar sectors of approximately equal areas, and the original pixels are transformed to the centroids of these via cubic interpolation, and the weights are computed by performing the integration of functions $\phi_{n,m}$ over the respective polar sectors.
 
@@ -271,11 +271,11 @@ In order to achieve translation invariance, the common centroid of all three col
 If the origin of the polar coordinate system is placed on this common centroid $(x_c, y_c)$, then the QZMs calculated in this coordinate system will be translation invariant. Let $\overline{Z}_{n,m}^R(f)$ denote the translation invariant QZMs.
 
 \subsection{Rotation invariance}
-To achieve rotation invariance consider the image rotated by some degree $\alpha$: $f'(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f') = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f') = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. Because of the these properties 
+To achieve rotation invariance consider the image rotated by some degree $\alpha$: $f'(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f') = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f') = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. It follows that the quaternion defined as 
 $$\Phi_{n,k}^m = Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*$$
-is invariant to rotation. In the following chapters, this will be referred to as a quaternon Zernike moment rotation invariant (QZMRI).
+is invariant under rotation. From now on, this will be referred to as a quaternion Zernike moment rotation invariant (QZMRI).
 
-Previously, the modulus $|Z_{n,m}^R(f)|$ was used to achieve rotation invariance~\cite{qzm}, but this provided only one real-valued invariant, whereas the following construction provides a quaternion-values invariant.
+The modulus $|Z_{n,m}^R(f)|$ can also be used to achieve rotation invariance~\cite{qzm}, but this provides only one real-valued invariant, whereas the previous construction results in a quaternion-valued invariant.
 
 \subsection{Scaling invariance}
 For non-negative integers $m$ and $l$, \citeauthor{qzmi}~\cite{qzmi} constructed the following scaling invariants utilizing the symmetric property of the radial polynomials with respect to $m$ and an alternate form of the QZMs.
@@ -288,17 +288,17 @@ For non-negative integers $m$ and $l$, \citeauthor{qzmi}~\cite{qzmi} constructed
 \end{gather*}
 
 \subsection{Combined RST invariance}
-Similarly to using QZMs to define rotation invariants, the previously defined scaling invariants can also be used to construct $\Psi_{n,k}^m = L_{n,m}^R(f)(L_{k,m}^R(f))^*$, which is invariant to rotation and scaling.
+Similarly to rotation invariants, the previously defined scaling invariants can also be used to construct $\Psi_{n,k}^m = L_{n,m}^R(f)(L_{k,m}^R(f))^*$, which is invariant to both rotation and scaling.
 
 In order to achieve translation invariance, throughout the construction of the scaling invariants $L_{n,m}^R$ the translation invariant QZMs ($\overline{Z}_{n,m}^R(f)$) can be used, thus defining the $\overline{L}_{n,m}^R$ translation and scaling invariants.
 
-Furthermore, $\overline{\Psi}_{n,k}^m = \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^*$ is invariant to rotation, scaling and translation~\cite{qzmi}. This is called a quaternion Zernike moment invariant (QZMI).
+In summary, $\overline{\Psi}_{n,k}^m = \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^*$ is invariant to rotation, scaling and translation~\cite{qzmi}. This is called a quaternion Zernike moment invariant (QZMI).
 
 \section{Applications}
-Zernike moments and moment invariants are a useful tool in optical and medical applications. Specifically, Zernike moments can be used in the representation of optical aberration~\cite{wavefront,optical_human_eye,opt_surf}.
+Zernike moments and moment invariants are a useful tool in optical and medical applications. Specifically, Zernike moments can be used to represent and capture optical aberrations~\cite{wavefront,optical_human_eye,opt_surf}.
 
 Furthermore, applications in pattern recognition have shown that in noisy environments Zernike moment yield the best results~\cite{pattern_recognition}. \citeauthor{hand_vein}~\cite{hand_vein} have used Zernike moment invariants to extract descriptions of hand vein patterns.
 
-Another application is in image watermarking so that the watermark is invariant to transformations and robust against noise~\cite{watermarking_auth, robust_watermarking, invariant_watermark}.
+Another field of application is image watermarking so that the watermark is invariant to transformations and robust against noise~\cite{watermarking_auth, robust_watermarking, invariant_watermark}.
 
-Finally, one possible application is to use Zernike moments in conjunction with neural networks. The robustness of neural networks with respect to noise is a known shortcoming of current systems~\cite{nn_robust,nn_noise_robust}. Zernike moments can be used to extract features of images with high robustness to noise, so these extracted features can be used as input for neural networks~\cite{zernike_nn,zernike_nn2}. 
+Finally, one potentially powerful application is to use Zernike moments in conjunction with neural networks. The robustness of neural networks with respect to noise is a known shortcoming of current systems~\cite{nn_robust,nn_noise_robust}. Zernike moments can be used to extract features of images with high robustness to noise, so these extracted features can be used as input for neural networks~\cite{zernike_nn,zernike_nn2}. 
