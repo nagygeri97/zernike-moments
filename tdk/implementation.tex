@@ -116,8 +116,7 @@ Subsequent roots can be calculated using the same method but starting from diffe
 In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only a fix, limited number of iterations for both the Runge-Kutta and the Newton's method.
 
 \subsection{Computing the discrete measure}
-To calculate the Zernike moments over the discrete orthogonal points system, instead of the $\lambda$ scaling factor used in the linear transformation, a different measure is used. To calculate this $\mu_{k,N}$ measure (defined in% TODO: keplet hivatkozni, jeloles egyeztetni
-), the following integral has to be calculated:
+To calculate the Zernike moments over the discrete orthogonal points system, besides the $\lambda_{n,m} = n + 1$ scaling factor, a weight function is used as well (as described in \eqref{eq:QZMappr}). To calculate these $w(r_{k,N},\theta_{j,N})$ weight values (defined in \eqref{weight}), the following integral has to be calculated:
 \begin{gather*}
     \mathcal{A}_{k,N} = \int_{-1}^{1}\ell_{k,N}(x)\ dx,
 \end{gather*}

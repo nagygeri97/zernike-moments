@@ -10,9 +10,11 @@ Then, the system of sampling points $X_N$ over the unit disk $\D$ is defined in 
 	X_N\ni (r_{k,N}, \theta_{j,N}) = \left(\sqrt{\frac{1+\rho_{k,N}}{2}} , \frac{2\pi j}{4N} \right), \qquad (k=1,\ldots,N,j=1,\ldots,4N),
 \]
 and the respective weight values and constants are
-\[
+
+\begin{gather}
 	w(r_{k,N},\theta_{j,N}) = \frac{\mathcal{A}_{k,N}}{8N},\qquad \lambda_{n,m} = n+1,
-\]
+	\label{weight}
+\end{gather}
 so the generated integral approximation based on \eqref{eq:QZMappr} is
 \[
 	\frac{1}{\pi} \int_{0}^1 \int_0^{2\pi} f(r,\theta)\ d\theta dr \approx \int_{X_N} f = \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_{k,N},\theta_{j,N}) \frac{\mathcal{A}_{k,N}}{8N}.
