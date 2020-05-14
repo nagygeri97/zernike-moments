@@ -111,7 +111,7 @@ The $n^{th}$ degree Legendre polynomial $P_n$ satisfies the following differenti
 A fast algorithm for calculating the roots of $P_n$, based on this differential equation was presented by \citeauthor{legendre_algo}~\cite{legendre_algo}. The algorithm uses a second-order Runge-Kutta method (namely the midpoint method) to solve the Prüfer-transformed version of~\eqref{eq:legendre_de} for some given initial condition. A first approximation for a root of $P_n$ can be obtained from the solution of the initial value problem. This approximation is then further refined by Newton's method.
 Subsequent roots can be calculated using the same method but starting from different initial conditions defined by the previous root.
 
-In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only a just a few, predefined number of iterations for both the Runge-Kutta and the Newton's method.
+In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only just a few, predefined number of iterations for both the Runge-Kutta and the Newton's method.
 
 \subsection{Computing the discrete measure}
 To calculate the Zernike moments over the discrete orthogonal points system, besides the $\lambda_{n,m} = n + 1$ scaling factor, a weight function is used as well (as described in \eqref{eq:QZMappr}). To calculate these $w(r_{k,N},\theta_{j,N})$ weight values (defined in \eqref{weight}), the following integral has to be calculated:
