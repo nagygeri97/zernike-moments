@@ -1,0 +1,393 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{textpos}
+\usepackage{pgf-umlsd}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+\usepgfplotslibrary{statistics}
+
+
+\usepackage{t1enc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\usepackage[title,titletoc]{appendix}
+\usepackage[section]{placeins}
+\usepackage{relsize}
+
+\usepackage[normalem]{ulem} %% Provides underlining.
+\usepackage{caption} %% Provides captions.
+\usepackage{mdframed} %% Provides frames around text and equations.
+\usepackage{tikz-cd} %% Provides diagram drawing environment.
+\usepackage{adjustbox} %% Provides additional tools to resize content.
+% \usepackage[magyar]{babel} %% Provides foreign language support.
+
+%%%%
+%% Provides math related environments and directives.
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{latexsym}
+
+\usepackage{dsfont}
+\usepackage{commath}
+\usepackage{bm}
+\usepackage{subcaption}
+
+%% See http://tex.stackexchange.com/questions/43835/conflict-between-amsthm-and-some-other-package
+\let\proof\relax 
+\let\endproof\relax
+
+%%%%
+%% Provides table environments and related directives.
+\usepackage{array}
+\usepackage{tabulary}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{diagbox}
+\usepackage{array}
+
+%%%%
+%% Provides figure environments and related directives.
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\def\maxheight#1{\ifdim\Gin@nat@height>#1 #1\else\Gin@nat@height\fi}
+\makeatother
+
+\usepackage{fancyvrb}
+\usepackage{rotating}
+\frenchspacing
+
+
+
+% Fordításhoz: pdflatex
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Hq}{\mathbb{H}}
+\newcommand{\D}{\mathbb{D}}
+
+\newcommand{\qi}{\textbf{i}}
+\newcommand{\qj}{\textbf{j}}
+\newcommand{\qk}{\textbf{k}}
+\newcommand{\qmu}{\boldsymbol{\mu}}
+
+\DeclareMathOperator{\rp}{Re}
+\DeclareMathOperator{\ip}{Im}
+
+\def\n{n\in\N}
+\def\x{x\in\R}
+\def\N{{\mathbb N}}
+\def\R{{\mathbb R}}
+\def\C{{\mathbb C}}
+\def\Z{{\mathbb Z}}
+\def\D{{\mathbb D}}
+\def\B{{\mathfrak B}}
+\def\T{{\mathbb T}}
+\def\btheta{{\boldsymbol{\vartheta}}}
+\def\bgamma{{\boldsymbol{\gamma}}}
+\def\bl{{\mathbf{l}}}
+\def\bk{{\mathbf{k}}}
+\def\bt{{\mathbf{t}}}
+\def\be{{\mathbf{e}}}
+
+
+\newtheorem{definicio}{Definíció}
+\newtheorem{allitas}{Állítás}
+\newtheorem{kov}{Következmény}
+\newtheorem{pelda}{Példa}
+\newtheorem{tetel}{Tétel}
+
+
+\usebackgroundtemplate{%
+\includegraphics[width=\paperwidth,height=\paperheight]{background.jpg}%
+}
+
+%\setbeamercolor{title}{fg=white}
+%\setbeamercolor{author}{fg=white}
+%\setbeamercolor{institute}{fg=white}
+%\setbeamercolor{date}{fg=white}
+\setbeamercolor{frametitle}{fg=white}
+%
+%\title{\bf Presentation heading}
+%\author{Sample Samuel}
+%\institute{Eötvös Loránd University (ELTE), Budapest, Hungary}
+%\date{2018}
+
+\pgfplotsset{compat=1.16}
+
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{title.jpg}}%
+\begin{frame}
+
+\color{white}{
+
+\textbf{\Large{Színes képek elemzése és felismerése kvaternió Zernike momentumok segítségével}}
+% \textbf{\Large{Color image analysis and recognition using quaternion Zernike moments}}
+
+\bigskip
+
+\Large{Nagy Gergely}
+
+\bigskip
+
+\footnotesize{Eötvös Loránd Tudományegyetem, Informatikai Kar}
+\smallskip
+
+\footnotesize{2020. május 28.}
+\vspace{2em}
+
+% Szakmai beszámolókhoz: (Igazi neveket kérünk feltüntetni.) Más előadáson nem kell.
+\begin{footnotesize}
+Témavezető: Németh Zsolt
+\end{footnotesize}
+\bigskip
+
+% pozícionáljuk a dia aljához közel
+\begin{textblock}{8}(0,2.5)
+\footnotesize{EFOP-3.6.3-VEKOP-16-2017-00001}
+\end{textblock}
+}
+
+
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle{Tartalom}
+    \tableofcontents
+\end{frame}
+
+\section{Háttér}
+\subsection{Momentumok}
+\begin{frame}{Momentumok}
+Általában valamilyen leíró érték a pixel intenzitások alapján, 
+például geometriai momentumok: $$M_{ij} = \sum_x\sum_y x^i y^j I(x,y).$$
+\textbf{Zernike momentumok}: az egységkörön definiált, ortogonális Zernike függvények alapján
+$$Z_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)R_{n,m}(r)e^{-\qi m\theta} dr d\theta,$$ ahol $R_{n,m}(r)$ az ortogonális, sugárirányú polinomok.\\
+
+\textbf{Momentumok invariánsok:} forgatás, skálázás és eltolás invariancia 
+\end{frame}
+
+\subsection{Színes képek}
+\begin{frame}{Momentumok alkalmazása színes képekre}
+Hagyományos megoldások:
+\begin{itemize}
+    \item A kép szürkeárnyalatossá alakítása.
+    \item Külön-külön a színcsatornákra.
+\end{itemize}
+Utóbbi évtizedben:\\
+$f : \R^2 \rightarrow \R^3$ kép kvaternió értékű függvényként:
+$$f(x,y) = \qi f_R(x,y) + \qj f_G(x,y) + \qk f_B(x,y)$$
+Különböző momentumok általánosítása kvaterniókra:\\
+QFMM (Fourier-Mellin), QG-CHFM (Csebisev-Fourier), QG-PJFM (Jacobi-Fourier), QBFM (Bessel-Fourier) \\
+\textbf{QZM (Zernike)}
+\end{frame}
+
+\begin{frame}{Kvaternió Zernike momentumok}
+Zernike függvények általánosítása kvaterniókra: $$\Phi_{n,m}(r,\theta) = R_{n,m}(r)e^{-\qmu m \theta},$$ ahol $\qmu$ egység hosszú, tiszta kvaternió (általában $\qmu = \frac{\qi + \qj + \qk}{\sqrt{3}}$).
+
+Mivel a kvaterniók szorzása nem kommutatív, így jobb- és baloldali momentumok is definiálhatók:
+$$Z^R_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)\Phi_{n,m}(r,\theta) dr d\theta,$$
+$$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\theta) dr d\theta.$$
+
+Chen et al.: forgatás, skálázás és eltolás invariánsok konstruálása.
+\end{frame}
+
+\section{Diszkretizáció}
+\subsection{Korábbi módszer}
+\begin{frame}{Korábbi diszkretizációs módszer}
+    \vskip 5mm
+    \begin{figure}[tb]
+        \begin{subfigure}{.30\textwidth}
+        \centering
+          \begin{tikzpicture}
+            \draw[step=0.1cm,black] (0,0) grid (2,2);
+            \draw[thick,->] (0,0) -- (2.25,0) node[anchor=north west] {\footnotesize x};
+            \draw[thick,->] (0,0) -- (0,2.25) node[anchor=south east] {\footnotesize y};
+            \draw (2cm,1pt) -- (2cm,-1pt) node[anchor=north] {\footnotesize$N$};
+            \draw (1pt,2cm) -- (-1pt,2cm) node[anchor=east] {\footnotesize$N$};
+            \draw (0,0) -- (0,0) node[anchor=north] {\footnotesize$0$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.05\textwidth}
+          \centering
+          \begin{tikzpicture}
+            \draw[thick,->] (0,0) -- (0.5,0);
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.30\textwidth}
+          \centering
+            \begin{tikzpicture}
+              \draw[step=0.075cm,black] (-0.75,-0.75) grid (0.75,0.75);
+              \draw[thick,->] (-1.25,0) -- (1.25,0) node[anchor=south west] {\footnotesize x};
+              \draw[thick,->] (0,-1.25) -- (0,1.25) node[anchor=south east] {\footnotesize y};
+              \draw (0,0) circle (1.06cm);
+              \draw (1.06cm,1pt) -- (1.06cm,-1pt) node[anchor=north west] {\footnotesize $1$};
+              \draw (1pt,1.06cm) -- (-1pt,1.06cm) node[anchor=south west] {\footnotesize $1$};
+            \end{tikzpicture}
+          \end{subfigure}
+      \end{figure}
+      \begin{itemize}
+          \item Kép transzformálása az egységkörbe: \\
+                $r_{x,y} = \sqrt{(c_1x + c_2)^2 + (c_1y + c_2)^2},\ \ \ \  \theta_{x,y} = \tan^{-1}\left(\frac{c_1y + c_2}{c_1x + c_2}\right),$\\
+                ahol $c_1 = \frac{\sqrt{2}}{N-1}$ és $c_2 = -\frac{1}{\sqrt{2}}$.
+          \item Ekkor a pixelek helyét alappontoknak választva:\\
+                $$Z^R_{n,m}(f) \approx \frac{2(n+1)}{\pi(N-1)^2}\sum_{x=0}^{N-1}\sum_{y=0}^{N-1}f(x,y)\Phi_{n,m}(r_{x,y},\theta_{x,y}).$$
+      \end{itemize}
+\end{frame}
+
+\subsection{Új módszer}
+\begin{frame}{Új diszkretizációs módszer}
+    Probléma a korábbi diszkretizációval: nincs diszkrét ortogonalitás.
+    \vskip 5mm
+    Schipp F. és Pap M.: diszkrét ortogonális pontrendszer konstrukciója a klasszikus (komplex értékű) Zernike függvényekhez.
+    \vskip 3mm
+    Ennek az ötletnek a kvaternió értékű Zernike függvényekre való kiterjesztése megfelelő pontrendszert ad.
+    \vskip 3mm
+    Legyen $N$ pozitív egész és $\rho_{k,N}$ az $N$-edik Legendre polinom gyökei, ekkor a pontrendszer:
+    $$(r_{k,N}, \theta_{j,N}) = \left(\sqrt{\frac{1+\rho_{k,N}}{2}} , \frac{2\pi j}{4N} \right), \ (k=1,\ldots,N,j=1,\ldots,4N).$$
+    
+\end{frame}
+
+\begin{frame}{Új diszkretizációs módszer (folyt.)}
+    \vskip 5mm
+    Legyen $$\mathcal{A}_{k,N} = \int_{-1}^{1} \ell_{k,N}(x)\ dx, \ (k=1,\ldots,N),$$ ahol $\ell_{k,N}$ a Lagrange interpolációs alappolinomok a $\rho_{k,N}$ pontokon.\\
+    Ekkor a $w(r_{k,N},\theta_{j,N}) = \frac{\mathcal{A}_{k,N}}{8N}$ súlyokkal véve az integrálközelítést:
+    $$\frac{1}{\pi} \int_{0}^1 \int_0^{2\pi} f(r,\theta)\ d\theta dr \approx \int_{X_N} f = \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_{k,N},\theta_{j,N}) \frac{\mathcal{A}_{k,N}}{8N}.$$
+    Azaz a QZM-ek közelíthetők a következő módon:
+    $$Z^R_{n,m}(f) \approx (n+1)\sum_{k=1}^{N}\sum_{j=1}^{4N}f(r_{k,N},\theta_{j,N})\Phi_{n,m}(r_{k,N},\theta_{j,N})\frac{\mathcal{A}_{k,N}}{8N}.$$
+
+\end{frame}
+
+
+\subsection{Diszkrét ortogonalitás}
+\begin{frame}{Diszkrét ortogonalitás}
+\begin{tetel}[Diszkrét ortogonalitás]
+    Legyen $n, n' \in \N$ természetes számok, $m, m' \in \Z$ egészek, úgy, hogy teljesül $$\frac{n + n'}{2} + \min(|m|,|m'|) < 2N.$$
+    Ekkor $$(n + 1)\int_{X_N}\Phi_{n,m}\Phi_{n',m'}^* = \delta_{n,n'}\delta_{m,m'}.$$
+\end{tetel}
+\end{frame}
+
+\begin{frame}{Képpontok becslése}
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}
+            \begin{subfigure}{.48\textwidth}
+                \centering
+            \includegraphics[width=\textwidth]{figures/pepper_color_256.png}
+            \end{subfigure}
+            \begin{subfigure}{.48\textwidth}
+                \centering
+            \includegraphics[width=\textwidth]{figures/pepper_square.png}
+            \end{subfigure}
+            \begin{subfigure}{.48\textwidth}
+                \centering
+            \includegraphics[width=\textwidth]{figures/pepper_bilinear.png}
+            \end{subfigure}
+            \begin{subfigure}{.48\textwidth}
+                \centering
+            \includegraphics[width=\textwidth]{figures/pepper_integral.png}
+            \end{subfigure}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        A képet lineárisan transzformáljuk az egységkörre.
+        \vskip 3mm
+        A függvény értékének becslése a pontokban:
+        \begin{itemize}
+            \item Interpoláció (sok pont esetén)
+            \item Integrálás (kevés pont esetén)
+        \end{itemize}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+
+\section{Eredmények}
+\begin{frame}{Eredmények}
+    \begin{itemize}
+    \item 1
+    \item 2
+    \item 3
+    \end{itemize}
+\end{frame}
+
+\subsection{Rekonstrukció}
+\begin{frame}{Képek visszaállítása}
+    \begin{itemize}
+    \item 1
+    \item 2
+    \item 3
+    \end{itemize}
+\end{frame}
+
+\subsection{Képfelismerés}
+\begin{frame}{Képfelismerés}
+    \begin{itemize}
+    \item 1
+    \item 2
+    \item 3
+    \end{itemize}
+\end{frame}
+
+\section{Alkalmazások}
+\begin{frame}{Alkalmazások}
+    \begin{itemize}
+    \item 1
+    \item 2
+    \item 3
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{További lehetőségek}
+    \begin{itemize}
+    \item 1
+    \item 2
+    \item 3
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Összefoglalás}
+    \begin{itemize}
+    \item 1
+    \item 2
+    \item 3
+    \end{itemize}
+\end{frame}
+
+% this slide need not be used in the presentation, but must be
+% present when you archive your talk
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{title.jpg}}%
+\begin{frame}{}
+
+\textbf{\huge\color{white} KÖSZÖNÖM}
+
+\bigskip
+
+\textbf{\huge\color{white} A FIGYELMET!}
+
+\end{frame}
+}
+
+\end{document}
