@@ -283,6 +283,7 @@ Chen et al.: forgatás, skálázás és eltolás invariánsok konstruálása.
     Legyen $n, n' \in \N$ természetes számok, $m, m' \in \Z$ egészek, úgy, hogy teljesül $$\frac{n + n'}{2} + \min(|m|,|m'|) < 2N.$$
     Ekkor $$(n + 1)\int_{X_N}\Phi_{n,m}\Phi_{n',m'}^* = \delta_{n,n'}\delta_{m,m'}.$$
 \end{tetel}
+Így a momentumok diszkretizációs hiba nélkül előállíthatók és a képek visszaállítási pontossága és módszer hibatűrése is javult.
 \end{frame}
 
 \begin{frame}{Képpontok becslése}
@@ -323,54 +324,201 @@ Chen et al.: forgatás, skálázás és eltolás invariánsok konstruálása.
 
 
 \section{Eredmények}
-\begin{frame}{Eredmények}
+\begin{frame}{Gyakorlati tesztek}
+    \vskip 5mm
+    A következő tesztek alapján hasonlítottuk össze a régi és az új módszert:
     \begin{itemize}
-    \item 1
-    \item 2
-    \item 3
+    \item Invariancia teszt
+    \item Kép visszaállítása momentumokból
+    \item Transzformált, zajos képek felismerése
     \end{itemize}
+    A tesztek során a Columbia Object Image Library és az Amsterdam Library of Object Images képeiből generált transzformált képeket használtuk.
+    \begin{figure}[tbp]
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+        \includegraphics[width=70pt]{figures/coil_rst/26x-11y9r0s1_0.png}
+        \end{subfigure}
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+        \includegraphics[width=70pt]{figures/coil_rst/26x-11y9r150s0_5.png}
+        \end{subfigure}
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+        \includegraphics[width=70pt]{figures/coil_rst/26x-11y9r270s1_75.png}
+        \end{subfigure}
+    \end{figure}
 \end{frame}
+
+\subsection{Invariancia}
+\begin{frame}{Invariancia}
+    \vskip 10mm
+Alacsony rendű momentumok modulusának, az összes transzformált képekre vett variációs koefficiense $\left(\frac{\sigma}{\mu}\right)$:
+\begin{columns}
+    \begin{column}{.5\textwidth}
+        \begin{table}
+            \centering
+        \begin{tabular}{| c | c | } \hline
+        & $\frac{\sigma}{\mu}$ \\ \hline\hline
+        $|\overline{\Psi}_{1,1}^1|$ & 3.73\% \\ \hline
+        $|\overline{\Psi}_{2,0}^0|$ & 0.028\% \\ \hline
+        $|\overline{\Psi}_{2,2}^0|$ & 0.057\% \\ \hline
+        $|\overline{\Psi}_{2,2}^2|$ & 6.87\% \\ \hline
+        $|\overline{\Psi}_{3,1}^1|$ & 3.71\%  \\ \hline
+        $|\overline{\Psi}_{3,3}^1|$ & 3.69\% \\ \hline
+        $|\overline{\Psi}_{3,3}^3|$ & 9.40\% \\ \hline
+        \end{tabular}
+        \caption{Régi módszer}
+        \end{table}
+    \end{column}
+    \begin{column}{.5\textwidth}
+        \begin{table}
+            \centering
+        \begin{tabular}{| c | c | } \hline
+        & $\frac{\sigma}{\mu}$ \\ \hline\hline
+        $|\overline{\Psi}_{1,1}^1|$ & 3.72\% \\ \hline
+        $|\overline{\Psi}_{2,0}^0|$ & 0.028\%\\ \hline
+        $|\overline{\Psi}_{2,2}^0|$ & 0.056\%\\ \hline
+        $|\overline{\Psi}_{2,2}^2|$ & 6.82\%\\ \hline
+        $|\overline{\Psi}_{3,1}^1|$ & 3.70\%\\ \hline
+        $|\overline{\Psi}_{3,3}^1|$ & 3.68\%\\ \hline
+        $|\overline{\Psi}_{3,3}^3|$ & 9.32\%\\ \hline
+        \end{tabular}
+        \caption{Új módszer}
+        \end{table}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\newcolumntype{Q}{>{\centering\arraybackslash} m{13pt} }
+\newcolumntype{q}{>{\centering\arraybackslash} m{42pt} }
 
 \subsection{Rekonstrukció}
 \begin{frame}{Képek visszaállítása}
-    \begin{itemize}
-    \item 1
-    \item 2
-    \item 3
-    \end{itemize}
+\vskip 10mm
+Egy kép újra előállítható véges számú momentumot használva a következő képlet szerint:
+$$
+f(r_{x,y},\theta_{x,y}) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)\Phi_{n,m}^*(r_{x,y},\theta_{x,y}).
+$$
+Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a négyzetes hiba:
+\begin{gather*}
+    \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}.
+\end{gather*}
+\end{frame}
+
+\begin{frame}{Képek visszaállítása}
+    \begin{figure}
+        \centering
+    \begin{tabular}{c | q q q q q }
+     & Eredeti & 50 & 100 & 150 & 250 \\ \hline\hline
+    Régi & 
+    \includegraphics[width=50pt]{figures/reconstruction/lo256.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lo25650.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lo256100.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lo256150.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lo256250.png} \\
+    $\varepsilon^2$ & & 0.02659 & 0.1341 & 0.00868 & 0.00428 \\
+    Új & 
+    \includegraphics[width=50pt]{figures/reconstruction/lo256.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/ln25650.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/ln256100.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/ln256150.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/ln256250.png} \\
+    $\varepsilon^2$ & & 0.01611 & 0.00790 & 0.00463 & 0.00190  \\   
+    \end{tabular}
+
+    \end{figure}
 \end{frame}
 
 \subsection{Képfelismerés}
 \begin{frame}{Képfelismerés}
-    \begin{itemize}
-    \item 1
-    \item 2
-    \item 3
-    \end{itemize}
+    \vskip 5mm
+Cél: a transzformált, zajos képet felismerni az eredeti képek közül.\\
+Különböző nagyságú és típusú zaj:
+\begin{itemize}
+    \item Gauss zaj
+    \item Só-bors zaj
+\end{itemize}
+Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert valós értékek vektorként kezelése. Osztályozás legkisebb euklideszi távolság alapján.
+\begin{figure}[tbp]
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/gauss5.png}
+    \end{subfigure}
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/noise/pepper1.png}
+	\end{subfigure}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Képfelismerés - Gauss zaj}
+    \vskip 1cm
+    \begin{table}[tbp]
+        \centering
+        \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.8cm}|p{2cm}|} \hline
+            $\sigma$ & \textbf{Régi} (\%) & \textbf{Új} -- "sok" pont (\%)& \textbf{Új} -- "kevés" pont (\%) \\ \hline\hline
+            Nincs zaj & 99.06 & 99.15 & 98.21 \\ \hline
+            1 & 98.98 & 99.49 & 98.81 \\ \hline
+            2 & 98.98 & 99.74 & 98.81 \\ \hline
+            3 & 98.55 & 99.83 & 98.04 \\ \hline
+            5 & 95.15 & 99.49 & 94.64 \\ \hline
+            7 & 95.15 & 98.72 & 91.67 \\ \hline
+            9 & 76.87 & 98.47 & 89.20 \\ \hline
+            40 & 52.89 & 88.52 & 51.87 \\ \hline
+            50 & 48.21 & 84.10 & 45.07 \\ \hline
+            60 & 41.58 & 85.80 & 39.12 \\ \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Képfelismerés - Só-bors zaj}
+    \vskip 1cm
+    \begin{table}[tbp]
+        \centering
+        \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.8cm}|p{2cm}|} \hline
+            p & \textbf{Régi} (\%) & \textbf{Új} -- "sok" pont (\%)& \textbf{Új} -- "kevés" pont (\%) \\ \hline\hline
+            Nincs zaj & 99.06 & 99.15 & 98.21 \\ \hline
+            0.2\% & 99.66 & 99.32 & 94.98 \\ \hline
+            0.4\% & 99.91 & 99.74 & 99.15 \\ \hline
+            0.6\% & 99.91 & 99.91 & 99.40 \\ \hline
+            1\% & 98.98 & 99.91 & 99.66 \\ \hline
+            2\% & 99.66 & 93.96 & 99.74 \\ \hline
+            3\% & 99.40 & 99.40 & 96.34 \\ \hline
+            5\% & 97.87 & 94.90 & 97.87 \\ \hline
+            10\% & 99.91 & 93.03 & 98.72 \\ \hline
+            15\% & 99.91 & 93.20 & 97.87 \\ \hline
+        \end{tabular}
+    \end{table}
 \end{frame}
 
 \section{Alkalmazások}
 \begin{frame}{Alkalmazások}
+    A momentumok sok területen alkalmazhatók, néhány példa:
     \begin{itemize}
-    \item 1
-    \item 2
-    \item 3
+    \item \textbf{Vízjelek}: a képre a momentumok szintjén helyeznek vízjelet, így ellenálló lesz különböző transzformációknak és zajnak. Ehhez fontos a rekonstrukciós pontosság.
+    \item \textbf{Neurális hálók, gépi tanulás}: A képekből kinyert invariáns momentumok lehet a bemeneti vektor része. A neurális hálók ismert hiányossága a zajra való érzékenység, ezen segíthetnek a momentumok.
+    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{További lehetőségek}
     \begin{itemize}
-    \item 1
-    \item 2
-    \item 3
+    \item Meglévő alkalmazások továbbfejlesztése az új módszer szerint.
+    \item Más függvényrendszeren alapuló momentumokra hasonló konstrukció megadása.
+    \item További általánosítás 3-dimenzióra és alkalmazás például LiDAR pontfelhőkre.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Összefoglalás}
     \begin{itemize}
-    \item 1
-    \item 2
-    \item 3
+    \item Diszkrét ortogonális pontrendszer konstruálása QZM-hez.
+    \item Összehasonlítás a korábbi módszerrel.
+        \begin{itemize}
+        \item Invariancia
+        \item Rekonstrukció
+        \item Képfelismerés
+        \end{itemize}
+    \item Jelentősen jobb rekonstrukciós képesség és robusztusság különféle zajokkal szemben.
     \end{itemize}
 \end{frame}
 
