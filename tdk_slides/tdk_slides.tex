@@ -148,9 +148,11 @@
 \bigskip
 
 \footnotesize{Eötvös Loránd Tudományegyetem, Informatikai Kar}
-\smallskip
+\bigskip
 
-\footnotesize{2020. május 28.}
+
+\large{Tudományos Diákköri Konferencia}\\
+\footnotesize{Budapest, 2020. május 28.}
 \vspace{2em}
 
 % Szakmai beszámolókhoz: (Igazi neveket kérünk feltüntetni.) Más előadáson nem kell.
@@ -169,10 +171,10 @@ Témavezető: Németh Zsolt
 \end{frame}
 }
 
-\begin{frame}
-    \frametitle{Tartalom}
-    \tableofcontents
-\end{frame}
+% \begin{frame}
+%     \frametitle{Tartalom}
+%     \tableofcontents
+% \end{frame}
 
 \section{Háttér}
 \subsection{Momentumok}
@@ -207,7 +209,7 @@ Mivel a kvaterniók szorzása nem kommutatív, így jobb- és baloldali momentum
 $$Z^R_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)\Phi_{n,m}(r,\theta) dr d\theta,$$
 $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\theta) dr d\theta.$$
 
-Chen et al.: forgatás, skálázás és eltolás invariánsok konstruálása.
+Chen et al.: forgatás, skálázás és eltolás kombinált invariánsok ($\overline{\Psi}_{n,k}^m$) konstruálása.
 \end{frame}
 
 \section{Diszkretizáció}
@@ -310,12 +312,12 @@ Chen et al.: forgatás, skálázás és eltolás invariánsok konstruálása.
         \end{figure}
     \end{column}
     \begin{column}{0.5\textwidth}
-        A képet lineárisan transzformáljuk az egységkörre.
+        A képet lineárisan transzformáljuk az egységkörön vett pontrendszerre.
         \vskip 3mm
         A függvény értékének becslése a pontokban:
         \begin{itemize}
-            \item Interpoláció (sok pont esetén)
-            \item Integrálás (kevés pont esetén)
+            \item Lineáris interpoláció (sok pont esetén)
+            \item Diszkrét integrálás a pontok környezetében (kevés pont esetén)
         \end{itemize}
     \end{column}
 \end{columns}
@@ -395,11 +397,11 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
 \subsection{Rekonstrukció}
 \begin{frame}{Képek visszaállítása}
 \vskip 10mm
-Egy kép újra előállítható véges számú momentumot használva a következő képlet szerint:
+Egy kép rekonstruálható véges számú momentumot használva a következő képlet szerint:
 $$
 f(r_{x,y},\theta_{x,y}) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)\Phi_{n,m}^*(r_{x,y},\theta_{x,y}).
 $$
-Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a négyzetes hiba:
+Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a hiba (mean square error):
 \begin{gather*}
     \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}.
 \end{gather*}
