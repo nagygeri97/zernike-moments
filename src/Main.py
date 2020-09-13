@@ -18,8 +18,8 @@ def main():
 	# testImageReconstructionTf2()
 	# testImageReconstructionLegendre1()
 	# testImageReconstructionLegendre2()
-	testImageReconstructionLegendreDiscOrth()
-	# testImageReconstructionErrors()
+	# testImageReconstructionLegendreDiscOrth()
+	testImageReconstructionErrors()
 	
 	# InvarianceTests
 	# testInvariance()

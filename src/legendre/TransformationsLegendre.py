@@ -7,11 +7,12 @@ from Utility import *
 from legendre.LegendreRoots import *
 
 class LegendrePoints1():
-	def __init__(self, img):
+	def __init__(self, img, N=None):
 		self.n, _, _ = img.shape
 		# self.N = int(np.floor(float(self.n) / 4.0 * np.sqrt(np.pi)))
 		# Same number of points as in the inscribed circle of the image
-		self.N = int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
+		self.N = N if N is not None else int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
+		# self.N = int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
 		self.rs, self.thetas, self.mu = getPoints(self.N)
 
 class LegendreTransformation1():
@@ -19,11 +20,11 @@ class LegendreTransformation1():
 	About the same number of points as in circle inscribed in the original image
 	Bilinear interpolation is used to get the pixel values at the points
 	"""
-	def __init__(self, img):
+	def __init__(self, img, maxP=None):
 		"""
 		img should be centroid translated!!!
 		"""
-		points = LegendrePoints1(img)
+		points = LegendrePoints1(img) if maxP is None else LegendrePoints1(img, maxP + 1) # N > maxP is needed for discrete orthogonality
 		self.rs = points.rs
 		self.thetas = points.thetas
 		self.mu = points.mu
@@ -90,12 +91,12 @@ class LegendrePoints2():
 		self.rs, self.thetas, self.mu = getPoints(self.N)
 
 class LegendreTransformation2():
-	def __init__(self, img, maxP=None):
+	def __init__(self, img):
 		"""
 		If maxP is provided, use as many points as needed for discrete orthogonality
 		Otherwise use N=10 
 		"""
-		points = LegendrePoints2() if maxP is None else LegendrePoints2(maxP + 1) # N > maxP is needed for discrete orthogonality
+		points = LegendrePoints2()
 		self.rs = points.rs
 		self.thetas = points.thetas
 		self.mu = points.mu
@@ -165,7 +166,7 @@ class LegendreTransformation2():
 def LegendreTransformationDiscOrth(maxP):
 	class LegendreTransformationDiscOrthWrapper(LegendreTransformation2):
 		def __init__(self, img):
-			LegendreTransformation2.__init__(self, img, maxP)
+			LegendreTransformation1.__init__(self, img, maxP)
 	
 	return LegendreTransformationDiscOrthWrapper
 

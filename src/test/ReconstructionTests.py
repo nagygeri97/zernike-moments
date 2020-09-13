@@ -93,15 +93,15 @@ def testImageReconstructionLegendreDiscOrth():
 
 def testImageReconstructionErrors():
 	tests = [
-		("lenna_color_64", [10,25,50,100]),
-		("lenna_color_128", [25,50,100,150,250]),
-		("lenna_color_256", [50,100,150,250,350]),
-		("pepper_color_64", [10,25,50,100]),
-		("pepper_color_128", [25,50,100,150,250]),
-		("pepper_color_256", [50,100,150,250,350]),
+		("lenna_color_64", [10,25,50,100,150,250,350]),
+		("lenna_color_128", [10,25,50,100,150,250,350]),
+		("lenna_color_256", [10,25,50,100,150,250,350]),
+		("pepper_color_64", [10,25,50,100,150,250,350]),
+		("pepper_color_128", [10,25,50,100,150,250,350]),
+		("pepper_color_256", [10,25,50,100,150,250,350]),
 	]
 	path = "../images/lenna_pepper/"
-	extension = ".png"
+	extension = ".bmp"
 	tmpOut = "../tmp.png"
 
 	parser = argparse.ArgumentParser()
