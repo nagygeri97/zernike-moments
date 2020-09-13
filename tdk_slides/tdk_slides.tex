@@ -198,11 +198,12 @@ Utóbbi évtizedben:\\
 $f : \R^2 \rightarrow \R^3$ kép kvaternió értékű függvényként:
 $$f(x,y) = \qi f_R(x,y) + \qj f_G(x,y) + \qk f_B(x,y)$$
 Különböző momentumok általánosítása kvaterniókra:\\
-QFMM (Fourier-Mellin), QG-CHFM (Csebisev-Fourier), QG-PJFM (Jacobi-Fourier), QBFM (Bessel-Fourier) \\
+QFMM (Fourier-Mellin), QG-CHFM (Csebisev-Fourier), QG-PJFM (Jacobi-Fourier), QBFM (Bessel-Fourier), \\
 \textbf{QZM (Zernike)}
 \end{frame}
 
 \begin{frame}{Kvaternió Zernike momentumok}
+\vskip 3mm
 Zernike függvények általánosítása kvaterniókra: $$\Phi_{n,m}(r,\theta) = R_{n,m}(r)e^{-\qmu m \theta},$$ ahol $\qmu$ egység hosszú, tiszta kvaternió (általában $\qmu = \frac{\qi + \qj + \qk}{\sqrt{3}}$).
 
 Mivel a kvaterniók szorzása nem kommutatív, így jobb- és baloldali momentumok is definiálhatók:
@@ -312,7 +313,7 @@ Chen et al.: forgatás, skálázás és eltolás kombinált invariánsok ($\over
         \end{figure}
     \end{column}
     \begin{column}{0.5\textwidth}
-        A képet lineárisan transzformáljuk az egységkörön vett pontrendszerre.
+        A képet lineárisan transzformáljuk az egységkörre.
         \vskip 3mm
         A függvény értékének becslése a pontokban:
         \begin{itemize}
@@ -399,7 +400,7 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
 \vskip 10mm
 Egy kép rekonstruálható véges számú momentumot használva a következő képlet szerint:
 $$
-f(r_{x,y},\theta_{x,y}) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)\Phi_{n,m}^*(r_{x,y},\theta_{x,y}).
+f(x,y) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)\Phi_{n,m}^*(r_{x,y},\theta_{x,y}).
 $$
 Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a hiba (mean square error):
 \begin{gather*}
@@ -499,7 +500,7 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
     \begin{itemize}
     \item \textbf{Vízjelek}: a képre a momentumok szintjén helyeznek vízjelet, így ellenálló lesz különböző transzformációknak és zajnak. Ehhez fontos a rekonstrukciós pontosság.
     \item \textbf{Neurális hálók, gépi tanulás}: A képekből kinyert invariáns momentumok lehet a bemeneti vektor része. A neurális hálók ismert hiányossága a zajra való érzékenység, ezen segíthetnek a momentumok.
-    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására.
+    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására, szaruhártya vizsgálatára, stb.
     \end{itemize}
 \end{frame}
 
