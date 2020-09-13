@@ -18,6 +18,7 @@ def main():
 	# testImageReconstructionTf2()
 	# testImageReconstructionLegendre1()
 	# testImageReconstructionLegendre2()
+	testImageReconstructionLegendreDiscOrth()
 	# testImageReconstructionErrors()
 	
 	# InvarianceTests
@@ -25,7 +26,7 @@ def main():
 	# testLegendreInvariance()
 
 	# RecognitionTests
-	runRecognitionTest()
+	# runRecognitionTest()
 
 	# NoiseGenerationTests
 	# addGaussianNoiseAndPrintImage()

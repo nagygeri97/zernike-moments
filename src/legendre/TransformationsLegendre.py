@@ -90,8 +90,12 @@ class LegendrePoints2():
 		self.rs, self.thetas, self.mu = getPoints(self.N)
 
 class LegendreTransformation2():
-	def __init__(self, img):
-		points = LegendrePoints2()
+	def __init__(self, img, maxP=None):
+		"""
+		If maxP is provided, use as many points as needed for discrete orthogonality
+		Otherwise use N=10 
+		"""
+		points = LegendrePoints2() if maxP is None else LegendrePoints2(maxP + 1) # N > maxP is needed for discrete orthogonality
 		self.rs = points.rs
 		self.thetas = points.thetas
 		self.mu = points.mu
@@ -157,6 +161,13 @@ class LegendreTransformation2():
 
 	def lam(self, p):
 		return (p + 1)
+
+def LegendreTransformationDiscOrth(maxP):
+	class LegendreTransformationDiscOrthWrapper(LegendreTransformation2):
+		def __init__(self, img):
+			LegendreTransformation2.__init__(self, img, maxP)
+	
+	return LegendreTransformationDiscOrthWrapper
 
 def polarDist(p1, p2):
 	(r1, t1) = p1

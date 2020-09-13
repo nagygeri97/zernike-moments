@@ -15,6 +15,8 @@ def parseArgsForReconstructionTest():
 						help='The path/name of the output image')
 	parser.add_argument('-M', required=True, type=int,
 						help='Max number')
+	parser.add_argument('--maxP', required=False, type=int,
+						help='Max of Ms used over multiple testcases')
 	parser.add_argument('--greyscale', '-g', action='store_true', required=False,
 						help='Specify this flag to indicate that the selected image is greyscale.')
 	args = parser.parse_args()
@@ -76,6 +78,19 @@ def testImageReconstructionLegendre2():
 	z = ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation2)
 	z.reconstructImage(output, N)
 
+def testImageReconstructionLegendreDiscOrth():
+	args = parseArgsForReconstructionTest()
+	
+	output = args.output if args.output is not None else '../test.png'
+	M = args.M
+	maxP = args.maxP if args.maxP is not None else M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+	img = np.array(img, dtype='double')
+
+	z = ZernikeMomentsColorRightLegendre(img, M, LegendreTransformationDiscOrth(maxP))
+	z.reconstructImage(output, N)
+
 def testImageReconstructionErrors():
 	tests = [
 		("lenna_color_64", [10,25,50,100]),
@@ -98,15 +113,17 @@ def testImageReconstructionErrors():
 	with open(outFile, mode='w') as file:
 		csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-		csv_writer.writerow(['File', 'M', 'Original_tf1', 'Original_tf2', 'Legendre1'])
+		csv_writer.writerow(['File', 'M', 'Original_tf1', 'Original_tf2', 'Legendre1', 'LegendreDiscOrth'])
 		for (file, Ms) in tests:
 			print(file)
 			filePath = path + file + extension
 			(img, N) = getImgFromFileAsNpArray(filePath)
+			maxP = max(Ms)
 			for M in Ms:
 				epss = []
 				epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation).reconstructImage(tmpOut))
 				epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation2).reconstructImage(tmpOut))
 				img = np.array(img, dtype='double')
 				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation1).reconstructImage(tmpOut, N))
+				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformationDiscOrth(maxP)).reconstructImage(tmpOut, N))
 				csv_writer.writerow((file, str(M), *epss))
