@@ -164,7 +164,7 @@ class LegendreTransformation2():
 		return (p + 1)
 
 def LegendreTransformationDiscOrth(maxP):
-	class LegendreTransformationDiscOrthWrapper(LegendreTransformation2):
+	class LegendreTransformationDiscOrthWrapper(LegendreTransformation1):
 		def __init__(self, img):
 			LegendreTransformation1.__init__(self, img, maxP)
 	
