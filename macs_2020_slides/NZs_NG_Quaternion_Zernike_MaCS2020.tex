@@ -166,6 +166,8 @@
 }
 
 \section{Mathematical background}
+
+\subsection{Image moments}
 \begin{frame}{Image moments}
 \vskip 3mm
 The term "image moment" usually refers to some numerical descriptor of an image, computed directly from pixel intensities as a discretization of a weighted integral.\\
@@ -190,7 +192,7 @@ The idea is to allow the common treatment of color channels at any point over th
 Examples include QFMM (Fourier--Mellin), QG-CHFM (Chebysev--Fourier), QG--PJFM (Jacobi--Fourier), \textbf{QZM (Zernike)}
 \end{frame}
 
-
+\subsection{Quaternion Zernike moments and invariants}
 \begin{frame}{Quaternion Zernike moments}
 \vskip 3mm
 Generalization of Zernike functions to quaternions: $$\Phi_{n,m}(r,\theta) = R_{n,m}(r)e^{-\qmu m \theta},$$ where $\qmu$ is a pure unit quaternion (a usual choice is $\qmu = \frac{\qi + \qj + \qk}{\sqrt{3}}$).
@@ -211,8 +213,7 @@ Rotation: for any $m\in\Z$ and $n,k\in\N$, the quaternions $$\Phi_{n,k}^m = Z_{n
 Scaling: certain linear combinations of Zernike moments are scaling invariant, i.e. for non-negative integers $m$ and $l$, the quaternions $$L_{m + 2l,m}^R(f) = \sum_{t=0}^l\sum_{k=t}^l\left(\sqrt{|Z_{0,0}^R(f)|}\right)^{-(m+2k+2)}c_{m,l}^{t,k}Z_{m+2t,m}^R(f)$$ are invariant under image scaling.
 \end{frame}
 
-
-\section{Discretization}
+\subsection{Discretization}
 \begin{frame}{Previous approaches to discretization}
     \vskip 5mm
     \begin{figure}[tb]
@@ -277,7 +278,7 @@ Scaling: certain linear combinations of Zernike moments are scaling invariant, i
     $$Z^R_{n,m}(f) \approx (n+1)\sum_{k=1}^{N}\sum_{j=1}^{4N}f(r_{k,N},\theta_{j,N})\Phi_{n,m}(r_{k,N},\theta_{j,N})\frac{\mathcal{A}_{k,N}}{8N}.$$
 \end{frame}
 
-
+\subsection{Discrete orthogonality}
 \begin{frame}{Discrete orthogonality}
 \begin{theorem}[Discrete orthogonality]
     Suppose that natural numbers $n, n' \in \N$ and integers $m, m' \in \Z$ satisfy $$\frac{n + n'}{2} + \min(|m|,|m'|) < 2N.$$
@@ -333,7 +334,7 @@ Additionally, we also obtain the convergence of the discrete integral to the con
     \item Image reconstruction from the moments
     \item Recognition of transformed, noisy images
     \end{itemize}
-    For these tests, we generated the transformed images using images from the Columbia Object Image Library and the Amsterdam Library of Object Images
+    For these, we generated a dataset of transformed images using images from the Columbia Object Image Library and the Amsterdam Library of Object Images
     \begin{figure}[tbp]
         \begin{subfigure}{0.3\textwidth}
             \centering
@@ -353,7 +354,7 @@ Additionally, we also obtain the convergence of the discrete integral to the con
 \subsection{Invariance}
 \begin{frame}{Invariance}
     \vskip 10mm
-The coefficient of variation $\left(\frac{\sigma}{\mu}\right)$ of the modulus of low order moments of the entire transformed image set:
+The variation coefficient $\left(\frac{\sigma}{\mu}\right)$ of the modulus of low order moments over the entire transformed image set:
 \begin{columns}
     \begin{column}{.5\textwidth}
         \begin{table}
@@ -434,7 +435,7 @@ Let $f$ be the original, and $\widehat{f}$ the reconstructed image. The mean squ
 \begin{frame}{Image recognition}
     \vskip 5mm
 Goal: correctly recognize the transformed, noisy image from the original set of images. \\
-Different types of noise used:
+Different types of noise used for testing:
 \begin{itemize}
     \item Gaussian noise
     \item Salt-and-pepper noise
@@ -492,15 +493,16 @@ Real-valued vectors are extracted from low order moments (quaternions). Classifi
     \end{table}
 \end{frame}
 
-\section{Applications}
+\section{Summary and applications}
 \begin{frame}{Applications}
-    Moments are applicable in many fields, some examples:
+\vskip 5mm
+    Moment-based techniques are applicable in multiple fields, some examples:
     \begin{itemize}
     \item \textbf{Watermarking}: 
     A watermark can be placed on an image at the level of moments, thus it will be robust against different transformations and noise. The accuracy of reconstruction is important for this application.
     \item \textbf{Neural networks, machine learning}: 
     Invariant moments, extracted from the images, can be part of the input vector. A well-known issue of neural networks is their lack of robustness against noise, moments can help improve this robustness.
-    \item \textbf{Medical/optical applications}: represent and capture optical aberrations, inspect corneal aberrations, etc.
+    \item \textbf{Face recognition and template matching}: combined with image segmentation and possibly other feature extraction methods, moment-based techniques excel at these image processing problems.
     \end{itemize}
 \end{frame}
 
@@ -512,16 +514,16 @@ Real-valued vectors are extracted from low order moments (quaternions). Classifi
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Conclusion}
+\begin{frame}{Summary}
     \begin{itemize}
-    \item Construction of discrete orthogonal point system for QZMs.
+    \item Construction of a discrete orthogonal point system for QZMs.
     \item Comparisons with previous methods.
         \begin{itemize}
         \item Invariance
         \item Reconstruction
         \item Image recognition
         \end{itemize}
-    \item Improved image reconstruction ability and robustness against various types of noise.
+    \item Conclusion: the novel method improves image reconstruction capability and provides robustness against various types of noise.
     \end{itemize}
 \end{frame}
 
