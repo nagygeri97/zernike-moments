@@ -324,16 +324,16 @@ Additionally, we also obtain the convergence of the discrete integral to the con
 \end{frame}
 
 
-\section{Eredmények}
-\begin{frame}{Gyakorlati tesztek}
+\section{Results}
+\begin{frame}{Tests}
     \vskip 5mm
-    A következő tesztek alapján hasonlítottuk össze a régi és az új módszert:
+    The previous and the novel methods were compared based on the following tests:
     \begin{itemize}
-    \item Invariancia teszt
-    \item Kép visszaállítása momentumokból
-    \item Transzformált, zajos képek felismerése
+    \item Invariance test
+    \item Image reconstruction from the moments
+    \item Recognition of transformed, noisy images
     \end{itemize}
-    A tesztek során a Columbia Object Image Library és az Amsterdam Library of Object Images képeiből generált transzformált képeket használtuk.
+    For these tests, we generated the transformed images using images from the Columbia Object Image Library and the Amsterdam Library of Object Images
     \begin{figure}[tbp]
         \begin{subfigure}{0.3\textwidth}
             \centering
@@ -350,10 +350,10 @@ Additionally, we also obtain the convergence of the discrete integral to the con
     \end{figure}
 \end{frame}
 
-\subsection{Invariancia}
-\begin{frame}{Invariancia}
+\subsection{Invariance}
+\begin{frame}{Invariance}
     \vskip 10mm
-Alacsony rendű momentumok modulusának, az összes transzformált képekre vett variációs koefficiense $\left(\frac{\sigma}{\mu}\right)$:
+The coefficient of variation $\left(\frac{\sigma}{\mu}\right)$ of the modulus of low order moments of the entire transformed image set:
 \begin{columns}
     \begin{column}{.5\textwidth}
         \begin{table}
@@ -368,7 +368,7 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
         $|\overline{\Psi}_{3,3}^1|$ & 3.69\% \\ \hline
         $|\overline{\Psi}_{3,3}^3|$ & 9.40\% \\ \hline
         \end{tabular}
-        \caption{Régi módszer}
+        \caption{Previous method}
         \end{table}
     \end{column}
     \begin{column}{.5\textwidth}
@@ -384,7 +384,7 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
         $|\overline{\Psi}_{3,3}^1|$ & 3.68\%\\ \hline
         $|\overline{\Psi}_{3,3}^3|$ & 9.32\%\\ \hline
         \end{tabular}
-        \caption{Új módszer}
+        \caption{Novel method}
         \end{table}
     \end{column}
 \end{columns}
@@ -393,32 +393,32 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
 \newcolumntype{Q}{>{\centering\arraybackslash} m{13pt} }
 \newcolumntype{q}{>{\centering\arraybackslash} m{42pt} }
 
-\subsection{Rekonstrukció}
-\begin{frame}{Képek visszaállítása}
+\subsection{Reconstruction}
+\begin{frame}{Image reconstruction}
 \vskip 10mm
-Egy kép rekonstruálható véges számú momentumot használva a következő képlet szerint:
+An image can be reconstructed using a finite number of moments by the following formula: 
 $$
 f(x,y) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)\Phi_{n,m}^*(r_{x,y},\theta_{x,y}).
 $$
-Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a hiba (mean square error):
+Let $f$ be the original, and $\widehat{f}$ the reconstructed image. The mean square error of the reconstruction is given by:
 \begin{gather*}
     \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}.
 \end{gather*}
 \end{frame}
 
-\begin{frame}{Képek visszaállítása}
+\begin{frame}{Image reconstruction}
     \begin{figure}
         \centering
     \begin{tabular}{c | q q q q q }
-     & Eredeti & 50 & 100 & 150 & 250 \\ \hline\hline
-    Régi & 
+     & Original & 50 & 100 & 150 & 250 \\ \hline\hline
+    Previous & 
     \includegraphics[width=50pt]{figures/reconstruction/lo256.png} &
     \includegraphics[width=50pt]{figures/reconstruction/lo25650.png} &
     \includegraphics[width=50pt]{figures/reconstruction/lo256100.png} &
     \includegraphics[width=50pt]{figures/reconstruction/lo256150.png} &
     \includegraphics[width=50pt]{figures/reconstruction/lo256250.png} \\
     $\varepsilon^2$ & & 0.02659 & 0.1341 & 0.00868 & 0.00428 \\
-    Új & 
+    Novel & 
     \includegraphics[width=50pt]{figures/reconstruction/lo256.png} &
     \includegraphics[width=50pt]{figures/reconstruction/ln25650.png} &
     \includegraphics[width=50pt]{figures/reconstruction/ln256100.png} &
@@ -430,16 +430,16 @@ Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a hiba (mean squ
     \end{figure}
 \end{frame}
 
-\subsection{Képfelismerés}
-\begin{frame}{Képfelismerés}
+\subsection{Image recognition}
+\begin{frame}{Image recognition}
     \vskip 5mm
-Cél: a transzformált, zajos képet felismerni az eredeti képek közül.\\
-Különböző nagyságú és típusú zaj:
+Goal: correctly recognize the transformed, noisy image from the original set of images. \\
+Different types of noise used:
 \begin{itemize}
-    \item Gauss zaj
-    \item Só-bors zaj
+    \item Gaussian noise
+    \item Salt-and-pepper noise
 \end{itemize}
-Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert valós értékek vektorként kezelése. Osztályozás legkisebb euklideszi távolság alapján.
+Real-valued vectors are extracted from low order moments (quaternions). Classification is done by minimum Euclidean distance.
 \begin{figure}[tbp]
     \begin{subfigure}{0.25\textwidth}
         \centering
@@ -452,13 +452,13 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
 \end{figure}
 \end{frame}
 
-\begin{frame}{Képfelismerés - Gauss zaj}
+\begin{frame}{Image recognition - Gaussian noise}
     \vskip 1cm
     \begin{table}[tbp]
         \centering
-        \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.8cm}|p{2cm}|} \hline
-            $\sigma$ & \textbf{Régi} (\%) & \textbf{Új} -- "sok" pont (\%)& \textbf{Új} -- "kevés" pont (\%) \\ \hline\hline
-            Nincs zaj & 99.06 & 99.15 & 98.21 \\ \hline
+        \begin{tabular}{|p{1.5cm}|p{2.2cm}|p{2.7cm}|p{2.5cm}|} \hline
+            $\sigma$ & \textbf{Previous} (\%) & \textbf{Novel} -- "many" points (\%)& \textbf{Novel} -- "few" points (\%) \\ \hline\hline
+            No noise & 99.06 & 99.15 & 98.21 \\ \hline
             1 & 98.98 & 99.49 & 98.81 \\ \hline
             2 & 98.98 & 99.74 & 98.81 \\ \hline
             3 & 98.55 & 99.83 & 98.04 \\ \hline
@@ -472,13 +472,13 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
     \end{table}
 \end{frame}
 
-\begin{frame}{Képfelismerés - Só-bors zaj}
+\begin{frame}{Image recognition - Salt-and-pepper noise}
     \vskip 1cm
     \begin{table}[tbp]
         \centering
-        \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.8cm}|p{2cm}|} \hline
-            p & \textbf{Régi} (\%) & \textbf{Új} -- "sok" pont (\%)& \textbf{Új} -- "kevés" pont (\%) \\ \hline\hline
-            Nincs zaj & 99.06 & 99.15 & 98.21 \\ \hline
+        \begin{tabular}{|p{1.5cm}|p{2.2cm}|p{2.7cm}|p{2.5cm}|} \hline
+            $\sigma$ & \textbf{Previous} (\%) & \textbf{Novel} -- "many" points (\%)& \textbf{Novel} -- "few" points (\%) \\ \hline\hline
+            No noise & 99.06 & 99.15 & 98.21 \\ \hline
             0.2\% & 99.66 & 99.32 & 94.98 \\ \hline
             0.4\% & 99.91 & 99.74 & 99.15 \\ \hline
             0.6\% & 99.91 & 99.91 & 99.40 \\ \hline
@@ -492,34 +492,36 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
     \end{table}
 \end{frame}
 
-\section{Alkalmazások}
-\begin{frame}{Alkalmazások}
-    A momentumok sok területen alkalmazhatók, néhány példa:
+\section{Applications}
+\begin{frame}{Applications}
+    Moments are applicable in many fields, some examples:
     \begin{itemize}
-    \item \textbf{Vízjelek}: a képre a momentumok szintjén helyeznek vízjelet, így ellenálló lesz különböző transzformációknak és zajnak. Ehhez fontos a rekonstrukciós pontosság.
-    \item \textbf{Neurális hálók, gépi tanulás}: A képekből kinyert invariáns momentumok lehet a bemeneti vektor része. A neurális hálók ismert hiányossága a zajra való érzékenység, ezen segíthetnek a momentumok.
-    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására, szaruhártya vizsgálatára, stb.
+    \item \textbf{Watermarking}: 
+    A watermark can be placed on an image at the level of moments, thus it will be robust against different transformations and noise. The accuracy of reconstruction is important for this application.
+    \item \textbf{Neural networks, machine learning}: 
+    Invariant moments, extracted from the images, can be part of the input vector. A well-known issue of neural networks is their lack of robustness against noise, moments can help improve this robustness.
+    \item \textbf{Medical/optical applications}: represent and capture optical aberrations, inspect corneal aberrations, etc.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{További lehetőségek}
+\begin{frame}{Future improvement possibilities}
     \begin{itemize}
-    \item Meglévő alkalmazások továbbfejlesztése az új módszer szerint.
-    \item Más függvényrendszeren alapuló momentumokra hasonló konstrukció megadása.
-    \item További általánosítás 3-dimenzióra és alkalmazás például LiDAR pontfelhőkre.
+    \item Improve existing applications based on the proposed method.
+    \item Apply a similar construction to other moment methods based on various other function systems.
+    \item Further generalization to 3-dimensions and application to, for example, LiDAR point clouds.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Összefoglalás}
+\begin{frame}{Conclusion}
     \begin{itemize}
-    \item Diszkrét ortogonális pontrendszer konstruálása QZM-hez.
-    \item Összehasonlítás a korábbi módszerrel.
+    \item Construction of discrete orthogonal point system for QZMs.
+    \item Comparisons with previous methods.
         \begin{itemize}
-        \item Invariancia
-        \item Rekonstrukció
-        \item Képfelismerés
+        \item Invariance
+        \item Reconstruction
+        \item Image recognition
         \end{itemize}
-    \item Jelentősen jobb rekonstrukciós képesség és robusztusság különféle zajokkal szemben.
+    \item Improved image reconstruction ability and robustness against various types of noise.
     \end{itemize}
 \end{frame}
 

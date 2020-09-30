@@ -1,4 +1,4 @@
-FILE=tdk_slides
+FILE=NZs_NG_Quaternion_Zernike_MaCS2020
 
 pdf:
 	pdflatex $(FILE).tex 
