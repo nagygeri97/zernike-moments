@@ -3,7 +3,6 @@ from numba import *
 import numpy as np
 
 from ImageManipulation import *
-from Utility import *
 from legendre.LegendreRoots import *
 
 class LegendrePoints1():
@@ -38,52 +37,6 @@ class LegendreTransformation1():
 	
 	def lam(self, p):
 		return (p + 1)
-		
-
-# @jit(void(int64, int64, float64[:,:,:], float64[:,:,:], float64[:], float64[:]), nopython=True)
-# def interpolate(N, n, oldImg, newImg, rs, thetas):
-# 	for k in range(N):
-# 		for j in range(4*N + 1):
-# 			# Polar coord to cartesian
-# 			xy = rs[k] * (np.exp(thetas[j] * 1j))
-# 			x = xy.real
-# 			y = xy.imag
-
-# 			# Transform back to original image dimensions (so that the circle is inside the square)
-# 			x += 1
-# 			y += 1
-# 			x *= (n - 1) / 2
-# 			y *= (n - 1) / 2
-
-# 			# Bilinear interpolation
-# 			x1 = int(np.floor(x))
-# 			y1 = int(np.floor(y))
-# 			x2 = int(np.ceil(x))
-# 			y2 = int(np.ceil(y))
-
-# 			if x1 == x2:
-# 				if y1 == y2:
-# 					for i in range(3):
-# 						newImg[k,j,i] = oldImg[x1,y1,i]
-# 				else:
-# 					for i in range(3):
-# 						newImg[k,j,i] = int(round((y2 - y) * oldImg[x1,y2,i] + (y - y1) * oldImg[x1,y1,i]))
-# 			elif y1 == y2:
-# 				for i in range(3):
-# 					newImg[k,j,i] = int(round((x2 - x) * oldImg[x2,y1,i] + (x - x1) * oldImg[x1,y1,i]))
-# 			else:
-# 				for i in range(3):
-# 					newImg[k,j,i] = int(round(oldImg[x1,y1,i]*(x2 - x)*(y2 - y) +\
-# 									oldImg[x2,y1,i]*(x - x1)*(y2 - y) +\
-# 									oldImg[x1,y2,i]*(x2 - x)*(y - y1) +\
-# 									oldImg[x2,y2,i]*(x - x1)*(y - y1)))
-			
-# 			for i in range(3):
-# 				if newImg[k,j,i] > 255:
-# 					newImg[k,j,i] = 255
-# 				elif newImg[k,j,i] < 0:
-# 					newImg[k,j,i] = 0
-
 
 class LegendrePoints2():
 	def __init__(self, N=10):

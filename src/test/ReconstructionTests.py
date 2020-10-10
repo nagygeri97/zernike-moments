@@ -5,6 +5,8 @@ from ZernikeMomentsColor import *
 from ZernikeMomentsMonochrome import *
 from legendre.ZernikeMomentsColorLegendre import *
 from legendre.TransformationsLegendre import *
+from fourier.FourierMomentsMonochrome import *
+from fourier.TransformationsFourier import *
 from Utility import *
 
 def parseArgsForReconstructionTest():
@@ -90,6 +92,18 @@ def testImageReconstructionLegendreDiscOrth():
 
 	z = ZernikeMomentsColorRightLegendre(img, M, LegendreTransformationDiscOrth(maxP))
 	z.reconstructImage(output, N)
+
+def testImageReconstructionFourierMonochrome():
+	args = parseArgsForReconstructionTest()
+	
+	output = args.output if args.output is not None else '../test.png'
+	M = args.M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+	img = np.array(img, dtype='double')
+
+	f = FourierMomentsMonochrome(img, 1, M, M)
+	f.reconstructImage(output, N)
 
 def testImageReconstructionErrors():
 	tests = [
