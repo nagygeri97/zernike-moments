@@ -1,4 +1,5 @@
 import numpy as np
+from numba import *
 from PIL import Image, ImageFilter
 import os
 
@@ -274,7 +275,7 @@ def imageToFloat(img):
 
 # ------ Interpolation --------
 
-# @jit(void(int64, int64, int64, float64[:,:,:], float64[:,:,:], float64[:], float64[:]), nopython=True)
+@jit(void(int64, int64, int64, float64[:,:,:], float64[:,:,:], float64[:], float64[:]), nopython=True)
 def interpolate(lenR, lenTheta, n, oldImg, newImg, rs, thetas):
 	for k in range(lenR):
 		for j in range(lenTheta):

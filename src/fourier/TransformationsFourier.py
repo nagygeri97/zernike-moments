@@ -12,7 +12,7 @@ class FourierPoints():
 
 		for i in range(self.N):
 			self.rs[i] = float(i) / self.N
-			self.thetas[i] = float(i)*np.pi / self.N
+			self.thetas[i] = float(i)*2*np.pi / self.N
 
 class FourierTransformation():
 	def __init__(self, img, N = None):

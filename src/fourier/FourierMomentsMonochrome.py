@@ -22,7 +22,7 @@ class FourierMomentsMonochrome:
 		self.maxQ = maxQ
 		self.sins = sins
 		self.coss = coss
-		self.trans = trans # TODO: specify default
+		self.trans = trans
 		self.calculateFourierMoments()
 	
 	def calculateFourierMoments(self):
@@ -95,7 +95,7 @@ class FourierMomentsMonochrome:
 		return eps
 
 
-# @jit(void(int64, int64, int64, int64, float64[:], float64[:], float64[:,:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:]), nopython=True)
+@jit(void(int64, int64, int64, int64, float64[:], float64[:], float64[:,:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:]), nopython=True)
 def calculate(N, maxP, maxQ, colorIndex, rs, thetas, img, sins, coss, Zre, Zim, zeros):
 	for k in range(N):
 		values = zeros.copy()
@@ -110,7 +110,7 @@ def calculate(N, maxP, maxQ, colorIndex, rs, thetas, img, sins, coss, Zre, Zim, 
 					Zre[p, q] += coss[j,q] * tmp
 					Zim[p, q] += -sins[j,q] * tmp
 
-# @jit(void(int64, int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:], float64[:,:], uint8[:,:], float64[:]), nopython=False)
+@jit(void(int64, int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:], float64[:,:], uint8[:,:], float64[:]), nopython=False)
 def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zim, imageArray, zeros):
 	for x in range(N):
 		for y in range(N):
@@ -131,14 +131,14 @@ def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zim, imageArray, z
 				value = 0
 			imageArray[x,y] = int(round(value))
 
-# @jit(void(int64, int64, float64[:], float64[:,:], float64[:,:]), nopython=True)
+@jit(void(int64, int64, float64[:], float64[:,:], float64[:,:]), nopython=True)
 def prepare(N, maxQ, thetas, sins, coss):
 	for j in range(N):
 			for q in range(0, maxQ + 1):
 				sins[j,q] = np.sin(q*thetas[j])
 				coss[j,q] = np.cos(q*thetas[j])
 
-# @jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
+@jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
 def prepareReconstruction(N, maxP, thetas, sins, coss):
 	for x in range(N):
 		for y in range(N):
