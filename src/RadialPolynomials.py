@@ -37,11 +37,11 @@ def calculateFourierKernel(r, maxP, values):
 	Assumes r in [0..1]
 	"""
 	# TODO: What if r == 0?
-	# if r == 0:
-	# 	r = 1e-6
+	if r < 1e-8:
+		r = 1e-8
 
-	values[0] = np.sqrt(r)
-	sq2r = np.sqrt(r / 2.0)
+	values[0] = 1.0 / np.sqrt(r)
+	sq2r = np.sqrt(2.0 / r)
 	# Even p
 	for p in range(2, maxP + 1, 2):
 		values[p] = sq2r * np.cos(np.pi * p * r)

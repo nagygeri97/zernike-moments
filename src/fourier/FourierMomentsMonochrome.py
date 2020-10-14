@@ -99,10 +99,10 @@ class FourierMomentsMonochrome:
 def calculate(N, maxP, maxQ, colorIndex, rs, thetas, img, sins, coss, Zre, Zim, zeros):
 	for k in range(N):
 		values = zeros.copy()
-		calculateFourierKernel(rs[k], maxP + 1, values)
-		# print("R = " + str(rs[k]))
-		# for i in range(len(values)):
-		# 	print("{}. = {}".format(i,values[i]))
+		calculateFourierKernel(rs[k], maxP, values)
+		for p in range(0, maxP + 1):
+			values[p] = rs[k]*values[p] # Why do we need this?
+		
 		for j in range(N):
 			for p in range(0, maxP + 1):
 				for q in range(0, maxQ + 1):
@@ -118,13 +118,12 @@ def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zim, imageArray, z
 				continue
 			values = zeros.copy()
 			calculateFourierKernel(rs[x,y], maxP, values)
-			value = 0 # Monochrome
+			value = 0 # Greyscale
 			for p in range(0, maxP + 1):
 				value += values[p] * (Zre[p,0] * coss[x,y,0] - Zim[p,0] * sins[x,y,0])
 				for q in range(1, maxQ + 1):
 					value += 2 * values[p] * (Zre[p,q] * coss[x,y,q] - Zim[p,q] * sins[x,y,q])
 
-			# print("x {}, y {}, value {}".format(x,y,value))
 			if value > 255:
 				value = 255
 			elif value < 0:
