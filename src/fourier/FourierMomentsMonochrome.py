@@ -13,7 +13,7 @@ class FourierMomentsMonochrome:
 	needed for calculating the Fourier moments (RHFMs).
 	"""
 
-	def __init__(self, img, colorIndex, maxP, maxQ, trans = None, sins = None, coss = None):
+	def __init__(self, colorIndex, maxP, maxQ, trans = None, sins = None, coss = None, img = None):
 		# img only needed if trans is missing (and reconstruction), otherwise trans contains the interpolated image
 		self.img = img
 
@@ -53,9 +53,9 @@ class FourierMomentsMonochrome:
 				self.Zim[p,q] *= self.trans.lam
 
 		# print moments:
-		for p in range(self.maxP + 1):
-			for q in range(self.maxQ + 1):
-				print("M_{},{} = {} + {}i".format(p,q,self.Zre[p,q], self.Zim[p,q]))
+		# for p in range(self.maxP + 1):
+		# 	for q in range(self.maxQ + 1):
+		# 		print("M_{},{} = {} + {}i".format(p,q,self.Zre[p,q], self.Zim[p,q]))
 
 	def reconstructImage(self, fileName, size):
 		print("Color image reconstruction started.")
@@ -101,7 +101,7 @@ def calculate(N, maxP, maxQ, colorIndex, rs, thetas, img, sins, coss, Zre, Zim, 
 		values = zeros.copy()
 		calculateFourierKernel(rs[k], maxP, values)
 		for p in range(0, maxP + 1):
-			values[p] = rs[k]*values[p] # Why do we need this?
+			values[p] = rs[k]*values[p]
 		
 		for j in range(N):
 			for p in range(0, maxP + 1):

@@ -6,6 +6,7 @@ from ZernikeMomentsMonochrome import *
 from legendre.ZernikeMomentsColorLegendre import *
 from legendre.TransformationsLegendre import *
 from fourier.FourierMomentsMonochrome import *
+from fourier.FourierMomentsColor import *
 from fourier.TransformationsFourier import *
 from Utility import *
 
@@ -102,7 +103,19 @@ def testImageReconstructionFourierMonochrome():
 	(img, N) = getImgFromFileAsNpArray(args.file)
 	img = np.array(img, dtype='double')
 
-	f = FourierMomentsMonochrome(img, 1, M, M)
+	f = FourierMomentsMonochrome(1, M, M, img=img)
+	f.reconstructImage(output, N)
+
+def testImageReconstructionFourierColor():
+	args = parseArgsForReconstructionTest()
+	
+	output = args.output if args.output is not None else '../test.png'
+	M = args.M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+	img = np.array(img, dtype='double')
+
+	f = FourierMomentsColor(img, M, M, FourierTransformation, True)
 	f.reconstructImage(output, N)
 
 def testImageReconstructionErrors():
