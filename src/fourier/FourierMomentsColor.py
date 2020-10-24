@@ -48,19 +48,21 @@ class FourierMomentsColor:
 		self.ZfG = ZfG
 		self.ZfB = ZfB
 
-		self.Zre = np.zeros([self.maxP + 1, self.maxQ + 1])
-		self.Zi  = np.zeros([self.maxP + 1, self.maxQ + 1])
-		self.Zj  = np.zeros([self.maxP + 1, self.maxQ + 1])
-		self.Zk  = np.zeros([self.maxP + 1, self.maxQ + 1])
+		# Last index: 0 = positive p, 1 = negative p
+		self.Zre = np.zeros([self.maxP + 1, self.maxQ + 1, 2])
+		self.Zi  = np.zeros([self.maxP + 1, self.maxQ + 1, 2])
+		self.Zj  = np.zeros([self.maxP + 1, self.maxQ + 1, 2])
+		self.Zk  = np.zeros([self.maxP + 1, self.maxQ + 1, 2])
 
 		sqrt3inv = 1.0 / np.sqrt(3.0)
 
 		for p in range(self.maxP + 1):
 			for q in range(self.maxQ + 1):
-				self.Zre[p, q] = - sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
-				self.Zi[p, q] = ZfR.Zre[p, q] + sqrt3inv * (ZfB.Zim[p, q] - ZfG.Zim[p, q])
-				self.Zj[p, q] = ZfG.Zre[p, q] + sqrt3inv * (ZfR.Zim[p, q] - ZfB.Zim[p, q])
-				self.Zk[p, q] = ZfB.Zre[p, q] + sqrt3inv * (ZfG.Zim[p, q] - ZfR.Zim[p, q])
+				for i in [0,1]:
+					self.Zre[p, q, i] = - sqrt3inv * (ZfR.Zim[p, q, i] + ZfG.Zim[p, q, i] + ZfB.Zim[p, q, i])
+					self.Zi[p, q, i] = ZfR.Zre[p, q, i] + sqrt3inv * (ZfG.Zim[p, q, i] - ZfB.Zim[p, q, i])
+					self.Zj[p, q, i] = ZfG.Zre[p, q, i] + sqrt3inv * (ZfB.Zim[p, q, i] - ZfR.Zim[p, q, i])
+					self.Zk[p, q, i] = ZfB.Zre[p, q, i] + sqrt3inv * (ZfR.Zim[p, q, i] - ZfG.Zim[p, q, i])
 
 				# Calculation for -q, not needed
 				# self.Zre[p, q] = sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
@@ -71,9 +73,9 @@ class FourierMomentsColor:
 			print("Fourier moment calculation done.")
 
 		# print moments:
-		for p in range(self.maxP + 1):
-			for q in range(self.maxQ + 1):
-				print("M_{},{} = {} + {}i + {}j + {}k".format(p,q,self.Zre[p,q], self.Zi[p,q], self.Zj[p,q], self.Zk[p,q]))
+		# for p in range(self.maxP + 1):
+		# 	for q in range(self.maxQ + 1):
+		# 		print("M_{},{} = {} + {}i + {}j + {}k".format(p,q,self.Zre[p,q], self.Zi[p,q], self.Zj[p,q], self.Zk[p,q]))
 
 
 	def reconstructImage(self, fileName, size):
@@ -111,14 +113,14 @@ class FourierMomentsColor:
 		print("Mean square error: ", eps)
 		return eps
 
-# @jit(void(int64, int64, float64[:], float64[:,:], float64[:,:]), nopython=True)
+@jit(void(int64, int64, float64[:], float64[:,:], float64[:,:]), nopython=True)
 def prepare(N, maxQ, thetas, sins, coss):
 	for j in range(N):
 			for q in range(0, maxQ + 1):
 				sins[j,q] = np.sin(q*thetas[j])
 				coss[j,q] = np.cos(q*thetas[j])
 
-# @jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
+@jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
 def prepareReconstruction(N, maxP, thetas, sins, coss):
 	for x in range(N):
 		for y in range(N):
@@ -126,7 +128,7 @@ def prepareReconstruction(N, maxP, thetas, sins, coss):
 				sins[x,y,q] = np.sin(q*thetas[x,y])
 				coss[x,y,q] = np.cos(q*thetas[x,y])
 
-# @jit(void(int64, int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], uint8[:,:,:], float64[:]), nopython=False)
+@jit(void(int64, int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], uint8[:,:,:], float64[:]), nopython=False)
 def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zi, Zj, Zk, ZRRe, ZGRe, ZBRe, imageArray, zeros):
 	sqrt3inv = 1.0 / np.sqrt(3.0)
 	for x in range(N):
@@ -134,20 +136,32 @@ def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zi, Zj, Zk, ZRRe, 
 			if rs[x,y] > 1: # handling r > 1, do not calculate with those values
 				continue
 			values = zeros.copy()
+			negValues = zeros.copy()
 			calculateFourierKernel(rs[x,y], maxP, values)
+			calculateFourierKernelNegativeP(rs[x,y], maxP, negValues)
 			value = [0.0, 0.0, 0.0] # RGB
 			for p in range(0, maxP + 1):
 				tmp = sqrt3inv * sins[x,y,0]
-				value[0] += values[0] * (tmp * (Zre[p,0] + Zj[p,0] - Zk[p,0]) + coss[x,y,0]*Zi[p,0])
-				value[1] += values[0] * (tmp * (Zre[p,0] + Zk[p,0] - Zi[p,0]) + coss[x,y,0]*Zj[p,0])
-				value[2] += values[0] * (tmp * (Zre[p,0] + Zi[p,0] - Zj[p,0]) + coss[x,y,0]*Zk[p,0])
+				value[0] += values[0] * (tmp * (Zre[p,0,0] + Zj[p,0,0] - Zk[p,0,0]) + coss[x,y,0]*Zi[p,0,0])
+				value[1] += values[0] * (tmp * (Zre[p,0,0] + Zk[p,0,0] - Zi[p,0,0]) + coss[x,y,0]*Zj[p,0,0])
+				value[2] += values[0] * (tmp * (Zre[p,0,0] + Zi[p,0,0] - Zj[p,0,0]) + coss[x,y,0]*Zk[p,0,0])
 				for q in range(1, maxQ + 1):
 					tmp = sqrt3inv * sins[x,y,q]
 					# New formula without explicitly calculating negative qs
-					value[0] += 2 * values[q] * (tmp * (Zre[p,q] + (Zj[p,q] - ZGRe[p,q]) - (Zk[p,q] - ZBRe[p,q])) + coss[x,y,q] * ZRRe[p,q])
-					value[1] += 2 * values[q] * (tmp * (Zre[p,q] + (Zk[p,q] - ZBRe[p,q]) - (Zi[p,q] - ZRRe[p,q])) + coss[x,y,q] * ZGRe[p,q])
-					value[2] += 2 * values[q] * (tmp * (Zre[p,q] + (Zi[p,q] - ZRRe[p,q]) - (Zj[p,q] - ZGRe[p,q])) + coss[x,y,q] * ZBRe[p,q])
+					value[0] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zj[p,q,0] - ZGRe[p,q,0]) - (Zk[p,q,0] - ZBRe[p,q,0])) + coss[x,y,q] * ZRRe[p,q,0])
+					value[1] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zk[p,q,0] - ZBRe[p,q,0]) - (Zi[p,q,0] - ZRRe[p,q,0])) + coss[x,y,q] * ZGRe[p,q,0])
+					value[2] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zi[p,q,0] - ZRRe[p,q,0]) - (Zj[p,q,0] - ZGRe[p,q,0])) + coss[x,y,q] * ZBRe[p,q,0])
+			
+					# if p > 0:
+					# 	value[0] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zj[p,q,1] - ZGRe[p,q,1]) - (Zk[p,q,1] - ZBRe[p,q,1])) + coss[x,y,q] * ZRRe[p,q,1])
+					# 	value[1] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zk[p,q,1] - ZBRe[p,q,1]) - (Zi[p,q,1] - ZRRe[p,q,1])) + coss[x,y,q] * ZGRe[p,q,1])
+					# 	value[2] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zi[p,q,1] - ZRRe[p,q,1]) - (Zj[p,q,1] - ZGRe[p,q,1])) + coss[x,y,q] * ZBRe[p,q,1])
+
+
 			print(value)
+			# value[0] = abs(value[0])
+			# value[1] = abs(value[1])
+			# value[2] = abs(value[2])
 			for i in range(3):
 				if value[i] > 255:
 					value[i] = 255

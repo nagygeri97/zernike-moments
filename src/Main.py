@@ -19,8 +19,8 @@ def main():
 	# testImageReconstructionLegendre1()
 	# testImageReconstructionLegendre2()
 	# testImageReconstructionLegendreDiscOrth()
-	testImageReconstructionFourierMonochrome()
-	# testImageReconstructionFourierColor()
+	# testImageReconstructionFourierMonochrome()
+	testImageReconstructionFourierColor()
 	# testImageReconstructionErrors()
 	
 	# InvarianceTests
