@@ -66,16 +66,16 @@ class FourierMomentsColor:
 
 				# Calculation for -q, not needed
 				# self.Zre[p, q] = sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
-				# self.Zi[p, q] = ZfR.Zre[p, q] - sqrt3inv * (ZfG.Zim[p, q] - ZfB.Zim[p, q])
-				# self.Zj[p, q] = ZfG.Zre[p, q] - sqrt3inv * (ZfB.Zim[p, q] - ZfR.Zim[p, q])
-				# self.Zk[p, q] = ZfB.Zre[p, q] - sqrt3inv * (ZfR.Zim[p, q] - ZfG.Zim[p, q])
+				# self.Zi[p, q] = ZfR.Zre[p, q] - sqrt3inv * (ZfB.Zim[p, q] - ZfG.Zim[p, q])
+				# self.Zj[p, q] = ZfG.Zre[p, q] - sqrt3inv * (ZfR.Zim[p, q] - ZfB.Zim[p, q])
+				# self.Zk[p, q] = ZfB.Zre[p, q] - sqrt3inv * (ZfG.Zim[p, q] - ZfR.Zim[p, q])
 		if self.verbose:
 			print("Fourier moment calculation done.")
 
 		# print moments:
-		# for p in range(self.maxP + 1):
-		# 	for q in range(self.maxQ + 1):
-		# 		print("M_{},{} = {} + {}i + {}j + {}k".format(p,q,self.Zre[p,q], self.Zi[p,q], self.Zj[p,q], self.Zk[p,q]))
+		for p in range(self.maxP + 1):
+			for q in range(self.maxQ + 1):
+				print("M_{},{} = {} + {}i + {}j + {}k".format(p,q,self.Zre[p,q], self.Zi[p,q], self.Zj[p,q], self.Zk[p,q]))
 
 
 	def reconstructImage(self, fileName, size):
@@ -96,7 +96,7 @@ class FourierMomentsColor:
 				r, theta = trans.getPolarCoords(x,y) # maybe r > 1, handle later, at all times ignore if r > 1 
 				rs[x,y] = r
 				thetas[x,y] = theta
-		prepareReconstruction(size, self.maxP, thetas, sins, coss)
+		prepareReconstruction(size, self.maxQ, thetas, sins, coss)
 
 		reconstructImageArray(size, self.maxP, self.maxQ, rs, sins, coss, self.Zre, self.Zi, self.Zj, self.Zk, self.ZfR.Zre, self.ZfG.Zre, self.ZfB.Zre, imgArray, zeros)
 		for x in range(size):
@@ -121,10 +121,10 @@ def prepare(N, maxQ, thetas, sins, coss):
 				coss[j,q] = np.cos(q*thetas[j])
 
 @jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
-def prepareReconstruction(N, maxP, thetas, sins, coss):
+def prepareReconstruction(N, maxQ, thetas, sins, coss):
 	for x in range(N):
 		for y in range(N):
-			for q in range(0, maxP + 1):
+			for q in range(0, maxQ + 1):
 				sins[x,y,q] = np.sin(q*thetas[x,y])
 				coss[x,y,q] = np.cos(q*thetas[x,y])
 
@@ -141,6 +141,7 @@ def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zi, Zj, Zk, ZRRe, 
 			calculateFourierKernelNegativeP(rs[x,y], maxP, negValues)
 			value = [0.0, 0.0, 0.0] # RGB
 			for p in range(0, maxP + 1):
+				# q == 0
 				tmp = sqrt3inv * sins[x,y,0]
 				value[0] += values[0] * (tmp * (Zre[p,0,0] + Zj[p,0,0] - Zk[p,0,0]) + coss[x,y,0]*Zi[p,0,0])
 				value[1] += values[0] * (tmp * (Zre[p,0,0] + Zk[p,0,0] - Zi[p,0,0]) + coss[x,y,0]*Zj[p,0,0])
@@ -152,13 +153,14 @@ def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zi, Zj, Zk, ZRRe, 
 					value[1] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zk[p,q,0] - ZBRe[p,q,0]) - (Zi[p,q,0] - ZRRe[p,q,0])) + coss[x,y,q] * ZGRe[p,q,0])
 					value[2] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zi[p,q,0] - ZRRe[p,q,0]) - (Zj[p,q,0] - ZGRe[p,q,0])) + coss[x,y,q] * ZBRe[p,q,0])
 			
-					# if p > 0:
-					# 	value[0] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zj[p,q,1] - ZGRe[p,q,1]) - (Zk[p,q,1] - ZBRe[p,q,1])) + coss[x,y,q] * ZRRe[p,q,1])
-					# 	value[1] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zk[p,q,1] - ZBRe[p,q,1]) - (Zi[p,q,1] - ZRRe[p,q,1])) + coss[x,y,q] * ZGRe[p,q,1])
-					# 	value[2] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zi[p,q,1] - ZRRe[p,q,1]) - (Zj[p,q,1] - ZGRe[p,q,1])) + coss[x,y,q] * ZBRe[p,q,1])
+					# Negative p
+					if p > 0:
+						value[0] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zj[p,q,1] - ZGRe[p,q,1]) - (Zk[p,q,1] - ZBRe[p,q,1])) + coss[x,y,q] * ZRRe[p,q,1])
+						value[1] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zk[p,q,1] - ZBRe[p,q,1]) - (Zi[p,q,1] - ZRRe[p,q,1])) + coss[x,y,q] * ZGRe[p,q,1])
+						value[2] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zi[p,q,1] - ZRRe[p,q,1]) - (Zj[p,q,1] - ZGRe[p,q,1])) + coss[x,y,q] * ZBRe[p,q,1])
 
 
-			print(value)
+			# print(value)
 			# value[0] = abs(value[0])
 			# value[1] = abs(value[1])
 			# value[2] = abs(value[2])

@@ -82,7 +82,7 @@ class FourierMomentsMonochrome:
 				r, theta = trans.getPolarCoords(x,y) # maybe r > 1, handle later, at all times ignore if r > 1 
 				rs[x,y] = r
 				thetas[x,y] = theta
-		prepareReconstruction(size, self.maxP, thetas, sins, coss)
+		prepareReconstruction(size, self.maxQ, thetas, sins, coss)
 
 		reconstructImageArray(size, self.maxP, self.maxQ, rs, sins, coss, self.Zre, self.Zim, image1d, zeros)
 		for x in range(size):
@@ -151,9 +151,9 @@ def prepare(N, maxQ, thetas, sins, coss):
 				coss[j,q] = np.cos(q*thetas[j])
 
 @jit(void(int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:]), nopython=True)
-def prepareReconstruction(N, maxP, thetas, sins, coss):
+def prepareReconstruction(N, maxQ, thetas, sins, coss):
 	for x in range(N):
 		for y in range(N):
-			for q in range(0, maxP + 1):
+			for q in range(0, maxQ + 1):
 				sins[x,y,q] = np.sin(q*thetas[x,y])
 				coss[x,y,q] = np.cos(q*thetas[x,y])
