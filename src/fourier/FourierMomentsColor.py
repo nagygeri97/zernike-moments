@@ -20,7 +20,7 @@ class FourierMomentsColor:
 		self.verbose = verbose
 
 		if transformationClass is None:
-			transformationClass = FourierTransformation
+			transformationClass = FourierTransformationInterpolation
 		self.trans = transformationClass(img)
 
 		self.calculateFourierMoments()
@@ -63,19 +63,14 @@ class FourierMomentsColor:
 					self.Zi[p, q, i] = ZfR.Zre[p, q, i] + sqrt3inv * (ZfG.Zim[p, q, i] - ZfB.Zim[p, q, i])
 					self.Zj[p, q, i] = ZfG.Zre[p, q, i] + sqrt3inv * (ZfB.Zim[p, q, i] - ZfR.Zim[p, q, i])
 					self.Zk[p, q, i] = ZfB.Zre[p, q, i] + sqrt3inv * (ZfR.Zim[p, q, i] - ZfG.Zim[p, q, i])
-
-				# Calculation for -q, not needed
-				# self.Zre[p, q] = sqrt3inv * (ZfR.Zim[p, q] + ZfG.Zim[p, q] + ZfB.Zim[p, q])
-				# self.Zi[p, q] = ZfR.Zre[p, q] - sqrt3inv * (ZfB.Zim[p, q] - ZfG.Zim[p, q])
-				# self.Zj[p, q] = ZfG.Zre[p, q] - sqrt3inv * (ZfR.Zim[p, q] - ZfB.Zim[p, q])
-				# self.Zk[p, q] = ZfB.Zre[p, q] - sqrt3inv * (ZfG.Zim[p, q] - ZfR.Zim[p, q])
 		if self.verbose:
 			print("Fourier moment calculation done.")
 
 		# print moments:
-		for p in range(self.maxP + 1):
-			for q in range(self.maxQ + 1):
-				print("M_{},{} = {} + {}i + {}j + {}k".format(p,q,self.Zre[p,q], self.Zi[p,q], self.Zj[p,q], self.Zk[p,q]))
+		# for p in range(self.maxP + 1):
+		# 	for q in range(self.maxQ + 1):
+		# 		# if self.Zre[p,q,0] == self.Zre[p,q,1] and p % 2 == 1:
+		# 		print("M_{},{} = {} + {}i + {}j + {}k".format(p,q,self.Zre[p,q], self.Zi[p,q], self.Zj[p,q], self.Zk[p,q]))
 
 
 	def reconstructImage(self, fileName, size):
@@ -143,30 +138,34 @@ def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zi, Zj, Zk, ZRRe, 
 			for p in range(0, maxP + 1):
 				# q == 0
 				tmp = sqrt3inv * sins[x,y,0]
-				value[0] += values[0] * (tmp * (Zre[p,0,0] + Zj[p,0,0] - Zk[p,0,0]) + coss[x,y,0]*Zi[p,0,0])
-				value[1] += values[0] * (tmp * (Zre[p,0,0] + Zk[p,0,0] - Zi[p,0,0]) + coss[x,y,0]*Zj[p,0,0])
-				value[2] += values[0] * (tmp * (Zre[p,0,0] + Zi[p,0,0] - Zj[p,0,0]) + coss[x,y,0]*Zk[p,0,0])
+				value[0] += values[p] * (tmp * (Zre[p,0,0] + Zj[p,0,0] - Zk[p,0,0]) + coss[x,y,0]*Zi[p,0,0])
+				value[1] += values[p] * (tmp * (Zre[p,0,0] + Zk[p,0,0] - Zi[p,0,0]) + coss[x,y,0]*Zj[p,0,0])
+				value[2] += values[p] * (tmp * (Zre[p,0,0] + Zi[p,0,0] - Zj[p,0,0]) + coss[x,y,0]*Zk[p,0,0])
+
+				# Negative p and q == 0
+				if p != 0:
+					value[0] += negValues[p] * (tmp * (Zre[p,0,1] + Zj[p,0,1] - Zk[p,0,1]) + coss[x,y,0]*Zi[p,0,1])
+					value[1] += negValues[p] * (tmp * (Zre[p,0,1] + Zk[p,0,1] - Zi[p,0,1]) + coss[x,y,0]*Zj[p,0,1])
+					value[2] += negValues[p] * (tmp * (Zre[p,0,1] + Zi[p,0,1] - Zj[p,0,1]) + coss[x,y,0]*Zk[p,0,1])
+
 				for q in range(1, maxQ + 1):
 					tmp = sqrt3inv * sins[x,y,q]
-					# New formula without explicitly calculating negative qs
+					# Formula without explicitly calculating negative qs
 					value[0] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zj[p,q,0] - ZGRe[p,q,0]) - (Zk[p,q,0] - ZBRe[p,q,0])) + coss[x,y,q] * ZRRe[p,q,0])
 					value[1] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zk[p,q,0] - ZBRe[p,q,0]) - (Zi[p,q,0] - ZRRe[p,q,0])) + coss[x,y,q] * ZGRe[p,q,0])
 					value[2] += 2 * values[p] * (tmp * (Zre[p,q,0] + (Zi[p,q,0] - ZRRe[p,q,0]) - (Zj[p,q,0] - ZGRe[p,q,0])) + coss[x,y,q] * ZBRe[p,q,0])
 			
 					# Negative p
-					if p > 0:
+					if p != 0:
 						value[0] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zj[p,q,1] - ZGRe[p,q,1]) - (Zk[p,q,1] - ZBRe[p,q,1])) + coss[x,y,q] * ZRRe[p,q,1])
 						value[1] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zk[p,q,1] - ZBRe[p,q,1]) - (Zi[p,q,1] - ZRRe[p,q,1])) + coss[x,y,q] * ZGRe[p,q,1])
 						value[2] += 2 * negValues[p] * (tmp * (Zre[p,q,1] + (Zi[p,q,1] - ZRRe[p,q,1]) - (Zj[p,q,1] - ZGRe[p,q,1])) + coss[x,y,q] * ZBRe[p,q,1])
 
-
-			# print(value)
-			# value[0] = abs(value[0])
-			# value[1] = abs(value[1])
-			# value[2] = abs(value[2])
 			for i in range(3):
 				if value[i] > 255:
+					# print(x,y)
 					value[i] = 255
 				elif value[i] < 0:
+					# print(x,y)
 					value[i] = 0
 				imageArray[x,y,i] = int(round(value[i]))

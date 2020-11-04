@@ -36,7 +36,7 @@ class FourierMomentsMonochrome:
 		"""
 		if self.sins is None:
 			if self.trans is None:
-				self.trans = FourierTransformation(self.img, None)
+				self.trans = FourierTransformationInterpolation(self.img, None)
 			self.sins = np.empty([self.trans.N, self.maxQ + 1])
 			self.coss = np.empty([self.trans.N, self.maxQ + 1])
 

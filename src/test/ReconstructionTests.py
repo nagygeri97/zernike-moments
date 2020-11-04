@@ -115,7 +115,31 @@ def testImageReconstructionFourierColor():
 	(img, N) = getImgFromFileAsNpArray(args.file)
 	img = np.array(img, dtype='double')
 
-	f = FourierMomentsColor(img, M, M, FourierTransformation, True)
+	f = FourierMomentsColor(img, M, M, FourierTransformationInterpolation, True)
+	f.reconstructImage(output, N)
+
+def testImageReconstructionFourierOriginalMonochrome():
+	args = parseArgsForReconstructionTest()
+	
+	output = args.output if args.output is not None else '../test.png'
+	M = args.M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+	img = np.array(img, dtype='double')
+
+	f = FourierMomentsMonochrome(1, M, M, trans=FourierTransformationOriginal(img, None), img=img)
+	f.reconstructImage(output, N)
+
+def testImageReconstructionFourierOriginalColor():
+	args = parseArgsForReconstructionTest()
+	
+	output = args.output if args.output is not None else '../test.png'
+	M = args.M
+
+	(img, N) = getImgFromFileAsNpArray(args.file)
+	img = np.array(img, dtype='double')
+
+	f = FourierMomentsColor(img, M, M, FourierTransformationOriginal, True)
 	f.reconstructImage(output, N)
 
 def testImageReconstructionErrors():

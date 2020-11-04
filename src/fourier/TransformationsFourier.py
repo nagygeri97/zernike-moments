@@ -14,7 +14,7 @@ class FourierPoints():
 			self.rs[i] = float(i) / self.N
 			self.thetas[i] = float(i)*2*np.pi / self.N
 
-class FourierTransformation():
+class FourierTransformationInterpolation():
 	def __init__(self, img, N = None):
 		self.n, _, _ = img.shape
 		if N is None:
@@ -30,3 +30,26 @@ class FourierTransformation():
 
 		# Calculating RGB values
 		interpolate(self.N, self.N, self.n, img, self.img, self.rs, self.thetas)
+
+class FourierTransformationOriginal():
+	def __init__(self, img, N = None):
+		self.n, _, _ = img.shape
+		if N is None:
+			N = self.n
+		points = FourierPoints(N)
+		self.rs = points.rs
+		self.thetas = points.thetas
+		self.N = points.N
+		self.lam = 1 / float(self.N * self.N)
+
+		# Interpolated image
+		self.img = np.zeros([self.N, self.N, 3]) # RGB values for each (r,theta)
+
+		# Calculating RGB values
+		halfN = float(self.N) / 2.0
+		for i in range(N):
+			for j in range(N):
+				x = int(np.floor(self.rs[i] * halfN * np.cos(self.thetas[j])) + halfN)
+				y = int(np.floor(self.rs[i] * halfN * np.sin(self.thetas[j])) + halfN)
+				for color in range(3):
+					self.img[i,j,color] = img[x,y,color]
