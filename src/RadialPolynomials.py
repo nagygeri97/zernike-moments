@@ -49,26 +49,3 @@ def calculateFourierKernel(r, maxP, values):
 	# Odd p
 	for p in range(1, maxP + 1, 2):
 		values[p] = sq2r * np.sin(np.pi * (p + 1) * r)
-
-@jit(void(float64, int32, float64[:]), nopython=True)
-def calculateFourierKernelNegativeP(r, maxP, values):
-	"""
-	Create and store the values of the Fourier kernel functions
-	for a single given r,
-	for p = -maxP..0
-	
-	Assumes r in [0..1]
-	"""
-	# TODO: What if r == 0?
-	if r < 1e-8:
-		r = 1e-8
-
-	values[0] = 1.0 / np.sqrt(r)
-	sq2r = np.sqrt(2.0 / r)
-	# Even p
-	for p in range(2, maxP + 1, 2):
-		values[p] = sq2r * np.cos(np.pi * (-p) * r)
-	
-	# Odd p
-	for p in range(1, maxP + 1, 2):
-		values[p] = sq2r * np.sin(np.pi * (-p + 1) * r)

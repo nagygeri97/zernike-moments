@@ -42,9 +42,8 @@ class FourierMomentsMonochrome:
 
 			prepare(self.trans.N, self.maxQ, self.trans.thetas, self.sins, self.coss)
 		
-		# Last index: 0 = positive p, 1 = negative p
-		self.Zre = np.zeros([self.maxP + 1, self.maxQ + 1, 2])
-		self.Zim = np.zeros([self.maxP + 1, self.maxQ + 1, 2])
+		self.Zre = np.zeros([self.maxP + 1, self.maxQ + 1])
+		self.Zim = np.zeros([self.maxP + 1, self.maxQ + 1])
 
 		# Calculate:
 		zeros = np.zeros([self.maxP + 1], dtype='float')
@@ -52,11 +51,8 @@ class FourierMomentsMonochrome:
 
 		for p in range(self.maxP + 1):
 			for q in range(self.maxQ + 1):
-				self.Zre[p,q,0] *= self.trans.lam
-				self.Zim[p,q,0] *= self.trans.lam
-
-				self.Zre[p,q,1] *= self.trans.lam
-				self.Zim[p,q,1] *= self.trans.lam
+				self.Zre[p,q] *= self.trans.lam
+				self.Zim[p,q] *= self.trans.lam
 
 		# print moments:
 		# for p in range(self.maxP + 1):
@@ -101,29 +97,23 @@ class FourierMomentsMonochrome:
 		return eps
 
 
-@jit(void(int64, int64, int64, int64, float64[:], float64[:], float64[:,:,:], float64[:,:], float64[:,:], float64[:,:,:], float64[:,:,:], float64[:]), nopython=True)
+@jit(void(int64, int64, int64, int64, float64[:], float64[:], float64[:,:,:], float64[:,:], float64[:,:], float64[:,:], float64[:,:], float64[:]), nopython=True)
 def calculate(N, maxP, maxQ, colorIndex, rs, thetas, img, sins, coss, Zre, Zim, zeros):
 	for k in range(N):
 		values = zeros.copy()
 		negValues = zeros.copy()
 		calculateFourierKernel(rs[k], maxP, values)
-		calculateFourierKernelNegativeP(rs[k], maxP, negValues)
 		for p in range(0, maxP + 1):
 			values[p] = rs[k]*values[p]
-			negValues[p] = rs[k]*negValues[p]
 		
 		for j in range(N):
 			for p in range(0, maxP + 1):
 				for q in range(0, maxQ + 1):
 					tmp = values[p] * img[k,j,colorIndex]
-					Zre[p, q, 0] += coss[j,q] * tmp
-					Zim[p, q, 0] += -sins[j,q] * tmp
+					Zre[p, q] += coss[j,q] * tmp
+					Zim[p, q] += -sins[j,q] * tmp
 
-					tmp = negValues[p] * img[k,j,colorIndex]
-					Zre[p, q, 1] += coss[j,q] * tmp
-					Zim[p, q, 1] += -sins[j,q] * tmp
-
-@jit(void(int64, int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], float64[:,:,:], uint8[:,:], float64[:]), nopython=False)
+@jit(void(int64, int64, int64, float64[:,:], float64[:,:,:], float64[:,:,:], float64[:,:], float64[:,:], uint8[:,:], float64[:]), nopython=False)
 def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zim, imageArray, zeros):
 	for x in range(N):
 		for y in range(N):
@@ -133,9 +123,9 @@ def reconstructImageArray(N, maxP, maxQ, rs, sins, coss, Zre, Zim, imageArray, z
 			calculateFourierKernel(rs[x,y], maxP, values)
 			value = 0 # Greyscale
 			for p in range(0, maxP + 1):
-				value += values[p] * (Zre[p,0,0] * coss[x,y,0] - Zim[p,0,0] * sins[x,y,0])
+				value += values[p] * (Zre[p,0] * coss[x,y,0] - Zim[p,0] * sins[x,y,0])
 				for q in range(1, maxQ + 1):
-					value += 2 * values[p] * (Zre[p,q,0] * coss[x,y,q] - Zim[p,q,0] * sins[x,y,q])
+					value += 2 * values[p] * (Zre[p,q] * coss[x,y,q] - Zim[p,q] * sins[x,y,q])
 
 			if value > 255:
 				value = 255
