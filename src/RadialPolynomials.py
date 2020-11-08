@@ -38,7 +38,8 @@ def calculateFourierKernel(r, maxP, values):
 	"""
 	# TODO: What if r == 0?
 	if r < 1e-8:
-		r = 1e-8
+		return
+		# r = 1e-8
 
 	values[0] = 1.0 / np.sqrt(r)
 	sq2r = np.sqrt(2.0 / r)
