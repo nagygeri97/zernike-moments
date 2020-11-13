@@ -164,7 +164,7 @@ def testImageReconstructionErrors():
 	with open(outFile, mode='w') as file:
 		csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-		csv_writer.writerow(['File', 'M', 'Original_tf1', 'Original_tf2', 'Legendre1', 'LegendreDiscOrth'])
+		csv_writer.writerow(['File', 'M', 'Original_tf1', 'Original_tf2', 'Legendre1', 'LegendreDiscOrth', 'Fourier'])
 		for (file, Ms) in tests:
 			print(file)
 			filePath = path + file + extension
@@ -177,4 +177,5 @@ def testImageReconstructionErrors():
 				img = np.array(img, dtype='double')
 				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation1).reconstructImage(tmpOut, N))
 				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformationDiscOrth(maxP)).reconstructImage(tmpOut, N))
+				epss.append(FourierMomentsColor(img, M, M, FourierTransformationInterpolation).reconstructImage(tmpOut, N))
 				csv_writer.writerow((file, str(M), *epss))
