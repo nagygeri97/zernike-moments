@@ -1,0 +1,13 @@
+Image moments and moment invariant features are widely used for image analysis and pattern recognition. The system of orthogonal Zernike polynomials (defined over the complex unit disk) proved to be a useful basis for series expansions because of certain invariance properties.
+
+Conventionally, for multichannel color images, RGB decomposition or grayscale conversion was used. However, in the recent past, quaternion algebra has been employed to various conventional moments to analyze a color image holistically. Guo and Zhu [2] introduced quaternion Fourier-Mellin moments (QFMMs) which are an extension of the conventional Fourier-Mellin moments for the gray-scale image. They also proposed their invariants on rotation, scale, and translation for color object recognition. Chen et al. [1] proposed the quaternion Zernike moments (QZMs), generally overperforming other similar approaches in these aspects, due to the natural invariances of Zernike functions. The same quaternion techniques were applied successively to other function systems (e.g. [3,4]), yielding similar results.
+
+In this thesis we introduce a method of transforming a digital RGB image inside the unit circle onto a points system providing discrete orthogonality. Using this points system for the discretization of the QZMIs, we have achieved significant improvements in the image recognition and reconstruction capabilities of the method, especially under noisy conditions.
+
+[1] B.J. Chen et al., Quaternion Zernike moments and their invariants for color image analysis and object recognition. Signal Processing 2012;92(2): 308-318.
+
+[2] L.Q. Guo, M. Zhu, Quaternion Fourier-Mellin moments for color images. Pattern Recognit. 2011;44: 187-195.
+
+[3] Z. Shao et al., Quaternion Bessel-Fourier moments and their invariant descriptors for object reconstruction and recognition. Pattern Recognit. 2014;47: 603-611.
+
+[4] H. Zhu et al., Image analysis by generalized Chebyshev-Fourier and generalized pseudo-Jacobi-Fourier moments. Pattern Recognit. 2016;51: 1-11.
