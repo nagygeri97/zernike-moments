@@ -1,0 +1,145 @@
+% Dear Colleague,
+
+% fill the fields marked with dots, 
+
+% please comments or remarks: macs2020@inf.elte.hu
+
+%
+
+%
+
+\documentclass[10pt,a4paper,twoside]{article}
+
+\usepackage{latexsym,amssymb}
+\usepackage[numbers]{natbib}
+
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  PLEASE, ONLY IN ENGLISH                                         %
+
+%  PLEASE, USE LATEX2E                                             %
+
+%                                                                  %
+
+%  PLEASE, DO NOT DEFINE NEW COMMANDS                              %
+
+%  USE NEWTHEOREMS BELOW, PLEASE, IF YOU WRITE THEOREMS AND SUCH   %
+
+%                                                                  %
+
+%  PLEASE, At MOST TWO PAGES                                           %
+
+%  PLEASE, CHECK THE NUMBER OF PAGES BEFORE SUBMISSION    % 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+
+\newtheorem{theo}{Theorem}
+
+\newtheorem{defi}[theo]{Definition}
+
+\newtheorem{axio}[theo]{Axiom}
+
+\newtheorem{clai}[theo]{Claim}
+
+\newtheorem{coll}[theo]{Collorary}
+
+\newtheorem{lemm}[theo]{Lemma}
+
+\newtheorem{conj}[theo]{Conjecture}
+
+\newtheorem{hypo}[theo]{Hypothesis}
+
+\newtheorem{rema}[theo]{Remark}
+
+\newcommand{\proof}{\noindent{\bf Proof:}\hspace{0.2cm}}
+
+\setcounter{theo}{0}
+
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textwidth 15.0cm
+
+\textheight 22.0cm
+
+\oddsidemargin 0.4cm
+
+\evensidemargin 0.4cm
+
+\topmargin  0.0cm
+
+\frenchspacing
+
+\pagestyle{myheadings}
+
+\markboth{13th Joint Conference on Mathematics and Computer Science,% 
+October 1 -- 3, 2020, ELTE,  Hungary}
+{13th Joint Conference on Mathematics and Computer Science,
+October 1 -- 3, 2020, ELTE, Hungary}
+%
+%
+\begin{document}
+%
+%
+\begin{center}{\Large\bf
+Color image analysis and recognition using orthogonal quaternion Zernike moments
+}\end{center}
+%
+\begin{center}{\large\bf\noindent
+Zsolt N\'emeth and Gergely Nagy
+}\\[2mm]
+Department of Numerical Analysis, Eötvös Loránd University
+\\[1mm]\texttt{
+birka0@inf.elte.hu,~nagygeri97@gmail.com
+}\end{center}
+%
+%
+\vspace*{7mm}
+%
+%
+Image moments and moment invariants are widely used in applications for pattern matching~\cite{app2}, image recognition~\cite{pattern_recognition}, or to extract useful features from images~\cite{zernike_nn} in general.
+
+Most of the classical moments were originally defined for single-channel, grayscale images in the literature, however extending these techniques to multichannel ones is an important and generally unresolved problem. Conventionally, for color images either RGB decomposition or grayscale conversion was used in order to utilize the methods defined for grayscale images. This may lead to loss of information, for example in the case of grayscale conversion (where the average over the channels is taken) some color information can be lost.
+
+More recently, the algebra of quaternions has been used to extend the single-channel methods to color images. For example, quaternion Fourier-Mellin moments have been introduced as an extension of the conventional Fourier-Mellin moments~\cite{qfmm}, as well as the quaternion Zernike moments as an extension of the conventional Zernike moments~\cite{qzm}.
+
+The Zernike functions are a system of orthogonal functions defined over the unit disk. Using these functions as a basis for series expansions proved to be useful because of certain inherent invariance properties. Zernike moments, and by extension quaternion Zernike moments are defined by these functions.
+
+Considering a digital image as a discrete sampling of an image function defined over a continuous domain, the need arises to discretize the computation of these moments. One important property of the discretization of these methods defined by orthogonal functions is to preserve the orthogonality over the discrete system, so as to avoid redundancy and achieve high robustness with respect to noise.
+
+The conventional method for discretizing quaternion Zernike moments (used by \citeauthor{qzmi}~\cite{qzmi}) consists of uniformly distributed points over the unit disk. This method does not achieve discrete orthogonality thus decreasing the robustness of the moments. 
+
+In this talk, we propose a novel method for the discretization of quaternion Zernike moments over the unit disk: a points system is defined on the unit disk, over which the Zernike functions extended to quaternions are discrete orthogonal. This improves the robustness of computing quaternion Zernike moments by decreasing the error introduced by discretization. Our construction is based on the results of \citeauthor{schipp}~\cite{schipp} for the real valued case. 
+
+The new method is compared to the one used by \citeauthor{qzmi}~\cite{qzmi}. For the tests, image sets from the Columbia Object Image Library~\cite{coil} and the Amsterdam Library of Object Images~\cite{aloi} were used. 
+The image reconstruction capabilities of both methods are also compared, and we find that the proposed method decreases the error of reconstruction significantly.
+
+The recognition capabilities for rotated, scaled and translated (RST transformed) images with varying levels of either Gaussian or salt-and-pepper noise are also studied. We find that with respect to Gaussian noise the new method achieves significantly better rates of recognition, even for images with high noise values. For salt-and-pepper noise no significant difference can be found between the capabilities of the methods.
+Additionally, we also show that by decreasing the number of points used for discretization, the new method is able to achieve similar results as the original method with high number of points, but the computational need to obtain these results is much lower using the new method.
+
+%
+%
+\bibliographystyle{unsrtnat}
+\bibliography{biblio}{}
+%\begin{thebibliography}{9}
+%\bibitem{1.} 
+%....first item
+%\bibitem{2.} 
+%....second item
+%....more items
+%\end{thebibliography}
+%
+%
+\end{document}
+
+
+
+
+
+
+
