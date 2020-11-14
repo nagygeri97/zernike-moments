@@ -17,7 +17,9 @@ class FourierPoints():
 class FourierTransformationInterpolation():
 	def __init__(self, img, N = None):
 		self.n, _, _ = img.shape
-		if N is None:
+		if N is not None:
+			N = max(self.n, N)
+		else:
 			N = self.n
 		points = FourierPoints(N)
 		self.rs = points.rs
@@ -30,6 +32,13 @@ class FourierTransformationInterpolation():
 
 		# Calculating RGB values
 		interpolate(self.N, self.N, self.n, img, self.img, self.rs, self.thetas)
+
+def FourierTransformationInterpolationDiscOrth(maxP):
+	class FourierTransformationInterpolationDiscOrthWrapper(FourierTransformationInterpolation):
+		def __init__(self, img):
+			FourierTransformationInterpolation.__init__(self, img, 2*maxP)
+	
+	return FourierTransformationInterpolationDiscOrthWrapper
 
 class FourierTransformationOriginal():
 	def __init__(self, img, N = None):

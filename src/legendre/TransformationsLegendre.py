@@ -10,7 +10,9 @@ class LegendrePoints1():
 		self.n, _, _ = img.shape
 		# self.N = int(np.floor(float(self.n) / 4.0 * np.sqrt(np.pi)))
 		# Same number of points as in the inscribed circle of the image
-		self.N = N if N is not None else int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
+		self.N = int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
+		if N is not None:
+			self.N = max(N, self.N)
 		# self.N = int(np.floor(float(-1 + np.sqrt(1 + 4*self.n*self.n*np.pi)) / 8.0))
 		self.rs, self.thetas, self.mu = getPoints(self.N)
 
@@ -18,6 +20,8 @@ class LegendreTransformation1():
 	"""
 	About the same number of points as in circle inscribed in the original image
 	Bilinear interpolation is used to get the pixel values at the points
+
+	If maxP is provided, use at least as many points as needed for discrete orthogonality
 	"""
 	def __init__(self, img, maxP=None):
 		"""
@@ -46,8 +50,7 @@ class LegendrePoints2():
 class LegendreTransformation2():
 	def __init__(self, img):
 		"""
-		If maxP is provided, use as many points as needed for discrete orthogonality
-		Otherwise use N=10 
+		Use N=10 
 		"""
 		points = LegendrePoints2()
 		self.rs = points.rs
