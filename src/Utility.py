@@ -189,3 +189,21 @@ def populateInvariantVector(img, qzmiClass=QZMI, noiseFun=None):
 
 		result.extend(normalizedInvs)
 	return result
+
+def populateInvariantVectorFourier(img, noiseFun, fourierClass, centroidTranslate):
+	relevantMoments = [(0,2), (1,1), (1,3), (2,2), (3,1)]
+	# relevantMoments = [(0,2), (1,1), (1,3), (2,2), (3,1), (5,2), (5,4), (5,5), (6,3)]
+	maxDeg = 3
+	result = []
+
+	fourierMoments = fourierClass(img, maxDeg, maxDeg, noiseFun, centroidTranslate=centroidTranslate)
+	for relevantMoment in relevantMoments:
+		p,q = relevantMoment
+		r = 2
+
+		invs = [fourierMoments.Zre[p,q], fourierMoments.Zi[p,q], fourierMoments.Zj[p,q], fourierMoments.Zk[p,q]]
+		# No normalization is needed.
+		# invs = [np.sign(i)*(abs(i)**(1.0/r)) for i in invs]
+
+		result.extend(invs)
+	return result

@@ -13,15 +13,24 @@ class FourierMomentsColor:
 	using the FourierMomentsMonochrome class
 	"""
 
-	def __init__(self, img, maxP, maxQ, transformationClass = None, verbose = False):
+	def __init__(self, img, maxP, maxQ, noiseFun = None, transformationClass = None, verbose = False, centroidTranslate = False):
 		self.img = img # img should contain RGB components
+		if noiseFun is not None:
+			self.img = noiseFun(self.img)
+
+		if centroidTranslate:
+			self.img = centroidTranslationFloat(self.img)
+
 		self.maxP = maxP
-		self.maxQ = maxQ
+		if maxQ is None:
+			self.maxQ = maxP
+		else:
+			self.maxQ = maxQ
 		self.verbose = verbose
 
 		if transformationClass is None:
 			transformationClass = FourierTransformationInterpolation
-		self.trans = transformationClass(img)
+		self.trans = transformationClass(self.img)
 
 		self.calculateFourierMoments()
 
@@ -64,7 +73,7 @@ class FourierMomentsColor:
 		if self.verbose:
 			print("Fourier moment calculation done.")
 
-		# print moments:
+		# # print moments:
 		# for p in range(self.maxP + 1):
 		# 	for q in range(self.maxQ + 1):
 		# 		# if self.Zre[p,q,0] == self.Zre[p,q,1] and p % 2 == 1:

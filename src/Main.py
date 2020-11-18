@@ -23,14 +23,14 @@ def main():
 	# testImageReconstructionFourierColor()
 	# testImageReconstructionFourierOriginalMonochrome()
 	# testImageReconstructionFourierOriginalColor()
-	testImageReconstructionErrors()
+	# testImageReconstructionErrors()
 	
 	# InvarianceTests
 	# testInvariance()
 	# testLegendreInvariance()
 
 	# RecognitionTests
-	# runRecognitionTest()
+	runRecognitionTest()
 
 	# NoiseGenerationTests
 	# addGaussianNoiseAndPrintImage()

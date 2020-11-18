@@ -115,7 +115,7 @@ def testImageReconstructionFourierColor():
 	(img, N) = getImgFromFileAsNpArray(args.file)
 	img = np.array(img, dtype='double')
 
-	f = FourierMomentsColor(img, M, M, FourierTransformationInterpolation, True)
+	f = FourierMomentsColor(img, M, M, None, FourierTransformationInterpolation, True)
 	f.reconstructImage(output, N)
 
 def testImageReconstructionFourierOriginalMonochrome():
@@ -139,7 +139,7 @@ def testImageReconstructionFourierOriginalColor():
 	(img, N) = getImgFromFileAsNpArray(args.file)
 	img = np.array(img, dtype='double')
 
-	f = FourierMomentsColor(img, M, M, FourierTransformationOriginal, True)
+	f = FourierMomentsColor(img, M, M, None, FourierTransformationOriginal, True)
 	f.reconstructImage(output, N)
 
 def testImageReconstructionErrors():
@@ -178,7 +178,7 @@ def testImageReconstructionErrors():
 				img = np.array(img, dtype='double')
 				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation1).reconstructImage(tmpOut, N))
 				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformationDiscOrth(M)).reconstructImage(tmpOut, N))
-				epss.append(FourierMomentsColor(img, M, M, FourierTransformationInterpolation).reconstructImage(tmpOut, N))
-				epss.append(FourierMomentsColor(img, M, M, FourierTransformationOriginal).reconstructImage(tmpOut, N))
-				epss.append(FourierMomentsColor(img, M, M, FourierTransformationInterpolationDiscOrth(M)).reconstructImage(tmpOut, N))
+				epss.append(FourierMomentsColor(img, M, M, None, FourierTransformationInterpolation).reconstructImage(tmpOut, N))
+				epss.append(FourierMomentsColor(img, M, M, None, FourierTransformationOriginal).reconstructImage(tmpOut, N))
+				epss.append(FourierMomentsColor(img, M, M, None, FourierTransformationInterpolationDiscOrth(M)).reconstructImage(tmpOut, N))
 				csv_writer.writerow((file, str(M), *epss))

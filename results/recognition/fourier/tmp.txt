@@ -1,0 +1,35 @@
+
+
+
+QZMIType.FOURIER TestType.CUPS_TRANSFORMED NoiseType.CLEAN
+
+Noise-free
+26.098901098901102 % recognized correctly.
+
+
+
+QZMIType.FOURIER TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free - csak par db momentum
+20.33730158730159 % recognized correctly.
+
+
+
+QZMIType.FOURIER TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free - minden max 3 fokig
+60.21825396825397 % recognized correctly.
+
+
+
+QZMIType.FOURIER TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free - minden max 10 fokig
+53.96825396825397 % recognized correctly.
+
+
+
+QZMIType.FOURIER TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+22.916666666666664 % recognized correctly.
