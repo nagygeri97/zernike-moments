@@ -3,7 +3,26 @@ Moreover, the algebra of quaternions is also introduced and is used as a tool to
 Finally some examples of the state-of-the-art applications in image analysis are presented.
 
 \section{Image moments for grayscale images}
-Altalanos leiras a szurkearnyalatos momentumokrol, nehany peldaval
+In general, image moments are certain descriptive values calculated using the pixel intensities of an image. 
+
+Traditionally, these image moments are defined for grayscale images, where pixel values are described by a single (gray) channel. A grayscale image can be thought of as a discrete sampling of a real valued, two-dimensional function $f : \R^2 \rightarrow \R$, where the function values at a point $(x,y) \in \R^2$ describe the pixel intensity at that point~\cite{moment_book}.
+
+Using this approach, the regular (geometric) image moments $M_{ij}$ can be defined as
+$$
+M_{ij} = \sum_x \sum_y x^iy^jf(x,y),
+$$ where $(x,y)$ are the discrete pixel coordinates.
+These geometric moments can be used to calculate the centroid of a grayscale image as 
+$$
+\left\{ \overline{x}, \overline{y} \right\} = \left\{ \frac{M_{10}}{M_{00}},  \frac{M_{01}}{M_{00}} \right\}.
+$$
+
+In more general terms, image moments with order $p$ and repetition $q$ can be defined using a set of basis functions $\left\{H_{pq}\right\}$. Now considering $f$ as a continuous function, moments are defined as
+$$
+\iint\limits_A H_{pq}(x,y)f(x,y)\ dx\ dy,
+$$ where $A$ is the region of the plane, which contains the image (the domain of $f$).
+
+By choosing the set of basis functions appropriately, many different kinds of image moments can be defined. Each of these moments has applications that utilize certain special properties of the basis functions. For example, some of these moments are Fourier-Mellin moments~\cite{qfmm}, Chebyshev-Fourier moments~\cite{chebyshev-fourier}, radial harmonic Fourier moments~\cite{fourier}, and Zernike moments~\cite{zernike_moments}. The latter of these is defined in detail later in this section.
+
 \subsection{Invariance properties}
 RST invariancia, definicio, miert akarjuk hogy erre invarians legyen
 \subsection{Zernike moments}
