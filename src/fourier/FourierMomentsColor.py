@@ -13,13 +13,8 @@ class FourierMomentsColor:
 	using the FourierMomentsMonochrome class
 	"""
 
-	def __init__(self, img, maxP, maxQ, noiseFun = None, transformationClass = None, verbose = False, centroidTranslate = False):
+	def __init__(self, img, maxP, maxQ, transformationClass = None, verbose = False):
 		self.img = img # img should contain RGB components
-		if noiseFun is not None:
-			self.img = noiseFun(self.img)
-
-		if centroidTranslate:
-			self.img = centroidTranslationFloat(self.img)
 
 		self.maxP = maxP
 		if maxQ is None:

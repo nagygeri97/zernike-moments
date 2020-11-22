@@ -9,6 +9,7 @@ from legendre.QZMILegendre import *
 from legendre.QZMRILegendre import *
 from fourier.FourierMomentsMonochrome import *
 from fourier.FourierMomentsColor import *
+from fourier.FourierMomentsInvariantColor import *
 from fourier.TransformationsFourier import *
 from ImageManipulation import *
 from Utility import *
@@ -28,7 +29,8 @@ class QZMIType(Enum):
 	NORMAL = 1
 	LEGENDRE1 = 2
 	LEGENDRE2 = 3
-	FOURIER = 4
+	FOURIER_INT = 4
+	FOURIER_ORIGINAL = 5
 
 class BGColor(Enum):
 	BLACK = 1
@@ -96,20 +98,35 @@ def runRecognitionTest():
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
 		# (QZMIType.LEGENDRE2, TestType.COIL_ROTATED, NoiseType.SALT),
 
-		# (QZMIType.FOURIER, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
-		# (QZMIType.FOURIER, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.FOURIER, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.FOURIER, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+		(QZMIType.FOURIER_INT, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.FOURIER_INT, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.FOURIER_INT, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.FOURIER_INT, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
 
-		# (QZMIType.FOURIER, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
-		# (QZMIType.FOURIER, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
-		# (QZMIType.FOURIER, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.FOURIER, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+		# (QZMIType.FOURIER_INT, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.FOURIER_INT, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.FOURIER_INT, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.FOURIER_INT, TestType.COIL_TRANSFORMED, NoiseType.SALT),
 
-		(QZMIType.FOURIER, TestType.COIL_ROTATED, NoiseType.CLEAN),
-		# (QZMIType.FOURIER, TestType.COIL_ROTATED, NoiseType.GAUSS),
-		# (QZMIType.FOURIER, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
-		# (QZMIType.FOURIER, TestType.COIL_ROTATED, NoiseType.SALT),
+		# (QZMIType.FOURIER_INT, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		# (QZMIType.FOURIER_INT, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.FOURIER_INT, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.FOURIER_INT, TestType.COIL_ROTATED, NoiseType.SALT),
+
+		(QZMIType.FOURIER_ORIGINAL, TestType.CUPS_TRANSFORMED, NoiseType.CLEAN),
+		(QZMIType.FOURIER_ORIGINAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS),
+		(QZMIType.FOURIER_ORIGINAL, TestType.CUPS_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		(QZMIType.FOURIER_ORIGINAL, TestType.CUPS_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_TRANSFORMED, NoiseType.CLEAN),
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS),
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_TRANSFORMED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_TRANSFORMED, NoiseType.SALT),
+
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_ROTATED, NoiseType.CLEAN),
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_ROTATED, NoiseType.GAUSS),
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_ROTATED, NoiseType.GAUSS_NO_ROUND),
+		# (QZMIType.FOURIER_ORIGINAL, TestType.COIL_ROTATED, NoiseType.SALT),
 	]
 
 	for (qzmiType, testType, noiseType) in tests:
@@ -133,7 +150,8 @@ def getBasicRecognitionTestingData(testType, bgColor):
 		recognizePath = recognizePath[:-1] + "_grey/"
 		originalPath = originalPath[:-1] + "_grey/"
 
-	recognizeFiles = os.listdir(recognizePath)
+	# recognizeFiles = os.listdir(recognizePath)
+	recognizeFiles = os.listdir(recognizePath)[::23]
 	originalFiles = os.listdir(originalPath)
 
 	correctnessFun = isRecognitionCorrect
@@ -141,12 +159,7 @@ def getBasicRecognitionTestingData(testType, bgColor):
 	return (recognizePath, recognizeFiles, originalPath, originalFiles, correctnessFun)
 
 def getQZMIClass(testType, qzmiType):
-	# If Fourier is used:
-	if qzmiType == QZMIType.FOURIER:
-		#      isFourier, [fourierClass,        centroidTranslate]
-		return True,      [FourierMomentsColor, testType != TestType.COIL_ROTATED]
-
-
+	isFourier = qzmiType == QZMIType.FOURIER_INT or qzmiType == QZMIType.FOURIER_ORIGINAL
 	# If QZMI is used:
 	if testType == TestType.COIL_ROTATED:
 		if qzmiType == QZMIType.NORMAL:
@@ -155,6 +168,10 @@ def getQZMIClass(testType, qzmiType):
 			qzmiClass = QZMRILegendre1
 		elif qzmiType == QZMIType.LEGENDRE2:
 			qzmiClass = QZMRILegendre2
+		elif qzmiType == QZMIType.FOURIER_INT:
+			qzmiClass = FourierMomentsRotationInvariantInterpolation
+		elif qzmiType == QZMIType.FOURIER_ORIGINAL:
+			qzmiClass = FourierMomentsRotationInvariantOriginal
 		else:
 			printerr("ERROR: unsupported qzmiType")
 			return
@@ -165,6 +182,10 @@ def getQZMIClass(testType, qzmiType):
 			qzmiClass = QZMILegendre1
 		elif qzmiType == QZMIType.LEGENDRE2:
 			qzmiClass = QZMILegendre2
+		elif qzmiType == QZMIType.FOURIER_INT:
+			qzmiClass = FourierMomentsInvariantInterpolation
+		elif qzmiType == QZMIType.FOURIER_ORIGINAL:
+			qzmiClass = FourierMomentsInvariantOriginal
 		else:
 			printerr("ERROR: unsupported qzmiType")
 			return
@@ -175,13 +196,17 @@ def getQZMIClass(testType, qzmiType):
 			qzmiClass = QZMILegendre1
 		elif qzmiType == QZMIType.LEGENDRE2:
 			qzmiClass = QZMILegendre2
+		elif qzmiType == QZMIType.FOURIER_INT:
+			qzmiClass = FourierMomentsInvariantInterpolation
+		elif qzmiType == QZMIType.FOURIER_ORIGINAL:
+			qzmiClass = FourierMomentsInvariantOriginal
 		else:
 			printerr("ERROR: unsupported qzmiType")
 			return
 	else:
 		printerr("ERROR: unsupported testType")
 		return
-	return False, qzmiClass
+	return isFourier, qzmiClass
 
 def testRecognition(noiseType, testType, qzmiType, file, bgColor):
 	logAll(file, '\n\n')
@@ -255,7 +280,7 @@ def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzm
 			originalVecs[file] = populateInvariantVector(img, qzmiClass, noiseFun)
 		else:
 			img = np.array(img, dtype='double')
-			originalVecs[file] = populateInvariantVectorFourier(img, noiseFun, *qzmiClass)
+			originalVecs[file] = populateInvariantVectorFourier(img, noiseFun, qzmiClass)
 	
 	for file in recognizeFiles:
 		(img, _) = getImgFromFileAsNpArray(recognizePath + file)
@@ -263,7 +288,7 @@ def recognizeAll(recognizePath, recognizeFiles, originalPath, originalFiles, qzm
 			recognizeVecs[file] = populateInvariantVector(img, qzmiClass, noiseFun)
 		else:
 			img = np.array(img, dtype='double')
-			recognizeVecs[file] = populateInvariantVectorFourier(img, noiseFun, *qzmiClass)
+			recognizeVecs[file] = populateInvariantVectorFourier(img, noiseFun, qzmiClass)
 
 	correct = []
 	incorrect = []
