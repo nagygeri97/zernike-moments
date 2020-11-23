@@ -24,8 +24,88 @@ $$ where $A$ is the region of the plane, which contains the image (the domain of
 By choosing the set of basis functions appropriately, many different kinds of image moments can be defined. Each of these moments has applications that utilize certain special properties of the basis functions. For example, some of these moments are Fourier-Mellin moments~\cite{qfmm}, Chebyshev-Fourier moments~\cite{chebyshev-fourier}, radial harmonic Fourier moments~\cite{fourier}, and Zernike moments~\cite{zernike_moments}. The latter of these is defined in detail later in this section.
 
 \subsection{Invariance properties}
-RST invariancia, definicio, miert akarjuk hogy erre invarians legyen
+Certain image moments, or some combination of moments of different orders can be invariant with respect to image transformations, such as rotation, scaling, and translation (RST transformations).
+
+\paragraph{Rotation invariance.} To define what is meant by rotation invariance, it is useful to consider the image function $f$ defined in polar coordinates. Then the image $f_{rotated}$, rotated by some degree $\alpha$ can be written as $f_{rotated}(r,\theta) = f(r,\theta - \alpha)$. A moment invariant achieves rotation invariance, when the moments of $f$ and $f_{rotated}$ are the same for all possible values of $\alpha$.   
+
+\paragraph{Scaling invariance.} The scaled image $f_{scaled}$ can be defined as $f_{scaled} = f(sr, \theta)$ for some scaling factor $s > 0$. A moment invariant is said to achieve scaling invariance, when the moments for $f$ and $f_{scaled}$ are identical. In practice, this means that scaling the image, such that the scaled image is still within the region of the plane over which the moments are defined, does not change the values of the moment invariants.
+
+\paragraph{Translation invariance.} To define translation invariance, it is useful to consider the image in Cartesian coordinates. The image translated by $(x_0, y_0)$ is defined as $f_{trans}(x,y) = f(x - x_0, y - y_0)$. Again, similarly to the other types of invariance, a moment invariant is said to be translation invariant if its values for $f$ and $f_{trans}$ are the same. Practically, this means that however the image is translated on the plane, as long as it is within the region of the plane over which the moments are defined, the moment invariant values do not change.
+
+\paragraph{RST invariance.} A moment invariant is called RST invariant if it satisfies the criteria for all three previously described kinds of invariance at the same time. 
+
+
+Translation invariance is generally the easiest to achieve, as translating the image such that the centroid falls on the origin neutralizes any prior translation. The other two kinds of invariance require some special properties of the basis function set or some special construction and combination of the moments.
+
+
+The exact construction of RST invariant moments for Zernike moments is presented in detail in Section~\ref{sec:qzm}
+
+
+These invariance properties are widely utilized in applications for pattern matching and image recognition~\cite{app1, app2, app3}. In particular, moment invariants can be used in medical applications, such as solving the Pathological Brain Detection problem~\cite{med_app_1}.
+
+
 \subsection{Zernike moments}
+As mentioned previously, Zernike moments are image moments, defined by choosing the set of basis functions as the Zernike functions. This set of functions (defined later in this section) proved to be a suitable basis for series expansion in numerous optical applications (see for example~\cite{wavefront,optical_human_eye,opt_surf}), and moment invariants could easily be constructed, especially for rotation invariance.
+
+
+Zernike functions, first introduced by F. Zernike~\cite{zernike} in 1934, are a set of complex functions defined on the unit disk. Since the domain of these functions is the unit disk, it is useful to define them in terms of polar coordinates. The Zernike functions $V_{n,m}$ ($n \in \mathds{N}$, $m \in \mathds{Z}$, $n \geq |m|$ and $n - |m|$ is even) are defined as
+\begin{gather*}
+  V_{n,m}(r,\theta) = R_{n,m}(r) e^{i m\theta} \ \ \ (r\in[0,1], \theta\in[0,2\pi]),
+\end{gather*}
+where $R_{n,m}$ is the radial part and $e^{i m\theta}$ is the azimuthal part of the function. The radial part is defined as the following radial polynomials (of degree $n$)
+\begin{gather}
+    R_{n,m}(r) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}r^{n-2k} \label{eq:radial_poly}.
+\end{gather} 
+
+
+The set of Zernike functions is orthogonal over the unit disk with respect to the weight $r$, so for indices where $n - |m|$ and $n' - |m'|$ are both even we get
+\begin{equation}
+	\int_0^{2\pi}\int_0^1 V_{n,m}(r,\theta)V_{n',m'}(r,\theta)r\ dr d\theta  = \frac{\pi}{n + 1}\delta_{n,n'}\delta_{m,m'},
+\end{equation}
+where $\delta_{a,b}$ denotes the Kronecker delta function~\cite{zernike_moments}.
+
+It is important to note that the radial polynomials $R_{n,m}$ are the same for both $m$ and $-m$, so $R_{n,m}(r) = R_{n,-m}(r)$. These radial polynomials also satisfy an orthogonality relation over $[0,1]$ with respect to the weight $r$~\cite{schipp}, that is, for a fixed $m$ we have
+\begin{equation}\label{Rortho}
+	\int_0^1 R_{n,|m|}(r) R_{n',|m|}(r)r\ dr  = \frac{1}{2n+2} \delta_{n,n'}.
+\end{equation}
+
+
+Another important and useful property of these radial polynomials is that they can be expressed in terms of the shifted Jacobi polynomials. Let $P_k^{(\alpha, \beta)}(x)$ denote the $k$-th degree classical Jacobi polynomials~\cite{Szego}. The Jacobi polynomials are the set of polynomials defined over $[-1,1]$, which are orthogonal with respect to the weight $(1-x)^\alpha(1+x)^\beta$. By shifting the argument of these polynomials, we can get polynomials which are defined over $[0,1]$, the domain of the radial polynomials $R_{n,m}$. Expressing these radial polynomials in terms of the shifted Jacobi polynomials we get
+\begin{equation}\label{RJacobi}
+	R_{n,m}(r) = r^{|m|} P_{\frac{n - |m|}{2}}^{(0,|m|)}(2r^2-1).
+\end{equation} 
+
+
+Let $f(r,\theta)$ be a grayscale, continuous image function (given in polar coordinates), whose domain is the unit circle.
+Using the previously defined set of Zernike functions, the Zernike moment of order $n$, repetition $m$ of $f(r,\theta)$ can be defined as
+\begin{gather*}
+    Z_{n,m}(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)V_{n,m}^{*}(r,\theta)r\ dr\ d\theta,
+\end{gather*}
+where $V_{n,m}^{*}(r,\theta)$ is the complex conjugate of the Zernike functions, meaning
+\begin{gather*}
+    V_{n,m}^{*}(r,\theta) = R_{n,m}(r) e^{-i m\theta}.
+\end{gather*}
+
+
+By utilizing the orthogonality of the Zernike functions, the original image function $f(r,\theta)$ can be approximately reconstructed from a finite number of Zernike moments up to degree $M$:
+\begin{gather*}
+    f(r,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}(f)V_{n,m}(r,\theta).
+\end{gather*}
+
+\paragraph{Invariance properties of Zernike moments.} Translation invariance (as described previously) can be achieved by translating the image such that the centroid of the image falls on the origin. This method is suitable to use with Zernike moments as well.
+
+
+To calculate rotation invariant features from Zernike moments, first consider the moments of an image rotated by some degree $\alpha$, defined using polar coordinates: $f_{r}(r,\theta) = f(r,\theta - \alpha)$. In this case it can be shown that
+\begin{gather*}
+    Z_{n,m}(f_r) =  Z_{n,m}(f) e^{-i m\alpha}.
+\end{gather*}
+This means that the modulus Zernike moments is the same regardless of how the image is rotated, thus $|Z_{n,m}(f)|$ are rotation invariant features~\cite{zernike_moments}.
+
+
+Scaling invariance is discussed in detail in Section~\ref{sec:qzm}, for quaternion Zernike moments.
+
+
+
 Bovebben kifejtve, definiciok (Zernike fuggveny, momentum), az invariansok konstrualasa, miert jo ez,
 
 
@@ -40,7 +120,7 @@ Altalaban a kvaternios momentumokrol
 \subsubsection{Representing color images with quaternions}
 hogyan tekintjuk mostantol a kepet, miert jobb ez
 
-\subsection{Quaternion Zernike moments}
+\subsection{Quaternion Zernike moments}\label{sec:qzm}
 a kvaternios valtozatot leirni
 \subsubsection{Invariants}
 hogyan mukodnek az invariansok, definiciokat leirva

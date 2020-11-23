@@ -19,6 +19,8 @@ class FourierMomentsInvariantColor:
 
 		if centroidTranslate:
 			self.img = centroidTranslationFloat(self.img)
+		else:
+			self.img = imageToFloat(self.img)
 
 		# saveImgFromNpArray(img, "../original.png")
 		# saveImgFromNpArray(self.img, "../test.png")

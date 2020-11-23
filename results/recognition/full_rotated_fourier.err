@@ -1,0 +1,3716 @@
+
+
+
+QZMIType.NORMAL TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.NORMAL TestType.COIL_ROTATED NoiseType.GAUSS
+
+Gaussian noise with std dev 80
+96.52777777777779 % recognized correctly.
+Incorrect results: 
+22r230.png recognized as:  55.png
+7r140.png recognized as:  29.png
+7r265.png recognized as:  29.png
+29r180.png recognized as:  7.png
+7r30.png recognized as:  29.png
+22r265.png recognized as:  55.png
+29r50.png recognized as:  7.png
+22r355.png recognized as:  55.png
+22r40.png recognized as:  55.png
+7r20.png recognized as:  29.png
+22r205.png recognized as:  55.png
+7r290.png recognized as:  29.png
+7r95.png recognized as:  29.png
+22r110.png recognized as:  55.png
+7r325.png recognized as:  29.png
+7r330.png recognized as:  29.png
+7r180.png recognized as:  29.png
+22r225.png recognized as:  55.png
+7r295.png recognized as:  29.png
+22r15.png recognized as:  55.png
+7r105.png recognized as:  29.png
+7r175.png recognized as:  29.png
+7r115.png recognized as:  29.png
+7r275.png recognized as:  29.png
+7r205.png recognized as:  29.png
+22r350.png recognized as:  55.png
+22r220.png recognized as:  55.png
+29r230.png recognized as:  7.png
+7r145.png recognized as:  29.png
+7r280.png recognized as:  29.png
+29r170.png recognized as:  7.png
+22r270.png recognized as:  55.png
+29r215.png recognized as:  7.png
+7r235.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 90
+96.52777777777779 % recognized correctly.
+Incorrect results: 
+7r255.png recognized as:  29.png
+7r30.png recognized as:  29.png
+29r100.png recognized as:  7.png
+29r10.png recognized as:  7.png
+7r240.png recognized as:  29.png
+7r125.png recognized as:  29.png
+7r325.png recognized as:  29.png
+29r35.png recognized as:  7.png
+29r345.png recognized as:  7.png
+7r110.png recognized as:  29.png
+29r20.png recognized as:  7.png
+29r270.png recognized as:  7.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r60.png recognized as:  29.png
+7r160.png recognized as:  29.png
+7r40.png recognized as:  29.png
+7r105.png recognized as:  29.png
+7r100.png recognized as:  29.png
+7r135.png recognized as:  29.png
+29r45.png recognized as:  7.png
+29r220.png recognized as:  7.png
+29r70.png recognized as:  7.png
+7r205.png recognized as:  29.png
+29r40.png recognized as:  7.png
+7r65.png recognized as:  29.png
+7r335.png recognized as:  29.png
+7r120.png recognized as:  29.png
+7r305.png recognized as:  29.png
+29r105.png recognized as:  7.png
+29r195.png recognized as:  7.png
+29r170.png recognized as:  7.png
+7r200.png recognized as:  29.png
+29r115.png recognized as:  7.png
+7r90.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 100
+98.01587301587301 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  29.png
+7r265.png recognized as:  29.png
+7r80.png recognized as:  29.png
+7r290.png recognized as:  29.png
+7r150.png recognized as:  29.png
+7r270.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r195.png recognized as:  29.png
+7r40.png recognized as:  29.png
+7r135.png recognized as:  29.png
+7r285.png recognized as:  29.png
+7r25.png recognized as:  29.png
+7r275.png recognized as:  29.png
+7r355.png recognized as:  29.png
+7r205.png recognized as:  29.png
+7r165.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r310.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r235.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 110
+96.62698412698413 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  26.png
+29r225.png recognized as:  7.png
+29r165.png recognized as:  7.png
+29r295.png recognized as:  7.png
+29r190.png recognized as:  7.png
+29r185.png recognized as:  7.png
+29r260.png recognized as:  7.png
+7r50.png recognized as:  26.png
+29r205.png recognized as:  7.png
+7r250.png recognized as:  26.png
+29r290.png recognized as:  7.png
+29r345.png recognized as:  7.png
+7r315.png recognized as:  26.png
+29r20.png recognized as:  7.png
+29r270.png recognized as:  7.png
+29r25.png recognized as:  7.png
+29r110.png recognized as:  7.png
+29r305.png recognized as:  7.png
+29r45.png recognized as:  7.png
+29r300.png recognized as:  7.png
+29r0.png recognized as:  7.png
+29r80.png recognized as:  7.png
+29r200.png recognized as:  7.png
+29r70.png recognized as:  7.png
+29r135.png recognized as:  7.png
+29r40.png recognized as:  7.png
+29r230.png recognized as:  7.png
+29r85.png recognized as:  7.png
+29r160.png recognized as:  7.png
+29r170.png recognized as:  7.png
+29r95.png recognized as:  7.png
+29r30.png recognized as:  7.png
+29r280.png recognized as:  7.png
+29r285.png recognized as:  7.png
+
+
+
+Gaussian noise with std dev 120
+96.72619047619048 % recognized correctly.
+Incorrect results: 
+64r275.png recognized as:  22.png
+29r225.png recognized as:  7.png
+29r190.png recognized as:  7.png
+29r260.png recognized as:  7.png
+29r65.png recognized as:  7.png
+29r100.png recognized as:  7.png
+29r10.png recognized as:  7.png
+29r205.png recognized as:  7.png
+7r240.png recognized as:  29.png
+7r75.png recognized as:  29.png
+29r345.png recognized as:  7.png
+64r315.png recognized as:  22.png
+7r315.png recognized as:  29.png
+29r130.png recognized as:  7.png
+29r330.png recognized as:  7.png
+29r75.png recognized as:  7.png
+7r170.png recognized as:  29.png
+7r160.png recognized as:  29.png
+7r35.png recognized as:  29.png
+29r300.png recognized as:  7.png
+29r80.png recognized as:  7.png
+29r220.png recognized as:  7.png
+7r245.png recognized as:  29.png
+7r25.png recognized as:  29.png
+29r135.png recognized as:  7.png
+29r240.png recognized as:  7.png
+7r65.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r185.png recognized as:  29.png
+29r155.png recognized as:  7.png
+29r115.png recognized as:  7.png
+29r60.png recognized as:  7.png
+7r90.png recognized as:  29.png
+
+
+
+
+
+QZMIType.NORMAL TestType.COIL_ROTATED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 80
+76.09126984126983 % recognized correctly.
+Incorrect results: 
+22r75.png recognized as:  64.png
+64r80.png recognized as:  22.png
+22r230.png recognized as:  64.png
+22r280.png recognized as:  13.png
+64r235.png recognized as:  13.png
+55r150.png recognized as:  71.png
+7r140.png recognized as:  29.png
+39r240.png recognized as:  71.png
+32r300.png recognized as:  26.png
+32r80.png recognized as:  29.png
+32r165.png recognized as:  62.png
+29r225.png recognized as:  7.png
+71r355.png recognized as:  55.png
+64r15.png recognized as:  13.png
+39r125.png recognized as:  71.png
+71r295.png recognized as:  95.png
+7r265.png recognized as:  29.png
+29r180.png recognized as:  7.png
+64r160.png recognized as:  32.png
+22r285.png recognized as:  13.png
+22r120.png recognized as:  64.png
+29r335.png recognized as:  7.png
+39r75.png recognized as:  71.png
+29r295.png recognized as:  62.png
+71r285.png recognized as:  55.png
+22r310.png recognized as:  32.png
+55r275.png recognized as:  71.png
+64r140.png recognized as:  13.png
+26r155.png recognized as:  13.png
+22r265.png recognized as:  64.png
+22r305.png recognized as:  64.png
+22r105.png recognized as:  64.png
+32r55.png recognized as:  13.png
+22r325.png recognized as:  64.png
+22r145.png recognized as:  64.png
+22r250.png recognized as:  64.png
+55r255.png recognized as:  71.png
+22r335.png recognized as:  64.png
+29r190.png recognized as:  7.png
+71r75.png recognized as:  95.png
+22r355.png recognized as:  32.png
+55r260.png recognized as:  13.png
+39r95.png recognized as:  71.png
+39r235.png recognized as:  71.png
+22r35.png recognized as:  64.png
+22r40.png recognized as:  64.png
+7r20.png recognized as:  29.png
+22r300.png recognized as:  64.png
+71r240.png recognized as:  95.png
+55r65.png recognized as:  71.png
+64r90.png recognized as:  13.png
+32r310.png recognized as:  26.png
+22r205.png recognized as:  64.png
+39r265.png recognized as:  71.png
+39r260.png recognized as:  71.png
+29r65.png recognized as:  7.png
+64r350.png recognized as:  22.png
+7r50.png recognized as:  29.png
+64r355.png recognized as:  22.png
+22r30.png recognized as:  64.png
+22r215.png recognized as:  64.png
+39r50.png recognized as:  71.png
+64r105.png recognized as:  13.png
+32r40.png recognized as:  26.png
+71r230.png recognized as:  55.png
+22r345.png recognized as:  64.png
+71r150.png recognized as:  55.png
+7r290.png recognized as:  62.png
+29r10.png recognized as:  62.png
+29r205.png recognized as:  62.png
+39r10.png recognized as:  71.png
+64r210.png recognized as:  13.png
+39r30.png recognized as:  71.png
+64r195.png recognized as:  22.png
+7r125.png recognized as:  29.png
+62r235.png recognized as:  29.png
+26r330.png recognized as:  32.png
+22r135.png recognized as:  99.png
+22r95.png recognized as:  64.png
+32r180.png recognized as:  26.png
+22r275.png recognized as:  64.png
+62r165.png recognized as:  29.png
+22r110.png recognized as:  99.png
+32r160.png recognized as:  26.png
+7r325.png recognized as:  29.png
+22r195.png recognized as:  64.png
+64r225.png recognized as:  26.png
+64r245.png recognized as:  22.png
+64r220.png recognized as:  13.png
+71r210.png recognized as:  22.png
+29r120.png recognized as:  7.png
+64r115.png recognized as:  22.png
+64r120.png recognized as:  22.png
+64r190.png recognized as:  22.png
+64r280.png recognized as:  13.png
+22r175.png recognized as:  64.png
+32r215.png recognized as:  13.png
+29r35.png recognized as:  7.png
+22r260.png recognized as:  64.png
+29r345.png recognized as:  62.png
+55r30.png recognized as:  13.png
+7r110.png recognized as:  29.png
+39r170.png recognized as:  71.png
+7r230.png recognized as:  29.png
+64r320.png recognized as:  13.png
+22r330.png recognized as:  64.png
+7r180.png recognized as:  29.png
+7r10.png recognized as:  29.png
+64r315.png recognized as:  13.png
+64r185.png recognized as:  13.png
+32r190.png recognized as:  13.png
+71r60.png recognized as:  55.png
+55r355.png recognized as:  71.png
+39r150.png recognized as:  71.png
+71r160.png recognized as:  22.png
+32r70.png recognized as:  26.png
+22r255.png recognized as:  32.png
+64r330.png recognized as:  22.png
+39r320.png recognized as:  71.png
+71r255.png recognized as:  55.png
+32r195.png recognized as:  26.png
+71r45.png recognized as:  55.png
+39r0.png recognized as:  71.png
+7r0.png recognized as:  29.png
+32r35.png recognized as:  13.png
+22r25.png recognized as:  64.png
+22r245.png recognized as:  64.png
+64r200.png recognized as:  22.png
+22r225.png recognized as:  71.png
+39r285.png recognized as:  71.png
+22r80.png recognized as:  64.png
+39r275.png recognized as:  71.png
+55r170.png recognized as:  71.png
+7r60.png recognized as:  29.png
+39r295.png recognized as:  71.png
+22r190.png recognized as:  64.png
+22r15.png recognized as:  13.png
+71r30.png recognized as:  22.png
+39r175.png recognized as:  71.png
+7r105.png recognized as:  29.png
+29r125.png recognized as:  62.png
+7r175.png recognized as:  62.png
+71r55.png recognized as:  55.png
+22r55.png recognized as:  64.png
+32r245.png recognized as:  13.png
+55r285.png recognized as:  71.png
+22r85.png recognized as:  64.png
+22r160.png recognized as:  64.png
+64r260.png recognized as:  13.png
+22r240.png recognized as:  64.png
+29r320.png recognized as:  7.png
+22r165.png recognized as:  64.png
+64r40.png recognized as:  13.png
+32r265.png recognized as:  26.png
+64r310.png recognized as:  13.png
+64r300.png recognized as:  13.png
+22r235.png recognized as:  64.png
+39r160.png recognized as:  71.png
+29r0.png recognized as:  62.png
+29r80.png recognized as:  7.png
+22r320.png recognized as:  64.png
+22r125.png recognized as:  64.png
+39r5.png recognized as:  71.png
+32r85.png recognized as:  26.png
+55r110.png recognized as:  13.png
+64r345.png recognized as:  13.png
+39r230.png recognized as:  71.png
+32r290.png recognized as:  26.png
+22r295.png recognized as:  64.png
+55r135.png recognized as:  71.png
+55r250.png recognized as:  71.png
+32r45.png recognized as:  7.png
+29r200.png recognized as:  7.png
+7r275.png recognized as:  29.png
+71r300.png recognized as:  22.png
+55r210.png recognized as:  71.png
+22r130.png recognized as:  71.png
+71r165.png recognized as:  55.png
+7r210.png recognized as:  29.png
+22r100.png recognized as:  64.png
+55r280.png recognized as:  71.png
+22r170.png recognized as:  64.png
+71r35.png recognized as:  22.png
+71r40.png recognized as:  95.png
+29r240.png recognized as:  62.png
+64r270.png recognized as:  13.png
+7r205.png recognized as:  29.png
+22r350.png recognized as:  99.png
+55r120.png recognized as:  13.png
+7r65.png recognized as:  29.png
+64r175.png recognized as:  22.png
+22r220.png recognized as:  13.png
+29r230.png recognized as:  7.png
+39r115.png recognized as:  71.png
+22r155.png recognized as:  64.png
+7r335.png recognized as:  29.png
+7r120.png recognized as:  29.png
+39r45.png recognized as:  55.png
+22r180.png recognized as:  64.png
+64r180.png recognized as:  13.png
+39r245.png recognized as:  71.png
+62r280.png recognized as:  29.png
+22r210.png recognized as:  64.png
+7r145.png recognized as:  29.png
+22r290.png recognized as:  64.png
+39r80.png recognized as:  71.png
+64r165.png recognized as:  22.png
+39r305.png recognized as:  71.png
+29r195.png recognized as:  7.png
+71r145.png recognized as:  55.png
+7r280.png recognized as:  29.png
+64r230.png recognized as:  32.png
+29r170.png recognized as:  7.png
+29r150.png recognized as:  7.png
+55r235.png recognized as:  71.png
+22r200.png recognized as:  64.png
+22r140.png recognized as:  64.png
+22r270.png recognized as:  32.png
+22r70.png recognized as:  64.png
+55r130.png recognized as:  13.png
+29r155.png recognized as:  62.png
+71r85.png recognized as:  55.png
+95r185.png recognized as:  71.png
+95r230.png recognized as:  71.png
+55r115.png recognized as:  71.png
+32r330.png recognized as:  7.png
+62r105.png recognized as:  29.png
+64r255.png recognized as:  22.png
+29r115.png recognized as:  7.png
+29r215.png recognized as:  7.png
+39r90.png recognized as:  71.png
+22r90.png recognized as:  64.png
+39r120.png recognized as:  71.png
+64r70.png recognized as:  22.png
+55r160.png recognized as:  71.png
+29r60.png recognized as:  62.png
+29r265.png recognized as:  7.png
+64r340.png recognized as:  13.png
+39r20.png recognized as:  71.png
+39r315.png recognized as:  71.png
+71r340.png recognized as:  55.png
+
+
+
+Gaussian noise (no rounding) with std dev 90
+73.51190476190477 % recognized correctly.
+Incorrect results: 
+95r195.png recognized as:  39.png
+71r10.png recognized as:  39.png
+64r80.png recognized as:  71.png
+22r280.png recognized as:  71.png
+64r235.png recognized as:  71.png
+62r90.png recognized as:  29.png
+55r150.png recognized as:  39.png
+7r140.png recognized as:  29.png
+55r140.png recognized as:  39.png
+29r225.png recognized as:  62.png
+99r30.png recognized as:  22.png
+64r15.png recognized as:  22.png
+55r55.png recognized as:  39.png
+55r0.png recognized as:  71.png
+29r210.png recognized as:  62.png
+29r180.png recognized as:  62.png
+62r355.png recognized as:  29.png
+64r60.png recognized as:  22.png
+62r210.png recognized as:  29.png
+32r20.png recognized as:  26.png
+7r255.png recognized as:  29.png
+29r335.png recognized as:  62.png
+55r5.png recognized as:  39.png
+71r285.png recognized as:  39.png
+7r30.png recognized as:  29.png
+22r310.png recognized as:  71.png
+64r335.png recognized as:  71.png
+55r325.png recognized as:  39.png
+55r275.png recognized as:  39.png
+22r20.png recognized as:  71.png
+22r105.png recognized as:  64.png
+22r325.png recognized as:  99.png
+22r250.png recognized as:  71.png
+62r140.png recognized as:  29.png
+22r355.png recognized as:  64.png
+55r260.png recognized as:  39.png
+39r235.png recognized as:  55.png
+22r35.png recognized as:  71.png
+7r20.png recognized as:  29.png
+62r120.png recognized as:  29.png
+22r300.png recognized as:  64.png
+55r230.png recognized as:  39.png
+32r310.png recognized as:  26.png
+55r345.png recognized as:  71.png
+32r95.png recognized as:  26.png
+62r325.png recognized as:  29.png
+64r350.png recognized as:  71.png
+7r50.png recognized as:  29.png
+26r310.png recognized as:  32.png
+64r355.png recognized as:  71.png
+22r30.png recognized as:  64.png
+7r80.png recognized as:  29.png
+71r180.png recognized as:  39.png
+22r215.png recognized as:  71.png
+64r105.png recognized as:  71.png
+71r230.png recognized as:  39.png
+22r345.png recognized as:  71.png
+32r185.png recognized as:  26.png
+7r240.png recognized as:  29.png
+64r135.png recognized as:  22.png
+32r90.png recognized as:  29.png
+64r195.png recognized as:  22.png
+55r350.png recognized as:  39.png
+7r125.png recognized as:  29.png
+39r130.png recognized as:  95.png
+22r95.png recognized as:  71.png
+99r240.png recognized as:  22.png
+22r275.png recognized as:  64.png
+62r165.png recognized as:  29.png
+62r130.png recognized as:  29.png
+55r185.png recognized as:  39.png
+22r110.png recognized as:  64.png
+71r5.png recognized as:  39.png
+7r250.png recognized as:  29.png
+7r325.png recognized as:  29.png
+22r195.png recognized as:  64.png
+64r245.png recognized as:  22.png
+55r315.png recognized as:  64.png
+64r220.png recognized as:  22.png
+71r210.png recognized as:  95.png
+22r60.png recognized as:  71.png
+7r150.png recognized as:  29.png
+62r245.png recognized as:  29.png
+22r185.png recognized as:  71.png
+64r280.png recognized as:  22.png
+22r175.png recognized as:  64.png
+7r155.png recognized as:  29.png
+22r340.png recognized as:  71.png
+29r345.png recognized as:  26.png
+55r340.png recognized as:  39.png
+7r110.png recognized as:  29.png
+71r175.png recognized as:  95.png
+39r170.png recognized as:  55.png
+7r230.png recognized as:  29.png
+55r195.png recognized as:  71.png
+64r315.png recognized as:  71.png
+55r200.png recognized as:  64.png
+32r350.png recognized as:  13.png
+7r270.png recognized as:  29.png
+95r110.png recognized as:  39.png
+32r190.png recognized as:  26.png
+32r250.png recognized as:  29.png
+7r315.png recognized as:  29.png
+62r85.png recognized as:  29.png
+32r25.png recognized as:  26.png
+64r150.png recognized as:  22.png
+32r70.png recognized as:  26.png
+95r150.png recognized as:  39.png
+62r15.png recognized as:  29.png
+32r255.png recognized as:  26.png
+55r215.png recognized as:  39.png
+29r270.png recognized as:  7.png
+39r40.png recognized as:  95.png
+62r330.png recognized as:  29.png
+99r100.png recognized as:  22.png
+7r0.png recognized as:  29.png
+22r25.png recognized as:  64.png
+22r245.png recognized as:  71.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+22r225.png recognized as:  64.png
+55r170.png recognized as:  71.png
+7r60.png recognized as:  29.png
+7r295.png recognized as:  29.png
+7r195.png recognized as:  29.png
+7r70.png recognized as:  29.png
+62r125.png recognized as:  29.png
+22r190.png recognized as:  64.png
+55r295.png recognized as:  71.png
+22r5.png recognized as:  71.png
+32r295.png recognized as:  26.png
+22r45.png recognized as:  71.png
+7r40.png recognized as:  29.png
+22r15.png recognized as:  71.png
+55r175.png recognized as:  71.png
+7r105.png recognized as:  29.png
+64r30.png recognized as:  22.png
+62r75.png recognized as:  29.png
+39r65.png recognized as:  95.png
+7r215.png recognized as:  29.png
+22r55.png recognized as:  71.png
+62r60.png recognized as:  29.png
+32r305.png recognized as:  26.png
+32r75.png recognized as:  26.png
+64r290.png recognized as:  22.png
+55r165.png recognized as:  39.png
+29r5.png recognized as:  62.png
+55r45.png recognized as:  39.png
+64r325.png recognized as:  22.png
+55r105.png recognized as:  71.png
+7r135.png recognized as:  29.png
+64r110.png recognized as:  71.png
+55r265.png recognized as:  39.png
+71r100.png recognized as:  39.png
+71r195.png recognized as:  39.png
+62r305.png recognized as:  29.png
+26r320.png recognized as:  32.png
+22r165.png recognized as:  71.png
+64r40.png recognized as:  22.png
+99r245.png recognized as:  22.png
+64r310.png recognized as:  71.png
+64r300.png recognized as:  22.png
+29r90.png recognized as:  62.png
+55r10.png recognized as:  64.png
+22r235.png recognized as:  64.png
+22r320.png recognized as:  64.png
+7r85.png recognized as:  29.png
+22r125.png recognized as:  71.png
+29r220.png recognized as:  7.png
+39r5.png recognized as:  55.png
+32r85.png recognized as:  29.png
+22r115.png recognized as:  71.png
+26r100.png recognized as:  32.png
+55r110.png recognized as:  64.png
+62r70.png recognized as:  29.png
+55r135.png recognized as:  39.png
+55r250.png recognized as:  39.png
+32r355.png recognized as:  29.png
+55r90.png recognized as:  39.png
+39r325.png recognized as:  95.png
+22r65.png recognized as:  71.png
+64r285.png recognized as:  22.png
+7r355.png recognized as:  29.png
+22r130.png recognized as:  71.png
+71r165.png recognized as:  39.png
+71r250.png recognized as:  39.png
+64r170.png recognized as:  71.png
+7r210.png recognized as:  29.png
+62r205.png recognized as:  29.png
+64r5.png recognized as:  22.png
+22r100.png recognized as:  64.png
+55r280.png recognized as:  39.png
+22r170.png recognized as:  71.png
+71r205.png recognized as:  39.png
+62r45.png recognized as:  29.png
+29r70.png recognized as:  7.png
+7r15.png recognized as:  29.png
+62r255.png recognized as:  29.png
+32r60.png recognized as:  26.png
+22r150.png recognized as:  71.png
+29r40.png recognized as:  7.png
+71r135.png recognized as:  95.png
+22r350.png recognized as:  64.png
+26r165.png recognized as:  32.png
+7r65.png recognized as:  29.png
+7r165.png recognized as:  29.png
+64r175.png recognized as:  22.png
+22r220.png recognized as:  71.png
+22r50.png recognized as:  71.png
+22r155.png recognized as:  64.png
+7r335.png recognized as:  29.png
+7r120.png recognized as:  62.png
+62r300.png recognized as:  29.png
+22r180.png recognized as:  71.png
+32r230.png recognized as:  13.png
+7r300.png recognized as:  29.png
+7r260.png recognized as:  29.png
+71r140.png recognized as:  39.png
+7r305.png recognized as:  29.png
+55r80.png recognized as:  39.png
+62r5.png recognized as:  29.png
+55r320.png recognized as:  71.png
+29r85.png recognized as:  62.png
+7r145.png recognized as:  29.png
+55r75.png recognized as:  39.png
+22r290.png recognized as:  64.png
+29r105.png recognized as:  7.png
+64r65.png recognized as:  71.png
+64r145.png recognized as:  22.png
+32r275.png recognized as:  26.png
+64r165.png recognized as:  99.png
+55r60.png recognized as:  39.png
+29r195.png recognized as:  7.png
+64r125.png recognized as:  22.png
+7r280.png recognized as:  29.png
+29r170.png recognized as:  7.png
+62r240.png recognized as:  29.png
+62r225.png recognized as:  29.png
+29r150.png recognized as:  62.png
+7r200.png recognized as:  29.png
+29r95.png recognized as:  62.png
+55r235.png recognized as:  39.png
+64r100.png recognized as:  71.png
+39r185.png recognized as:  55.png
+22r200.png recognized as:  64.png
+55r305.png recognized as:  39.png
+22r270.png recognized as:  64.png
+99r305.png recognized as:  22.png
+22r70.png recognized as:  64.png
+55r20.png recognized as:  71.png
+26r205.png recognized as:  32.png
+62r105.png recognized as:  29.png
+64r255.png recognized as:  71.png
+22r90.png recognized as:  64.png
+55r160.png recognized as:  64.png
+32r315.png recognized as:  26.png
+55r330.png recognized as:  39.png
+55r245.png recognized as:  71.png
+7r5.png recognized as:  29.png
+62r40.png recognized as:  29.png
+26r105.png recognized as:  32.png
+26r260.png recognized as:  32.png
+29r265.png recognized as:  62.png
+64r340.png recognized as:  22.png
+7r55.png recognized as:  62.png
+55r100.png recognized as:  64.png
+71r340.png recognized as:  39.png
+
+
+
+Gaussian noise (no rounding) with std dev 100
+69.24603174603175 % recognized correctly.
+Incorrect results: 
+22r75.png recognized as:  64.png
+99r60.png recognized as:  32.png
+71r10.png recognized as:  95.png
+64r80.png recognized as:  13.png
+32r130.png recognized as:  26.png
+22r230.png recognized as:  64.png
+22r280.png recognized as:  64.png
+64r235.png recognized as:  13.png
+62r90.png recognized as:  29.png
+71r80.png recognized as:  99.png
+39r240.png recognized as:  55.png
+32r300.png recognized as:  7.png
+29r15.png recognized as:  7.png
+29r225.png recognized as:  62.png
+29r165.png recognized as:  7.png
+71r355.png recognized as:  55.png
+64r50.png recognized as:  13.png
+39r125.png recognized as:  55.png
+71r295.png recognized as:  99.png
+55r0.png recognized as:  71.png
+29r210.png recognized as:  7.png
+7r265.png recognized as:  62.png
+64r160.png recognized as:  22.png
+62r160.png recognized as:  29.png
+22r285.png recognized as:  64.png
+55r40.png recognized as:  64.png
+22r120.png recognized as:  64.png
+71r155.png recognized as:  95.png
+29r335.png recognized as:  7.png
+55r5.png recognized as:  71.png
+39r75.png recognized as:  55.png
+71r285.png recognized as:  95.png
+22r310.png recognized as:  64.png
+64r140.png recognized as:  22.png
+22r20.png recognized as:  64.png
+22r265.png recognized as:  64.png
+22r305.png recognized as:  64.png
+71r125.png recognized as:  55.png
+22r105.png recognized as:  99.png
+22r325.png recognized as:  64.png
+22r145.png recognized as:  64.png
+22r250.png recognized as:  64.png
+22r335.png recognized as:  64.png
+71r110.png recognized as:  95.png
+39r335.png recognized as:  55.png
+22r355.png recognized as:  32.png
+39r235.png recognized as:  55.png
+22r35.png recognized as:  64.png
+55r35.png recognized as:  39.png
+7r20.png recognized as:  29.png
+62r135.png recognized as:  29.png
+62r120.png recognized as:  29.png
+22r300.png recognized as:  64.png
+55r270.png recognized as:  71.png
+64r90.png recognized as:  22.png
+55r205.png recognized as:  64.png
+55r345.png recognized as:  95.png
+71r335.png recognized as:  95.png
+71r225.png recognized as:  95.png
+39r200.png recognized as:  55.png
+32r95.png recognized as:  26.png
+22r205.png recognized as:  64.png
+62r0.png recognized as:  29.png
+22r10.png recognized as:  64.png
+39r265.png recognized as:  55.png
+39r260.png recognized as:  55.png
+29r310.png recognized as:  7.png
+64r0.png recognized as:  13.png
+22r315.png recognized as:  13.png
+7r50.png recognized as:  29.png
+7r80.png recognized as:  29.png
+29r100.png recognized as:  7.png
+71r185.png recognized as:  95.png
+71r190.png recognized as:  95.png
+71r180.png recognized as:  55.png
+39r190.png recognized as:  55.png
+22r215.png recognized as:  64.png
+39r50.png recognized as:  55.png
+64r105.png recognized as:  13.png
+39r60.png recognized as:  55.png
+22r345.png recognized as:  64.png
+7r290.png recognized as:  29.png
+39r105.png recognized as:  55.png
+39r10.png recognized as:  55.png
+64r210.png recognized as:  22.png
+32r90.png recognized as:  26.png
+7r125.png recognized as:  29.png
+39r130.png recognized as:  55.png
+22r135.png recognized as:  64.png
+39r155.png recognized as:  55.png
+22r95.png recognized as:  64.png
+39r15.png recognized as:  55.png
+71r325.png recognized as:  95.png
+39r255.png recognized as:  55.png
+62r165.png recognized as:  29.png
+22r110.png recognized as:  64.png
+71r5.png recognized as:  95.png
+62r10.png recognized as:  29.png
+32r335.png recognized as:  26.png
+26r95.png recognized as:  32.png
+71r270.png recognized as:  95.png
+22r195.png recognized as:  99.png
+71r210.png recognized as:  95.png
+22r60.png recognized as:  64.png
+7r150.png recognized as:  29.png
+62r245.png recognized as:  29.png
+29r250.png recognized as:  7.png
+22r185.png recognized as:  64.png
+32r235.png recognized as:  26.png
+29r290.png recognized as:  7.png
+64r280.png recognized as:  32.png
+71r235.png recognized as:  95.png
+22r175.png recognized as:  64.png
+7r155.png recognized as:  29.png
+22r340.png recognized as:  64.png
+39r225.png recognized as:  55.png
+32r220.png recognized as:  26.png
+7r330.png recognized as:  29.png
+39r135.png recognized as:  55.png
+29r345.png recognized as:  7.png
+71r220.png recognized as:  95.png
+39r170.png recognized as:  55.png
+7r230.png recognized as:  29.png
+22r330.png recognized as:  64.png
+7r180.png recognized as:  29.png
+55r195.png recognized as:  71.png
+7r10.png recognized as:  29.png
+64r85.png recognized as:  22.png
+55r300.png recognized as:  71.png
+64r185.png recognized as:  13.png
+32r350.png recognized as:  7.png
+62r85.png recognized as:  29.png
+32r285.png recognized as:  26.png
+39r150.png recognized as:  55.png
+22r255.png recognized as:  71.png
+62r320.png recognized as:  29.png
+32r255.png recognized as:  26.png
+64r330.png recognized as:  99.png
+39r320.png recognized as:  55.png
+39r40.png recognized as:  55.png
+71r255.png recognized as:  95.png
+32r195.png recognized as:  26.png
+29r315.png recognized as:  7.png
+39r180.png recognized as:  95.png
+62r330.png recognized as:  29.png
+39r0.png recognized as:  55.png
+29r75.png recognized as:  7.png
+7r0.png recognized as:  29.png
+71r320.png recognized as:  55.png
+71r310.png recognized as:  99.png
+22r25.png recognized as:  64.png
+22r245.png recognized as:  13.png
+26r130.png recognized as:  32.png
+7r170.png recognized as:  29.png
+22r225.png recognized as:  64.png
+39r355.png recognized as:  55.png
+39r285.png recognized as:  55.png
+32r10.png recognized as:  26.png
+39r275.png recognized as:  55.png
+7r60.png recognized as:  29.png
+39r295.png recognized as:  55.png
+7r70.png recognized as:  29.png
+22r190.png recognized as:  64.png
+22r5.png recognized as:  64.png
+32r295.png recognized as:  26.png
+22r45.png recognized as:  64.png
+29r110.png recognized as:  7.png
+7r40.png recognized as:  29.png
+22r15.png recognized as:  64.png
+29r255.png recognized as:  62.png
+29r305.png recognized as:  7.png
+71r30.png recognized as:  55.png
+62r175.png recognized as:  29.png
+7r105.png recognized as:  29.png
+64r30.png recognized as:  22.png
+62r75.png recognized as:  29.png
+62r275.png recognized as:  29.png
+39r65.png recognized as:  55.png
+71r55.png recognized as:  95.png
+22r55.png recognized as:  64.png
+32r305.png recognized as:  7.png
+32r245.png recognized as:  26.png
+55r45.png recognized as:  71.png
+29r235.png recognized as:  7.png
+64r110.png recognized as:  13.png
+71r280.png recognized as:  95.png
+7r285.png recognized as:  29.png
+22r85.png recognized as:  13.png
+22r160.png recognized as:  64.png
+22r240.png recognized as:  32.png
+71r195.png recognized as:  95.png
+62r305.png recognized as:  29.png
+22r165.png recognized as:  99.png
+7r345.png recognized as:  29.png
+32r265.png recognized as:  26.png
+64r310.png recognized as:  13.png
+29r300.png recognized as:  7.png
+64r10.png recognized as:  22.png
+71r25.png recognized as:  95.png
+39r310.png recognized as:  55.png
+32r345.png recognized as:  26.png
+39r160.png recognized as:  55.png
+62r350.png recognized as:  29.png
+7r225.png recognized as:  29.png
+22r320.png recognized as:  64.png
+39r5.png recognized as:  55.png
+26r100.png recognized as:  32.png
+39r230.png recognized as:  55.png
+32r290.png recognized as:  26.png
+99r335.png recognized as:  32.png
+32r120.png recognized as:  7.png
+55r250.png recognized as:  71.png
+7r245.png recognized as:  29.png
+39r325.png recognized as:  55.png
+7r275.png recognized as:  29.png
+39r35.png recognized as:  55.png
+64r285.png recognized as:  99.png
+22r130.png recognized as:  64.png
+71r165.png recognized as:  95.png
+71r250.png recognized as:  95.png
+7r210.png recognized as:  29.png
+39r110.png recognized as:  55.png
+22r100.png recognized as:  64.png
+71r35.png recognized as:  95.png
+71r40.png recognized as:  55.png
+29r240.png recognized as:  62.png
+62r255.png recognized as:  29.png
+64r270.png recognized as:  22.png
+22r150.png recognized as:  64.png
+71r170.png recognized as:  95.png
+71r305.png recognized as:  95.png
+71r135.png recognized as:  95.png
+39r165.png recognized as:  55.png
+71r65.png recognized as:  95.png
+71r330.png recognized as:  95.png
+64r305.png recognized as:  22.png
+39r345.png recognized as:  55.png
+39r70.png recognized as:  55.png
+99r315.png recognized as:  32.png
+71r315.png recognized as:  95.png
+39r25.png recognized as:  55.png
+39r300.png recognized as:  55.png
+22r50.png recognized as:  99.png
+32r155.png recognized as:  7.png
+39r115.png recognized as:  55.png
+22r155.png recognized as:  71.png
+7r335.png recognized as:  29.png
+39r45.png recognized as:  55.png
+32r110.png recognized as:  7.png
+22r180.png recognized as:  64.png
+39r250.png recognized as:  55.png
+71r130.png recognized as:  55.png
+71r105.png recognized as:  95.png
+99r55.png recognized as:  32.png
+71r140.png recognized as:  95.png
+71r120.png recognized as:  95.png
+39r145.png recognized as:  55.png
+7r145.png recognized as:  29.png
+55r75.png recognized as:  71.png
+22r290.png recognized as:  32.png
+26r300.png recognized as:  32.png
+29r105.png recognized as:  7.png
+64r65.png recognized as:  13.png
+32r105.png recognized as:  7.png
+39r305.png recognized as:  55.png
+64r125.png recognized as:  13.png
+71r145.png recognized as:  95.png
+64r230.png recognized as:  99.png
+29r170.png recognized as:  7.png
+62r240.png recognized as:  29.png
+71r275.png recognized as:  95.png
+62r225.png recognized as:  29.png
+7r310.png recognized as:  29.png
+39r270.png recognized as:  71.png
+22r140.png recognized as:  64.png
+22r270.png recognized as:  64.png
+71r95.png recognized as:  95.png
+7r320.png recognized as:  29.png
+22r70.png recognized as:  64.png
+55r130.png recognized as:  13.png
+71r70.png recognized as:  95.png
+71r85.png recognized as:  55.png
+71r260.png recognized as:  95.png
+29r175.png recognized as:  7.png
+32r330.png recognized as:  26.png
+39r90.png recognized as:  55.png
+22r90.png recognized as:  64.png
+62r340.png recognized as:  29.png
+39r120.png recognized as:  55.png
+32r170.png recognized as:  26.png
+32r340.png recognized as:  26.png
+32r315.png recognized as:  26.png
+39r215.png recognized as:  55.png
+39r220.png recognized as:  55.png
+29r60.png recognized as:  7.png
+39r210.png recognized as:  55.png
+7r5.png recognized as:  62.png
+62r40.png recognized as:  29.png
+39r340.png recognized as:  95.png
+62r220.png recognized as:  29.png
+64r340.png recognized as:  22.png
+39r20.png recognized as:  55.png
+39r315.png recognized as:  55.png
+7r55.png recognized as:  29.png
+29r140.png recognized as:  7.png
+71r200.png recognized as:  95.png
+55r100.png recognized as:  71.png
+29r340.png recognized as:  7.png
+39r280.png recognized as:  55.png
+71r340.png recognized as:  99.png
+
+
+
+Gaussian noise (no rounding) with std dev 110
+69.54365079365078 % recognized correctly.
+Incorrect results: 
+22r75.png recognized as:  71.png
+32r130.png recognized as:  26.png
+62r145.png recognized as:  7.png
+22r280.png recognized as:  71.png
+71r80.png recognized as:  22.png
+55r140.png recognized as:  39.png
+32r300.png recognized as:  29.png
+71r245.png recognized as:  22.png
+32r80.png recognized as:  13.png
+29r15.png recognized as:  7.png
+29r225.png recognized as:  7.png
+71r355.png recognized as:  22.png
+55r85.png recognized as:  39.png
+29r55.png recognized as:  7.png
+64r15.png recognized as:  22.png
+39r125.png recognized as:  55.png
+55r55.png recognized as:  39.png
+7r130.png recognized as:  29.png
+29r210.png recognized as:  7.png
+71r90.png recognized as:  22.png
+7r265.png recognized as:  26.png
+29r180.png recognized as:  7.png
+64r160.png recognized as:  71.png
+22r285.png recognized as:  64.png
+62r355.png recognized as:  7.png
+64r60.png recognized as:  22.png
+55r40.png recognized as:  64.png
+22r120.png recognized as:  64.png
+32r15.png recognized as:  26.png
+29r335.png recognized as:  7.png
+55r5.png recognized as:  22.png
+55r145.png recognized as:  39.png
+29r295.png recognized as:  26.png
+32r150.png recognized as:  26.png
+22r310.png recognized as:  64.png
+55r275.png recognized as:  39.png
+62r35.png recognized as:  7.png
+22r20.png recognized as:  71.png
+22r265.png recognized as:  64.png
+22r305.png recognized as:  71.png
+32r55.png recognized as:  26.png
+22r325.png recognized as:  64.png
+22r145.png recognized as:  64.png
+55r255.png recognized as:  71.png
+22r335.png recognized as:  71.png
+29r190.png recognized as:  26.png
+55r260.png recognized as:  39.png
+13r215.png recognized as:  64.png
+7r20.png recognized as:  29.png
+29r185.png recognized as:  26.png
+62r120.png recognized as:  7.png
+22r300.png recognized as:  71.png
+29r260.png recognized as:  7.png
+99r145.png recognized as:  22.png
+22r0.png recognized as:  64.png
+55r230.png recognized as:  39.png
+32r5.png recognized as:  26.png
+55r345.png recognized as:  39.png
+32r240.png recognized as:  26.png
+71r225.png recognized as:  22.png
+32r95.png recognized as:  26.png
+99r50.png recognized as:  22.png
+22r205.png recognized as:  64.png
+62r0.png recognized as:  7.png
+29r310.png recognized as:  7.png
+99r260.png recognized as:  22.png
+22r30.png recognized as:  71.png
+7r80.png recognized as:  29.png
+29r100.png recognized as:  7.png
+71r185.png recognized as:  22.png
+71r190.png recognized as:  22.png
+39r190.png recognized as:  55.png
+39r100.png recognized as:  55.png
+99r210.png recognized as:  22.png
+22r215.png recognized as:  64.png
+64r105.png recognized as:  22.png
+22r345.png recognized as:  71.png
+29r10.png recognized as:  7.png
+29r205.png recognized as:  7.png
+64r210.png recognized as:  71.png
+32r90.png recognized as:  26.png
+55r350.png recognized as:  39.png
+22r135.png recognized as:  64.png
+71r350.png recognized as:  22.png
+22r95.png recognized as:  71.png
+32r180.png recognized as:  7.png
+99r240.png recognized as:  22.png
+13r40.png recognized as:  64.png
+62r165.png recognized as:  7.png
+32r145.png recognized as:  26.png
+22r110.png recognized as:  64.png
+71r5.png recognized as:  22.png
+62r10.png recognized as:  7.png
+7r250.png recognized as:  26.png
+32r160.png recognized as:  13.png
+7r325.png recognized as:  29.png
+64r245.png recognized as:  22.png
+55r315.png recognized as:  39.png
+64r220.png recognized as:  71.png
+71r210.png recognized as:  22.png
+22r60.png recognized as:  64.png
+7r150.png recognized as:  29.png
+22r185.png recognized as:  64.png
+32r235.png recognized as:  26.png
+29r290.png recognized as:  7.png
+71r235.png recognized as:  22.png
+22r175.png recognized as:  64.png
+64r250.png recognized as:  22.png
+32r215.png recognized as:  26.png
+29r35.png recognized as:  7.png
+55r335.png recognized as:  64.png
+7r330.png recognized as:  29.png
+29r275.png recognized as:  62.png
+55r340.png recognized as:  64.png
+71r220.png recognized as:  22.png
+7r230.png recognized as:  26.png
+7r180.png recognized as:  29.png
+7r10.png recognized as:  26.png
+55r300.png recognized as:  71.png
+62r65.png recognized as:  7.png
+64r185.png recognized as:  22.png
+7r270.png recognized as:  26.png
+32r190.png recognized as:  26.png
+7r315.png recognized as:  26.png
+26r35.png recognized as:  7.png
+32r285.png recognized as:  26.png
+39r290.png recognized as:  55.png
+95r240.png recognized as:  71.png
+29r20.png recognized as:  7.png
+32r70.png recognized as:  13.png
+22r255.png recognized as:  64.png
+62r320.png recognized as:  7.png
+32r255.png recognized as:  7.png
+29r270.png recognized as:  7.png
+32r205.png recognized as:  26.png
+13r260.png recognized as:  64.png
+99r35.png recognized as:  22.png
+32r195.png recognized as:  13.png
+71r45.png recognized as:  95.png
+29r330.png recognized as:  7.png
+62r330.png recognized as:  7.png
+7r0.png recognized as:  26.png
+22r25.png recognized as:  64.png
+22r245.png recognized as:  64.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  26.png
+22r225.png recognized as:  64.png
+22r80.png recognized as:  71.png
+39r275.png recognized as:  55.png
+62r195.png recognized as:  7.png
+7r295.png recognized as:  29.png
+29r25.png recognized as:  7.png
+7r70.png recognized as:  29.png
+62r125.png recognized as:  7.png
+22r190.png recognized as:  64.png
+22r5.png recognized as:  71.png
+55r180.png recognized as:  39.png
+22r45.png recognized as:  64.png
+29r110.png recognized as:  7.png
+7r40.png recognized as:  29.png
+32r320.png recognized as:  26.png
+29r255.png recognized as:  7.png
+29r305.png recognized as:  13.png
+62r175.png recognized as:  7.png
+7r105.png recognized as:  29.png
+64r30.png recognized as:  22.png
+29r125.png recognized as:  62.png
+62r275.png recognized as:  7.png
+29r355.png recognized as:  26.png
+62r315.png recognized as:  7.png
+7r100.png recognized as:  29.png
+22r55.png recognized as:  64.png
+32r305.png recognized as:  26.png
+55r285.png recognized as:  39.png
+55r165.png recognized as:  64.png
+55r45.png recognized as:  39.png
+29r235.png recognized as:  7.png
+7r135.png recognized as:  29.png
+71r280.png recognized as:  22.png
+99r220.png recognized as:  22.png
+22r85.png recognized as:  64.png
+62r270.png recognized as:  7.png
+64r260.png recognized as:  22.png
+55r310.png recognized as:  22.png
+62r305.png recognized as:  7.png
+29r320.png recognized as:  7.png
+22r165.png recognized as:  64.png
+64r40.png recognized as:  22.png
+32r0.png recognized as:  99.png
+29r45.png recognized as:  7.png
+64r310.png recognized as:  32.png
+29r300.png recognized as:  7.png
+64r10.png recognized as:  22.png
+32r345.png recognized as:  26.png
+29r245.png recognized as:  7.png
+55r10.png recognized as:  22.png
+22r235.png recognized as:  64.png
+62r190.png recognized as:  7.png
+39r85.png recognized as:  71.png
+99r85.png recognized as:  22.png
+7r225.png recognized as:  29.png
+99r70.png recognized as:  26.png
+62r295.png recognized as:  29.png
+29r0.png recognized as:  7.png
+29r80.png recognized as:  7.png
+22r320.png recognized as:  64.png
+22r125.png recognized as:  64.png
+32r85.png recognized as:  26.png
+62r70.png recognized as:  7.png
+22r295.png recognized as:  55.png
+32r120.png recognized as:  26.png
+55r250.png recognized as:  95.png
+32r355.png recognized as:  26.png
+55r90.png recognized as:  39.png
+32r260.png recognized as:  26.png
+7r275.png recognized as:  29.png
+39r35.png recognized as:  55.png
+7r210.png recognized as:  29.png
+71r15.png recognized as:  22.png
+22r100.png recognized as:  55.png
+55r280.png recognized as:  71.png
+22r170.png recognized as:  71.png
+71r205.png recognized as:  22.png
+62r45.png recognized as:  7.png
+29r70.png recognized as:  7.png
+71r40.png recognized as:  22.png
+7r15.png recognized as:  29.png
+32r60.png recognized as:  26.png
+64r270.png recognized as:  22.png
+29r40.png recognized as:  7.png
+39r165.png recognized as:  55.png
+71r65.png recognized as:  22.png
+64r305.png recognized as:  71.png
+32r175.png recognized as:  26.png
+7r165.png recognized as:  26.png
+13r220.png recognized as:  64.png
+22r220.png recognized as:  64.png
+29r230.png recognized as:  7.png
+39r300.png recognized as:  55.png
+55r290.png recognized as:  64.png
+22r50.png recognized as:  64.png
+32r140.png recognized as:  26.png
+22r155.png recognized as:  64.png
+71r290.png recognized as:  22.png
+7r120.png recognized as:  29.png
+64r20.png recognized as:  71.png
+32r110.png recognized as:  26.png
+22r180.png recognized as:  64.png
+71r130.png recognized as:  22.png
+71r140.png recognized as:  22.png
+7r305.png recognized as:  29.png
+55r320.png recognized as:  39.png
+22r210.png recognized as:  64.png
+29r85.png recognized as:  7.png
+55r75.png recognized as:  39.png
+22r290.png recognized as:  71.png
+29r105.png recognized as:  7.png
+32r105.png recognized as:  26.png
+62r250.png recognized as:  7.png
+55r60.png recognized as:  64.png
+7r185.png recognized as:  29.png
+29r160.png recognized as:  26.png
+29r195.png recognized as:  7.png
+13r245.png recognized as:  64.png
+29r350.png recognized as:  7.png
+7r280.png recognized as:  29.png
+55r70.png recognized as:  39.png
+62r265.png recognized as:  7.png
+62r225.png recognized as:  7.png
+29r150.png recognized as:  7.png
+7r310.png recognized as:  29.png
+95r290.png recognized as:  71.png
+22r200.png recognized as:  71.png
+22r140.png recognized as:  64.png
+55r305.png recognized as:  39.png
+22r270.png recognized as:  71.png
+55r125.png recognized as:  39.png
+29r30.png recognized as:  7.png
+13r110.png recognized as:  64.png
+22r70.png recognized as:  64.png
+55r130.png recognized as:  71.png
+71r70.png recognized as:  22.png
+55r20.png recognized as:  39.png
+62r115.png recognized as:  7.png
+29r155.png recognized as:  7.png
+62r335.png recognized as:  7.png
+55r115.png recognized as:  39.png
+62r105.png recognized as:  7.png
+64r25.png recognized as:  22.png
+7r340.png recognized as:  29.png
+7r220.png recognized as:  29.png
+29r325.png recognized as:  7.png
+32r135.png recognized as:  26.png
+64r70.png recognized as:  71.png
+55r160.png recognized as:  64.png
+32r280.png recognized as:  7.png
+32r340.png recognized as:  26.png
+32r210.png recognized as:  26.png
+39r220.png recognized as:  55.png
+55r245.png recognized as:  39.png
+71r50.png recognized as:  22.png
+62r220.png recognized as:  7.png
+29r265.png recognized as:  62.png
+7r235.png recognized as:  29.png
+62r30.png recognized as:  7.png
+55r100.png recognized as:  39.png
+32r100.png recognized as:  26.png
+
+
+
+Gaussian noise (no rounding) with std dev 120
+64.88095238095238 % recognized correctly.
+Incorrect results: 
+62r95.png recognized as:  29.png
+22r75.png recognized as:  71.png
+62r260.png recognized as:  29.png
+64r275.png recognized as:  22.png
+64r80.png recognized as:  71.png
+64r155.png recognized as:  22.png
+32r130.png recognized as:  26.png
+22r230.png recognized as:  71.png
+22r280.png recognized as:  99.png
+55r150.png recognized as:  71.png
+32r80.png recognized as:  7.png
+29r15.png recognized as:  62.png
+32r165.png recognized as:  7.png
+29r225.png recognized as:  32.png
+29r165.png recognized as:  32.png
+71r355.png recognized as:  95.png
+55r85.png recognized as:  71.png
+29r55.png recognized as:  32.png
+64r50.png recognized as:  22.png
+95r285.png recognized as:  71.png
+55r0.png recognized as:  22.png
+29r180.png recognized as:  62.png
+95r25.png recognized as:  71.png
+64r160.png recognized as:  22.png
+22r285.png recognized as:  71.png
+62r355.png recognized as:  29.png
+64r60.png recognized as:  22.png
+64r265.png recognized as:  22.png
+62r210.png recognized as:  29.png
+32r15.png recognized as:  26.png
+7r255.png recognized as:  32.png
+95r45.png recognized as:  71.png
+64r215.png recognized as:  22.png
+32r150.png recognized as:  26.png
+55r325.png recognized as:  22.png
+22r20.png recognized as:  71.png
+22r265.png recognized as:  64.png
+26r285.png recognized as:  13.png
+29r145.png recognized as:  32.png
+32r55.png recognized as:  7.png
+62r50.png recognized as:  29.png
+62r170.png recognized as:  29.png
+62r140.png recognized as:  29.png
+29r50.png recognized as:  62.png
+55r255.png recognized as:  39.png
+39r235.png recognized as:  71.png
+22r35.png recognized as:  99.png
+55r35.png recognized as:  71.png
+22r40.png recognized as:  64.png
+7r20.png recognized as:  29.png
+22r300.png recognized as:  64.png
+71r240.png recognized as:  95.png
+29r260.png recognized as:  7.png
+26r150.png recognized as:  32.png
+22r0.png recognized as:  64.png
+55r65.png recognized as:  71.png
+64r90.png recognized as:  13.png
+32r310.png recognized as:  7.png
+64r95.png recognized as:  22.png
+32r95.png recognized as:  7.png
+95r35.png recognized as:  71.png
+62r325.png recognized as:  29.png
+22r205.png recognized as:  71.png
+62r0.png recognized as:  29.png
+39r260.png recognized as:  55.png
+64r350.png recognized as:  13.png
+32r200.png recognized as:  26.png
+29r100.png recognized as:  7.png
+71r185.png recognized as:  95.png
+95r50.png recognized as:  71.png
+22r215.png recognized as:  71.png
+64r105.png recognized as:  22.png
+32r40.png recognized as:  29.png
+22r345.png recognized as:  64.png
+62r185.png recognized as:  29.png
+32r185.png recognized as:  29.png
+71r150.png recognized as:  95.png
+95r245.png recognized as:  71.png
+29r10.png recognized as:  32.png
+13r180.png recognized as:  22.png
+7r240.png recognized as:  29.png
+64r135.png recognized as:  71.png
+39r30.png recognized as:  55.png
+7r125.png recognized as:  62.png
+39r130.png recognized as:  55.png
+22r135.png recognized as:  13.png
+55r190.png recognized as:  71.png
+7r75.png recognized as:  29.png
+22r275.png recognized as:  71.png
+39r255.png recognized as:  55.png
+62r165.png recognized as:  29.png
+62r130.png recognized as:  29.png
+95r335.png recognized as:  71.png
+32r145.png recognized as:  29.png
+22r110.png recognized as:  64.png
+95r345.png recognized as:  71.png
+62r100.png recognized as:  29.png
+7r250.png recognized as:  62.png
+32r160.png recognized as:  7.png
+95r145.png recognized as:  71.png
+22r195.png recognized as:  71.png
+64r225.png recognized as:  71.png
+22r60.png recognized as:  64.png
+64r115.png recognized as:  22.png
+64r120.png recognized as:  22.png
+29r250.png recognized as:  62.png
+22r185.png recognized as:  71.png
+64r190.png recognized as:  22.png
+29r290.png recognized as:  7.png
+64r280.png recognized as:  22.png
+71r235.png recognized as:  95.png
+22r175.png recognized as:  13.png
+64r250.png recognized as:  71.png
+55r335.png recognized as:  71.png
+32r220.png recognized as:  7.png
+22r260.png recognized as:  71.png
+29r345.png recognized as:  7.png
+7r110.png recognized as:  32.png
+39r170.png recognized as:  55.png
+7r230.png recognized as:  32.png
+64r320.png recognized as:  22.png
+22r330.png recognized as:  71.png
+7r180.png recognized as:  32.png
+64r85.png recognized as:  22.png
+55r300.png recognized as:  71.png
+64r315.png recognized as:  71.png
+95r175.png recognized as:  71.png
+32r350.png recognized as:  29.png
+7r270.png recognized as:  29.png
+95r110.png recognized as:  71.png
+64r55.png recognized as:  22.png
+32r250.png recognized as:  26.png
+7r315.png recognized as:  32.png
+71r60.png recognized as:  95.png
+55r355.png recognized as:  71.png
+32r25.png recognized as:  29.png
+32r285.png recognized as:  26.png
+39r150.png recognized as:  71.png
+29r20.png recognized as:  32.png
+64r150.png recognized as:  22.png
+22r255.png recognized as:  71.png
+62r15.png recognized as:  29.png
+32r255.png recognized as:  7.png
+64r330.png recognized as:  22.png
+26r55.png recognized as:  13.png
+32r325.png recognized as:  26.png
+29r270.png recognized as:  62.png
+62r20.png recognized as:  29.png
+39r40.png recognized as:  22.png
+32r195.png recognized as:  7.png
+95r250.png recognized as:  71.png
+29r130.png recognized as:  7.png
+29r315.png recognized as:  62.png
+29r330.png recognized as:  7.png
+29r75.png recognized as:  7.png
+32r35.png recognized as:  26.png
+22r245.png recognized as:  71.png
+64r200.png recognized as:  22.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+22r225.png recognized as:  71.png
+95r65.png recognized as:  71.png
+22r80.png recognized as:  71.png
+39r275.png recognized as:  71.png
+71r215.png recognized as:  95.png
+71r345.png recognized as:  95.png
+26r230.png recognized as:  32.png
+62r195.png recognized as:  29.png
+7r160.png recognized as:  62.png
+26r240.png recognized as:  32.png
+22r5.png recognized as:  71.png
+32r295.png recognized as:  29.png
+22r45.png recognized as:  13.png
+29r110.png recognized as:  62.png
+7r40.png recognized as:  62.png
+32r320.png recognized as:  26.png
+29r255.png recognized as:  62.png
+29r305.png recognized as:  7.png
+39r175.png recognized as:  71.png
+7r105.png recognized as:  29.png
+64r30.png recognized as:  13.png
+29r125.png recognized as:  32.png
+7r35.png recognized as:  29.png
+29r355.png recognized as:  62.png
+7r175.png recognized as:  29.png
+7r215.png recognized as:  29.png
+62r60.png recognized as:  29.png
+32r305.png recognized as:  26.png
+32r245.png recognized as:  26.png
+64r240.png recognized as:  22.png
+55r285.png recognized as:  71.png
+55r165.png recognized as:  71.png
+29r5.png recognized as:  32.png
+55r45.png recognized as:  71.png
+55r105.png recognized as:  71.png
+29r235.png recognized as:  62.png
+64r110.png recognized as:  22.png
+55r265.png recognized as:  71.png
+7r285.png recognized as:  32.png
+62r270.png recognized as:  29.png
+22r160.png recognized as:  71.png
+64r260.png recognized as:  99.png
+55r310.png recognized as:  71.png
+55r220.png recognized as:  71.png
+64r40.png recognized as:  22.png
+32r0.png recognized as:  26.png
+32r265.png recognized as:  26.png
+64r310.png recognized as:  71.png
+64r10.png recognized as:  22.png
+64r300.png recognized as:  22.png
+39r310.png recognized as:  55.png
+29r90.png recognized as:  62.png
+32r345.png recognized as:  7.png
+22r235.png recognized as:  64.png
+62r350.png recognized as:  29.png
+7r115.png recognized as:  29.png
+29r0.png recognized as:  62.png
+29r80.png recognized as:  32.png
+22r320.png recognized as:  71.png
+22r125.png recognized as:  71.png
+32r85.png recognized as:  7.png
+22r115.png recognized as:  71.png
+55r15.png recognized as:  71.png
+55r110.png recognized as:  71.png
+64r345.png recognized as:  71.png
+62r70.png recognized as:  29.png
+32r290.png recognized as:  29.png
+95r100.png recognized as:  71.png
+22r295.png recognized as:  71.png
+55r135.png recognized as:  22.png
+32r30.png recognized as:  29.png
+32r120.png recognized as:  29.png
+55r250.png recognized as:  71.png
+7r245.png recognized as:  29.png
+32r45.png recognized as:  7.png
+32r355.png recognized as:  7.png
+22r65.png recognized as:  64.png
+7r275.png recognized as:  32.png
+55r210.png recognized as:  22.png
+95r5.png recognized as:  71.png
+39r35.png recognized as:  55.png
+64r285.png recognized as:  22.png
+7r355.png recognized as:  29.png
+64r205.png recognized as:  13.png
+95r75.png recognized as:  71.png
+71r165.png recognized as:  95.png
+71r250.png recognized as:  95.png
+64r170.png recognized as:  71.png
+7r210.png recognized as:  62.png
+62r205.png recognized as:  29.png
+64r5.png recognized as:  13.png
+95r300.png recognized as:  71.png
+71r35.png recognized as:  95.png
+29r240.png recognized as:  7.png
+7r15.png recognized as:  32.png
+32r60.png recognized as:  29.png
+64r270.png recognized as:  71.png
+22r150.png recognized as:  71.png
+71r65.png recognized as:  95.png
+22r350.png recognized as:  64.png
+71r330.png recognized as:  95.png
+64r305.png recognized as:  22.png
+39r345.png recognized as:  71.png
+32r175.png recognized as:  26.png
+7r65.png recognized as:  29.png
+95r190.png recognized as:  71.png
+7r165.png recognized as:  29.png
+22r220.png recognized as:  71.png
+32r65.png recognized as:  26.png
+22r50.png recognized as:  13.png
+32r155.png recognized as:  7.png
+13r295.png recognized as:  26.png
+7r335.png recognized as:  29.png
+7r120.png recognized as:  32.png
+64r20.png recognized as:  71.png
+39r45.png recognized as:  71.png
+64r35.png recognized as:  22.png
+95r270.png recognized as:  71.png
+32r110.png recognized as:  26.png
+32r230.png recognized as:  26.png
+7r300.png recognized as:  29.png
+71r130.png recognized as:  95.png
+71r105.png recognized as:  95.png
+7r260.png recognized as:  29.png
+64r180.png recognized as:  13.png
+71r120.png recognized as:  95.png
+22r210.png recognized as:  71.png
+7r145.png recognized as:  62.png
+22r290.png recognized as:  64.png
+64r145.png recognized as:  71.png
+32r105.png recognized as:  7.png
+32r275.png recognized as:  7.png
+62r250.png recognized as:  29.png
+64r165.png recognized as:  71.png
+55r60.png recognized as:  71.png
+7r185.png recognized as:  32.png
+29r195.png recognized as:  62.png
+64r125.png recognized as:  22.png
+29r350.png recognized as:  62.png
+7r280.png recognized as:  29.png
+55r70.png recognized as:  71.png
+64r230.png recognized as:  22.png
+29r170.png recognized as:  62.png
+62r265.png recognized as:  29.png
+95r90.png recognized as:  71.png
+62r225.png recognized as:  29.png
+95r330.png recognized as:  71.png
+95r55.png recognized as:  71.png
+32r270.png recognized as:  26.png
+7r200.png recognized as:  29.png
+29r95.png recognized as:  32.png
+13r105.png recognized as:  22.png
+64r100.png recognized as:  71.png
+22r200.png recognized as:  13.png
+22r140.png recognized as:  71.png
+29r30.png recognized as:  62.png
+55r130.png recognized as:  22.png
+55r20.png recognized as:  22.png
+62r115.png recognized as:  29.png
+29r155.png recognized as:  7.png
+71r260.png recognized as:  95.png
+95r185.png recognized as:  71.png
+55r115.png recognized as:  71.png
+32r330.png recognized as:  29.png
+62r105.png recognized as:  29.png
+29r115.png recognized as:  7.png
+29r215.png recognized as:  32.png
+64r25.png recognized as:  13.png
+7r340.png recognized as:  29.png
+29r325.png recognized as:  32.png
+32r135.png recognized as:  26.png
+95r280.png recognized as:  71.png
+32r170.png recognized as:  26.png
+55r240.png recognized as:  71.png
+32r280.png recognized as:  13.png
+32r340.png recognized as:  7.png
+32r315.png recognized as:  26.png
+55r330.png recognized as:  39.png
+29r60.png recognized as:  7.png
+55r245.png recognized as:  71.png
+39r210.png recognized as:  71.png
+62r40.png recognized as:  29.png
+32r50.png recognized as:  29.png
+39r340.png recognized as:  71.png
+32r225.png recognized as:  7.png
+71r50.png recognized as:  95.png
+64r340.png recognized as:  22.png
+39r205.png recognized as:  71.png
+7r90.png recognized as:  29.png
+29r140.png recognized as:  32.png
+29r285.png recognized as:  62.png
+55r100.png recognized as:  95.png
+39r350.png recognized as:  55.png
+71r265.png recognized as:  95.png
+
+
+
+
+
+QZMIType.NORMAL TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 20%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 25%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 30%
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.LEGENDRE1 TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.LEGENDRE1 TestType.COIL_ROTATED NoiseType.GAUSS
+
+Gaussian noise with std dev 80
+97.22222222222221 % recognized correctly.
+Incorrect results: 
+7r265.png recognized as:  29.png
+7r30.png recognized as:  29.png
+7r20.png recognized as:  29.png
+7r290.png recognized as:  29.png
+7r75.png recognized as:  29.png
+7r230.png recognized as:  29.png
+7r180.png recognized as:  29.png
+7r315.png recognized as:  29.png
+7r0.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r195.png recognized as:  29.png
+7r105.png recognized as:  29.png
+7r175.png recognized as:  29.png
+7r215.png recognized as:  29.png
+7r135.png recognized as:  29.png
+7r345.png recognized as:  29.png
+7r115.png recognized as:  29.png
+7r275.png recognized as:  29.png
+7r205.png recognized as:  29.png
+7r335.png recognized as:  29.png
+7r300.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r280.png recognized as:  29.png
+7r200.png recognized as:  29.png
+7r340.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r235.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 90
+97.42063492063492 % recognized correctly.
+Incorrect results: 
+7r255.png recognized as:  29.png
+7r50.png recognized as:  29.png
+7r240.png recognized as:  29.png
+7r125.png recognized as:  29.png
+7r325.png recognized as:  29.png
+7r155.png recognized as:  29.png
+7r315.png recognized as:  29.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r60.png recognized as:  29.png
+7r70.png recognized as:  29.png
+7r105.png recognized as:  29.png
+7r215.png recognized as:  29.png
+7r25.png recognized as:  29.png
+7r355.png recognized as:  29.png
+7r15.png recognized as:  29.png
+7r205.png recognized as:  29.png
+7r65.png recognized as:  29.png
+7r335.png recognized as:  29.png
+7r120.png recognized as:  29.png
+7r310.png recognized as:  29.png
+7r200.png recognized as:  29.png
+65r260.png recognized as:  55.png
+7r5.png recognized as:  29.png
+7r90.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 100
+97.61904761904762 % recognized correctly.
+Incorrect results: 
+32r130.png recognized as:  29.png
+7r140.png recognized as:  29.png
+7r265.png recognized as:  29.png
+22r10.png recognized as:  64.png
+7r290.png recognized as:  29.png
+7r150.png recognized as:  29.png
+64r280.png recognized as:  22.png
+7r155.png recognized as:  29.png
+7r330.png recognized as:  29.png
+7r270.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r195.png recognized as:  29.png
+7r40.png recognized as:  29.png
+7r85.png recognized as:  29.png
+7r25.png recognized as:  29.png
+7r275.png recognized as:  29.png
+7r355.png recognized as:  29.png
+7r350.png recognized as:  29.png
+7r165.png recognized as:  29.png
+32r140.png recognized as:  29.png
+7r305.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r235.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 110
+99.70238095238095 % recognized correctly.
+Incorrect results: 
+64r105.png recognized as:  22.png
+22r195.png recognized as:  55.png
+32r75.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 120
+96.13095238095238 % recognized correctly.
+Incorrect results: 
+7r255.png recognized as:  29.png
+7r30.png recognized as:  29.png
+71r115.png recognized as:  95.png
+29r100.png recognized as:  7.png
+7r240.png recognized as:  29.png
+7r125.png recognized as:  29.png
+7r75.png recognized as:  29.png
+64r245.png recognized as:  22.png
+22r60.png recognized as:  64.png
+7r110.png recognized as:  29.png
+7r230.png recognized as:  32.png
+7r10.png recognized as:  29.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r70.png recognized as:  29.png
+7r160.png recognized as:  32.png
+7r105.png recognized as:  29.png
+7r35.png recognized as:  29.png
+7r100.png recognized as:  29.png
+7r285.png recognized as:  29.png
+7r345.png recognized as:  29.png
+29r45.png recognized as:  32.png
+7r245.png recognized as:  32.png
+7r25.png recognized as:  29.png
+7r355.png recognized as:  29.png
+71r165.png recognized as:  95.png
+7r350.png recognized as:  29.png
+7r205.png recognized as:  29.png
+7r335.png recognized as:  29.png
+7r305.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r185.png recognized as:  29.png
+7r310.png recognized as:  29.png
+7r200.png recognized as:  29.png
+7r320.png recognized as:  29.png
+65r285.png recognized as:  55.png
+7r235.png recognized as:  29.png
+7r90.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+
+
+QZMIType.LEGENDRE1 TestType.COIL_ROTATED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 80
+97.12301587301587 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  29.png
+7r265.png recognized as:  29.png
+7r20.png recognized as:  29.png
+7r290.png recognized as:  29.png
+7r75.png recognized as:  29.png
+7r230.png recognized as:  29.png
+7r180.png recognized as:  29.png
+7r0.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r195.png recognized as:  29.png
+7r105.png recognized as:  29.png
+7r175.png recognized as:  29.png
+7r215.png recognized as:  29.png
+7r135.png recognized as:  29.png
+7r345.png recognized as:  29.png
+7r115.png recognized as:  29.png
+7r85.png recognized as:  29.png
+7r275.png recognized as:  29.png
+29r135.png recognized as:  7.png
+7r205.png recognized as:  29.png
+7r335.png recognized as:  29.png
+7r120.png recognized as:  29.png
+7r300.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r280.png recognized as:  29.png
+7r200.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r235.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+Gaussian noise (no rounding) with std dev 90
+97.91666666666666 % recognized correctly.
+Incorrect results: 
+7r255.png recognized as:  29.png
+7r50.png recognized as:  29.png
+7r125.png recognized as:  29.png
+7r250.png recognized as:  29.png
+7r155.png recognized as:  29.png
+29r345.png recognized as:  7.png
+7r315.png recognized as:  29.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r60.png recognized as:  29.png
+7r70.png recognized as:  29.png
+7r105.png recognized as:  29.png
+7r215.png recognized as:  29.png
+7r205.png recognized as:  29.png
+7r65.png recognized as:  29.png
+7r335.png recognized as:  29.png
+7r310.png recognized as:  29.png
+7r200.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r90.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+Gaussian noise (no rounding) with std dev 100
+97.81746031746032 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  29.png
+7r265.png recognized as:  29.png
+22r10.png recognized as:  64.png
+7r290.png recognized as:  29.png
+64r220.png recognized as:  22.png
+7r150.png recognized as:  29.png
+64r280.png recognized as:  22.png
+7r155.png recognized as:  29.png
+7r330.png recognized as:  29.png
+7r270.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r175.png recognized as:  29.png
+7r85.png recognized as:  29.png
+7r25.png recognized as:  29.png
+7r275.png recognized as:  29.png
+7r355.png recognized as:  29.png
+7r350.png recognized as:  29.png
+7r165.png recognized as:  29.png
+32r140.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r235.png recognized as:  29.png
+
+
+
+Gaussian noise (no rounding) with std dev 110
+99.70238095238095 % recognized correctly.
+Incorrect results: 
+64r105.png recognized as:  22.png
+32r75.png recognized as:  29.png
+7r245.png recognized as:  29.png
+
+
+
+Gaussian noise (no rounding) with std dev 120
+96.52777777777779 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  29.png
+7r255.png recognized as:  29.png
+7r30.png recognized as:  29.png
+7r20.png recognized as:  29.png
+7r240.png recognized as:  29.png
+7r125.png recognized as:  29.png
+7r75.png recognized as:  29.png
+22r60.png recognized as:  64.png
+7r230.png recognized as:  29.png
+7r10.png recognized as:  29.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r70.png recognized as:  29.png
+7r160.png recognized as:  32.png
+7r35.png recognized as:  29.png
+7r100.png recognized as:  29.png
+7r285.png recognized as:  29.png
+7r190.png recognized as:  29.png
+7r245.png recognized as:  32.png
+7r25.png recognized as:  29.png
+7r355.png recognized as:  29.png
+7r350.png recognized as:  29.png
+7r205.png recognized as:  29.png
+7r65.png recognized as:  29.png
+7r335.png recognized as:  29.png
+7r305.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r185.png recognized as:  29.png
+7r280.png recognized as:  29.png
+64r230.png recognized as:  22.png
+7r310.png recognized as:  29.png
+7r320.png recognized as:  29.png
+7r235.png recognized as:  29.png
+7r90.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+
+
+QZMIType.LEGENDRE1 TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 20%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 25%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 30%
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.GAUSS
+
+Gaussian noise with std dev 80
+97.12301587301587 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  29.png
+29r335.png recognized as:  7.png
+22r265.png recognized as:  55.png
+29r50.png recognized as:  7.png
+7r20.png recognized as:  29.png
+29r65.png recognized as:  7.png
+7r75.png recognized as:  29.png
+7r230.png recognized as:  29.png
+7r180.png recognized as:  29.png
+7r0.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r295.png recognized as:  29.png
+7r175.png recognized as:  29.png
+7r215.png recognized as:  29.png
+7r135.png recognized as:  29.png
+29r320.png recognized as:  7.png
+7r345.png recognized as:  29.png
+64r10.png recognized as:  22.png
+7r115.png recognized as:  29.png
+7r275.png recognized as:  29.png
+29r135.png recognized as:  7.png
+7r205.png recognized as:  29.png
+22r350.png recognized as:  55.png
+7r335.png recognized as:  29.png
+22r210.png recognized as:  55.png
+7r145.png recognized as:  29.png
+7r280.png recognized as:  29.png
+7r200.png recognized as:  29.png
+22r270.png recognized as:  55.png
+
+
+
+Gaussian noise with std dev 90
+98.61111111111111 % recognized correctly.
+Incorrect results: 
+7r255.png recognized as:  29.png
+7r50.png recognized as:  29.png
+7r80.png recognized as:  29.png
+29r100.png recognized as:  7.png
+7r240.png recognized as:  29.png
+29r345.png recognized as:  7.png
+7r315.png recognized as:  29.png
+7r45.png recognized as:  29.png
+29r125.png recognized as:  7.png
+7r65.png recognized as:  29.png
+7r305.png recognized as:  29.png
+7r200.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r55.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 100
+98.90873015873017 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  29.png
+22r355.png recognized as:  55.png
+64r280.png recognized as:  55.png
+7r170.png recognized as:  29.png
+7r60.png recognized as:  29.png
+7r85.png recognized as:  29.png
+7r25.png recognized as:  29.png
+7r280.png recognized as:  29.png
+7r310.png recognized as:  29.png
+7r5.png recognized as:  29.png
+7r235.png recognized as:  29.png
+
+
+
+Gaussian noise with std dev 110
+93.15476190476191 % recognized correctly.
+Incorrect results: 
+29r15.png recognized as:  7.png
+29r225.png recognized as:  7.png
+29r165.png recognized as:  7.png
+29r55.png recognized as:  7.png
+29r210.png recognized as:  7.png
+29r180.png recognized as:  7.png
+29r295.png recognized as:  7.png
+29r145.png recognized as:  7.png
+29r50.png recognized as:  7.png
+29r190.png recognized as:  7.png
+7r20.png recognized as:  29.png
+29r65.png recognized as:  7.png
+29r100.png recognized as:  7.png
+64r105.png recognized as:  22.png
+29r10.png recognized as:  7.png
+7r250.png recognized as:  29.png
+22r195.png recognized as:  55.png
+29r120.png recognized as:  7.png
+29r250.png recognized as:  7.png
+29r290.png recognized as:  7.png
+29r35.png recognized as:  7.png
+29r275.png recognized as:  7.png
+29r20.png recognized as:  7.png
+29r130.png recognized as:  7.png
+29r315.png recognized as:  7.png
+29r75.png recognized as:  7.png
+7r170.png recognized as:  29.png
+7r60.png recognized as:  29.png
+29r25.png recognized as:  7.png
+29r305.png recognized as:  7.png
+7r35.png recognized as:  29.png
+29r355.png recognized as:  7.png
+7r190.png recognized as:  29.png
+7r345.png recognized as:  29.png
+65r165.png recognized as:  64.png
+29r45.png recognized as:  7.png
+29r300.png recognized as:  7.png
+29r90.png recognized as:  7.png
+29r0.png recognized as:  7.png
+7r355.png recognized as:  29.png
+29r135.png recognized as:  7.png
+29r240.png recognized as:  7.png
+32r60.png recognized as:  29.png
+22r150.png recognized as:  32.png
+7r205.png recognized as:  29.png
+7r65.png recognized as:  29.png
+65r205.png recognized as:  64.png
+65r180.png recognized as:  55.png
+29r85.png recognized as:  7.png
+7r145.png recognized as:  29.png
+29r160.png recognized as:  7.png
+29r195.png recognized as:  7.png
+29r350.png recognized as:  7.png
+29r170.png recognized as:  7.png
+29r150.png recognized as:  7.png
+7r200.png recognized as:  29.png
+29r95.png recognized as:  7.png
+7r320.png recognized as:  29.png
+29r215.png recognized as:  7.png
+7r220.png recognized as:  29.png
+29r325.png recognized as:  7.png
+29r60.png recognized as:  7.png
+29r265.png recognized as:  7.png
+7r235.png recognized as:  29.png
+29r280.png recognized as:  7.png
+7r55.png recognized as:  29.png
+29r140.png recognized as:  7.png
+29r285.png recognized as:  7.png
+29r340.png recognized as:  7.png
+
+
+
+Gaussian noise with std dev 120
+96.32936507936508 % recognized correctly.
+Incorrect results: 
+7r140.png recognized as:  29.png
+55r140.png recognized as:  22.png
+55r0.png recognized as:  22.png
+32r20.png recognized as:  29.png
+55r50.png recognized as:  22.png
+7r20.png recognized as:  29.png
+29r260.png recognized as:  7.png
+7r50.png recognized as:  29.png
+29r10.png recognized as:  7.png
+7r95.png recognized as:  29.png
+64r245.png recognized as:  22.png
+29r345.png recognized as:  7.png
+7r230.png recognized as:  29.png
+7r10.png recognized as:  29.png
+7r315.png recognized as:  29.png
+7r170.png recognized as:  29.png
+7r160.png recognized as:  29.png
+55r175.png recognized as:  22.png
+7r35.png recognized as:  29.png
+29r355.png recognized as:  32.png
+55r285.png recognized as:  22.png
+7r190.png recognized as:  29.png
+32r0.png recognized as:  29.png
+32r85.png recognized as:  29.png
+7r245.png recognized as:  29.png
+55r280.png recognized as:  22.png
+7r65.png recognized as:  29.png
+7r260.png recognized as:  29.png
+7r145.png recognized as:  29.png
+7r185.png recognized as:  29.png
+22r200.png recognized as:  55.png
+55r160.png recognized as:  22.png
+29r60.png recognized as:  7.png
+29r265.png recognized as:  7.png
+7r235.png recognized as:  29.png
+7r55.png recognized as:  29.png
+55r100.png recognized as:  22.png
+
+
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 80
+80.45634920634922 % recognized correctly.
+Incorrect results: 
+64r275.png recognized as:  22.png
+64r80.png recognized as:  55.png
+64r155.png recognized as:  22.png
+55r150.png recognized as:  71.png
+7r140.png recognized as:  29.png
+71r245.png recognized as:  95.png
+32r80.png recognized as:  29.png
+55r85.png recognized as:  71.png
+7r130.png recognized as:  29.png
+29r210.png recognized as:  62.png
+71r90.png recognized as:  95.png
+29r180.png recognized as:  32.png
+22r285.png recognized as:  64.png
+22r120.png recognized as:  64.png
+7r255.png recognized as:  29.png
+29r335.png recognized as:  7.png
+55r145.png recognized as:  32.png
+7r30.png recognized as:  29.png
+22r310.png recognized as:  64.png
+55r325.png recognized as:  32.png
+55r275.png recognized as:  32.png
+22r265.png recognized as:  64.png
+71r125.png recognized as:  95.png
+22r105.png recognized as:  64.png
+22r325.png recognized as:  64.png
+22r145.png recognized as:  64.png
+22r250.png recognized as:  64.png
+55r255.png recognized as:  71.png
+71r75.png recognized as:  95.png
+22r355.png recognized as:  64.png
+22r35.png recognized as:  64.png
+7r20.png recognized as:  29.png
+55r270.png recognized as:  64.png
+64r95.png recognized as:  22.png
+71r225.png recognized as:  95.png
+32r95.png recognized as:  29.png
+22r205.png recognized as:  64.png
+29r65.png recognized as:  7.png
+22r315.png recognized as:  64.png
+7r50.png recognized as:  29.png
+65r275.png recognized as:  55.png
+64r355.png recognized as:  13.png
+22r30.png recognized as:  64.png
+71r190.png recognized as:  95.png
+71r150.png recognized as:  95.png
+7r290.png recognized as:  29.png
+7r95.png recognized as:  29.png
+7r240.png recognized as:  32.png
+7r125.png recognized as:  29.png
+62r235.png recognized as:  29.png
+22r135.png recognized as:  64.png
+22r95.png recognized as:  64.png
+55r190.png recognized as:  71.png
+7r75.png recognized as:  29.png
+22r275.png recognized as:  64.png
+62r165.png recognized as:  29.png
+55r185.png recognized as:  32.png
+22r110.png recognized as:  99.png
+71r5.png recognized as:  95.png
+7r250.png recognized as:  29.png
+64r225.png recognized as:  13.png
+64r245.png recognized as:  55.png
+55r315.png recognized as:  71.png
+64r220.png recognized as:  13.png
+71r210.png recognized as:  22.png
+29r120.png recognized as:  7.png
+64r115.png recognized as:  55.png
+22r185.png recognized as:  64.png
+64r190.png recognized as:  55.png
+64r250.png recognized as:  22.png
+32r215.png recognized as:  29.png
+29r35.png recognized as:  7.png
+22r260.png recognized as:  64.png
+55r30.png recognized as:  64.png
+55r340.png recognized as:  64.png
+7r110.png recognized as:  29.png
+7r230.png recognized as:  29.png
+64r320.png recognized as:  13.png
+22r330.png recognized as:  64.png
+7r180.png recognized as:  29.png
+7r10.png recognized as:  29.png
+64r85.png recognized as:  22.png
+64r315.png recognized as:  13.png
+64r185.png recognized as:  13.png
+32r190.png recognized as:  7.png
+7r315.png recognized as:  32.png
+55r355.png recognized as:  95.png
+29r20.png recognized as:  62.png
+71r160.png recognized as:  95.png
+22r255.png recognized as:  32.png
+64r330.png recognized as:  22.png
+29r270.png recognized as:  7.png
+7r0.png recognized as:  29.png
+22r25.png recognized as:  64.png
+22r245.png recognized as:  64.png
+64r200.png recognized as:  22.png
+7r170.png recognized as:  29.png
+55r170.png recognized as:  71.png
+7r60.png recognized as:  29.png
+7r295.png recognized as:  29.png
+22r190.png recognized as:  64.png
+55r295.png recognized as:  64.png
+22r45.png recognized as:  64.png
+22r15.png recognized as:  64.png
+29r255.png recognized as:  7.png
+55r175.png recognized as:  71.png
+7r105.png recognized as:  29.png
+7r35.png recognized as:  32.png
+55r155.png recognized as:  71.png
+7r175.png recognized as:  29.png
+7r215.png recognized as:  29.png
+62r60.png recognized as:  7.png
+64r240.png recognized as:  22.png
+55r285.png recognized as:  71.png
+55r165.png recognized as:  32.png
+55r45.png recognized as:  71.png
+55r105.png recognized as:  64.png
+7r135.png recognized as:  29.png
+55r265.png recognized as:  32.png
+71r100.png recognized as:  95.png
+22r85.png recognized as:  64.png
+22r160.png recognized as:  64.png
+55r310.png recognized as:  64.png
+22r240.png recognized as:  64.png
+29r320.png recognized as:  7.png
+55r220.png recognized as:  71.png
+7r345.png recognized as:  29.png
+64r10.png recognized as:  22.png
+29r0.png recognized as:  62.png
+7r85.png recognized as:  29.png
+22r125.png recognized as:  64.png
+22r115.png recognized as:  64.png
+22r295.png recognized as:  64.png
+55r250.png recognized as:  71.png
+7r245.png recognized as:  29.png
+32r45.png recognized as:  7.png
+55r90.png recognized as:  95.png
+22r65.png recognized as:  64.png
+7r275.png recognized as:  29.png
+55r210.png recognized as:  32.png
+7r355.png recognized as:  29.png
+22r130.png recognized as:  64.png
+7r210.png recognized as:  29.png
+22r100.png recognized as:  64.png
+55r280.png recognized as:  32.png
+22r170.png recognized as:  64.png
+71r35.png recognized as:  22.png
+29r135.png recognized as:  7.png
+71r40.png recognized as:  95.png
+7r15.png recognized as:  32.png
+7r205.png recognized as:  29.png
+95r160.png recognized as:  71.png
+71r135.png recognized as:  95.png
+22r350.png recognized as:  64.png
+7r65.png recognized as:  29.png
+64r175.png recognized as:  22.png
+22r220.png recognized as:  64.png
+29r230.png recognized as:  32.png
+7r335.png recognized as:  29.png
+7r120.png recognized as:  29.png
+22r180.png recognized as:  64.png
+7r300.png recognized as:  32.png
+71r140.png recognized as:  95.png
+7r305.png recognized as:  32.png
+55r80.png recognized as:  64.png
+22r210.png recognized as:  64.png
+7r145.png recognized as:  29.png
+22r290.png recognized as:  64.png
+71r20.png recognized as:  22.png
+7r185.png recognized as:  29.png
+71r145.png recognized as:  95.png
+7r280.png recognized as:  29.png
+64r130.png recognized as:  55.png
+7r200.png recognized as:  29.png
+55r235.png recognized as:  71.png
+55r305.png recognized as:  71.png
+22r270.png recognized as:  64.png
+55r125.png recognized as:  32.png
+22r70.png recognized as:  64.png
+71r70.png recognized as:  95.png
+29r155.png recognized as:  62.png
+71r260.png recognized as:  95.png
+95r185.png recognized as:  71.png
+55r115.png recognized as:  71.png
+32r330.png recognized as:  29.png
+64r255.png recognized as:  13.png
+29r115.png recognized as:  7.png
+7r220.png recognized as:  29.png
+22r90.png recognized as:  64.png
+64r295.png recognized as:  13.png
+55r240.png recognized as:  32.png
+29r265.png recognized as:  7.png
+64r340.png recognized as:  13.png
+29r280.png recognized as:  7.png
+55r225.png recognized as:  71.png
+71r265.png recognized as:  95.png
+71r340.png recognized as:  95.png
+
+
+
+Gaussian noise (no rounding) with std dev 90
+83.82936507936508 % recognized correctly.
+Incorrect results: 
+62r260.png recognized as:  29.png
+22r230.png recognized as:  64.png
+22r280.png recognized as:  64.png
+55r140.png recognized as:  71.png
+29r225.png recognized as:  62.png
+29r165.png recognized as:  62.png
+55r85.png recognized as:  64.png
+55r0.png recognized as:  71.png
+64r60.png recognized as:  22.png
+64r265.png recognized as:  22.png
+62r210.png recognized as:  29.png
+32r115.png recognized as:  29.png
+7r255.png recognized as:  62.png
+55r5.png recognized as:  39.png
+29r295.png recognized as:  62.png
+22r310.png recognized as:  64.png
+55r275.png recognized as:  39.png
+22r305.png recognized as:  64.png
+22r105.png recognized as:  64.png
+22r250.png recognized as:  71.png
+22r355.png recognized as:  64.png
+39r235.png recognized as:  55.png
+22r35.png recognized as:  64.png
+62r120.png recognized as:  29.png
+22r0.png recognized as:  64.png
+55r230.png recognized as:  39.png
+32r5.png recognized as:  7.png
+55r345.png recognized as:  71.png
+99r50.png recognized as:  32.png
+64r350.png recognized as:  22.png
+7r50.png recognized as:  29.png
+32r200.png recognized as:  7.png
+22r30.png recognized as:  64.png
+32r90.png recognized as:  7.png
+64r195.png recognized as:  22.png
+7r125.png recognized as:  29.png
+22r95.png recognized as:  64.png
+55r190.png recognized as:  22.png
+22r275.png recognized as:  64.png
+22r110.png recognized as:  64.png
+7r250.png recognized as:  29.png
+7r325.png recognized as:  29.png
+22r195.png recognized as:  64.png
+64r245.png recognized as:  22.png
+55r315.png recognized as:  71.png
+64r220.png recognized as:  22.png
+71r210.png recognized as:  95.png
+62r245.png recognized as:  29.png
+22r185.png recognized as:  64.png
+64r250.png recognized as:  22.png
+22r340.png recognized as:  64.png
+55r335.png recognized as:  64.png
+22r260.png recognized as:  64.png
+29r345.png recognized as:  7.png
+55r340.png recognized as:  71.png
+7r110.png recognized as:  29.png
+7r230.png recognized as:  29.png
+55r195.png recognized as:  71.png
+7r10.png recognized as:  29.png
+62r65.png recognized as:  29.png
+32r350.png recognized as:  7.png
+95r110.png recognized as:  71.png
+64r55.png recognized as:  22.png
+32r190.png recognized as:  7.png
+32r250.png recognized as:  29.png
+7r315.png recognized as:  29.png
+55r355.png recognized as:  71.png
+32r25.png recognized as:  7.png
+62r15.png recognized as:  29.png
+65r120.png recognized as:  55.png
+32r195.png recognized as:  29.png
+29r130.png recognized as:  62.png
+29r330.png recognized as:  7.png
+32r35.png recognized as:  29.png
+22r25.png recognized as:  64.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  29.png
+22r225.png recognized as:  64.png
+22r80.png recognized as:  71.png
+55r170.png recognized as:  64.png
+71r345.png recognized as:  95.png
+7r60.png recognized as:  29.png
+7r295.png recognized as:  29.png
+7r195.png recognized as:  29.png
+7r70.png recognized as:  29.png
+22r190.png recognized as:  64.png
+55r295.png recognized as:  39.png
+22r5.png recognized as:  64.png
+22r45.png recognized as:  64.png
+22r15.png recognized as:  64.png
+55r175.png recognized as:  71.png
+7r105.png recognized as:  29.png
+55r155.png recognized as:  71.png
+7r215.png recognized as:  29.png
+22r55.png recognized as:  71.png
+55r165.png recognized as:  64.png
+55r45.png recognized as:  71.png
+55r105.png recognized as:  71.png
+64r260.png recognized as:  22.png
+55r310.png recognized as:  71.png
+22r240.png recognized as:  64.png
+22r165.png recognized as:  64.png
+55r10.png recognized as:  64.png
+62r190.png recognized as:  29.png
+7r115.png recognized as:  29.png
+22r320.png recognized as:  64.png
+7r85.png recognized as:  29.png
+22r125.png recognized as:  64.png
+32r85.png recognized as:  29.png
+22r115.png recognized as:  64.png
+55r15.png recognized as:  64.png
+55r110.png recognized as:  71.png
+22r295.png recognized as:  64.png
+32r30.png recognized as:  29.png
+32r355.png recognized as:  29.png
+22r65.png recognized as:  64.png
+7r275.png recognized as:  62.png
+64r285.png recognized as:  22.png
+22r130.png recognized as:  71.png
+22r100.png recognized as:  64.png
+62r45.png recognized as:  29.png
+22r150.png recognized as:  71.png
+29r40.png recognized as:  32.png
+64r305.png recognized as:  22.png
+55r120.png recognized as:  71.png
+32r175.png recognized as:  29.png
+99r315.png recognized as:  32.png
+64r175.png recognized as:  22.png
+22r50.png recognized as:  64.png
+22r155.png recognized as:  64.png
+7r335.png recognized as:  29.png
+62r300.png recognized as:  29.png
+22r180.png recognized as:  71.png
+7r260.png recognized as:  29.png
+71r140.png recognized as:  22.png
+7r305.png recognized as:  29.png
+55r320.png recognized as:  71.png
+22r290.png recognized as:  64.png
+64r65.png recognized as:  22.png
+32r275.png recognized as:  7.png
+64r165.png recognized as:  22.png
+55r60.png recognized as:  39.png
+7r185.png recognized as:  29.png
+7r280.png recognized as:  29.png
+62r240.png recognized as:  29.png
+32r270.png recognized as:  29.png
+7r200.png recognized as:  29.png
+55r235.png recognized as:  71.png
+39r185.png recognized as:  55.png
+22r200.png recognized as:  64.png
+22r270.png recognized as:  64.png
+22r70.png recognized as:  64.png
+55r130.png recognized as:  71.png
+55r20.png recognized as:  71.png
+55r115.png recognized as:  71.png
+62r105.png recognized as:  29.png
+22r90.png recognized as:  64.png
+55r160.png recognized as:  64.png
+32r50.png recognized as:  29.png
+64r340.png recognized as:  22.png
+29r280.png recognized as:  62.png
+7r55.png recognized as:  29.png
+55r100.png recognized as:  64.png
+
+
+
+Gaussian noise (no rounding) with std dev 100
+79.46428571428571 % recognized correctly.
+Incorrect results: 
+64r80.png recognized as:  13.png
+64r155.png recognized as:  22.png
+32r130.png recognized as:  7.png
+22r280.png recognized as:  64.png
+62r90.png recognized as:  29.png
+71r80.png recognized as:  99.png
+32r300.png recognized as:  29.png
+29r165.png recognized as:  7.png
+71r355.png recognized as:  95.png
+29r55.png recognized as:  7.png
+71r295.png recognized as:  95.png
+29r210.png recognized as:  7.png
+71r90.png recognized as:  95.png
+64r160.png recognized as:  22.png
+22r285.png recognized as:  64.png
+64r265.png recognized as:  13.png
+71r155.png recognized as:  95.png
+55r5.png recognized as:  71.png
+71r285.png recognized as:  95.png
+64r140.png recognized as:  22.png
+22r20.png recognized as:  64.png
+29r145.png recognized as:  7.png
+71r125.png recognized as:  95.png
+22r325.png recognized as:  64.png
+22r145.png recognized as:  99.png
+71r110.png recognized as:  95.png
+71r75.png recognized as:  95.png
+22r355.png recognized as:  32.png
+55r260.png recognized as:  32.png
+71r240.png recognized as:  95.png
+29r260.png recognized as:  7.png
+22r0.png recognized as:  64.png
+32r240.png recognized as:  7.png
+71r335.png recognized as:  95.png
+64r95.png recognized as:  22.png
+71r225.png recognized as:  99.png
+39r200.png recognized as:  55.png
+22r205.png recognized as:  64.png
+62r0.png recognized as:  29.png
+22r10.png recognized as:  64.png
+29r65.png recognized as:  7.png
+29r310.png recognized as:  7.png
+22r315.png recognized as:  64.png
+7r50.png recognized as:  29.png
+64r355.png recognized as:  22.png
+71r190.png recognized as:  99.png
+71r180.png recognized as:  95.png
+71r150.png recognized as:  55.png
+29r10.png recognized as:  7.png
+64r210.png recognized as:  22.png
+32r90.png recognized as:  29.png
+64r195.png recognized as:  32.png
+55r350.png recognized as:  71.png
+22r135.png recognized as:  99.png
+22r95.png recognized as:  64.png
+39r15.png recognized as:  55.png
+55r190.png recognized as:  32.png
+71r325.png recognized as:  95.png
+55r185.png recognized as:  71.png
+32r145.png recognized as:  29.png
+22r110.png recognized as:  64.png
+71r5.png recognized as:  95.png
+32r335.png recognized as:  7.png
+71r270.png recognized as:  95.png
+32r160.png recognized as:  29.png
+22r195.png recognized as:  55.png
+64r220.png recognized as:  99.png
+71r210.png recognized as:  95.png
+7r150.png recognized as:  29.png
+64r115.png recognized as:  22.png
+62r245.png recognized as:  29.png
+29r250.png recognized as:  7.png
+22r185.png recognized as:  64.png
+32r235.png recognized as:  7.png
+29r290.png recognized as:  7.png
+64r280.png recognized as:  99.png
+22r175.png recognized as:  64.png
+32r215.png recognized as:  29.png
+22r340.png recognized as:  64.png
+32r220.png recognized as:  7.png
+7r330.png recognized as:  29.png
+22r260.png recognized as:  99.png
+29r275.png recognized as:  7.png
+71r220.png recognized as:  95.png
+7r230.png recognized as:  29.png
+22r330.png recognized as:  64.png
+7r10.png recognized as:  29.png
+64r85.png recognized as:  22.png
+71r60.png recognized as:  95.png
+62r85.png recognized as:  29.png
+32r25.png recognized as:  29.png
+32r255.png recognized as:  7.png
+29r270.png recognized as:  32.png
+95r220.png recognized as:  71.png
+71r255.png recognized as:  95.png
+32r195.png recognized as:  7.png
+62r330.png recognized as:  29.png
+29r75.png recognized as:  7.png
+71r320.png recognized as:  95.png
+71r310.png recognized as:  95.png
+22r245.png recognized as:  64.png
+7r170.png recognized as:  29.png
+22r225.png recognized as:  64.png
+71r215.png recognized as:  22.png
+71r345.png recognized as:  95.png
+7r60.png recognized as:  29.png
+22r190.png recognized as:  64.png
+22r5.png recognized as:  64.png
+29r110.png recognized as:  7.png
+7r40.png recognized as:  29.png
+29r255.png recognized as:  7.png
+55r175.png recognized as:  71.png
+71r30.png recognized as:  95.png
+7r105.png recognized as:  29.png
+64r30.png recognized as:  22.png
+71r55.png recognized as:  95.png
+32r305.png recognized as:  7.png
+55r285.png recognized as:  71.png
+64r290.png recognized as:  22.png
+55r105.png recognized as:  32.png
+71r280.png recognized as:  95.png
+22r240.png recognized as:  99.png
+71r195.png recognized as:  99.png
+22r165.png recognized as:  99.png
+29r45.png recognized as:  32.png
+64r310.png recognized as:  13.png
+64r10.png recognized as:  22.png
+32r345.png recognized as:  7.png
+22r320.png recognized as:  64.png
+7r85.png recognized as:  29.png
+22r125.png recognized as:  99.png
+29r220.png recognized as:  7.png
+32r85.png recognized as:  7.png
+32r290.png recognized as:  7.png
+26r170.png recognized as:  32.png
+22r295.png recognized as:  99.png
+32r30.png recognized as:  7.png
+32r120.png recognized as:  7.png
+55r250.png recognized as:  71.png
+7r25.png recognized as:  29.png
+64r285.png recognized as:  99.png
+64r205.png recognized as:  22.png
+64r170.png recognized as:  22.png
+71r15.png recognized as:  95.png
+7r350.png recognized as:  29.png
+62r310.png recognized as:  29.png
+71r35.png recognized as:  95.png
+29r135.png recognized as:  7.png
+71r40.png recognized as:  95.png
+32r60.png recognized as:  7.png
+64r270.png recognized as:  22.png
+71r170.png recognized as:  95.png
+71r135.png recognized as:  95.png
+71r330.png recognized as:  95.png
+64r305.png recognized as:  22.png
+55r120.png recognized as:  71.png
+71r315.png recognized as:  95.png
+32r65.png recognized as:  7.png
+22r50.png recognized as:  99.png
+32r155.png recognized as:  7.png
+39r115.png recognized as:  55.png
+32r140.png recognized as:  7.png
+64r35.png recognized as:  22.png
+32r110.png recognized as:  7.png
+22r180.png recognized as:  64.png
+71r105.png recognized as:  95.png
+71r120.png recognized as:  99.png
+39r145.png recognized as:  55.png
+55r75.png recognized as:  71.png
+22r290.png recognized as:  64.png
+29r105.png recognized as:  7.png
+32r105.png recognized as:  7.png
+71r20.png recognized as:  95.png
+7r185.png recognized as:  29.png
+62r285.png recognized as:  29.png
+64r125.png recognized as:  13.png
+71r145.png recognized as:  95.png
+29r170.png recognized as:  7.png
+71r275.png recognized as:  99.png
+7r310.png recognized as:  29.png
+22r200.png recognized as:  64.png
+22r140.png recognized as:  64.png
+71r95.png recognized as:  95.png
+7r320.png recognized as:  29.png
+55r130.png recognized as:  64.png
+71r70.png recognized as:  95.png
+71r260.png recognized as:  95.png
+62r200.png recognized as:  29.png
+55r115.png recognized as:  71.png
+32r330.png recognized as:  7.png
+64r255.png recognized as:  22.png
+29r215.png recognized as:  7.png
+55r160.png recognized as:  26.png
+32r340.png recognized as:  7.png
+32r315.png recognized as:  7.png
+7r5.png recognized as:  29.png
+32r50.png recognized as:  29.png
+32r225.png recognized as:  7.png
+62r220.png recognized as:  29.png
+64r340.png recognized as:  22.png
+7r235.png recognized as:  29.png
+29r140.png recognized as:  62.png
+71r200.png recognized as:  95.png
+29r285.png recognized as:  7.png
+29r340.png recognized as:  7.png
+71r265.png recognized as:  55.png
+71r340.png recognized as:  95.png
+
+
+
+Gaussian noise (no rounding) with std dev 110
+69.94047619047619 % recognized correctly.
+Incorrect results: 
+62r95.png recognized as:  7.png
+62r260.png recognized as:  7.png
+64r80.png recognized as:  22.png
+22r280.png recognized as:  62.png
+62r90.png recognized as:  7.png
+71r80.png recognized as:  22.png
+55r140.png recognized as:  71.png
+32r300.png recognized as:  29.png
+71r245.png recognized as:  95.png
+32r80.png recognized as:  29.png
+29r15.png recognized as:  7.png
+29r225.png recognized as:  7.png
+29r165.png recognized as:  7.png
+71r355.png recognized as:  95.png
+29r55.png recognized as:  7.png
+64r15.png recognized as:  22.png
+39r125.png recognized as:  55.png
+29r210.png recognized as:  7.png
+71r90.png recognized as:  95.png
+7r265.png recognized as:  29.png
+29r180.png recognized as:  7.png
+22r285.png recognized as:  32.png
+55r40.png recognized as:  71.png
+22r120.png recognized as:  32.png
+62r210.png recognized as:  7.png
+32r20.png recognized as:  29.png
+32r115.png recognized as:  7.png
+62r55.png recognized as:  7.png
+29r335.png recognized as:  7.png
+55r5.png recognized as:  71.png
+55r145.png recognized as:  71.png
+29r295.png recognized as:  7.png
+32r150.png recognized as:  26.png
+55r325.png recognized as:  32.png
+55r275.png recognized as:  71.png
+62r35.png recognized as:  7.png
+64r140.png recognized as:  32.png
+22r20.png recognized as:  64.png
+22r305.png recognized as:  64.png
+29r145.png recognized as:  7.png
+22r105.png recognized as:  64.png
+32r55.png recognized as:  26.png
+22r325.png recognized as:  32.png
+22r250.png recognized as:  32.png
+55r255.png recognized as:  71.png
+22r335.png recognized as:  32.png
+29r190.png recognized as:  7.png
+71r75.png recognized as:  32.png
+7r20.png recognized as:  29.png
+29r185.png recognized as:  7.png
+62r135.png recognized as:  7.png
+62r120.png recognized as:  7.png
+29r260.png recognized as:  7.png
+22r0.png recognized as:  64.png
+55r230.png recognized as:  71.png
+55r205.png recognized as:  32.png
+32r310.png recognized as:  7.png
+32r5.png recognized as:  26.png
+55r345.png recognized as:  39.png
+95r35.png recognized as:  71.png
+62r325.png recognized as:  7.png
+29r65.png recognized as:  7.png
+29r310.png recognized as:  7.png
+65r275.png recognized as:  55.png
+29r100.png recognized as:  7.png
+71r185.png recognized as:  22.png
+71r190.png recognized as:  22.png
+22r215.png recognized as:  32.png
+64r105.png recognized as:  99.png
+32r185.png recognized as:  7.png
+95r245.png recognized as:  71.png
+29r10.png recognized as:  7.png
+29r205.png recognized as:  7.png
+32r90.png recognized as:  7.png
+95r0.png recognized as:  71.png
+55r350.png recognized as:  71.png
+22r135.png recognized as:  32.png
+22r95.png recognized as:  32.png
+32r180.png recognized as:  7.png
+22r275.png recognized as:  32.png
+62r165.png recognized as:  7.png
+62r130.png recognized as:  7.png
+22r110.png recognized as:  64.png
+71r5.png recognized as:  22.png
+62r10.png recognized as:  7.png
+7r250.png recognized as:  29.png
+32r160.png recognized as:  13.png
+7r325.png recognized as:  29.png
+22r195.png recognized as:  32.png
+64r245.png recognized as:  22.png
+64r220.png recognized as:  32.png
+71r210.png recognized as:  95.png
+29r120.png recognized as:  7.png
+62r245.png recognized as:  7.png
+29r250.png recognized as:  32.png
+32r235.png recognized as:  7.png
+64r190.png recognized as:  32.png
+29r290.png recognized as:  7.png
+22r175.png recognized as:  64.png
+29r35.png recognized as:  7.png
+22r340.png recognized as:  32.png
+55r335.png recognized as:  32.png
+29r275.png recognized as:  7.png
+29r345.png recognized as:  7.png
+55r340.png recognized as:  71.png
+71r175.png recognized as:  95.png
+71r220.png recognized as:  99.png
+7r230.png recognized as:  29.png
+7r180.png recognized as:  29.png
+7r10.png recognized as:  29.png
+55r300.png recognized as:  95.png
+64r185.png recognized as:  99.png
+7r270.png recognized as:  26.png
+32r190.png recognized as:  26.png
+32r250.png recognized as:  7.png
+62r85.png recognized as:  7.png
+65r155.png recognized as:  55.png
+32r25.png recognized as:  29.png
+32r285.png recognized as:  26.png
+29r20.png recognized as:  7.png
+64r150.png recognized as:  32.png
+32r70.png recognized as:  29.png
+22r255.png recognized as:  64.png
+62r320.png recognized as:  7.png
+32r255.png recognized as:  7.png
+55r215.png recognized as:  39.png
+32r325.png recognized as:  7.png
+29r270.png recognized as:  7.png
+32r205.png recognized as:  26.png
+29r130.png recognized as:  7.png
+29r315.png recognized as:  7.png
+29r330.png recognized as:  7.png
+62r330.png recognized as:  7.png
+29r75.png recognized as:  62.png
+7r0.png recognized as:  26.png
+32r35.png recognized as:  7.png
+22r245.png recognized as:  32.png
+7r45.png recognized as:  29.png
+7r170.png recognized as:  26.png
+22r225.png recognized as:  32.png
+95r65.png recognized as:  71.png
+65r100.png recognized as:  55.png
+95r80.png recognized as:  71.png
+26r230.png recognized as:  29.png
+62r195.png recognized as:  7.png
+7r295.png recognized as:  29.png
+29r25.png recognized as:  7.png
+7r195.png recognized as:  29.png
+95r225.png recognized as:  71.png
+95r95.png recognized as:  71.png
+22r5.png recognized as:  32.png
+22r45.png recognized as:  32.png
+29r110.png recognized as:  7.png
+32r320.png recognized as:  7.png
+29r255.png recognized as:  7.png
+62r175.png recognized as:  7.png
+64r30.png recognized as:  22.png
+29r125.png recognized as:  7.png
+62r275.png recognized as:  7.png
+29r355.png recognized as:  7.png
+71r55.png recognized as:  95.png
+7r100.png recognized as:  29.png
+22r55.png recognized as:  32.png
+32r305.png recognized as:  26.png
+32r75.png recognized as:  7.png
+29r5.png recognized as:  7.png
+55r45.png recognized as:  32.png
+55r105.png recognized as:  32.png
+29r235.png recognized as:  7.png
+55r265.png recognized as:  71.png
+71r100.png recognized as:  22.png
+22r85.png recognized as:  64.png
+62r270.png recognized as:  7.png
+64r260.png recognized as:  22.png
+55r310.png recognized as:  71.png
+55r25.png recognized as:  32.png
+62r305.png recognized as:  7.png
+29r320.png recognized as:  7.png
+22r165.png recognized as:  64.png
+32r0.png recognized as:  7.png
+65r165.png recognized as:  55.png
+29r45.png recognized as:  7.png
+64r310.png recognized as:  32.png
+29r300.png recognized as:  7.png
+29r245.png recognized as:  7.png
+55r10.png recognized as:  22.png
+62r295.png recognized as:  7.png
+29r0.png recognized as:  7.png
+29r80.png recognized as:  7.png
+22r320.png recognized as:  64.png
+22r125.png recognized as:  71.png
+29r220.png recognized as:  7.png
+22r115.png recognized as:  99.png
+64r345.png recognized as:  13.png
+62r70.png recognized as:  7.png
+22r295.png recognized as:  64.png
+55r135.png recognized as:  32.png
+32r30.png recognized as:  29.png
+55r250.png recognized as:  71.png
+7r245.png recognized as:  62.png
+32r45.png recognized as:  7.png
+55r90.png recognized as:  95.png
+95r310.png recognized as:  71.png
+29r200.png recognized as:  7.png
+7r275.png recognized as:  29.png
+71r300.png recognized as:  22.png
+71r165.png recognized as:  95.png
+71r15.png recognized as:  95.png
+55r280.png recognized as:  71.png
+22r170.png recognized as:  64.png
+62r45.png recognized as:  7.png
+29r70.png recognized as:  7.png
+29r135.png recognized as:  7.png
+95r235.png recognized as:  71.png
+71r40.png recognized as:  22.png
+29r240.png recognized as:  7.png
+62r255.png recognized as:  7.png
+32r60.png recognized as:  29.png
+22r150.png recognized as:  99.png
+29r40.png recognized as:  7.png
+22r350.png recognized as:  64.png
+64r305.png recognized as:  22.png
+55r120.png recognized as:  95.png
+32r175.png recognized as:  26.png
+22r220.png recognized as:  64.png
+29r230.png recognized as:  7.png
+55r290.png recognized as:  32.png
+32r65.png recognized as:  7.png
+22r50.png recognized as:  32.png
+32r155.png recognized as:  7.png
+32r140.png recognized as:  7.png
+22r155.png recognized as:  64.png
+71r290.png recognized as:  22.png
+32r125.png recognized as:  7.png
+7r120.png recognized as:  29.png
+62r300.png recognized as:  7.png
+64r20.png recognized as:  22.png
+65r205.png recognized as:  55.png
+95r270.png recognized as:  71.png
+22r180.png recognized as:  64.png
+71r130.png recognized as:  22.png
+71r140.png recognized as:  95.png
+55r320.png recognized as:  95.png
+62r110.png recognized as:  7.png
+29r85.png recognized as:  7.png
+22r290.png recognized as:  71.png
+29r105.png recognized as:  7.png
+62r250.png recognized as:  7.png
+29r160.png recognized as:  7.png
+29r195.png recognized as:  7.png
+29r350.png recognized as:  7.png
+7r280.png recognized as:  29.png
+55r70.png recognized as:  32.png
+29r170.png recognized as:  7.png
+62r240.png recognized as:  7.png
+62r225.png recognized as:  7.png
+95r330.png recognized as:  71.png
+29r150.png recognized as:  7.png
+95r200.png recognized as:  71.png
+7r310.png recognized as:  29.png
+29r95.png recognized as:  7.png
+95r290.png recognized as:  71.png
+22r270.png recognized as:  32.png
+29r30.png recognized as:  7.png
+95r40.png recognized as:  71.png
+22r70.png recognized as:  64.png
+71r70.png recognized as:  95.png
+55r20.png recognized as:  32.png
+29r155.png recognized as:  7.png
+62r335.png recognized as:  7.png
+29r175.png recognized as:  7.png
+95r230.png recognized as:  71.png
+62r105.png recognized as:  7.png
+29r115.png recognized as:  62.png
+29r215.png recognized as:  7.png
+7r340.png recognized as:  29.png
+22r90.png recognized as:  99.png
+29r325.png recognized as:  7.png
+62r340.png recognized as:  7.png
+64r70.png recognized as:  22.png
+32r280.png recognized as:  7.png
+32r315.png recognized as:  7.png
+32r210.png recognized as:  7.png
+29r60.png recognized as:  7.png
+55r245.png recognized as:  32.png
+62r40.png recognized as:  7.png
+32r225.png recognized as:  7.png
+71r50.png recognized as:  22.png
+62r220.png recognized as:  7.png
+29r265.png recognized as:  7.png
+64r340.png recognized as:  32.png
+7r235.png recognized as:  29.png
+29r280.png recognized as:  7.png
+7r90.png recognized as:  29.png
+29r140.png recognized as:  7.png
+71r200.png recognized as:  95.png
+62r30.png recognized as:  7.png
+29r285.png recognized as:  7.png
+55r100.png recognized as:  71.png
+29r340.png recognized as:  7.png
+32r100.png recognized as:  7.png
+62r290.png recognized as:  7.png
+71r340.png recognized as:  95.png
+
+
+
+Gaussian noise (no rounding) with std dev 120
+72.12301587301587 % recognized correctly.
+Incorrect results: 
+65r35.png recognized as:  55.png
+22r75.png recognized as:  71.png
+26r145.png recognized as:  7.png
+71r10.png recognized as:  95.png
+64r155.png recognized as:  22.png
+7r140.png recognized as:  29.png
+32r80.png recognized as:  7.png
+32r165.png recognized as:  7.png
+29r165.png recognized as:  32.png
+71r355.png recognized as:  95.png
+29r55.png recognized as:  62.png
+64r50.png recognized as:  32.png
+71r295.png recognized as:  95.png
+55r0.png recognized as:  39.png
+29r210.png recognized as:  7.png
+71r90.png recognized as:  22.png
+64r160.png recognized as:  22.png
+64r60.png recognized as:  32.png
+64r265.png recognized as:  22.png
+65r135.png recognized as:  55.png
+32r15.png recognized as:  7.png
+7r255.png recognized as:  62.png
+64r215.png recognized as:  22.png
+55r5.png recognized as:  13.png
+65r85.png recognized as:  55.png
+32r150.png recognized as:  7.png
+26r45.png recognized as:  7.png
+22r20.png recognized as:  64.png
+26r155.png recognized as:  32.png
+29r145.png recognized as:  32.png
+22r105.png recognized as:  71.png
+32r55.png recognized as:  7.png
+62r140.png recognized as:  7.png
+55r255.png recognized as:  71.png
+71r75.png recognized as:  95.png
+39r335.png recognized as:  71.png
+55r260.png recognized as:  95.png
+22r35.png recognized as:  71.png
+55r50.png recognized as:  64.png
+7r20.png recognized as:  29.png
+22r300.png recognized as:  64.png
+29r260.png recognized as:  7.png
+22r0.png recognized as:  64.png
+55r230.png recognized as:  22.png
+55r205.png recognized as:  71.png
+32r310.png recognized as:  7.png
+71r115.png recognized as:  95.png
+64r95.png recognized as:  13.png
+32r95.png recognized as:  29.png
+22r205.png recognized as:  62.png
+62r0.png recognized as:  29.png
+22r10.png recognized as:  64.png
+39r260.png recognized as:  55.png
+64r350.png recognized as:  13.png
+7r80.png recognized as:  32.png
+29r100.png recognized as:  7.png
+71r185.png recognized as:  95.png
+71r180.png recognized as:  95.png
+22r215.png recognized as:  71.png
+64r105.png recognized as:  22.png
+32r40.png recognized as:  29.png
+26r340.png recognized as:  7.png
+71r230.png recognized as:  95.png
+22r345.png recognized as:  64.png
+29r10.png recognized as:  32.png
+29r205.png recognized as:  7.png
+64r135.png recognized as:  71.png
+7r125.png recognized as:  29.png
+26r330.png recognized as:  7.png
+39r130.png recognized as:  55.png
+71r350.png recognized as:  95.png
+22r95.png recognized as:  71.png
+32r180.png recognized as:  29.png
+32r145.png recognized as:  29.png
+22r110.png recognized as:  64.png
+71r270.png recognized as:  95.png
+7r250.png recognized as:  29.png
+32r160.png recognized as:  29.png
+22r195.png recognized as:  71.png
+22r60.png recognized as:  64.png
+64r115.png recognized as:  22.png
+64r120.png recognized as:  22.png
+29r250.png recognized as:  7.png
+22r185.png recognized as:  64.png
+64r190.png recognized as:  22.png
+29r290.png recognized as:  7.png
+71r235.png recognized as:  95.png
+22r340.png recognized as:  99.png
+26r60.png recognized as:  7.png
+32r220.png recognized as:  29.png
+7r330.png recognized as:  32.png
+29r345.png recognized as:  7.png
+55r30.png recognized as:  22.png
+7r110.png recognized as:  32.png
+71r175.png recognized as:  55.png
+71r220.png recognized as:  55.png
+26r220.png recognized as:  32.png
+7r230.png recognized as:  29.png
+64r320.png recognized as:  22.png
+7r180.png recognized as:  32.png
+55r195.png recognized as:  22.png
+7r10.png recognized as:  29.png
+64r85.png recognized as:  13.png
+55r300.png recognized as:  39.png
+7r270.png recognized as:  29.png
+32r190.png recognized as:  7.png
+32r250.png recognized as:  7.png
+26r35.png recognized as:  7.png
+32r25.png recognized as:  29.png
+32r285.png recognized as:  7.png
+39r290.png recognized as:  55.png
+29r20.png recognized as:  32.png
+64r150.png recognized as:  22.png
+32r70.png recognized as:  29.png
+32r255.png recognized as:  7.png
+26r55.png recognized as:  32.png
+29r270.png recognized as:  62.png
+32r195.png recognized as:  7.png
+26r140.png recognized as:  29.png
+95r250.png recognized as:  71.png
+29r130.png recognized as:  32.png
+29r330.png recognized as:  7.png
+29r75.png recognized as:  7.png
+71r320.png recognized as:  95.png
+71r310.png recognized as:  55.png
+32r35.png recognized as:  7.png
+22r25.png recognized as:  64.png
+64r200.png recognized as:  22.png
+22r225.png recognized as:  71.png
+95r65.png recognized as:  71.png
+22r80.png recognized as:  64.png
+71r215.png recognized as:  95.png
+7r195.png recognized as:  29.png
+95r225.png recognized as:  71.png
+95r95.png recognized as:  71.png
+7r70.png recognized as:  62.png
+7r160.png recognized as:  29.png
+26r240.png recognized as:  29.png
+22r190.png recognized as:  64.png
+55r180.png recognized as:  13.png
+7r40.png recognized as:  29.png
+32r320.png recognized as:  7.png
+22r15.png recognized as:  64.png
+29r255.png recognized as:  62.png
+55r175.png recognized as:  39.png
+29r305.png recognized as:  32.png
+29r125.png recognized as:  32.png
+7r35.png recognized as:  29.png
+29r355.png recognized as:  62.png
+71r55.png recognized as:  55.png
+62r60.png recognized as:  29.png
+32r245.png recognized as:  29.png
+64r240.png recognized as:  22.png
+55r105.png recognized as:  13.png
+29r235.png recognized as:  7.png
+7r135.png recognized as:  32.png
+64r110.png recognized as:  22.png
+71r280.png recognized as:  95.png
+7r285.png recognized as:  32.png
+22r160.png recognized as:  71.png
+64r260.png recognized as:  99.png
+71r195.png recognized as:  95.png
+7r345.png recognized as:  29.png
+32r0.png recognized as:  7.png
+32r265.png recognized as:  7.png
+64r300.png recognized as:  32.png
+32r345.png recognized as:  29.png
+22r235.png recognized as:  64.png
+29r80.png recognized as:  7.png
+22r320.png recognized as:  64.png
+22r125.png recognized as:  99.png
+29r220.png recognized as:  7.png
+39r5.png recognized as:  95.png
+26r275.png recognized as:  29.png
+32r85.png recognized as:  29.png
+22r115.png recognized as:  64.png
+55r15.png recognized as:  95.png
+55r110.png recognized as:  95.png
+64r345.png recognized as:  71.png
+32r290.png recognized as:  29.png
+55r135.png recognized as:  95.png
+32r30.png recognized as:  7.png
+26r350.png recognized as:  32.png
+32r120.png recognized as:  7.png
+7r245.png recognized as:  29.png
+7r25.png recognized as:  29.png
+32r45.png recognized as:  29.png
+65r75.png recognized as:  55.png
+7r275.png recognized as:  32.png
+39r35.png recognized as:  55.png
+95r75.png recognized as:  71.png
+71r165.png recognized as:  95.png
+71r250.png recognized as:  95.png
+71r15.png recognized as:  95.png
+7r350.png recognized as:  29.png
+22r100.png recognized as:  99.png
+95r300.png recognized as:  71.png
+22r170.png recognized as:  71.png
+29r70.png recognized as:  7.png
+29r135.png recognized as:  7.png
+29r240.png recognized as:  7.png
+7r15.png recognized as:  29.png
+32r60.png recognized as:  7.png
+22r150.png recognized as:  99.png
+71r305.png recognized as:  95.png
+71r65.png recognized as:  95.png
+22r350.png recognized as:  13.png
+64r305.png recognized as:  22.png
+26r5.png recognized as:  13.png
+71r315.png recognized as:  55.png
+95r190.png recognized as:  71.png
+22r220.png recognized as:  71.png
+32r65.png recognized as:  7.png
+32r155.png recognized as:  29.png
+32r140.png recognized as:  29.png
+22r155.png recognized as:  99.png
+7r335.png recognized as:  29.png
+71r290.png recognized as:  95.png
+32r125.png recognized as:  29.png
+7r120.png recognized as:  32.png
+64r20.png recognized as:  71.png
+64r35.png recognized as:  13.png
+32r110.png recognized as:  7.png
+7r300.png recognized as:  32.png
+71r130.png recognized as:  95.png
+71r105.png recognized as:  95.png
+7r260.png recognized as:  29.png
+71r140.png recognized as:  95.png
+55r80.png recognized as:  13.png
+64r180.png recognized as:  22.png
+71r120.png recognized as:  95.png
+22r210.png recognized as:  71.png
+29r85.png recognized as:  7.png
+7r145.png recognized as:  29.png
+22r290.png recognized as:  71.png
+32r105.png recognized as:  7.png
+32r275.png recognized as:  7.png
+55r60.png recognized as:  22.png
+7r185.png recognized as:  29.png
+29r195.png recognized as:  62.png
+29r350.png recognized as:  62.png
+71r145.png recognized as:  95.png
+7r280.png recognized as:  29.png
+64r130.png recognized as:  22.png
+29r150.png recognized as:  7.png
+32r270.png recognized as:  7.png
+29r95.png recognized as:  62.png
+55r235.png recognized as:  22.png
+22r200.png recognized as:  64.png
+22r140.png recognized as:  64.png
+22r270.png recognized as:  95.png
+55r130.png recognized as:  22.png
+29r155.png recognized as:  7.png
+71r85.png recognized as:  95.png
+26r205.png recognized as:  32.png
+71r260.png recognized as:  95.png
+29r175.png recognized as:  62.png
+32r330.png recognized as:  29.png
+62r105.png recognized as:  7.png
+29r115.png recognized as:  32.png
+29r215.png recognized as:  32.png
+64r25.png recognized as:  13.png
+7r220.png recognized as:  32.png
+29r325.png recognized as:  62.png
+32r170.png recognized as:  7.png
+32r340.png recognized as:  7.png
+55r330.png recognized as:  95.png
+29r60.png recognized as:  7.png
+39r210.png recognized as:  55.png
+32r50.png recognized as:  29.png
+32r225.png recognized as:  7.png
+71r50.png recognized as:  95.png
+64r340.png recognized as:  22.png
+7r235.png recognized as:  29.png
+7r90.png recognized as:  29.png
+29r285.png recognized as:  62.png
+55r100.png recognized as:  95.png
+29r340.png recognized as:  62.png
+39r280.png recognized as:  71.png
+71r265.png recognized as:  95.png
+26r195.png recognized as:  32.png
+
+
+
+
+
+QZMIType.LEGENDRE2 TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 20%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 25%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 30%
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_INT TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_INT TestType.COIL_ROTATED NoiseType.GAUSS
+
+
+
+QZMIType.FOURIER_INT TestType.COIL_ROTATED NoiseType.GAUSS
+
+Gaussian noise with std dev 80
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 90
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 100
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 110
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 120
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_INT TestType.COIL_ROTATED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 80
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 90
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 100
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 110
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 120
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_INT TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 20%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 25%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 30%
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_ORIGINAL TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_ORIGINAL TestType.COIL_ROTATED NoiseType.GAUSS
+
+Gaussian noise with std dev 80
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 90
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 100
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 110
+100.0 % recognized correctly.
+
+
+
+Gaussian noise with std dev 120
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_ORIGINAL TestType.COIL_ROTATED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 80
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 90
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 100
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 110
+100.0 % recognized correctly.
+
+
+
+Gaussian noise (no rounding) with std dev 120
+100.0 % recognized correctly.
+
+
+
+
+
+QZMIType.FOURIER_ORIGINAL TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 5%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 10%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 15%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 20%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 25%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 30%
+100.0 % recognized correctly.
+
+
