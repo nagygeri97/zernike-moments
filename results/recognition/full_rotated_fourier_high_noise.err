@@ -5771,3 +5771,83 @@ Incorrect results:
 62r225.png recognized as:  7.png
 
 
+
+Gaussian noise (no rounding) with std dev 200
+99.8015873015873 % recognized correctly.
+Incorrect results: 
+62r165.png recognized as:  7.png
+7r345.png recognized as:  62.png
+
+
+
+
+
+QZMIType.FOURIER_ORIGINAL TestType.COIL_ROTATED NoiseType.SALT
+
+
+
+QZMIType.FOURIER_ORIGINAL TestType.COIL_ROTATED NoiseType.SALT
+
+Salt and pepper noise with density 40%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 50%
+100.0 % recognized correctly.
+
+
+
+Salt and pepper noise with density 60%
+99.70238095238095 % recognized correctly.
+Incorrect results: 
+29r290.png recognized as:  7.png
+29r305.png recognized as:  7.png
+29r0.png recognized as:  7.png
+
+
+
+Salt and pepper noise with density 75%
+96.13095238095238 % recognized correctly.
+Incorrect results: 
+13r135.png recognized as:  32.png
+22r230.png recognized as:  64.png
+62r160.png recognized as:  7.png
+22r265.png recognized as:  64.png
+22r325.png recognized as:  64.png
+22r355.png recognized as:  64.png
+55r260.png recognized as:  95.png
+29r185.png recognized as:  7.png
+22r30.png recognized as:  64.png
+7r95.png recognized as:  62.png
+22r135.png recognized as:  64.png
+7r150.png recognized as:  29.png
+62r245.png recognized as:  7.png
+7r110.png recognized as:  62.png
+7r230.png recognized as:  62.png
+62r65.png recognized as:  7.png
+22r255.png recognized as:  64.png
+62r195.png recognized as:  7.png
+7r70.png recognized as:  29.png
+29r305.png recognized as:  7.png
+62r275.png recognized as:  7.png
+29r355.png recognized as:  7.png
+62r315.png recognized as:  7.png
+7r215.png recognized as:  62.png
+13r240.png recognized as:  32.png
+22r240.png recognized as:  64.png
+7r85.png recognized as:  62.png
+22r220.png recognized as:  64.png
+55r290.png recognized as:  95.png
+13r125.png recognized as:  32.png
+13r165.png recognized as:  32.png
+22r290.png recognized as:  64.png
+7r185.png recognized as:  29.png
+55r70.png recognized as:  95.png
+22r140.png recognized as:  64.png
+62r105.png recognized as:  7.png
+62r220.png recognized as:  7.png
+29r140.png recognized as:  7.png
+55r100.png recognized as:  95.png
+
+

@@ -2,35 +2,35 @@ This chapter contains a summary of the concepts, definitions and results this th
 Moreover, the algebra of quaternions is also introduced and is used as a tool to generalize grayscale image moments to color images.
 Finally some examples of the state-of-the-art applications in image analysis are presented.
 
-\section{Image moments for grayscale images}
+\section{Image moments for grayscale images}\label{sec:grayscale}
 In general, image moments are certain descriptive values calculated using the pixel intensities of an image. 
 
 Traditionally, these image moments are defined for grayscale images, where pixel values are described by a single (gray) channel. A grayscale image can be thought of as a discrete sampling of a real valued, two-dimensional function $f : \R^2 \rightarrow \R$, where the function values at a point $(x,y) \in \R^2$ describe the pixel intensity at that point~\cite{moment_book}.
 
 Using this approach, the regular (geometric) image moments $M_{ij}$ can be defined as
-$$
-M_{ij} = \sum_x \sum_y x^iy^jf(x,y),
-$$ where $(x,y)$ are the discrete pixel coordinates.
+\begin{gather}
+M_{ij} = \sum_x \sum_y x^iy^jf(x,y), \label{eq:geometric}
+\end{gather} where $(x,y)$ are the discrete pixel coordinates.
 These geometric moments can be used to calculate the centroid of a grayscale image as 
-$$
+\begin{gather} \label{eq:centroid}
 \left\{ \overline{x}, \overline{y} \right\} = \left\{ \frac{M_{10}}{M_{00}},  \frac{M_{01}}{M_{00}} \right\}.
-$$
+\end{gather}
 
 In more general terms, image moments with order $p$ and repetition $q$ can be defined using a set of basis functions $\left\{H_{pq}\right\}$. Now considering $f$ as a continuous function, moments are defined as
-$$
+\begin{equation}\label{GeneralMoments}
 \iint\limits_A H_{pq}(x,y)f(x,y)\ dx\ dy,
-$$ where $A$ is the region of the plane, which contains the image (the domain of $f$).
+\end{equation} where $A$ is the region of the plane, which contains the image (the domain of $f$).
 
 By choosing the set of basis functions appropriately, many different kinds of image moments can be defined. Each of these moments has applications that utilize certain special properties of the basis functions. For example, some of these moments are Fourier-Mellin moments~\cite{qfmm}, Chebyshev-Fourier moments~\cite{chebyshev-fourier}, radial harmonic Fourier moments~\cite{fourier}, and Zernike moments~\cite{zernike_moments}. The latter of these is defined in detail later in this section.
 
 \subsection{Invariance properties}
 Certain image moments, or some combination of moments of different orders can be invariant with respect to image transformations, such as rotation, scaling, and translation (RST transformations).
 
-\paragraph{Rotation invariance.} To define what is meant by rotation invariance, it is useful to consider the image function $f$ defined in polar coordinates. Then the image $f_{rotated}$, rotated by some degree $\alpha$ can be written as $f_{rotated}(r,\theta) = f(r,\theta - \alpha)$. A moment invariant achieves rotation invariance, when the moments of $f$ and $f_{rotated}$ are the same for all possible values of $\alpha$.   
+\paragraph{Rotation invariance.} To define what is meant by rotation invariance, it is useful to consider the image function $f$ defined in polar coordinates. Then the image $f_{r}$, rotated by some degree $\alpha$ can be written as $f_{r}(r,\theta) = f(r,\theta - \alpha)$. A moment invariant achieves rotation invariance, when the moments of $f$ and $f_{r}$ are the same for all possible values of $\alpha$.   
 
-\paragraph{Scaling invariance.} The scaled image $f_{scaled}$ can be defined as $f_{scaled} = f(sr, \theta)$ for some scaling factor $s > 0$. A moment invariant is said to achieve scaling invariance, when the moments for $f$ and $f_{scaled}$ are identical. In practice, this means that scaling the image, such that the scaled image is still within the region of the plane over which the moments are defined, does not change the values of the moment invariants.
+\paragraph{Scaling invariance.} The scaled image $f_{s}$ can be defined as $f_{s}(r, \theta) = f(r / \lambda, \theta)$ for some scaling factor $\lambda > 0$. A moment invariant is said to achieve scaling invariance, when the moments for $f$ and $f_{s}$ are identical. In practice, this means that scaling the image, such that the scaled image is still within the region of the plane over which the moments are defined, does not change the values of the moment invariants.
 
-\paragraph{Translation invariance.} To define translation invariance, it is useful to consider the image in Cartesian coordinates. The image translated by $(x_0, y_0)$ is defined as $f_{trans}(x,y) = f(x - x_0, y - y_0)$. Again, similarly to the other types of invariance, a moment invariant is said to be translation invariant if its values for $f$ and $f_{trans}$ are the same. Practically, this means that however the image is translated on the plane, as long as it is within the region of the plane over which the moments are defined, the moment invariant values do not change.
+\paragraph{Translation invariance.} To define translation invariance, it is useful to consider the image in Cartesian coordinates. The image translated by $(x_0, y_0)$ is defined as $f_{t}(x,y) = f(x - x_0, y - y_0)$. Again, similarly to the other types of invariance, a moment invariant is said to be translation invariant if its values for $f$ and $f_{t}$ are the same. Practically, this means that however the image is translated on the plane, as long as it is within the region of the plane over which the moments are defined, the moment invariant values do not change.
 
 \paragraph{RST invariance.} A moment invariant is called RST invariant if it satisfies the criteria for all three previously described kinds of invariance at the same time. 
 
@@ -49,9 +49,9 @@ As mentioned previously, Zernike moments are image moments, defined by choosing 
 
 
 Zernike functions, first introduced by F. Zernike~\cite{zernike} in 1934, are a set of complex functions defined on the unit disk. Since the domain of these functions is the unit disk, it is useful to define them in terms of polar coordinates. The Zernike functions $V_{n,m}$ ($n \in \mathds{N}$, $m \in \mathds{Z}$, $n \geq |m|$ and $n - |m|$ is even) are defined as
-\begin{gather*}
+\begin{equation}\label{ZernikeFunction}
   V_{n,m}(r,\theta) = R_{n,m}(r) e^{i m\theta} \ \ \ (r\in[0,1], \theta\in[0,2\pi]),
-\end{gather*}
+\end{equation}
 where $R_{n,m}$ is the radial part and $e^{i m\theta}$ is the azimuthal part of the function. The radial part is defined as the following radial polynomials (of degree $n$)
 \begin{gather}
     R_{n,m}(r) = \sum_{k=0}^{\frac{n - |m|}{2}}\frac{(-1)^k (n - k)!}{k!\left(\frac{n + |m|}{2} - k\right)!\left(\frac{n - |m|}{2} - k\right)!}r^{n-2k} \label{eq:radial_poly}.
@@ -78,9 +78,9 @@ Another important and useful property of these radial polynomials is that they c
 
 Let $f(r,\theta)$ be a grayscale, continuous image function (given in polar coordinates), whose domain is the unit circle.
 Using the previously defined set of Zernike functions, the Zernike moment of order $n$, repetition $m$ of $f(r,\theta)$ can be defined as
-\begin{gather*}
+\begin{gather}\label{eq:complex_zernike_def}
     Z_{n,m}(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)V_{n,m}^{*}(r,\theta)r\ dr\ d\theta,
-\end{gather*}
+\end{gather}
 where $V_{n,m}^{*}(r,\theta)$ is the complex conjugate of the Zernike functions, meaning
 \begin{gather*}
     V_{n,m}^{*}(r,\theta) = R_{n,m}(r) e^{-i m\theta}.
@@ -88,9 +88,9 @@ where $V_{n,m}^{*}(r,\theta)$ is the complex conjugate of the Zernike functions,
 
 
 By utilizing the orthogonality of the Zernike functions, the original image function $f(r,\theta)$ can be approximately reconstructed from a finite number of Zernike moments up to degree $M$:
-\begin{gather*}
+\begin{gather}\label{eq:reconstruction}
     f(r,\theta) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}(f)V_{n,m}(r,\theta).
-\end{gather*}
+\end{gather}
 
 \paragraph{Invariance properties of Zernike moments.} Translation invariance (as described previously) can be achieved by translating the image such that the centroid of the image falls on the origin. This method is suitable to use with Zernike moments as well.
 
@@ -104,30 +104,235 @@ This means that the modulus Zernike moments is the same regardless of how the im
 
 Scaling invariance is discussed in detail in Section~\ref{sec:qzm}, for quaternion Zernike moments.
 
+\section{Image moments for multichannel, color images}
+The image moments in Section~\ref{sec:grayscale} are only defined for single-channel, grayscale images. Extending these signal and image processing techniques efficiently to multichannel color images is an important and generally unresolved problem. This section introduces some conventional approaches to generalize the grayscale methods to RGB images. Later, the algebra of quaternions is also presented, and using this algebra, quaternion moments are introduced, specifically quaternion Zernike moments and their invariant properties.  
 
+\subsection{Conventional techniques}
+The two main approaches used both rely on using the grayscale method in some form. One method is to use grayscale conversion to convert the RGB image to a single-channel grayscale image and use the grayscale method on this converted image. The drawback of this method is that the color information contained in multiple channels is lost. Thus, for example, this method cannot distinguish between a red and a blue object.
 
-Bovebben kifejtve, definiciok (Zernike fuggveny, momentum), az invariansok konstrualasa, miert jo ez,
+The other main conventional method utilizes RGB-decomposition, whereby the grayscale (single-channel) method can be used on each of the individual color channels~\cite{affine_color}. This approach does not lose color information, but any relationship between the color channels cannot be utilized by the method.
 
-
-\section{Image moments for multi-channel, color images}
-Szines kepekre milyen modszerek voltak korabban (RGB decomp, greyscale conv)
 
 \subsection{Algebra of quaternions}
-kvaterniokrol leiras
+More recently, the algebra of quaternions was employed to generalize various single-channel moments, so that color images can be analysed holistically. In order to introduce this generalization, we first introduce the algebra of quaternions and how color images can be represented as quaternion valued functions.
+
+
+Quaternions were defined by Hamilton~\cite{Hamilton} as a generalization of the complex numbers. The set of quaternions is denoted by $\Hq$. A quaternion, $q \in \Hq$, consists of four components:
+\[
+	q = a+b\qi +c\qj+d\qk,
+\]
+where $a,b,c$ and $d$ are real numbers, and $\qi,\qj,\qk$ are the imaginary units, defined according to the following rules:
+\[
+\begin{gathered}
+	\qi^2 = \qj^2 = \qk^2 = \qi\qj\qk = -1,\\
+	\qi\qj = -\qj\qi = \qk,\ \qj\qk = -\qk\qj = \qi,\ \qk\qi = -\qi\qk = \qj.
+\end{gathered}
+\]
+Therefore, the set of quaternions $\Hq$ is an \textit{algebra}. It is important to note, that the multiplication of quaternions is not commutative. The conjugate and modulus of $q$ are respectively defined by
+\[
+\begin{gathered}
+q^* = a-b\qi-c\qj-d\qk, \\
+|q| = \sqrt{a^2+b^2+c^2+d^2}.
+\end{gathered}
+\]
+
+A quaternion is called pure quaternion, when $a = 0$, i.e. the real part of the quaternion is zero. $q$ is called a unit quaternion if $|q| = 1$.
+
+\paragraph{Representing color images with quaternions.}
+The 3-dimensional RGB color space can be thought of in terms of pure quaternions, where the color $(r,g,b)$, consisting of the three components $r,g,b \in [0,1]$, is uniquely described by the pure quaternion $r\qi + g\qj + b\qk$.
+
+
+In practice, quaternions are useful for describing three-dimensional rotations, thus rotations in the RGB color space can be easily described by representing the colors in terms of pure quaternions.
+
+
+\citeauthor{EllSangwine} \cite{EllSangwine} utilized quaternions to represent a color image, $f: \R^2\to\R^3$ , as follows:
+\[
+f(x,y) = \qi f_R(x,y) + \qj f_G(x,y) + \qk f_B(x,y),
+\]
+where functions $f_R , f_G, f_B:\R^2\to\R$ represent the red, green and blue components of the $(x,y)$ pixel, respectively. This way, a color image can be thought of as a pure quaternion valued function and the algebra of quaternions can be employed to define image moments in a similar manner as in the case of grayscale images.
 
 \subsection{Quaternion moments}
-Altalaban a kvaternios momentumokrol
-\subsubsection{Representing color images with quaternions}
-hogyan tekintjuk mostantol a kepet, miert jobb ez
+Similar to the general formula for defining the moments of grayscale images in \eqref{GeneralMoments}, quaternion moments can be defined by a set of quaternion valued basis functions and a quaternion valued, continuous image function. Most commonly, the set of complex valued basis functions is generalized such that we get a set of quaternion valued basis functions.
+
+For example, \citeauthor{qfmm}~\cite{qfmm} introduced quaternion Fourier-Mellin moments (QFMMs) which are an extension of the conventional Fourier-Mellin moments. Similarly, the same quaternion techniques were applied successfully to other function systems (e.g.~\cite{Shao, chebyshev-fourier}), yielding similar results.
 
 \subsection{Quaternion Zernike moments}\label{sec:qzm}
-a kvaternios valtozatot leirni
-\subsubsection{Invariants}
-hogyan mukodnek az invariansok, definiciokat leirva
+\citeauthor{qzm}~\cite{qzm,qzmi} proposed the quaternion Zernike moments (QZMs), an extension of the conventional Zernike moments to color images using quaternions. Generally, this method overperforms other similar approaches in color image recognition, due to the natural invariances of Zernike functions.
+
+
+Quaternion Zernike moments, just like regular Zernike moments, are defined over the complex unit disk
+\[
+	\D = \left\{ z = re^{i\theta}\in\C \ :\ r\in[0,1],\theta\in[0,2\pi)\right\}.
+\]
+
+
+In order to define quaternion Zernike moments, first we have to define the quaternion-valued generalization of the complex-valued Zernike functions defined in \eqref{ZernikeFunction}. Since the radial part of the Zernike functions is a real-valued function of $r$, only the azimuthal component needs to be generalized. Thus the quaternion-valued Zernike functions can be defined as
+\[
+	\phi_{n,m}(r,\theta) = R_{n,m}(r) e^{-\qmu m\theta},
+\]
+where $\qmu$ is an arbitrary unit pure quaternion. The usual choice for $\qmu$ is the value $\frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$, because this is the unit pure quaternion representing the color gray in the RGB color space.
+
+Similarly to the complex-valued Zernike functions, the generalized Zernike functions also satisfy the following orthogonality relation with respect to the weight $r$:
+\begin{equation}\label{QZortho}
+	\frac{n+1}{\pi} \int_0^1 \int_0^{2\pi} \phi_{n,m}(r,\theta) \phi^*_{n',m'}(r,\theta) r \ d\theta dr = \delta_{n,n'}\delta_{m,m'}.
+\end{equation}
+
+
+Let $f(r,\theta)$ be a pure quaternion valued RGB image function with a continuous domain, defined in polar coordinates over the unit disk $\D$. As described previously, each color component of the image function corresponds to one of the imaginary units.
+
+
+The definition of QZMs is similar to the definition of Zernike moments in \eqref{eq:complex_zernike_def}, but instead of the complex-valued $V_{n,m}$ functions we use the generalized $\phi_{n,m}$ functions. Since the multiplication of quaternion is not commutative, both right-side and left-side quaternion Zernike moments can be defined, depending on which side we multiply $f(r,\theta)$ from. The right-side QZM of order $n$ and repetition $m$ is defined as
+\begin{gather}
+    \begin{split}
+    Z_{n,m}^R(f) &= \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)f(r,\theta)e^{-\bm{\mu}m\theta}r\ dr\ d\theta, \\
+    &n \geq |m| \text{  and  } n - |m| \text{  is even,}
+    \end{split}
+    \label{eq:QZRM}
+\end{gather}
+while the left-side QZM for the same indices is defined as 
+\begin{gather*}
+Z_{n,m}^L(f) = \frac{n + 1}{\pi}\int_0^1\int_0^{2\pi}R_{n,m}(r)e^{-\bm{\mu}m\theta}f(r,\theta)r\ dr\ d\theta.
+\end{gather*}
+
+
+Analogously to the grayscale case in \eqref{eq:reconstruction}, the image function $f(r,\theta)$ can be approximated by using either right-side or left-side QZMs up to a finite $M$ degree. 
+\begin{gather}
+    \begin{split}
+      f(r,\theta) &\approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r)e^{\bm{\mu}m\theta} \\
+      f(r,\theta) &\approx \sum_{n=0}^{M}\sum_{m=-n}^{n}e^{\bm{\mu}m\theta}Z_{n,m}^L(f)R_{n,m}(r)
+    \end{split}\label{eq:qzm_reconstruction}
+\end{gather}
+
+
+It is important to note that a left-side QZM can be expressed in terms of the right-side QZM of the same order and repetition using the following relation:
+\begin{gather*}
+    Z_{n,m}^L(f) = -(Z_{n,m}^R(f))^{*}
+\end{gather*}
+Because of this, in this thesis only the right-side QZMs will be studied.
+
+\subsubsection{Quaternion Zernike moment invariants}
+\citeauthor{qzmi}~\cite{qzm, qzmi} proposed the constructions described in this section in order to create rotation, scaling and translation invariant moment invariants using the quaternion Zernike moments.
+
+\paragraph{Rotation invariance.}
+In order to achieve rotation invariance consider the image rotated by some degree $\alpha$: $f_{r}(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f_{r}) = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f_{r}) = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. 
+
+
+Similarly to the complex-valued case, the modulus $|Z_{n,m}^R(f)|$ can be used to achieve rotation invariance~\cite{qzm}, but this provides only one real-valued invariant, whereas the following construction can provide quaternion-valued invariants. 
+
+
+Based on the properties of the QZMs of a rotated image, it follows that the quaternion defined as
+$$\Phi_{n,k}^m(f) = Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*$$
+is invariant under rotation, meaning that $\Phi_{n,k}^m(f) = \Phi_{n,k}^m(f_{r})$.
+From now on in this thesis, this invariant will be referred to as a quaternion Zernike moment rotation invariant (QZMRI).
+
+\paragraph{Translation invariance.}
+Analogously to the construction of translation invariant Zernike moments in the grayscale case, now translation invariance can be achieved by setting the origin of the coordinate system as the centroid of the image.
+
+
+For grayscale images the centroid can be defined as in \eqref{eq:centroid}. For RGB images, we need the common centroid of all three color channels. This can be calculated using zero-order and first-order geometric moments for each individual color channel, as described by \citeauthor{affine_color}~\cite{affine_color}:
+
+\begin{gather*}
+    \left\{\overline{x}, \overline{y}\right\} = \left\{\frac{M_{10}^R + M_{10}^G + M_{10}^B}{M_{00}^R + M_{00}^G + M_{00}^B}, \frac{M_{01}^R + M_{01}^G + M_{01}^B}{M_{00}^R + M_{00}^G + M_{00}^B} \right\},
+\end{gather*}
+where $M_{ij}^R, M_{ij}^G, M_{ij}^B$ denote the $M_{ij}$ geometric moments (defined in \eqref{eq:geometric}) for the red, green, and blue color channels respectively.
+
+
+Consider a translated image function in Cartesian coordinates: $f_t(x,y) = f(x - x_0, y - y_0)$. 
+
+If the origin of the coordinate system is placed on the common centroid of the color channels $(\overline{x}, \overline{y})$, then the QZMs calculated in this coordinate system will be invariant to translation. This further translated image is denoted by $\overline{f_t}(x,y) = f_t(x - \overline{x}, y - \overline{y})$. Note that the common centroid of $f_t$ and $f$ are different, thus these two images need to be further translated by different amounts.
+
+
+By considering the QZMs of both $\overline{f_t}$ and $\overline{f}$, we get
+\begin{gather*}
+    {Z}_{n,m}^R\left(\overline{f_t}\right) = {Z}_{n,m}^R\left(\overline{f}\right).
+\end{gather*}
+
+
+This means that first translating the image so that the common centroid falls on the origin of the coordinate system and only then calculating the QZMs yields translation invariance. 
+Let $\overline{Z}_{n,m}^R\big(f\big) = {Z}_{n,m}^R\left(\overline{f}\right)$ denote these translation invariant QZMs.
+
+\paragraph{Scaling invariance.}
+For non-negative integers $m$ and $l$, \citeauthor{qzmi}~\cite{qzmi} constructed scaling invariants utilizing the symmetric property of the radial polynomials with respect to $m$ and an alternate form of the QZMs.
+
+
+Let $f_s(r,\theta) = f(r/\lambda, \theta)$ denote an image scaled with some $\lambda > 0$ scaling parameter. It was shown that the QZMs of the scaled image can be expressed as a linear combination of the QZMs of the original image in the following way:
+
+\begin{gather*}
+  \begin{split}
+  c_{m,l}^{t,k} &= (-1)^{l-k}\frac{(m + 2l + 1)(m + k + l)!}{(l - k)!(k - t)!(m + k + t + 1)!} \\
+  Z_{m + 2l,m}^R(f_s) &= \sum_{t=0}^l\sum_{k=t}^l\lambda^{m+2k+2}c_{m,l}^{t,k}Z_{m+2t,m}^R(f).
+  \end{split}
+\end{gather*}
+
+Utilizing the formula above, the following scaling invariants have been constructed:
+
+
+\begin{gather*}
+    L_{m + 2l,m}^R(f) = \sum_{t=0}^l\sum_{k=t}^l\left(\sqrt{|Z_{0,0}^R(f)|}\right)^{-(m+2k+2)}c_{m,l}^{t,k}Z_{m+2t,m}^R(f).
+\end{gather*}
+
+These scaling invariants satisfy $L_{m + 2l,m}^R(f_s) = L_{m + 2l,m}^R(f)$, meaning that their values are the same regardless of how the original image was scaled.
+
+
+\paragraph{Combined RST invariants.}
+Similarly to the construction of the rotation invariants $\Phi_{n,k}^m$, the previously defined scaling invariants can also be used to construct $\Psi_{n,k}^m(f) = L_{n,m}^R(f)(L_{k,m}^R(f))^*$, which is invariant to both rotation and scaling.
+
+
+In order to achieve translation invariance as well, throughout the construction of the scaling invariants $L_{n,m}^R$ the translation invariant QZMs ($\overline{Z}_{n,m}^R(f)$) can be used, thus defining the $\overline{L}_{n,m}^R$ combined translation and scaling invariants. This means that before constructing the scaling invariants, the image has to be translated so that the combined centroid falls on the origin.
+
+
+Finally, to achieve combined RST invariance, the combined translation and scaling invariants can be used to construct $\overline{\Psi}_{n,k}^m(f) = \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^*$, which is invariant to rotation, scaling, and translation. These $\overline{\Psi}_{n,k}^m(f)$ values are called quaternion Zernike moment invariants (QZMI).
+
 
 \subsection{Quaternion radial harmonic Fourier moments}
-Leirni hogy ez hogyan van definialva, es majd lesz vele osszehasonlitas
+Another set of quaternion-valued moments are the quaternion radial harmonic Fourier moments (QRHFMs)~\cite{LiuAcc}. We introduce and describe these moments, as in Chapter~\ref{sec:tests} we present comparisons between the capabilities of QRHFMs and QZMIs.
 
+
+Similarly to Zernike moments, these Fourier moments are also defined for images whose domain is the unit disk $\D$. The basis functions for QRHFMs are defined as
+\begin{gather*}
+    H_{n,m}(r,\theta) = R_n(r)e^{\qmu m \theta},
+\end{gather*}
+where $\qmu$ is a unit pure quaternion, usually $\qmu = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$, and $R_n(r)$ are the radial kernel functions defined as
+\begin{gather*}
+    R_n(r) = \begin{cases}
+        \frac{1}{\sqrt{r}}, &n = 0\\
+        \sqrt{\frac{2}{r}}\cos(\pi n r), &n \text{ is even}\\
+        \sqrt{\frac{2}{r}}\sin(\pi (n+1) r), \ \ &n \text{ is odd}
+    \end{cases}.
+\end{gather*}
+
+The functions $H_{n,m}(r,\theta)$ also satisfy the following orthogonality relation:
+\begin{gather*}
+     \int_0^{2\pi} \int_0^1 H_{n,m}(r,\theta) H^*_{n',m'}(r,\theta) r \ dr d \theta = 2\pi\delta_{n,n'}\delta_{m,m'}.
+\end{gather*}
+
+
+The definition of the QRHFMs is similar to the definition of QZMs, both right-side and left-side moments can be defined as
+\begin{gather*}
+    F_{n,m}^R(f) = \frac{1}{2\pi}\int_0^{2\pi} \int_0^1 f(r,\theta)H_{n,m}^*(r,\theta) r dr d \theta \\
+    F_{n,m}^L(f) = \frac{1}{2\pi}\int_0^{2\pi} \int_0^1 H_{n,m}^*(r,\theta)f(r,\theta) r dr d \theta,
+\end{gather*} respectively, where $n \in \N$ and $m \in \Z$. Left-side moments can be expressed in terms of right-side moments, so from now on we only study right-side QRHFMs.
+
+
+Similarly to the previous cases, the original image can be approximated using only a finite number of moments: 
+\begin{gather*}
+      f(r,\theta) \approx \sum_{n=0}^{N}\sum_{m=-M}^{M}F_{n,m}^R(f)H_{n,m}(r,\theta).
+\end{gather*}
+
+\paragraph{Invariance properties.}
+Translation invariance can be achieved by translating the image before calculating the moments such that the common centroid of the image falls on the origin. This construction is exactly the same as in the case of the quaternion Zernike moments.
+
+
+\citeauthor{LiuAcc}~\cite{LiuAcc} show that the for a rotated image $f_r(r, \theta) = f(r, \theta - \alpha)$ the following holds:
+\begin{gather*}
+    F_{n,m}^R(f_r) = F_{n,m}^R(f) e^{\qmu m \theta},
+\end{gather*}
+which means that the modulus of a QRHFM is invariant to image rotation, so $|F_{n,m}^R(f)|$ can be used as rotation invariant features.
+
+
+\citeauthor{LiuAcc}~\cite{LiuAcc} do not present a construction which provides scaling invariance, they only show a method of rescaling the images such that they fit inside the unit circle. This method is only suitable, when the region of interest on the image is known in advance (or the entire image only consists of the object that has to be analysed). 
+
+Because of this lack of general scaling invariance, comparisons later on focus mainly on the rotation invariance and image reconstruction capabilities of the QZM and QRHFM methods.
 
 \section{Discretization}
 Korabbi diszkretizacios modszerek
