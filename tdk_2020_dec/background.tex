@@ -8,8 +8,8 @@ In general, image moments are certain descriptive values calculated using the pi
 Traditionally, these image moments are defined for grayscale images, where pixel values are described by a single (gray) channel. A grayscale image can be thought of as a discrete sampling of a real valued, two-dimensional function $f : \R^2 \rightarrow \R$, where the function values at a point $(x,y) \in \R^2$ describe the pixel intensity at that point~\cite{moment_book}.
 
 Using this approach, the regular (geometric) image moments $M_{ij}$ can be defined as
-\begin{gather}
-M_{ij} = \sum_x \sum_y x^iy^jf(x,y), \label{eq:geometric}
+\begin{gather} \label{eq:regular_moment}
+M_{ij} = \sum_x \sum_y x^iy^jf(x,y),
 \end{gather} where $(x,y)$ are the discrete pixel coordinates.
 These geometric moments can be used to calculate the centroid of a grayscale image as 
 \begin{gather} \label{eq:centroid}
@@ -209,7 +209,7 @@ It is important to note that a left-side QZM can be expressed in terms of the ri
 \end{gather*}
 Because of this, in this thesis only the right-side QZMs will be studied.
 
-\subsubsection{Quaternion Zernike moment invariants}
+\subsubsection{Quaternion Zernike moment invariants}\label{sec:invariance}
 \citeauthor{qzmi}~\cite{qzm, qzmi} proposed the constructions described in this section in order to create rotation, scaling and translation invariant moment invariants using the quaternion Zernike moments.
 
 \paragraph{Rotation invariance.}
@@ -233,7 +233,7 @@ For grayscale images the centroid can be defined as in \eqref{eq:centroid}. For 
 \begin{gather*}
     \left\{\overline{x}, \overline{y}\right\} = \left\{\frac{M_{10}^R + M_{10}^G + M_{10}^B}{M_{00}^R + M_{00}^G + M_{00}^B}, \frac{M_{01}^R + M_{01}^G + M_{01}^B}{M_{00}^R + M_{00}^G + M_{00}^B} \right\},
 \end{gather*}
-where $M_{ij}^R, M_{ij}^G, M_{ij}^B$ denote the $M_{ij}$ geometric moments (defined in \eqref{eq:geometric}) for the red, green, and blue color channels respectively.
+where $M_{ij}^R, M_{ij}^G, M_{ij}^B$ denote the $M_{ij}$ geometric moments (defined in \eqref{eq:regular_moment}) for the red, green, and blue color channels respectively.
 
 
 Consider a translated image function in Cartesian coordinates: $f_t(x,y) = f(x - x_0, y - y_0)$. 
@@ -339,7 +339,7 @@ Because of this lack of general scaling invariance, comparisons later on focus m
 Over the past 8 years, a similar approach for generalizing image moments to multichannel images was utilized numerous times in the literature. These methods use basis functions which are similar in construction to the Zernike functions, but the radial polynomials $R_{n,m}$ are substituted with by other, well-known orthogonal systems over the radial interval $[0,1]$. Further examples for this include the QFMMs \cite{qfmm}, the QPETs, QPCTs and QPSTs \cite{Li}, the QCMs \cite{Guo}, the QBFMs \cite{Shao}, the QG-CHFMs and QG-PJFMs \cite{Singh} and the QSBFMs \cite{Yang}.
 
 
-\section{Discretization}
+\section{Discretization}\label{sec:discretization}
 The previously defined moments are defined for image functions, which have a continuous domain. Specifically both quaternion Zernike moments and quaternion radial harmonic Fourier moments are defined for functions, whose domain is the unit disk. In practice, digital images are usually defined in terms of discrete image coordinates, with the coordinates ranging from $0$ to $N-1$ (the number of pixels along each axis). Thus the need arises to discretize these moments and transform the digital image to polar coordinates inside the unit disk.
 
 
@@ -440,7 +440,7 @@ In general, using the polar form of the transformed coordinates, the continuous 
 with some discretization weight function $w$ and normalization constants $\lambda_{n,m}$. In this discretization formula, the system of points $(r_k,\theta_j)$ does not necessarily coincide with the transformed lattice of the pixels, so $f(r_k,\theta_j)$ is some approximation of the image function, calculated from the discrete pixel values.
 
 
-Using either one of the previously defined "natural" transformations, a points system on the unit disk can be obtained. The approximation of the image function $f$ at these points is not necessary as each point can have the corresponding pixel value assigned to it. Using this points system in \eqref{eq:QZMappr}, the following formula can be used to approximate the QZMs of the original image function:
+Using either one of the previously defined "natural" transformations, a point system on the unit disk can be obtained. The approximation of the image function $f$ at these points is not necessary as each point can have the corresponding pixel value assigned to it. Using this point system in \eqref{eq:QZMappr}, the following formula can be used to approximate the QZMs of the original image function:
 \begin{gather*}
     Z_{n,m}^R(f) \approx \lambda\frac{n + 1}{(N - 1)^2}\sum_{x = 0}^{N-1}\sum_{y = 0}^{N-1}R_{n,m}(r_{x,y})f(x,y)e^{-\bm{\mu}m\theta_{x,y}},
 \end{gather*}
@@ -449,7 +449,7 @@ where the RGB image $f \in \mathds{R}^2 \rightarrow \mathds{H}$ is now defined i
 In the rest of this thesis, for comparison purposes, the transformation of the image inside the unit circle (Figure~\ref{fig:transform1}) will be used as \citeauthor{qzmi}~\cite{qzmi} used this discretization to present their results.
 
 \paragraph{Discrete orthogonality.}
-Even though the (quaternion-valued) Zernike functions are a set of orthogonal functions on the complex unit disk, neither of the previously defined points systems provide discrete orthogonality, meaning that the discretization of the orthogonality relations in \eqref{Zortho} and \eqref{QZortho} over these points system is not satisfied.
+Even though the (quaternion-valued) Zernike functions are a set of orthogonal functions on the complex unit disk, neither of the previously defined point systems provide discrete orthogonality, meaning that the discretization of the orthogonality relations in \eqref{Zortho} and \eqref{QZortho} over these point systems is not satisfied.
 
 
 This lack of discrete orthogonality results in poor performance of the methods, especially under noisy conditions. It also makes the moment representation of an image redundant, hence introducing unwanted errors during image reconstruction.
@@ -458,7 +458,7 @@ This lack of discrete orthogonality results in poor performance of the methods, 
 A method for the discretization of the quaternion-valued Zernike functions, providing discrete orthogonality is proposed in Chapter~\ref{sec:maths}.
 
 \subsection{Discretization of QRHFMs}
-\citeauthor{LiuAcc}~\cite{LiuAcc} defined a points system for the discretization of quaternion radial harmonic Fourier moments, which consists of equally spaced radii and uniformly distributed points along these radii:
+\citeauthor{LiuAcc}~\cite{LiuAcc} defined a point system for the discretization of quaternion radial harmonic Fourier moments, which consists of equally spaced radii and uniformly distributed points along these radii:
 \begin{gather*}
     (r_u, \theta_v) = \left(\frac{u}{N}, \frac{2\pi v}{N}\right), \qquad u = 0,1,\ldots ,N - 1, \qquad v = 0,1,\ldots ,N - 1,
 \end{gather*}
@@ -469,7 +469,7 @@ where $N$ is the number of pixels along each axis in the original image. The val
 where $f'$ denotes the original image, given in image coordinates.
 
 
-Using this points system for the discretization of the integrals in \eqref{eq:QRHFM}, we get
+Using this system of points for the discretization of the integrals in \eqref{eq:QRHFM}, we get
 \begin{gather*}
     F_{n,m}^R(f) \approx \frac{4}{2\pi N^2}\sum_{u = 0}^{N-1}\sum_{v = 0}^{N-1}f(r_u, \theta_v)H_{n,m}^*(r_u, \theta_v).
 \end{gather*}

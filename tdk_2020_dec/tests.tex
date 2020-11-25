@@ -9,7 +9,7 @@ In total, four kinds of tests were conducted:
 \end{itemize}
 
 \section{Test images}\label{sec:test_images}
-The images for testing were acquired from multiple online image libraries. The Lenna and Pepper images~\cite{usc_sipi} (shown on Figure~\ref{fig:lena_pepper_original}) were used to test image reconstruction as well as to demonstrate the different points systems.
+The images for testing were acquired from multiple online image libraries. The Lenna and Pepper images~\cite{usc_sipi} (shown on Figure~\ref{fig:lena_pepper_original}) were used to test image reconstruction as well as to demonstrate the different point systems.
 
 \begin{figure}[tbp]
     \begin{subfigure}{0.49\textwidth}
@@ -313,7 +313,7 @@ In order to reconstruct the discrete image, formula
 $$
 f(r_{x,y},\theta_{x,y}) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r_{x,y})e^{\bm{\mu}m\theta_{x,y}}
 $$
-was used for each pixel with image coordinates $(x,y)$, where $(r_{x,y},\theta_{x,y})$ are the polar coordinates obtained by performing the linear transformation of the image onto the unit disk, using the transformation shown on Figure~\ref{fig:transform1} (\textit{tf\textsubscript{1}}) for the old method and the transformation shown on Figure~\ref{fig:transform2} (\textit{tf\textsubscript{2}}) for the new one. The reason for this difference in transformation is that for the proposed discrete orthogonal points system, the interpolated pixel values are calculated using \textit{tf\textsubscript{2}}, while conventionally for (quaternion) Zernike moments, \textit{tf\textsubscript{1}} is used~\cite{qzmi}.
+was used for each pixel with image coordinates $(x,y)$, where $(r_{x,y},\theta_{x,y})$ are the polar coordinates obtained by performing the linear transformation of the image onto the unit disk, using the transformation shown on Figure~\ref{fig:transform1} (\textit{tf\textsubscript{1}}) for the old method and the transformation shown on Figure~\ref{fig:transform2} (\textit{tf\textsubscript{2}}) for the new one. The reason for this difference in transformation is that for the proposed discrete orthogonal point system, the interpolated pixel values are calculated using \textit{tf\textsubscript{2}}, while conventionally for (quaternion) Zernike moments, \textit{tf\textsubscript{1}} is used~\cite{qzmi}.
 
 To measure the error of the reconstruction the normalized mean squared error ($\varepsilon^2$) was used. If $f(x,y)$ is the original and $\widehat{f}(x,y)$ is the reconstructed image, both with size $N \times N$, then the normalized mean squared error is defined as:
 \begin{gather*}
@@ -329,7 +329,7 @@ Image reconstruction was performed for both the Lenna and the Pepper images~\cit
 
 Figure~\ref{fig:reconstruction_old} shows some of the reconstructed images and their normalized mean squared error when using the old method of discretization, while Figure~\ref{fig:reconstruction_new} shows the same data using the new method.
 
-Comparing the error of reconstruction between the two methods, using the discrete orthogonal points system provides much lower normalized mean squared errors for almost all levels of reconstruction. 
+Comparing the error of reconstruction between the two methods, using the discrete orthogonal point system provides much lower normalized mean squared errors for almost all levels of reconstruction. 
 Table~\ref{tab:epsilons} shows the comparison between the $\varepsilon^2$ values and the change in the error when using the proposed method instead of the old one. The decrease in the error of reconstruction is is significant for both low and high maximal degrees of QZMs. 
 
 Due to the lower number of points used by the second method (because of the different transformation of the image onto the unit disk) the previously described increase in reconstruction error occurs for lower $M$s than in the original method.

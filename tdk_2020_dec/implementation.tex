@@ -97,12 +97,12 @@ The original image $f$ is then translated in image coordinates such that the ori
 
 
 \section{New image transformation}\label{sec:new_trans}
-The new image transformation, as described in Chapter~\ref{sec:maths}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete points system, some interpolating methods have to be used to approximate the image values at these points.
+The new image transformation, as described in Chapter~\ref{sec:maths}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point in the new discrete point system, some interpolating methods have to be used to approximate the image values at these points.
 
 Because of the modularity of the previously described classes, it is possible to swap the old transformation with the new one. With some minor modifications during the calculation of the conventional Zernike moments -- because of the new discretization formula containing a different measure -- the previous classes can be used to obtain the QZMIs using the new method of discretization.
 
 \subsection{Roots of Legendre polynomials}
-The roots of the Legendre polynomial $P_n$ are essential for the calculation of the new points system. An explicit formula for the roots does not exist, thus an efficient and fast iterative algorithm is utilized to calculate these roots.
+The roots of the Legendre polynomial $P_n$ are essential for the calculation of the new point system. An explicit formula for the roots does not exist, thus an efficient and fast iterative algorithm is utilized to calculate these roots.
 
 The $n^{th}$ degree Legendre polynomial $P_n$ satisfies the following differential equation:
 \begin{gather}
@@ -114,7 +114,7 @@ Subsequent roots can be calculated using the same method but starting from diffe
 In practice, this algorithm calculates the roots of $P_n$ with accuracy up to machine precision in only just a few, predefined number of iterations for both the Runge-Kutta and the Newton's method.
 
 \subsection{Computing the discrete measure}
-To calculate the Zernike moments over the discrete orthogonal points system, besides the $\lambda_{n,m} = n + 1$ scaling factor, a weight function is used as well (as described in \eqref{eq:QZMappr}). To calculate these $w(r_{k,N},\theta_{j,N})$ weight values (defined in \eqref{weight}), the following integral has to be calculated:
+To calculate the Zernike moments over the discrete orthogonal point system, besides the $\lambda_{n,m} = n + 1$ scaling factor, a weight function is used as well (as described in \eqref{eq:QZMappr}). To calculate these $w(r_{k,N},\theta_{j,N})$ weight values (defined in \eqref{weight}), the following integral has to be calculated:
 \begin{gather*}
     \mathcal{A}_{k,N} = \int_{-1}^{1}\ell_{k,N}(x)\ dx,
 \end{gather*}
@@ -130,14 +130,14 @@ The quadrature is exact for all polynomials whose degree is at most $2n-1$. Now 
     \int_{-1}^{1}\ell_{k,N}(x)\ dx = w_k = \frac{2}{(1-x_k^2)(P_n'(x_k))^2}.
 \end{gather*}
 
-Since the roots of the Legendre polynomial $P_N$ must be computed to obtain the points system, this formula gives an easy and fast way to calculate the exact values of the weight function $w$.
+Since the roots of the Legendre polynomial $P_N$ must be computed to obtain the point system, this formula gives an easy and fast way to calculate the exact values of the weight function $w$.
 
 \subsection{Image interpolation}
-After obtaining the discrete orthogonal points system the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.
+After obtaining the discrete orthogonal point system the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.
 
-First, the image is linearly transformed onto the unit disk using the transformation shown on Figure~\ref{fig:transform2}, so that the the transformed image covers the entire unit disk. This transformation is used as opposed to the one on Figure~\ref{fig:transform1}, because the points system covers the entire unit disk, so the image also has to cover the whole disk.
+First, the image is linearly transformed onto the unit disk using the transformation shown on Figure~\ref{fig:transform2}, so that the the transformed image covers the entire unit disk. This transformation is used as opposed to the one on Figure~\ref{fig:transform1}, because the point system covers the entire unit disk, so the image also has to cover the whole disk.
 
-There are two ways to approximate the values at each point, depending on the number of points in the discrete orthogonal points system.
+There are two ways to approximate the values at each point, depending on the number of points in the discrete orthogonal point system.
 
 \begin{figure}[tb]
     \centering
@@ -172,7 +172,7 @@ First, the four pixels of the image that are closest to the given point $(x,y)$ 
 \paragraph{Much less points than the number of pixels.}
 If the number of points is far less than the number of pixels, then using bilinear interpolation many of the original pixel values would not be represented in the final approximate function values. Therefore, the following algorithm is used to approximate function values using discrete integration.
 
-First, for each pixel in the original image, determine which point it falls closest to after the linear transformation. Then, for each point in the discrete orthogonal points system, calculate the average of the pixels that are closest to that point. This algorithm divides the unit disk into annular sections based on the proximity to the new points. This is shown on Figure~\ref{fig:interpolation_integral}.
+First, for each pixel in the original image, determine which point it falls closest to after the linear transformation. Then, for each point in the discrete orthogonal point system, calculate the average of the pixels that are closest to that point. This algorithm divides the unit disk into annular sections based on the proximity to the new points. This is shown on Figure~\ref{fig:interpolation_integral}.
 
 \begin{figure}[tb]
     \begin{subfigure}{.45\textwidth}
@@ -187,7 +187,7 @@ First, for each pixel in the original image, determine which point it falls clos
         }
     \end{tikzpicture}
 
-    \caption{The points system on the unit disk and the annular sectors over which the pixel values are averaged.}
+    \caption{The point system on the unit disk and the annular sectors over which the pixel values are averaged.}
     \end{subfigure}
     \hspace{.05\textwidth}
     \begin{subfigure}{.45\textwidth}
