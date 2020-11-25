@@ -1,0 +1,45 @@
+
+
+
+QZMIType.QFMRI_ORIGINAL TestType.COIL_ROTATED NoiseType.CLEAN
+
+Noise-free
+100.0 % recognized correctly.
+
+
+
+QZMIType.QFMRI_ORIGINAL TestType.COIL_ROTATED NoiseType.GAUSS
+
+Gaussian noise with std dev 80
+98.21428571428571 % recognized correctly.
+
+Gaussian noise with std dev 90
+95.73412698412699 % recognized correctly.
+
+Gaussian noise with std dev 100
+92.95634920634922 % recognized correctly.
+
+Gaussian noise with std dev 110
+90.97222222222221 % recognized correctly.
+
+Gaussian noise with std dev 120
+92.46031746031747 % recognized correctly.
+
+
+
+QZMIType.QFMRI_ORIGINAL TestType.COIL_ROTATED NoiseType.GAUSS_NO_ROUND
+
+Gaussian noise (no rounding) with std dev 80
+99.60317460317461 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 90
+92.46031746031747 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 100
+97.02380952380952 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 110
+95.23809523809523 % recognized correctly.
+
+Gaussian noise (no rounding) with std dev 120
+89.18650793650794 % recognized correctly.
