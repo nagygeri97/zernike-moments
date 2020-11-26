@@ -1,6 +1,12 @@
-In this chapter we describe our proposed approach to the discretization of continuous quaternion Zernike moments. Our aim is to ensure simple and reversible computability, but achieve considerable reduction in potential computational inaccuracies at the same time. For this, we define a system of sampling points $(r_k,\theta_j)$, over which the integral discretization \eqref{eq:QZMappr} maintains advantageous theoretical properties. The idea behind our approach is motivated by the work \cite{schipp}.
+In this chapter we describe our proposed approach to the discretization of continuous quaternion Zernike moments. Our aim is to ensure simple and reversible computability, but achieve considerable reduction in potential computational inaccuracies at the same time. For this, we define a system of sampling points $(r_k,\theta_j)$, over which the integral discretization \eqref{eq:QZMappr} maintains advantageous theoretical properties. 
 
-Fix a positive integer $N$. Let us denote by $\rho_{k,N}$, $k=1,\ldots,N$ the roots of the N-th order Legendre polynomial \cite{Szego}. Notating the fundamental polynomials of Lagrange interpolation with respect to the roots $\rho_{k,N}$ as $\ell_{k,N}$, we define the constants
+We emphasize that for the system of Zernike functions, there is no known system of points providing a "natural" discretization and discrete orthogonality. The idea behind our approach is motivated by the work of Margit Pap and Ferenc Schipp \cite{schipp}, which is in fact the first example of a point system over which the discrete complex-valued Zernike functions are orthogonal. On the other hand, it is not "natural" in the sense that the number of nodes needed to achieve this is somewhat greater (in fact, almost twice as much) than what the order of functions would suggest.
+
+Formula \eqref{RJacobi} helps us understand the reason why a natural discretization is so difficult to find for Zernike functions: even though the azimuthal components could be discretized easily, it is not the case for the radial terms which are shifted Jacobi polynomials of \emph{varying} paramters. 
+
+Nonetheless, it is the same formula that provides an idea how to succeed: we combine the natural discretization of the azimuthal components with an orthogonality relation ensured by the Gaussian quadrature formula for the radial polynomials.
+
+For this, we shall define the suitable quadrature nodes and coefficients as the roots of Legendre polynomials and the corresponding Chrisfottel numbers. Fix a positive integer $N$. Let us denote by $\rho_{k,N}$, $k=1,\ldots,N$ the roots of the N-th order Legendre polynomial \cite{Szego}. Notating the fundamental polynomials of Lagrange interpolation with respect to the roots $\rho_{k,N}$ as $\ell_{k,N}$, we define the constants
 \[
 	\mathcal{A}_{k,N} = \int_{-1}^{1} \ell_{k,N}(x)\ dx, \qquad (k=1,\ldots,N).
 \]
