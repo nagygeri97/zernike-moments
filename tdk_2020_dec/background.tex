@@ -230,9 +230,9 @@ Analogously to the construction of translation invariant Zernike moments in the 
 
 For grayscale images the centroid can be defined as in \eqref{eq:centroid}. For RGB images, we need the common centroid of all three color channels. This can be calculated using zero-order and first-order geometric moments for each individual color channel, as described by \citeauthor{affine_color}~\cite{affine_color}:
 
-\begin{gather*}
+\begin{gather} \label{eq:common_centroid}
     \left\{\overline{x}, \overline{y}\right\} = \left\{\frac{M_{10}^R + M_{10}^G + M_{10}^B}{M_{00}^R + M_{00}^G + M_{00}^B}, \frac{M_{01}^R + M_{01}^G + M_{01}^B}{M_{00}^R + M_{00}^G + M_{00}^B} \right\},
-\end{gather*}
+\end{gather}
 where $M_{ij}^R, M_{ij}^G, M_{ij}^B$ denote the $M_{ij}$ geometric moments (defined in \eqref{eq:regular_moment}) for the red, green, and blue color channels respectively.
 
 
