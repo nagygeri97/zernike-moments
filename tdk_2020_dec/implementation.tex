@@ -170,7 +170,7 @@ Additionally, the values of the derivative $P'_n$ are needed at the point $x_k$.
 with the initial values of $P_{-1}(x) = P'_{-1}(x) = P'_0(x) = 0$ and $P_0(x) = 1$.
 
 \subsection{Image interpolation}
-After obtaining the discrete orthogonal point system the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.
+After obtaining the discrete orthogonal point system, the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.
 
 First, the image is linearly transformed onto the unit disk using the transformation shown on Figure~\ref{fig:transform2}, so that the the transformed image covers the entire unit disk. This transformation is used as opposed to the one on Figure~\ref{fig:transform1}, because the point system covers the entire unit disk, so the image also has to cover the whole disk.
 
@@ -206,10 +206,10 @@ First, the four pixels of the image that are closest to the given point $(x,y)$ 
 
 
 
-\paragraph{Much less points than the number of pixels.}
-If the number of points is far less than the number of pixels, then using bilinear interpolation many of the original pixel values would not be represented in the final approximate function values. Therefore, the following algorithm is used to approximate function values using discrete integration.
+\paragraph{Much fewer points than the number of pixels.}
+If the number of points is far below the number of pixels, then many of the original pixel values would not be represented in the final approximate function values when using bilinear interpolation. Therefore, the following algorithm is used to approximate function values using discrete integration.
 
-First, for each pixel in the original image, determine which point it falls closest to after the linear transformation. Then, for each point in the discrete orthogonal point system, calculate the average of the pixels that are closest to that point. This algorithm divides the unit disk into annular sections based on the proximity to the new points. This is shown on Figure~\ref{fig:interpolation_integral}.
+First, assign each pixel of the original image to the point which is the closest to it in the discrete orthogonal system. This results in a set of pixels assigned to each point. Then, for each point in the discrete orthogonal point system, calculate the average of this set of pixels. This algorithm divides the unit disk into annular sections based on proximity to the new points, meaning that the set of pixels belonging to a point form annular sections. This is shown on Figure~\ref{fig:interpolation_integral}.
 
 \begin{figure}[tb]
     \begin{subfigure}{.45\textwidth}
