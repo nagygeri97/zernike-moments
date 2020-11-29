@@ -18,7 +18,7 @@ def main():
 	# testImageReconstructionTf2()
 	# testImageReconstructionLegendre1()
 	# testImageReconstructionLegendre2()
-	# testImageReconstructionLegendreDiscOrth()
+	testImageReconstructionLegendreDiscOrth()
 	# testImageReconstructionFourierMonochrome()
 	# testImageReconstructionFourierColor()
 	# testImageReconstructionFourierOriginalMonochrome()
@@ -30,7 +30,7 @@ def main():
 	# testLegendreInvariance()
 
 	# RecognitionTests
-	runRecognitionTest()
+	# runRecognitionTest()
 
 	# NoiseGenerationTests
 	# addGaussianNoiseAndPrintImage()

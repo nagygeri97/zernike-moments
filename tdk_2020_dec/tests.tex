@@ -8,6 +8,8 @@ In total, four kinds of tests were conducted:
 	\item Template matching
 \end{itemize}
 
+Finally, the methods were compared with quaternion radial harmonic Fourier moments in terms of image reconstruction and image recognition capabilities.
+
 \section{Test images}\label{sec:test_images}
 The images for testing were acquired from multiple online image libraries. The Lenna and Pepper images~\cite{usc_sipi} (shown on Figure~\ref{fig:lena_pepper_original}) were used to test image reconstruction as well as to demonstrate the different point systems.
 
@@ -26,11 +28,11 @@ The images for testing were acquired from multiple online image libraries. The L
 	\label{fig:lena_pepper_original}
 \end{figure}
 
-For the image recognition tests, two sets of images were used. The first set consists of 14 images chosen from the Columbia Object Image Library (COIL-100)~\cite{coil}, shown on Figure~\ref{fig:coil_original}. These images are originally $128 \times 128$ pixels, but they were placed on a $204 \times 204$ black background so that the rotated, scaled and translated versions of the images stay completely within these dimensions. 
+For testing image recognition, two sets of images were used. The first set consists of 14 images chosen from the Columbia Object Image Library (COIL-100)~\cite{coil}, shown on Figure~\ref{fig:coil_original}. These images are originally $128 \times 128$ pixels, but they were placed on a $204 \times 204$ black background so that the rotated, scaled and translated versions of the images stay completely within these dimensions. 
 
 A set of 1008 rotated images was created by rotating each of the 14 images by a degree $\alpha\in\{0,5,10,\ldots,350,355\}$. Some examples of the extended and rotated images are shown on Figure~\ref{fig:coil_rot}.
 
-Another set of 1176 rotated, scaled and translated images was created by translating each image by -11 pixels in the $x$ direction and 9 pixels in the $y$ direction. Then the translated images were rotated by $\alpha \in \{0,30,60,\ldots,300,330\}$. Finally, each rotated and translated image was scaled by $\lambda \in \{0.5, 0.75, \ldots, 1.75, 2\}$. When either scaling or rotation required, bilinear interpolation was used.
+Another set of 1176 rotated, scaled and translated images was created by translating each image by -11 pixels in the $x$ direction and 9 pixels in the $y$ direction. Then the translated images were rotated by $\alpha \in \{0,30,60,\ldots,300,330\}$. Finally, each rotated and translated image was scaled by $\lambda \in \{0.5, 0.75, \ldots, 1.75, 2\}$. When either scaling or rotation required it, bilinear interpolation was used.
 Some examples of the RST transformed images are shown on Figure~\ref{fig:coil_rst}.
 
 \begin{figure}[tbp]
@@ -148,7 +150,7 @@ Some examples of the RST transformed images are shown on Figure~\ref{fig:coil_rs
 	\label{fig:coil_rst}
 \end{figure}
 
-Another set of 13 images was acquired from the Amsterdam Library of Object Images (ALOI)~\cite{aloi}. These are shown on Figure~\ref{fig:aloi_original}. Originally, these size of these images was $768 \times 576$ pixels, but the were downscaled to $96 \times 72$ and subsequently extended to $152 \times 128$ by placing the images on a black background. Similarly to the test sets created using the COIL-100 images, the ALOI images were also translated, rotated and scaled, yielding a set of 1092 RST transformed images. The parameters of the transformation were the same as for the COIL-100 images, except for the translation, where $\Delta x = 8$ and $\Delta y = 5$ was used.
+Another set of 13 images was acquired from the Amsterdam Library of Object Images (ALOI)~\cite{aloi}. These are shown on Figure~\ref{fig:aloi_original}. Originally, the size of these images was $768 \times 576$ pixels, but they were downscaled to $96 \times 72$ and subsequently extended to $152 \times 128$ by placing the images on a black background. Similarly to the test sets created using the COIL-100 images, the ALOI images were also translated, rotated and scaled, yielding a set of 1092 RST transformed images. The parameters of the transformation were the same as for the COIL-100 images, except for the translation, where $\Delta x = 8$ and $\Delta y = 5$ was used.
 
 \begin{figure}[tbp]
     \begin{subfigure}{80pt}
@@ -222,7 +224,7 @@ Another set of 13 images was acquired from the Amsterdam Library of Object Image
 \end{figure}
 
 \section{Invariance test}
-In order to test quaternion Zernike moment invariants with respect to rotation, scaling and translation, the QZMIs of order 1 to 4 were calculated for a given image and all of its RST transformations. Then, the modulus of these QZMIs was calculated, as well as the mean ($\mu$), standard deviation ($\sigma$) and $\frac{\sigma}{\mu}$ for the same moment of all transformed images.
+In order to test quaternion Zernike moment invariants with respect to rotation, scaling and translation, the QZMIs of order 1 to 4 were calculated for a given image and all of its (previously generated) RST transformations. Then, the modulus of these QZMIs was calculated, as well as the mean ($\mu$), standard deviation ($\sigma$) and $\frac{\sigma}{\mu}$ for the same moments of all transformed images.
 
 \begin{figure}[tbp]
 	\begin{subfigure}{0.4\textwidth}
@@ -260,7 +262,7 @@ In order to test quaternion Zernike moment invariants with respect to rotation, 
 \end{figure}
 
 \subsection{Results}
-The moduli of the QZMIs for the transformed images shown on Figure~\ref{fig:inv_img} is shown in Table~\ref{tab:inv_old} for the old method of discretization and in Table~\ref{tab:inv_new} for the new, proposed method of discretization. The coefficient of variation ($\frac{\sigma}{\mu}$) shows that using both methods, the moments are invariant to RST transformation. The only rows where $\frac{\sigma}{\mu}$ is higher are the ones where the modulus of the moment is very close to zero, and thus small numerical errors impact this number significantly. Comparing the two methods, the proposed one yields slightly lower values for the coefficient of variation for all moments.
+The moduli of the QZMIs for the transformed images on Figure~\ref{fig:inv_img} is shown in Table~\ref{tab:inv_old} for the old method of discretization and in Table~\ref{tab:inv_new} for the proposed method of discretization. The coefficient of variation ($\frac{\sigma}{\mu}$) shows that using both methods, the moments are invariant to RST transformation. The only rows where $\frac{\sigma}{\mu}$ is higher are the ones where the modulus of the moment is very close to zero, and thus small numerical errors impact this number significantly. Comparing the two methods, the proposed one yields slightly lower values for the coefficient of variation for all moments.
 
 \begin{table}
 	\centering
@@ -309,7 +311,7 @@ $|\overline{\Psi}_{4,4}^4|$ & 1.28e-8 & 1.52e-8 & 1.37e-8 & 1.56e-8 & 1.50e-8 & 
 \section{Image reconstruction}
 As described in Section~\ref{sec:qzm}, the quaternion Zernike moments of an image can be used to approximately reconstruct the original image using the formulas in \eqref{eq:qzm_reconstruction}. This reconstruction requires the computation of QZMs of up to a finite degree $M$.
 
-In order to reconstruct the discrete image, formula 
+In order to reconstruct the discrete image, the formula 
 $$
 f(r_{x,y},\theta_{x,y}) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r_{x,y})e^{\bm{\mu}m\theta_{x,y}}
 $$
@@ -320,19 +322,18 @@ To measure the error of the reconstruction the normalized mean squared error ($\
     \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}.
 \end{gather*}
 
-In the cases, where \textit{tf\textsubscript{2}} is used only the part of the image falling inside the unit circle is reconstructed and thus the mean squared error is calculated over only this part of the image.
+In the cases, where \textit{tf\textsubscript{2}} is used only the part of the image falling inside the unit circle is reconstructed and thus the mean squared error is calculated over this part of the image only.
 
-For the new method of discretization the number of points on the unit disk was chosen to be approximately the same as the number of pixels falling inside the inscribed circle of the image. 
+For the new method of discretization the number of points on the unit disk was chosen to be approximately the same as the number of pixels falling inside the inscribed circle of the image, or the minimum required to satisfy the discrete orthogonality relation (from Theorem~\ref{QZdisc-ortho}) if the number of pixels is too few. 
 
 \subsection{Results}
-Image reconstruction was performed for both the Lenna and the Pepper images~\cite{usc_sipi}, using image sizes ranging from $64\times 64$ up to $256 \times 256$. Depending on the size of the image, QZMs of up to degree 350 were used reconstruct the image. However, in the case of smaller images, for example a $64\times 64$ image, only QZMs of up to 100 degree could be used, as using higher degrees would result in trying to extract more information from the original image than there is information contained in the pixel values, thus increasing the error of reconstruction. This phenomenon is visible, for example on Figure~\ref{fig:reconstruction_new} for the $64 \times 64$ Lenna, M = 100 case.
+Image reconstruction was performed for both the Lenna and the Pepper images~\cite{usc_sipi}, using image sizes ranging from $64\times 64$ up to $256 \times 256$. QZMs of up to degree 350 were used to reconstruct the image. In the case of smaller images, for example a $64\times 64$ image, the reconstruction error of the conventional method starts to increase after QZMs with degree more than 100 are used, as using higher degrees results in trying to extract more information from the original image than there is information contained in the pixel values, thus increasing the error of reconstruction. Because of the interpolation used by the proposed method, this issue does not affect it. As long as the number of points $N$ in the discrete orthogonal system satisfies the constraints of Theorem~\ref{QZdisc-ortho}, the reconstruction error decreases as moments of higher degree are used.
 
-Figure~\ref{fig:reconstruction_old} shows some of the reconstructed images and their normalized mean squared error when using the old method of discretization, while Figure~\ref{fig:reconstruction_new} shows the same data using the new method.
+Figure~\ref{fig:reconstruction_old} shows some of the reconstructed images and their normalized mean squared error when using the old method of discretization. The previously mentioned phenomenon is visible on this figure, for example in the $M > 100$ cases for the $64 \times 64$ Lenna image.
+Figure~\ref{fig:reconstruction_new} shows the same data using the new method. In this case the reconstruction error is always smaller when more moments are used.
 
-Comparing the error of reconstruction between the two methods, using the discrete orthogonal point system provides much lower normalized mean squared errors for almost all levels of reconstruction. 
+Comparing the error of reconstruction between the two methods, using the discrete orthogonal point system provides much lower normalized mean squared errors for all levels of reconstruction. 
 Table~\ref{tab:epsilons} shows the comparison between the $\varepsilon^2$ values and the change in the error when using the proposed method instead of the old one. The decrease in the error of reconstruction is is significant for both low and high maximal degrees of QZMs. 
-
-Due to the lower number of points used by the second method (because of the different transformation of the image onto the unit disk) the previously described increase in reconstruction error occurs for lower $M$s than in the original method.
 
 \newcolumntype{Q}{>{\centering\arraybackslash} m{64pt} }
 \newcolumntype{q}{>{\centering\arraybackslash} m{50pt} }
@@ -349,15 +350,15 @@ M = 50 &
 M = 100 & 
 \includegraphics[width=64pt]{figures/reconstruction/lo64100.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128100.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256100.png} & \includegraphics[width=64pt]{figures/reconstruction/po256100.png}\\
 & 0.00468 & 0.00719 & 0.01341 & 0.01596\\
-M = 150 & & 
-\includegraphics[width=64pt]{figures/reconstruction/lo128150.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256150.png} & \includegraphics[width=64pt]{figures/reconstruction/po256150.png}\\
-& & 0.00388 & 0.00868 & 0.00885\\
-M = 250 & & & 
-\includegraphics[width=64pt]{figures/reconstruction/lo256250.png} & \includegraphics[width=64pt]{figures/reconstruction/po256250.png}\\
-& & & 0.00428 & 0.00378\\
-M = 350 & & & 
-\includegraphics[width=64pt]{figures/reconstruction/lo256350.png} & \includegraphics[width=64pt]{figures/reconstruction/po256350.png}\\
-& & & 0.00279 & 0.00253\\
+M = 150 &
+\includegraphics[width=64pt]{figures/reconstruction/lo64150.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128150.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256150.png} & \includegraphics[width=64pt]{figures/reconstruction/po256150.png}\\
+& 0.02076 & 0.00388 & 0.00868 & 0.00885\\
+M = 250 & 
+\includegraphics[width=64pt]{figures/reconstruction/lo64250.png} &\includegraphics[width=64pt]{figures/reconstruction/lo128250.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256250.png} & \includegraphics[width=64pt]{figures/reconstruction/po256250.png}\\
+& 0.57565 & 0.00823 & 0.00428 & 0.00378\\
+M = 350 &
+\includegraphics[width=64pt]{figures/reconstruction/lo64350.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128350.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256350.png} & \includegraphics[width=64pt]{figures/reconstruction/po256350.png}\\
+& 0.97677 & 0.02695 & 0.00279 & 0.00253\\
 & \\
 
 \end{tabular}
@@ -373,19 +374,19 @@ Original &
 \includegraphics[width=64pt]{figures/reconstruction/lo64.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256.png} & \includegraphics[width=64pt]{figures/reconstruction/po256.png}\\\hline
 M = 50 &
 \includegraphics[width=64pt]{figures/reconstruction/ln6450.png} & \includegraphics[width=64pt]{figures/reconstruction/ln12850.png} & \includegraphics[width=64pt]{figures/reconstruction/ln25650.png} & \includegraphics[width=64pt]{figures/reconstruction/pn25650.png}\\
-& 0.00380 & 0.00901 & 0.01611 & 0.01778\\
+& 0.00366 & 0.00901 & 0.01611 & 0.01778\\
 M = 100 & 
 \includegraphics[width=64pt]{figures/reconstruction/ln64100.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128100.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256100.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256100.png}\\
-& 0.01181 & 0.00246 & 0.00790 & 0.00681\\
-M = 150 & & 
-\includegraphics[width=64pt]{figures/reconstruction/ln128150.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256150.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256150.png}\\
-& & 0.00152 & 0.00463 & 0.00349\\
-M = 250 & & & 
-\includegraphics[width=64pt]{figures/reconstruction/ln256250.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256250.png}\\
-& & & 0.00190 & 0.00131\\
-M = 350 & & & 
-\includegraphics[width=64pt]{figures/reconstruction/ln256350.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256350.png}\\
-& & & 0.00238 & 0.00229\\
+& 0.00066 & 0.00238 & 0.00791 & 0.00682\\
+M = 150 &
+\includegraphics[width=64pt]{figures/reconstruction/ln64150.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128150.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256150.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256150.png}\\
+& 0.00027 & 0.00083 & 0.00461 & 0.00347\\
+M = 250 & 
+\includegraphics[width=64pt]{figures/reconstruction/ln64250.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128250.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256250.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256250.png}\\
+& 0.00011 & 0.00030 & 0.00164 & 0.00111\\
+M = 350 &
+\includegraphics[width=64pt]{figures/reconstruction/ln64350.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128350.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256350.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256350.png}\\
+& 0.00005 & 0.00013 & 0.00066 & 0.00048\\
 & \\
 
 \end{tabular}
@@ -398,18 +399,19 @@ M = 350 & & &
     \begin{tabular}{|c||c|c|c|c|c|}
         M & 50 & 100 & 150 & 250 & 350 \\ \hline
         old method $\varepsilon^2$ & 0.02659 & 0.01341 & 0.00868 & 0.00428 & 0.00279 \\ 
-        new method $\varepsilon^2$ & 0.01611 & 0.00790 & 0.00463 & 0.00190 & 0.00238 \\ \hline
-        change & -39.4\% & -41.1\% & -46.7\% & -55.6\% & -14.7\% \\
+        new method $\varepsilon^2$ & 0.01611 & 0.00789 & 0.00460 & 0.00164 & 0.00066 \\ \hline
+        change & -39.4\% & -41.1\% & -47.0\% & -61.7\% & -76.3\% \\
     \end{tabular}
     \caption{Comparison of the normalized mean squared errors between the two method, for the $256 \times 256$ Lenna image.}
     \label{tab:epsilons}
 \end{table}
 
 \section{Image recognition}
-In order to test image recognition capabilities, the COIL-100~\cite{coil} and ALOI~\cite{aloi} images and the RST transformed sets of images were used. The exact parameters for the transformations performed to obtain these sets of images is described in Section~\ref{sec:test_images}.
-The goal of the image recognition test is to see what percentage of the transformed images can each method correctly identify by comparing their moment invariants to the ones of the original, non-transformed images.
+In order to test image recognition capabilities, the COIL-100~\cite{coil} and ALOI~\cite{aloi} images and the respective RST transformed sets of images were used. The exact parameters for the transformations performed to obtain these sets of images is described in Section~\ref{sec:test_images}.
 
-To recognize an image, first the QZMIs have to be calculated. In this thesis, we used QZMIs of up to degree 4, but not all possible QZMIs were used. The selected QZMIs were: $\overline{\Psi}_{1,1}^1, \overline{\Psi}_{2,0}^0, \overline{\Psi}_{2,2}^2, \overline{\Psi}_{3,1}^1, \overline{\Psi}_{3,3}^3, \overline{\Psi}_{4,0}^0, \overline{\Psi}_{4,2}^2, \overline{\Psi}_{4,4}^4$. These 8 quaternion valued invariants contain a total of 20 real valued invariants, since while each quaternion could provide of 4 real invariants, the QZMIs $\overline{\Psi}_{n,k}^m$ with $n = k$ necessarily have $\ip{\overline{\Psi}_{n,n}^m} = 0$.
+During the image recognition test, the goal is to correctly identify the original (non-transformed) image based on the invariant moments of a transformed image. For each method we calculate the percentage of correctly recognized images.
+
+To recognize an image, first the QZMIs have to be calculated. In this thesis, we used QZMIs of up to degree 4, but not all possible QZMIs were used. The selected QZMIs were: $\overline{\Psi}_{1,1}^1, \overline{\Psi}_{2,0}^0, \overline{\Psi}_{2,2}^2, \overline{\Psi}_{3,1}^1, \overline{\Psi}_{3,3}^3, \overline{\Psi}_{4,0}^0, \overline{\Psi}_{4,2}^2, \overline{\Psi}_{4,4}^4$. These 8 quaternion valued invariants contain a total of 20 real valued invariants, since while each quaternion could provide 4 real invariants, the QZMIs $\overline{\Psi}_{n,k}^m$ with $n = k$ necessarily have $\ip{\overline{\Psi}_{n,n}^m} = 0$.
 This follows directly from the definition (see Section~\ref{sec:invariance}): 
 \begin{gather*}
     \begin{split}
@@ -417,7 +419,7 @@ This follows directly from the definition (see Section~\ref{sec:invariance}):
     \end{split}
 \end{gather*}
 Thus from the selected 8 QZMIs four provide a single real-valued invariant and another four provide 4 real-valued invariants. These 20 real invariants are then used to construct a vector $I$ of length 20.
-This vector is normalized using the method presented by \citeauthor{affine_color}~\cite{affine_color}.
+This vector is normalized using the method presented by \citeauthor{affine_color}~\cite{affine_color}:
 $$
 I_k = sgn(I_k)\left|I_k\right|^\frac{1}{2} \;\;\;\; (k = 1,2,\ldots,20).
 $$
@@ -425,8 +427,8 @@ $$
 This invariant vector is calculated for an RST transformed image and all of the original images. Then the minimum Euclidean distance is used to choose from the original images. The recognition algorithm classifies the transformed image as this chosen image.
 
 \subsection{Noise generation}
-To test robustness against noise the tests were also performed with different levels of real-valued Gaussian noise added to all images. The parameters of the Gaussian noise were as follows: the mean of the distribution was always at 0, while standard deviation ($\sigma$) values from 1 up to 60 were used for the QZMIs and standard deviation ranging from 40 to 120 was used to test the QZMRIs. QZMRIs are more robust against noise than QZMIs, so higher noise values could be used.
-Instead of using Gaussian noise, for some test cases salt-and-pepper noise was added with densities ($p$) ranging from 0.2\% up to 15\% for the QZMIs and ranging from 5\% to 30\% for the QZMRIs. Some examples for both types of noise are shown on Figure~\ref{fig:noise}.
+To test robustness against noise the tests were also performed with different levels of real-valued Gaussian noise added to all images. The parameters of the Gaussian noise were as follows: the mean of the distribution was always at 0, while standard deviation ($\sigma$) values from 1 up to 60 were used for the QZMIs and standard deviation ranging from 40 to 120 was used to test the (rotation invariant) QZMRIs. QZMRIs are more robust against noise than QZMIs, so higher noise values could be used.
+Apart from Gaussian noise, robustness against salt-and-pepper noise was also tested. Salt-and-pepper noise was added with densities ($p$) ranging from 0.2\% up to 15\% for the QZMIs and ranging from 5\% to 30\% for the QZMRIs. Some examples of both types of noise are shown on Figure~\ref{fig:noise}.
 
 
 The tests were performed directly using the raw, noisy images, without any kind of filtering applied to the image. The goal was to see the robustness of these methods against noise. 
@@ -529,7 +531,7 @@ When using only the minimal possible number of points in the new method, for all
 
 The same observation can be made about the QZMRIs used to recognize the rotated images. Even for extremely high noise values, the recognition rate of the new method remains well above 90\%. The results for the QZMRIs are shown in Table~\ref{tab:recognition_rot}.
 
-The reason for such differences between the old and the new methods is that the old method uses a non-orthogonal discretization, which means some redundancy occurs among the QZMs. This leads to the value of the added increasing when these QZMs are multiplied to construct the QZMIs. On the other hand, the new method uses a discrete orthogonal system, which means no redundancy between the QZMs and thus it more robust against Gaussian noise.
+The reason for such differences between the old and the new methods is that the old method uses a non-orthogonal discretization, which means some redundancy occurs among the QZMs. This leads to the value of the added noise (numerical errors) increasing when these QZMs are multiplied to construct the QZMIs. On the other hand, the new method uses a discrete orthogonal system, which means no redundancy between the QZMs and thus it more robust against Gaussian noise.
 
 When salt-and-pepper noise is added to the images, the recognition capabilities of both methods are high, but no clear difference is visible between them. Even using the minimal possible number of points in the new method, the recognition rates are almost the same as with the other two methods. 
 These same observation can be made about the recognition capabilities of the QZMRIs.
@@ -590,7 +592,6 @@ The reason for no significant difference between the methods in the case of salt
     \caption{Percentage of images recognized correctly by QZMIs in the case of using the RST transformed image sets with added salt-and-pepper noise.}
     \label{tab:recognition_salt}
 \end{table}
-% TODO tablazatok kitolteni, futnak a tesztek
 
 \section{Template matching}
 This final test aims to present some possible application of the pattern matching capabilities of the QZMIs. Some pictures were taken using a the camera on a Xiaomi Mi 9 smartphone with autofocus enabled. The images were taken of the same scene but with different focus and different rotation of the camera.
@@ -619,3 +620,10 @@ Both methods managed to correctly find 8 out of the 9 templates on the other ima
     \caption{The original image with the templates and the result of both methods.}
     \label{fig:template_match}
 \end{figure}
+
+
+\section{Comparisons with QRHFMs}
+% TODO
+\subsection{Image reconstruction}
+
+\subsection{Image recognition}
