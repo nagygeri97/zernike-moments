@@ -1,5 +1,5 @@
-This chapter contains a summary of the concepts, definitions and results this thesis is based on. These include the definition and relevance of image moments (for both grayscale and color images), with special emphasis on Zernike moments. Moment invariants with respect to image rotation, translation and scaling are introduced.
-Moreover, the algebra of quaternions is also introduced and is used as a tool to generalize grayscale image moments to color images.
+This chapter contains a summary of the concepts, definitions and results this thesis is based on. These include the definition and relevance of image moments (for both grayscale and color images), with special emphasis on Zernike moments. Moment invariants with respect to image rotation, translation and scaling are reviewed.
+Moreover, the algebra of quaternions is also introduced as a tool to generalize grayscale image moments to color images.
 Finally some examples of the state-of-the-art applications in image analysis are presented.
 
 \section{Image moments for grayscale images}\label{sec:grayscale}
@@ -21,21 +21,21 @@ In more general terms, image moments with order $p$ and repetition $q$ can be de
 \iint\limits_A H_{pq}(x,y)f(x,y)\ dx\ dy,
 \end{equation} where $A$ is the region of the plane, which contains the image (the domain of $f$).
 
-By choosing the set of basis functions appropriately, many different kinds of image moments can be defined. Each of these moments has applications that utilize certain special properties of the basis functions. For example, some of these moments are Fourier-Mellin moments~\cite{qfmm}, Chebyshev-Fourier moments~\cite{chebyshev-fourier}, radial harmonic Fourier moments~\cite{fourier}, and Zernike moments~\cite{zernike_moments}. The latter of these is defined in detail later in this section.
+By choosing the set of basis functions appropriately, many further kinds of image moments can be defined. Each of these moments has applications that utilize certain special properties of the basis functions. Some examples of these moments are Fourier-Mellin moments~\cite{qfmm}, Chebyshev-Fourier moments~\cite{chebyshev-fourier}, radial harmonic Fourier moments~\cite{fourier}, and Zernike moments~\cite{zernike_moments}. The latter is described in detail later in this section.
 
 \subsection{Invariance properties}
-Certain image moments, or some combination of moments of different orders can be invariant with respect to image transformations, such as rotation, scaling, and translation (RST transformations).
+Certain image moments, or some (e.g. linear) combinations of moments of different orders can be invariant with respect to image transformations, such as rotation, scaling, and translation (RST transformations).
 
-\paragraph{Rotation invariance.} To define what is meant by rotation invariance, it is useful to consider the image function $f$ defined in polar coordinates. Then the image $f_{r}$, rotated by some degree $\alpha$ can be written as $f_{r}(r,\theta) = f(r,\theta - \alpha)$. A moment invariant achieves rotation invariance, when the moments of $f$ and $f_{r}$ are the same for all possible values of $\alpha$.   
+\paragraph{Rotation invariance.} To define what is meant by rotation invariance, it is useful to consider the image function $f$ over polar variables $r$ and $\theta$. Then the image $f_{\circ}$, rotated by some degree $\alpha$ can be written as $f_{\circ}(r,\theta) = f(r,\theta - \alpha)$. A moment invariant achieves rotation invariance, when the moments of $f$ and $f_{\circ}$ are the same for all possible values of $\alpha$.   
 
 \paragraph{Scaling invariance.} The scaled image $f_{s}$ can be defined as $f_{s}(r, \theta) = f(r / \lambda, \theta)$ for some scaling factor $\lambda > 0$. A moment invariant is said to achieve scaling invariance, when the moments for $f$ and $f_{s}$ are identical. In practice, this means that scaling the image, such that the scaled image is still within the region of the plane over which the moments are defined, does not change the values of the moment invariants.
 
 \paragraph{Translation invariance.} To define translation invariance, it is useful to consider the image in Cartesian coordinates. The image translated by $(x_0, y_0)$ is defined as $f_{t}(x,y) = f(x - x_0, y - y_0)$. Again, similarly to the other types of invariance, a moment invariant is said to be translation invariant if its values for $f$ and $f_{t}$ are the same. Practically, this means that however the image is translated on the plane, as long as it is within the region of the plane over which the moments are defined, the moment invariant values do not change.
 
-\paragraph{RST invariance.} A moment invariant is called RST invariant if it satisfies the criteria for all three previously described kinds of invariance at the same time. 
+\paragraph{RST invariance.} A moment invariant is called RST invariant if it satisfies the criteria for all three previous invariances at the same time. 
 
 
-Translation invariance is generally the easiest to achieve, as translating the image such that the centroid falls on the origin neutralizes any prior translation. The other two kinds of invariance require some special properties of the basis function set or some special construction and combination of the moments.
+Translation invariance is generally considered the easiest to achieve, as translating the image such that the centroid falls on the origin neutralizes any prior translation. Also, certain types of image moments maintain natural invariances to translations when evaluated over the periodic extension of image data. The other two kinds of invariance require some more special properties of the basis function set or some specific construction and combination of the moments.
 
 
 The exact construction of RST invariant moments for Zernike moments is presented in detail in Section~\ref{sec:qzm}
@@ -101,15 +101,15 @@ To calculate rotation invariant features from Zernike moments, first consider th
 This means that the modulus Zernike moments is the same regardless of how the image is rotated, thus $|Z_{n,m}(f)|$ are rotation invariant features~\cite{zernike_moments}.
 
 
-Scaling invariance is discussed in detail in Section~\ref{sec:qzm}, for quaternion Zernike moments.
+Scaling invariance, as well as an extended rotation invariance is discussed in detail in Section~\ref{sec:qzm}, for quaternion Zernike moments.
 
 \section{Image moments for multichannel, color images}
 The image moments in Section~\ref{sec:grayscale} are only defined for single-channel, grayscale images. Extending these signal and image processing techniques efficiently to multichannel color images is an important and generally unresolved problem. This section introduces some conventional approaches to generalize the grayscale methods to RGB images. Later, the algebra of quaternions is also presented, and using this algebra, quaternion moments are introduced, specifically quaternion Zernike moments and their invariant properties.  
 
 \subsection{Conventional techniques}
-The two main approaches used both rely on using the grayscale method in some form. One method is to use grayscale conversion to convert the RGB image to a single-channel grayscale image and use the grayscale method on this converted image. The drawback of this method is that the color information contained in multiple channels is lost. Thus, for example, this method cannot distinguish between a red and a blue object.
+Conventional approaches rely on direct utilization of grayscale methods in some form. One such way is to use grayscale conversion to convert the RGB image to a single-channel grayscale image and use the grayscale method on this converted image. The drawback of this method is that the color information contained in multiple channels is lost. Thus, for example, this method cannot distinguish between a red and a blue object.
 
-The other main conventional method utilizes RGB-decomposition, whereby the grayscale (single-channel) method can be used on each of the individual color channels~\cite{affine_color}. This approach does not lose color information, but any relationship between the color channels cannot be utilized by the method.
+The other notable conventional method utilizes RGB-decomposition, whereby grayscale (single-channel) techniques can be used on each of the individual color channels~\cite{affine_color}. This approach does not lose color information, but any relationship between the color channels cannot be utilized by the method.
 
 
 \subsection{Algebra of quaternions}
@@ -213,7 +213,7 @@ Because of this, in this thesis only the right-side QZMs will be studied.
 \citeauthor{qzmi}~\cite{qzm, qzmi} proposed the constructions described in this section in order to create rotation, scaling and translation invariant moment invariants using the quaternion Zernike moments.
 
 \paragraph{Rotation invariance.}
-In order to achieve rotation invariance consider the image rotated by some degree $\alpha$: $f_{r}(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f_{r}) = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f_{r}) = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. 
+In order to achieve rotation invariance consider the image rotated by some degree $\alpha$: $f_{\circ}(r,\theta) = f(r, \theta - \alpha)$. \citeauthor{qzmi}~\cite{qzmi} proved that for the rotated image $Z_{n,m}^R(f_{\circ}) = Z_{n,m}^R(f)e^{-\bm{\mu}m\theta}$ and $Z_{n,m}^L(f_{\circ}) = e^{-\bm{\mu}m\theta}Z_{n,m}^L(f)$. 
 
 
 Similarly to the complex-valued case, the modulus $|Z_{n,m}^R(f)|$ can be used to achieve rotation invariance~\cite{qzm}, but this provides only one real-valued invariant, whereas the following construction can provide quaternion-valued invariants. 
@@ -221,7 +221,7 @@ Similarly to the complex-valued case, the modulus $|Z_{n,m}^R(f)|$ can be used t
 
 Based on the properties of the QZMs of a rotated image, it follows that the quaternion defined as
 $$\Phi_{n,k}^m(f) = Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*$$
-is invariant under rotation, meaning that $\Phi_{n,k}^m(f) = \Phi_{n,k}^m(f_{r})$.
+is invariant under rotation, meaning that $\Phi_{n,k}^m(f) = \Phi_{n,k}^m(f_{\circ})$.
 From now on in this thesis, this invariant will be referred to as a quaternion Zernike moment rotation invariant (QZMRI).
 
 \paragraph{Translation invariance.}
@@ -457,6 +457,27 @@ This lack of discrete orthogonality results in poor performance of the methods, 
 
 A method for the discretization of the quaternion-valued Zernike functions, providing discrete orthogonality is proposed in Chapter~\ref{sec:maths}.
 
+
+\subsection{Other discretization techniques}
+The "natural" method of discretization (as described in the case of QZMs) proved to be susceptible to inaccuracies of both geometric and numeric nature when applied to grayscale images. \citeauthor{LiaoPawlak} described these issues in the case of the conventional Zernike moments~\cite{LiaoPawlak,PawlakLiao}. These problems are inherited by the quaternion generalizations as well. 
+
+
+Later, \citeauthor{Xin}~\cite{Xin} proposed a more accurate computational technique, where the unit disk $\D$ is partitioned into polar sector of approximately equal areas. The original pixels are transformed to the centroids of these sectors via cubic interpolation. The weights for the discretization can be computed by integrating the $\phi_{n,m}$ basis functions over the respective polar sectors.
+
+
+The same idea, adapted to quaternion-type moments for any aforementioned radial system could substantially improve the performance of tasks like image reconstruction, as well as recognition after RST transformations and addition of different kinds of noise. The reason for this is the improved accuracy gained for the computation of respective moments and invariants. Examples of this technique applied for color images include the papers of \citeauthor{HosnyLegendre} for Legendre \cite{HosnyLegendre} and Chebyshev \cite{HosnyChebyshev} radial systems.
+
+
+A significant drawback of this approach is that the cubic interpolation used for coordinate transformation is irreversible. This means that in order to reconstruct the original image some other transformation has to be used. This additional transformation can further introduce error during image reconstruction. 
+To circumvent this issue, in previous works \cite{LiaoPawlak,PawlakLiao,Xin,HosnyLegendre,HosnyChebyshev}, the error of reconstruction was measured for the transformed image and its reconstructions on the unit disk $\D$ only. 
+
+
+Another, although minor issue is the natural smoothing provided by the cubic interpolation, which unintentionally improves the obtained results for experiments on noisy images by filtering some of the noise. This is a sometimes unwanted side effect, which can distort measurements of the performance of the moments themselves. To ensure fair comparisons with the previously introduced "natural" transformations, linear interpolation should be used, ensuring invertible coordinate transformations, and also excluding unwanted side effects.
+
+
+Finally, the results of \citeauthor{WangAcc} \cite{WangAcc} and \citeauthor{LiuAcc} \cite{LiuAcc} for radial harmonic Fourier moments (as described previously) are some of the recent advances in the study of quaternion moments, introducing a novel coordinate transformation, which improves accuracy for this specific function system while maintaining fast computation times, without utilizing cubic interpolation at all. These improvements stem from the discrete orthogonality provided by the novel coordinate transformation, with respect to the specific basis functions.
+
+
 \subsection{Discretization of QRHFMs}
 \citeauthor{LiuAcc}~\cite{LiuAcc} defined a point system for the discretization of quaternion radial harmonic Fourier moments, which consists of equally spaced radii and uniformly distributed points along these radii:
 \begin{gather*}
@@ -477,24 +498,6 @@ Using this system of points for the discretization of the integrals in \eqref{eq
 
 The basis functions $H_{n,m}$ satisfy the discrete orthogonality relation with this method of discretization, thus no additional error is introduced by the discretization.
 
-\subsection{Other discretization methods}
-The "natural" method of discretization (as described in the case of QZMs) proved to be susceptible to inaccuracies of both geometric and numeric nature when applied to grayscale images. \citeauthor{LiaoPawlak} described these issues in the case of the conventional Zernike moments~\cite{LiaoPawlak,PawlakLiao}. These problems are inherited by the quaternion generalizations as well. 
-
-
-Later, \citeauthor{Xin}~\cite{Xin} proposed a more accurate computational technique, where the unit disk $\D$ is partitioned into polar sector of approximately equal areas. The original pixels are transformed to the centroids of these sectors via cubic interpolation. The weights for the discretization can be computed by integrating the $\phi_{n,m}$ basis functions over the respective polar sectors.
-
-
-The same idea, adapted to quaternion-type moments for any aforementioned radial system could substantially improve the performance of tasks like image reconstruction, as well as recognition after RST transformations and addition of different kinds of noise. The reason for this is the improved accuracy gained for the computation of respective moments and invariants. Examples of this technique applied for color images include the papers of \citeauthor{HosnyLegendre} for Legendre \cite{HosnyLegendre} and Chebyshev \cite{HosnyChebyshev} radial systems.
-
-
-A significant drawback of this approach is that the cubic interpolation used for coordinate transformation is irreversible. This means that in order to reconstruct the original image some other transformation has to be used. This additional transformation can further introduce error during image reconstruction. 
-To circumvent this issue, in previous works \cite{LiaoPawlak,PawlakLiao,Xin,HosnyLegendre,HosnyChebyshev}, the error of reconstruction was measured for the transformed image and its reconstructions on the unit disk $\D$ only. 
-
-
-Another, although minor issue is the natural smoothing provided by the cubic interpolation, which unintentionally improves the obtained results for experiments on noisy images by filtering some of the noise. This is a sometimes unwanted side effect, which can distort measurements of the performance of the moments themselves. To ensure fair comparisons with the previously introduced "natural" transformations, linear interpolation should be used, ensuring invertible coordinate transformations, and also excluding unwanted side effects.
-
-
-Finally, the results of \citeauthor{WangAcc} \cite{WangAcc} and \citeauthor{LiuAcc} \cite{LiuAcc} for radial harmonic Fourier moments (as described previously) are some of the recent advances in the study of quaternion moments, introducing a novel coordinate transformation, which improves accuracy for this specific function system while maintaining fast computation times, without utilizing cubic interpolation at all. These improvements stem from the discrete orthogonality provided by the novel coordinate transformation, with respect to the specific basis functions.
 
 \section{Applications}
 In this section, we list some practical applications of image moments and moment invariants, with special attention to Zernike moments.
