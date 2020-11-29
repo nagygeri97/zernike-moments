@@ -95,14 +95,14 @@ Also, there is no need to calculate the Zernike moments for $m < 0$ values, as t
 
 \subsection{Quaternion Zernike moments}
 The class \texttt{ZernikeMomentsColor} calculates the quaternion Zernike moments of an RGB image. First, the conventional Zernike moments for each of the three color channels are calculated, then the relationship between QZMs and Zernike moments is applied to construct the quaternions~\cite{qzmi}:
-\begin{gather*}
+\begin{gather}
     \begin{split}
         Z_{n,m}^R(f) = &-\frac{1}{\sqrt{3}}\left( \ip(Z_{n,m}(f_R)) + \ip(Z_{n,m}(f_G)) + \ip(Z_{n,m}(f_B)) \right)\\
         &+\left[\rp(Z_{n,m}(f_R)) + \frac{1}{\sqrt{3}}\left(\ip(Z_{n,m}(f_G)) - \ip(Z_{n,m}(f_B))\right)\right]\bm{i}\\
         &+\left[\rp(Z_{n,m}(f_G)) + \frac{1}{\sqrt{3}}\left(\ip(Z_{n,m}(f_B)) - \ip(Z_{n,m}(f_R))\right)\right]\bm{j}\\
         &+\left[\rp(Z_{n,m}(f_B)) + \frac{1}{\sqrt{3}}\left(\ip(Z_{n,m}(f_R)) - \ip(Z_{n,m}(f_G))\right)\right]\bm{k},\\
-    \end{split}
-\end{gather*}
+    \end{split} \label{eq:QZM_ZM}
+\end{gather}
 where $f$ is an RGB image, $f_R, f_G, f_B$ are the red, green and blue color channels respectively and $Z_{n,m}^R$ denote the right-side quaternion Zernike moments, while $Z_{n,n}$ denote the conventional Zernike moments. 
 
 Again, only the QZMs $Z_{n,m}^R$ ($m \geq 0$) are calculated, because for $m < 0$ the $Z_{n,m}^R(f) = Z_{n,-m}^R(f)^{*}$ equality can be used.
@@ -117,6 +117,15 @@ To achieve translation invariance, the common centroid (introduced in \eqref{eq:
 \end{gather*}
 where $f_R, f_G, f_B$ are the grayscale images corresponding to the red, green and blue color channels respectively, and $M_{10}, M_{01}, M_{00}$ are the regular image moments introduced in~\eqref{eq:regular_moment}.
 The original image $f$ is then translated in image coordinates such that the origin falls on the common centroid $\{x_c,y_c\}$, and later on scaling and rotation invariants are calculated based on this translated image.
+
+
+\subsection{Quaternion radial harmonic Fourier moments}
+QRHFMs can be calculated using the conventional radial harmonic Fourier moments. This is achieved using a similar formula to the one in \eqref{eq:QZM_ZM}.
+
+As described in Section~\ref{sec:invariance}, rotation invariants can be constructed by taking modulus of each moment (as used by \citeauthor{LiuAcc}~\cite{LiuAcc}).
+However, in order to ensure fair comparison between the capabilities of QZMs and QRHFMs, we construct rotation invariants in a similar way to the construction in \eqref{eq:rot_inv} for QZMs.
+
+By calculating the product of left- and right-side QRHFMs we get quaternion-valued invariants instead of real-valued invariants. This construction provides rotation invariance, while ensuring that any difference in the capabilities of the methods does not originate from the difference in the construction of the invariants.
 
 
 \section{New image transformation}\label{sec:new_trans}
@@ -169,14 +178,7 @@ Additionally, the values of the derivative $P'_n$ are needed at the point $x_k$.
 \end{gather*}
 with the initial values of $P_{-1}(x) = P'_{-1}(x) = P'_0(x) = 0$ and $P_0(x) = 1$.
 
-\subsection{Image interpolation}
-After obtaining the discrete orthogonal point system, the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.
-
-First, the image is linearly transformed onto the unit disk using the transformation shown on Figure~\ref{fig:transform2}, so that the the transformed image covers the entire unit disk. This transformation is used as opposed to the one on Figure~\ref{fig:transform1}, because the point system covers the entire unit disk, so the image also has to cover the whole disk.
-
-There are two ways to approximate the values at each point, depending on the number of points in the discrete orthogonal point system.
-
-\begin{figure}[tb]
+\begin{figure}[b]
     \centering
     \begin{tikzpicture}[thick,scale=1.1, every node/.style={transform shape}]
         \draw[thick,dashed] (-2,2) -- (1,2);
@@ -199,17 +201,18 @@ There are two ways to approximate the values at each point, depending on the num
     \label{fig:bilinear}
 \end{figure}
 
+\subsection{Image interpolation}
+After obtaining the discrete orthogonal point system, the values of the image function have to be approximated at each point, because the original pixel values do not fall exactly on the new points. Now we describe some reasonable ways of resampling the image data to fit these new points.
+
+First, the image is linearly transformed onto the unit disk using the transformation shown on Figure~\ref{fig:transform2}, so that the the transformed image covers the entire unit disk. This transformation is used as opposed to the one on Figure~\ref{fig:transform1}, because the point system covers the entire unit disk, so the image also has to cover the whole disk.
+
+There are two ways to approximate the values at each point, depending on the number of points in the discrete orthogonal point system.
+
 \paragraph{Approximately the same number of points as pixels.}
 If the number of points is approximately the same as the number of pixels in the image, then bilinear interpolation can be used for each point.
 
 First, the four pixels of the image that are closest to the given point $(x,y)$ are determined. These four points form a square. Then, the weighted average of these points is calculated along the $x$ axis, giving approximate function values at two points, which only differ in their $y$ coordinate. Finally, the weighted average of the function values at these points is calculated to get the approximation of $f(x,y)$. The points involved in this interpolation are shown on Figure~\ref{fig:bilinear}.
 
-
-
-\paragraph{Much fewer points than the number of pixels.}
-If the number of points is far below the number of pixels, then many of the original pixel values would not be represented in the final approximate function values when using bilinear interpolation. Therefore, the following algorithm is used to approximate function values using discrete integration.
-
-First, assign each pixel of the original image to the point which is the closest to it in the discrete orthogonal system. This results in a set of pixels assigned to each point. Then, for each point in the discrete orthogonal point system, calculate the average of this set of pixels. This algorithm divides the unit disk into annular sections based on proximity to the new points, meaning that the set of pixels belonging to a point form annular sections. This is shown on Figure~\ref{fig:interpolation_integral}.
 
 \begin{figure}[tb]
     \begin{subfigure}{.45\textwidth}
@@ -254,25 +257,24 @@ First, assign each pixel of the original image to the point which is the closest
     \label{fig:interpolation_integral}
 \end{figure}
 
-The comparison between one of the original transformations and the two methods for approximating function values is shown on Figure~\ref{fig:pepper_trans} on the peppers image from the USC-SIPI Image Database~\cite{usc_sipi}.
-
-\begin{figure}
-    \begin{subfigure}{.49\textwidth}
+\begin{figure}[tbh]
+    \centering
+    \begin{subfigure}{.4\textwidth}
         \centering
     \includegraphics[width=\textwidth]{figures/pepper_color_256.png}
     \caption{Original image}
     \end{subfigure}
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.4\textwidth}
         \centering
     \includegraphics[width=\textwidth]{figures/pepper_square.png}
     \caption{Original transformation}
     \end{subfigure}
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.4\textwidth}
         \centering
     \includegraphics[width=\textwidth]{figures/pepper_bilinear.png}
     \caption{Bilinear interpolation}
     \end{subfigure}
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.4\textwidth}
         \centering
     \includegraphics[width=\textwidth]{figures/pepper_integral.png}
     \caption{Interpolation by integrals}
@@ -280,3 +282,10 @@ The comparison between one of the original transformations and the two methods f
     \caption{Different transformations with different interpolation methods of the peppers image.}
     \label{fig:pepper_trans}
 \end{figure}
+
+\paragraph{Much fewer points than the number of pixels.}
+If the number of points is far below the number of pixels, then many of the original pixel values would not be represented in the final approximate function values when using bilinear interpolation. Therefore, the following algorithm is used to approximate function values using discrete integration.
+
+First, assign each pixel of the original image to the point which is the closest to it in the discrete orthogonal system. This results in a set of pixels assigned to each point. Then, for each point in the discrete orthogonal point system, calculate the average of this set of pixels. This algorithm divides the unit disk into annular sections based on proximity to the new points, meaning that the set of pixels belonging to a point form annular sections. This is shown on Figure~\ref{fig:interpolation_integral}.
+
+The comparison between one of the original transformations and the two methods for approximating function values is shown on Figure~\ref{fig:pepper_trans} on the peppers image from the USC-SIPI Image Database~\cite{usc_sipi}.
