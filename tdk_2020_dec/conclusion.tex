@@ -18,7 +18,7 @@ Finally, the proposed method was compared with a state-of-the-art method relying
 \section{Future possibilities}
 One possibility for future work is to employ the techniques described in this thesis in some applications, which currently use other Zernike moment based methods.
 
-In the proposed discretization, a more efficient, FFT-based method for the computation of moments up to some given degree could be constructed. This would provide a huge boost to the speed of image decomposition and reconstruction.
+In the proposed discretization, a more efficient, FFT-based method for the computation of moments up to some given degree could be constructed. This would provide a huge boost to the speed of image decomposition and reconstruction. Fast computation can also be achieved by using a GPU implementation of the method, since the computation of moments can be done in parallel, and the transformation to the new point system can be done efficiently using a sampler.
 
 It is also possible to utilize the techniques described in this thesis to try and improve other quaternion moment invariant based methods, e.g. the ones presented in works \cite{chebyshev-fourier}, \cite{Yang,Wang,Singh} and \cite{HosnyLegendre,HosnyChebyshev,WangAcc,LiuAcc}. 
 

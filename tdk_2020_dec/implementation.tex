@@ -28,14 +28,14 @@ The relationships between these classes are shown on Figure~\ref{fig:classes}, a
 Since the work presented in this thesis involves changing the way an image is transformed from image coordinates to polar coordinates inside the unit circle, the classes were made modular with respect to the transformation used. This makes it easy to create and test a new image transformation function with the interface expected by the calculating classes.
 
 \subsection{Radial polynomials}
-To calculate the value of all $R_{n,m}$ radial polynomials up to some maximal degree $P$ at a point $r \in [0,1]$, the modified Kintner's method was used, as described in~\cite{kintner}. This recursive algorithm computes the value of $R_{n,m}(r)$ for all $0 \leq |m| \leq n \leq P$, ($n - |m|$ is even) with complexity $\mathcal{O}(P^2)$. Kintner's method is ideal for the precomputation of all radial polynomial values up to a maximum degree.
+To calculate the value of all $R_{n,m}$ radial polynomials up to some maximal degree $P$ at a point $r \in [0,1]$, the modified Kintner's method was used, as described in~\cite{kintner}. This recursive algorithm computes the value of $R_{n,m}(r)$ for all $0 \leq |m| \leq n \leq P$, ($n - |m|$ is even) with complexity $\mathcal{O}(P^2)$. Note that Kintner's method is ideal for the precomputation of all radial polynomial values up to a maximum degree.
 
 
-The modified Kintner's method utilized the recurrence relation
+The modified Kintner's method utilizes the recurrence relation
 \begin{gather*}
     R_{n,m}(r) =  \frac{(K_2r^2 + K_3)R_{n-2,m}(r) + K_4R_{n-4,m}(r)}{K_1},
 \end{gather*}
-where $n \neq m$ and $n - m \neq 2$, and the $K_i, \ i = 1,2,3,4$ coefficients are defined as
+where $n \neq m$ and $n - m \neq 2$, and the coefficients $K_i, \ i = 1,2,3,4$ are defined as
 \begin{gather*}
     \begin{split}
         K_1 &= \frac{(n + m)(n - m)(n - 2)}{2}\\
@@ -89,7 +89,7 @@ For the original linear transformation of the image onto the unit disk, this giv
 \end{gather*}
 where $0\leq |m| \leq n \leq P$, $n - |m|$ is even, $(r_{x,y},\theta_{x,y})$ are the polar form of the $(x,y)$ coordinates transformed to the unit disk, $\lambda$ is the scaling parameter also given by the transformation (as described in Section~\ref{sec:discretization}) and $f$ is the real-valued, grayscale image.
 
-By precomputing the sine and cosine values for all possible combinations of the values of $m$ and $\theta_{x,y}$, as well as precomputing the values of the radial polynomials, this formula gives an efficient way to calculate the real and imaginary parts of the Zernike moments separately. This way only primitive data types have to be used during the computation, hence it can be made more efficient using JIT.
+Precomputing the sine and cosine values for all possible combinations of $m$ and $\theta_{x,y}$, as well as precomputing the values of the radial polynomials, this formula gives an efficient way to calculate the real and imaginary parts of the Zernike moments separately. This way only primitive data types have to be used during the computation, hence it can be made more efficient using JIT.
 
 Also, there is no need to calculate the Zernike moments for $m < 0$ values, as the $Z_{n,m}(f) = Z_{n,-m}(f)^{*}$ identity can be used later to obtain the values for $m < 0$.
 
@@ -127,6 +127,7 @@ However, in order to ensure fair comparison between the capabilities of QZMs and
 
 By calculating the product of left- and right-side QRHFMs we get quaternion-valued invariants instead of real-valued invariants. This construction provides rotation invariance, while ensuring that any difference in the capabilities of the methods does not originate from the difference in the construction of the invariants.
 
+We also remark that in our experiments, instead of relying on fast Fourier transform (FFT), we utilized a direct computation of radial harmonic Fourier moments. Theoretically, this can end up being a slightly slower method for large image dimensions, but provides more stable numeric results.
 
 \section{New image transformation}\label{sec:new_trans}
 The new image transformation, as described in Chapter~\ref{sec:maths}, requires the calculation of the roots of the $n^{th}$ degree Legendre polynomials $P_n$, as well as calculating the integrals of the Lagrange basis polynomials over the roots of $P_n$. Furthermore, since when applying the linear transformation from image coordinates to polar coordinates, the pixels of the image do not fall exactly on any point of the new discrete point system, some interpolating methods have to be used to approximate the image values at these points.
