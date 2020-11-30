@@ -294,13 +294,13 @@ Similarly to Zernike moments, these Fourier moments are also defined for images 
     H_{n,m}(r,\theta) = R_n(r)e^{\qmu m \theta},
 \end{gather*}
 where $\qmu$ is a unit pure quaternion, usually $\qmu = \frac{\mathbf{i} + \mathbf{j} + \mathbf{k}}{\sqrt{3}}$, and $R_n(r)$ are the radial kernel functions defined as
-\begin{gather*}
+\begin{gather} \label{eq:qrhfm_radial}
     R_n(r) = \begin{cases}
         \frac{1}{\sqrt{r}}, &n = 0\\
         \sqrt{\frac{2}{r}}\cos(\pi n r), &n \text{ is even}\\
         \sqrt{\frac{2}{r}}\sin(\pi (n+1) r), \ \ &n \text{ is odd}
     \end{cases}.
-\end{gather*}
+\end{gather}
 
 The functions $H_{n,m}(r,\theta)$ also satisfy the following orthogonality relation:
 \begin{gather*}
@@ -486,9 +486,9 @@ Finally, the results of \citeauthor{WangAcc} \cite{WangAcc} and \citeauthor{LiuA
     (r_u, \theta_v) = \left(\frac{u}{N}, \frac{2\pi v}{N}\right), \qquad u = 0,1,\ldots ,N - 1, \qquad v = 0,1,\ldots ,N - 1,
 \end{gather*}
 where $N$ is the number of pixels along each axis in the original image. The value of the image function $f$ can be approximated at these points by assigning the value of the closest pixel to each point:
-\begin{gather*}
+\begin{gather} \label{eq:QRHFM_approx}
     f(r_u, \theta_v) \approx f'\left(\left \lfloor r_u\frac{N}{2}\sin \theta_v \right \rfloor + \frac{N}{2}, \left \lfloor r_u\frac{N}{2}\cos \theta_v \right \rfloor + \frac{N}{2}\right),
-\end{gather*}
+\end{gather}
 where $f'$ denotes the original image, given in image coordinates.
 
 

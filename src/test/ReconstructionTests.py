@@ -115,7 +115,7 @@ def testImageReconstructionFourierColor():
 	(img, N) = getImgFromFileAsNpArray(args.file)
 	img = np.array(img, dtype='double')
 
-	f = FourierMomentsColor(img, M, M, FourierTransformationInterpolation, True)
+	f = FourierMomentsColor(img, M, M, FourierTransformationInterpolationDiscOrth(M), True)
 	f.reconstructImage(output, N)
 
 def testImageReconstructionFourierOriginalMonochrome():
@@ -164,8 +164,8 @@ def testImageReconstructionErrors():
 	with open(outFile, mode='w') as file:
 		csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-		csv_writer.writerow(['File', 'M', 'Original_tf1', 'Original_tf2', 'Legendre1', 'LegendreDiscOrth', 'FourierInterpolation', 'FourierOriginal', 'FourierInterpolationDiscOrth'])
-		# csv_writer.writerow(['File', 'M', 'Legendre1', 'LegendreDiscOrth', 'FourierInterpolation', 'FourierInterpolationDiscOrth'])
+		# csv_writer.writerow(['File', 'M', 'Original_tf1', 'Original_tf2', 'Legendre1', 'LegendreDiscOrth', 'FourierInterpolation', 'FourierOriginal', 'FourierInterpolationDiscOrth'])
+		csv_writer.writerow(['LegendreDiscOrth', 'FourierInterpolationDiscOrth'])
 		for (file, Ms) in tests:
 			print(file)
 			filePath = path + file + extension
@@ -173,12 +173,12 @@ def testImageReconstructionErrors():
 			maxP = max(Ms)
 			for M in Ms:
 				epss = []
-				epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation).reconstructImage(tmpOut))
-				epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation2).reconstructImage(tmpOut))
+				# epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation).reconstructImage(tmpOut))
+				# epss.append(ZernikeMomentsColorRight(img, N, M, OldTransformation2).reconstructImage(tmpOut))
 				img = np.array(img, dtype='double')
-				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation1).reconstructImage(tmpOut, N))
+				# epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformation1).reconstructImage(tmpOut, N))
 				epss.append(ZernikeMomentsColorRightLegendre(img, M, LegendreTransformationDiscOrth(M)).reconstructImage(tmpOut, N))
-				epss.append(FourierMomentsColor(img, M, M, FourierTransformationInterpolation).reconstructImage(tmpOut, N))
-				epss.append(FourierMomentsColor(img, M, M, FourierTransformationOriginal).reconstructImage(tmpOut, N))
+				# epss.append(FourierMomentsColor(img, M, M, FourierTransformationInterpolation).reconstructImage(tmpOut, N))
+				# epss.append(FourierMomentsColor(img, M, M, FourierTransformationOriginal).reconstructImage(tmpOut, N))
 				epss.append(FourierMomentsColor(img, M, M, FourierTransformationInterpolationDiscOrth(M)).reconstructImage(tmpOut, N))
 				csv_writer.writerow((file, str(M), *epss))

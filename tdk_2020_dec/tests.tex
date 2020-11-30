@@ -308,7 +308,7 @@ $|\overline{\Psi}_{4,4}^4|$ & 1.28e-8 & 1.52e-8 & 1.37e-8 & 1.56e-8 & 1.50e-8 & 
 \label{tab:inv_new}
 \end{table}
 
-\section{Image reconstruction}
+\section{Image reconstruction}\label{sec:reconstruction}
 As described in Section~\ref{sec:qzm}, the quaternion Zernike moments of an image can be used to approximately reconstruct the original image using the formulas in \eqref{eq:qzm_reconstruction}. This reconstruction requires the computation of QZMs of up to a finite degree $M$.
 
 In order to reconstruct the discrete image, the formula 
@@ -318,9 +318,9 @@ $$
 was used for each pixel with image coordinates $(x,y)$, where $(r_{x,y},\theta_{x,y})$ are the polar coordinates obtained by performing the linear transformation of the image onto the unit disk, using the transformation shown on Figure~\ref{fig:transform1} (\textit{tf\textsubscript{1}}) for the old method and the transformation shown on Figure~\ref{fig:transform2} (\textit{tf\textsubscript{2}}) for the new one. The reason for this difference in transformation is that for the proposed discrete orthogonal point system, the interpolated pixel values are calculated using \textit{tf\textsubscript{2}}, while conventionally for (quaternion) Zernike moments, \textit{tf\textsubscript{1}} is used~\cite{qzmi}.
 
 To measure the error of the reconstruction the normalized mean squared error ($\varepsilon^2$) was used. If $f(x,y)$ is the original and $\widehat{f}(x,y)$ is the reconstructed image, both with size $N \times N$, then the normalized mean squared error is defined as:
-\begin{gather*}
+\begin{gather} \label{eq:mean_sq_error}
     \varepsilon^2 = \frac{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y) - \widehat{f}(x,y)\right|^2}{\displaystyle \sum_{x=1}^N\sum_{y=1}^N \left|f(x,y)\right|^2}.
-\end{gather*}
+\end{gather}
 
 In the cases, where \textit{tf\textsubscript{2}} is used only the part of the image falling inside the unit circle is reconstructed and thus the mean squared error is calculated over this part of the image only.
 
@@ -402,11 +402,11 @@ M = 350 &
         new method $\varepsilon^2$ & 0.01611 & 0.00789 & 0.00460 & 0.00164 & 0.00066 \\ \hline
         change & -39.4\% & -41.1\% & -47.0\% & -61.7\% & -76.3\% \\
     \end{tabular}
-    \caption{Comparison of the normalized mean squared errors between the two method, for the $256 \times 256$ Lenna image.}
+    \caption{Comparison of the normalized mean squared errors between the two methods, for the $256 \times 256$ Lenna image.}
     \label{tab:epsilons}
 \end{table}
 
-\section{Image recognition}
+\section{Image recognition}\label{sec:recognition}
 In order to test image recognition capabilities, the COIL-100~\cite{coil} and ALOI~\cite{aloi} images and the respective RST transformed sets of images were used. The exact parameters for the transformations performed to obtain these sets of images is described in Section~\ref{sec:test_images}.
 
 During the image recognition test, the goal is to correctly identify the original (non-transformed) image based on the invariant moments of a transformed image. For each method we calculate the percentage of correctly recognized images.
@@ -623,7 +623,107 @@ Both methods managed to correctly find 8 out of the 9 templates on the other ima
 
 
 \section{Comparisons with QRHFMs}
-% TODO
+The proposed method was compared with quaternion radial harmonic Fourier moments, defined in~\eqref{eq:QRHFM}. This method was chosen, because it is a recent, state-of-the-art technique, whose discretization also provides discrete orthogonality.
+
+QZMs and QRHFMs were compared in two of the previously described test cases:
+\begin{itemize}
+	\item Image reconstruction
+	\item Image recognition
+\end{itemize}
+
 \subsection{Image reconstruction}
+Image reconstruction was conducted according to the description given in Section~\ref{sec:reconstruction}, using the Lenna and Pepper images. In order to approximate the image function using moments up to a finite degree $M$, the following formulas were used for QZMs and QRHFMs, respectively:
+\begin{gather*}
+    \begin{split}
+    f(r_{x,y},\theta_{x,y}) &\approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)R_{n,m}(r_{x,y})e^{\bm{\mu}m\theta_{x,y}} \\
+    f(r_{x,y},\theta_{x,y}) &\approx \sum_{n=0}^{M}\sum_{m=-M}^{M}F_{n,m}^R(f)H_{n,m}(r_{x,y},\theta_{x,y}),
+    \end{split}
+\end{gather*}
+where $(r_{x,y}, \theta_{x,y})$ are the polar form of the image coordinates $(x,y)$ after transforming the image onto the unit disk. For both methods the linear transformation shown on Figure~\ref{fig:transform2} (\textit{tf\textsubscript{2}}) was used.
+
+In order to ensure fair comparison we did not use the formula in \eqref{eq:QRHFM_approx} to approximate the pixel values at the points of the discrete system. Instead -- as was the case for QZMs previously -- bilinear interpolation was used. This way any effect this would have on the results is neutralized, as the same effects are present in both methods.
+
+The number of basis points was chosen for both methods such that it should be approximately the same as the number of pixels falling inside the unit disk after \textit{tf\textsubscript{2}}. In cases where this method resulted in too few points to satisfy the discrete orthogonality relations, the number of points was increased to the minimum number required.
+
+The error of the reconstruction was measured using the normalized mean squared error ($\varepsilon^2$), defined in \eqref{eq:mean_sq_error}.
+
+\subsubsection{Results}
+Similarly to Section~\ref{sec:recognition}, image recognition was performed for the Lenna and Pepper images, with image sizes ranging from $64 \times 64$ up to $256 \times 256$, using moments of up to degree 350.
+
+Figure~\ref{fig:reconstruction_new2} shows the images and errors when using QZMs, while Figure~\ref{fig:reconstruction_qrhfm} shows this when using QRHFMs. Table~\ref{tab:epsilons_QRHFM} shows the comparison between the $\varepsilon^2$ values in the case of the $256 \times 256$ Pepper image.
+It is important to note that in the case of QRHFMs, the center of the picture can only be reconstructed with high numerical errors, as the radial functions (defined in \eqref{eq:qrhfm_radial}) have a singularity at $r = 0$. This phenomenon is visible on Figure~\ref{fig:reconstruction_qrhfm}, for example in the case of the $128 \times 128$ Lenna image, where there are a few black or white pixels at the center of the image.
+
+The comparison of the two methods shows that the error of reconstruction is low for both methods. However, in most cases -- especially when the maximum degree of the moments used is high -- using QZMs provides lower normalized mean squared errors. On the other hand, there are some cases -- mostly for larger images, when the maximum order of the moments used is low -- where using QRHFMs proves to be more accurate at reconstructing the image.
+
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|}
+        M & 50 & 100 & 150 & 250 & 350 \\ \hline
+        QZM & 0.01778 & 0.00682 & 0.00347 & 0.00111 & 0.00048 \\ 
+        QRHFM & 0.01166 & 0.00533 & 0.00356 & 0.00151 & 0.00095
+    \end{tabular}
+    \caption{Comparison of the normalized mean squared errors between QZMs and QRHFMs, for the $256 \times 256$ Pepper image.}
+    \label{tab:epsilons_QRHFM}
+\end{table}
+
+
+\begin{figure}
+	\centering
+\begin{tabular}{q | Q Q Q Q }
+M & Lenna $64\times 64$& Lenna $128\times 128$ & Lenna $256 \times 256$ & Pepper $256 \times 256$\\ \hline\hline
+Original & 
+\includegraphics[width=64pt]{figures/reconstruction/lo64.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256.png} & \includegraphics[width=64pt]{figures/reconstruction/po256.png}\\\hline
+M = 50 &
+\includegraphics[width=64pt]{figures/reconstruction/ln6450.png} & \includegraphics[width=64pt]{figures/reconstruction/ln12850.png} & \includegraphics[width=64pt]{figures/reconstruction/ln25650.png} & \includegraphics[width=64pt]{figures/reconstruction/pn25650.png}\\
+& 0.00366 & 0.00901 & 0.01611 & 0.01778\\
+M = 100 & 
+\includegraphics[width=64pt]{figures/reconstruction/ln64100.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128100.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256100.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256100.png}\\
+& 0.00066 & 0.00238 & 0.00791 & 0.00682\\
+M = 150 &
+\includegraphics[width=64pt]{figures/reconstruction/ln64150.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128150.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256150.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256150.png}\\
+& 0.00027 & 0.00083 & 0.00461 & 0.00347\\
+M = 250 & 
+\includegraphics[width=64pt]{figures/reconstruction/ln64250.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128250.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256250.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256250.png}\\
+& 0.00011 & 0.00030 & 0.00164 & 0.00111\\
+M = 350 &
+\includegraphics[width=64pt]{figures/reconstruction/ln64350.png} & \includegraphics[width=64pt]{figures/reconstruction/ln128350.png} & \includegraphics[width=64pt]{figures/reconstruction/ln256350.png} & \includegraphics[width=64pt]{figures/reconstruction/pn256350.png}\\
+& 0.00005 & 0.00013 & 0.00066 & 0.00048\\
+& \\
+
+\end{tabular}
+\caption{Reconstructed images using QZMs, with the normalized mean squared error shown below each image.}
+\label{fig:reconstruction_new2}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+\begin{tabular}{q | Q Q Q Q }
+M & Lenna $64\times 64$& Lenna $128\times 128$ & Lenna $256 \times 256$ & Pepper $256 \times 256$\\ \hline\hline
+Original & 
+\includegraphics[width=64pt]{figures/reconstruction/lo64.png} & \includegraphics[width=64pt]{figures/reconstruction/lo128.png} & \includegraphics[width=64pt]{figures/reconstruction/lo256.png} & \includegraphics[width=64pt]{figures/reconstruction/po256.png}\\\hline
+M = 50 &
+\includegraphics[width=64pt]{figures/reconstruction/lf6450.png} & \includegraphics[width=64pt]{figures/reconstruction/lf12850.png} & \includegraphics[width=64pt]{figures/reconstruction/lf25650.png} & \includegraphics[width=64pt]{figures/reconstruction/pf25650.png}\\
+& 0.00436 & 0.00744 & 0.01088 & 0.01166\\
+M = 100 & 
+\includegraphics[width=64pt]{figures/reconstruction/lf64100.png} & \includegraphics[width=64pt]{figures/reconstruction/lf128100.png} & \includegraphics[width=64pt]{figures/reconstruction/lf256100.png} & \includegraphics[width=64pt]{figures/reconstruction/pf256100.png}\\
+& 0.00114 & 0.00322 & 0.00521 & 0.00533\\
+M = 150 &
+\includegraphics[width=64pt]{figures/reconstruction/lf64150.png} & \includegraphics[width=64pt]{figures/reconstruction/lf128150.png} & \includegraphics[width=64pt]{figures/reconstruction/lf256150.png} & \includegraphics[width=64pt]{figures/reconstruction/pf256150.png}\\
+& 0.00048 & 0.00187 & 0.00351 & 0.00356\\
+M = 250 & 
+\includegraphics[width=64pt]{figures/reconstruction/lf64250.png} & \includegraphics[width=64pt]{figures/reconstruction/lf128250.png} & \includegraphics[width=64pt]{figures/reconstruction/lf256250.png} & \includegraphics[width=64pt]{figures/reconstruction/pf256250.png}\\
+& 0.00014 & 0.00083 & 0.00150 & 0.00151\\
+M = 350 &
+\includegraphics[width=64pt]{figures/reconstruction/lf64350.png} & \includegraphics[width=64pt]{figures/reconstruction/lf128350.png} & \includegraphics[width=64pt]{figures/reconstruction/lf256350.png} & \includegraphics[width=64pt]{figures/reconstruction/pf256350.png}\\
+& 0.00008 & 0.00047 & 0.00092 & 0.00095\\
+& \\
+
+\end{tabular}
+\caption{Reconstructed images using QRHFMs, with the normalized mean squared error shown below each image.}
+\label{fig:reconstruction_qrhfm}
+\end{figure}
+
 
 \subsection{Image recognition}
