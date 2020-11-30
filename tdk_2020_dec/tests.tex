@@ -727,3 +727,38 @@ M = 350 &
 
 
 \subsection{Image recognition}
+Image recognition was tested according to the methodology described in Section~\ref{sec:recognition}. Predetermined invariants of up to degree 4 were chosen for both methods. These provided 20 real invariants, which, after normalization, could be used to classify images using the minimum Euclidean distance.
+
+There have been no general scaling invariants constructed for QRHFMs, and translation invariance is achieved independently from the moments for both methods. Hence only the rotation invariant constructions were tested.
+
+In order to ensure a fair comparison between QZMs and QRHFMs, the rotation invariants of the quaternion radial harmonic Fourier moments were constructed in a similar way to the construction of QZMRIs (the rotation invariants for QZMs). This means that for Zernike moments the product $Z_{n,m}^R(f)(Z_{k,m}^R(f))^*$ was used as rotation invariant, while for Fourier moments $F_{n,m}^R(f)(F_{k,m}^R(f))^*$ was used.
+
+In both cases the number of points in the discrete orthogonal point system was chosen to be approximately the same as the number of pixels falling inside the unit circle. The image values were approximated using the bilinear interpolation formula (shown on Figure~\ref{fig:bilinear}).
+
+The methods were tested for both Gaussian and salt-and-pepper noise with varying levels. The tests were performed on the rotated COIL image set, consisting of 1008 images.
+
+\subsubsection{Results}
+The rate of recognition of each method is shown in Table~\ref{tab:recognition_qrhfm}.
+For images with no added noise, both methods achieved the expected perfect recognition rate. In the case of Gaussian noise, even with high level of noise, both methods perform really well. In most cases the QZM based method achieves a slightly better rate of recognition than the QRHFM based method.
+
+When adding salt-and-pepper noise to the images, as shown previously, the QZM based method achieves a 100\% recognition rate. The QRHFM based method also performs extremely well, almost achieving a perfect recognition rate, with only a couple of images misclassified. As described previously, this high robustness against salt-and-pepper noise is because the selected low-order moments essentially filter out this type of noise.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|p{2.15cm}|p{1.8cm}|p{3.3cm}<{\raggedright}|p{2.74cm}|} \hline
+        \textbf{Noise type} & \textbf{Noise param.} & \textbf{QZM} (\%) \linebreak (proposed method) & \textbf{QRHFM} (\%) \\ \hline\hline
+        No noise & & 100.00 & 100.00 \\ \hline\hline
+        Gauss & 80 & 98.12 & 97.52 \\ \cline{2-4}
+        & 90 & 99.01 & 97.02 \\ \cline{2-4}
+        & 100 & 98.91 & 96.63 \\ \cline{2-4}
+        & 110 & 97.62 & 96.92 \\ \cline{2-4}
+        & 120 & 96.23 & 96.63 \\ \hline\hline
+        Salt & 10 & 100.00 & 100.00 \\ \cline{2-4}
+        & 15 & 100.00 & 100.00 \\ \cline{2-4}
+        & 20 & 100.00 & 99.70 \\ \cline{2-4}
+        & 25 & 100.00 & 100.00 \\ \cline{2-4}
+        & 30 & 100.00 & 100.00 \\ \cline{1-4}
+    \end{tabular}
+    \caption{Percentage of images recognized correctly by the QZM and QRHFM based methods in the case of using the rotated COIL image set with either Gaussian or salt-and-pepper noise. The noise parameter means the standard deviation in case of the Gaussian noise, and the density in case of the salt-and-pepper noise.}
+    \label{tab:recognition_qrhfm}
+\end{table}
