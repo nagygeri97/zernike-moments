@@ -1,0 +1,23 @@
+Témavezető neve:
+munkahelyének neve, tanszéke:
+munkahelyének címe:
+beosztás és iskolai végzettsége:
+ 
+
+A diplomamunka címe: Robust quaternion Zernike moments and their applications in color image analysis and recognition
+
+A diplomamunka témája:
+Image moments and moment invariants are widely used in applications for pattern matching, image recognition, or feature extraction.
+
+Most of the classical moments are defined for grayscale images, however, extending these techniques to multichannel ones is a generally unresolved problem. Conventionally, for color images either RGB decomposition or grayscale conversion was used.
+
+More recently, the algebra of quaternions has been used to extend the grayscale methods to color images. Quaternion Zernike moments have been introduced as an extension of Zernike moments [1]. These Zernike moments are defined by the Zernike functions, which are a system of orthogonal functions over the unit disk, possessing certain inherent invariance properties.
+
+The method for discretizing quaternion Zernike moments in works [1] and [2] introduces uniformly distributed points over the unit disk. This method does not achieve discrete orthogonality, which is an important property of the discretization of methods defined by orthogonal functions.
+
+The goal is to propose a novel method for the discretization of quaternion Zernike moments over the unit disk by constructing a system of points, defined on the unit disk, over which the quaternion Zernike functions are discrete orthogonal. This should improve the robustness of computing the moments by decreasing the error introduced by discretization.
+
+The new method will be compared to the original one, in terms of image reconstruction and image recognition capabilities. The rate of recognition for rotated, scaled, and translated images, with varying levels and types of added noise should improve because of discrete orthogonality. The error of reconstruction is also expected to decrease, as the moments no longer contain redundant information.
+
+[1] B. Chen et al. Color Image Analysis by Quaternion Zernike Moments.
+[2] B. Chen et al. Quaternion Zernike moments and their invariants for color image analysis and object recognition.
