@@ -21,11 +21,11 @@ and the respective weight values and constants are
 	w(r_{k,N},\theta_{j,N}) = \frac{\mathcal{A}_{k,N}}{8N},\qquad \lambda_{n,m} = n+1,
 	\label{weight}
 \end{gather}
-so the generated integral approximation based on \eqref{eq:QZMappr} is
+so the generated integral approximation, using Gaussian quadrature for the radial part, based on \eqref{eq:QZMappr} is
 \[
 	\frac{1}{\pi} \int_{0}^1 \int_0^{2\pi} f(r,\theta)\ d\theta dr \approx \int_{X_N} f = \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_{k,N},\theta_{j,N}) \frac{\mathcal{A}_{k,N}}{8N}.
 \]
-We remark that the values $\mathcal{A}_{k,N}$ are somewhat close to $\frac{1}{N}$, so the weighting is close to being uniform.
+We remark that the values $\mathcal{A}_{k,N}$ are somewhat close to $\frac{1}{N}$, so the weighting is close to being uniform. Further formulae concerning the numeric computation of nodes and coefficients can be found in section \ref{sec:new_trans}.
 
 What is appealing in this choice of $X_N$ is the fact that the orthogonality of quaternion Zernike functions \eqref{QZortho} is preserved under changing to  discrete integration over this set of points, i.e.
 \begin{theorem}\label{QZdisc-ortho}
