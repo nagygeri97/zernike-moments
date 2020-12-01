@@ -35,7 +35,12 @@ A set of 1008 rotated images was created by rotating each of the 14 images by a 
 Another set of 1176 rotated, scaled and translated images was created by translating each image by -11 pixels in the $x$ direction and 9 pixels in the $y$ direction. Then the translated images were rotated by $\alpha \in \{0,30,60,\ldots,300,330\}$. Finally, each rotated and translated image was scaled by $\lambda \in \{0.5, 0.75, \ldots, 1.75, 2\}$. When either scaling or rotation required it, bilinear interpolation was used.
 Some examples of the RST transformed images are shown on Figure~\ref{fig:coil_rst}.
 
-\begin{figure}[tbp]
+
+Another set of 13 images was acquired from the Amsterdam Library of Object Images (ALOI)~\cite{aloi}. These are shown on Figure~\ref{fig:aloi_original}. Originally, the size of these images was $768 \times 576$ pixels, but they were downscaled to $96 \times 72$ and subsequently extended to $152 \times 128$ by placing the images on a black background. Similarly to the test sets created using the COIL-100 images, the ALOI images were also translated, rotated and scaled, yielding a set of 1092 RST transformed images. The parameters of the transformation were the same as for the COIL-100 images, except for the translation, where $\Delta x = 8$ and $\Delta y = 5$ was used.
+
+We chose these sets of images, because the shapes of the objects depicted are similar, so in many cases they can only be distinguished using color information and patterns. This choice of images makes the task of image recognition more difficult. Our goal with selecting these image sets was to be able to test and compare the applicability of the methods for color images, hence it is important that the color information should be used to correctly recognize an image. 
+
+\begin{figure}[htbp]
     \begin{subfigure}{80pt}
         \centering
     \includegraphics[width=\textwidth]{figures/coil_original/7.png}
@@ -150,7 +155,6 @@ Some examples of the RST transformed images are shown on Figure~\ref{fig:coil_rs
 	\label{fig:coil_rst}
 \end{figure}
 
-Another set of 13 images was acquired from the Amsterdam Library of Object Images (ALOI)~\cite{aloi}. These are shown on Figure~\ref{fig:aloi_original}. Originally, the size of these images was $768 \times 576$ pixels, but they were downscaled to $96 \times 72$ and subsequently extended to $152 \times 128$ by placing the images on a black background. Similarly to the test sets created using the COIL-100 images, the ALOI images were also translated, rotated and scaled, yielding a set of 1092 RST transformed images. The parameters of the transformation were the same as for the COIL-100 images, except for the translation, where $\Delta x = 8$ and $\Delta y = 5$ was used.
 
 \begin{figure}[tbp]
     \begin{subfigure}{80pt}
@@ -762,3 +766,5 @@ When adding salt-and-pepper noise to the images, as shown previously, the QZM ba
     \caption{Percentage of images recognized correctly by the QZM and QRHFM based methods in the case of using the rotated COIL image set with either Gaussian or salt-and-pepper noise. The noise parameter means the standard deviation in case of the Gaussian noise, and the density in case of the salt-and-pepper noise.}
     \label{tab:recognition_qrhfm}
 \end{table}
+
+In conclusion, according to our tests, both methods provide similar results in image recognition and reconstruction. However, the proposed method also provides scaling and combined RST invariants, which the QRHFM based method lacks, thus the QZM based method is applicable for a wider range of use cases.
