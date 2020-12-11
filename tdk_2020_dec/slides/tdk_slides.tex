@@ -69,7 +69,7 @@
 \usepackage{fancyvrb}
 \usepackage{rotating}
 \frenchspacing
-
+\usepackage{changepage}
 
 
 % Fordításhoz: pdflatex
@@ -138,8 +138,8 @@
 
 \color{white}{
 
-\textbf{\Large{Színes képek elemzése és felismerése kvaternió Zernike momentumok segítségével}}
-% \textbf{\Large{Color image analysis and recognition using quaternion Zernike moments}}
+\textbf{\Large{Robusztus kvaternió Zernike momentumok és alkalmazásuk színes képek elemzésére és felismerésére}}
+% \textbf{\Large{Robust quaternion Zernike moments and their applications in color image analysis and recognition}}
 
 \bigskip
 
@@ -152,7 +152,7 @@
 
 
 \large{Tudományos Diákköri Konferencia}\\
-\footnotesize{Budapest, 2020. május 28.}
+\footnotesize{Budapest, 2020. december 16.}
 \vspace{2em}
 
 % Szakmai beszámolókhoz: (Igazi neveket kérünk feltüntetni.) Más előadáson nem kell.
@@ -408,29 +408,43 @@ Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a hiba (mean squ
 \end{gather*}
 \end{frame}
 
+
 \begin{frame}{Képek visszaállítása}
+    \begin{adjustwidth}{-1.5em}{0em}
+    \bigskip
+    \begin{footnotesize}
     \begin{figure}
         \centering
     \begin{tabular}{c | q q q q q }
-     & Eredeti & 50 & 100 & 150 & 250 \\ \hline\hline
-    Régi & 
+     & Eredeti & 50 & 150 & 250 & 350 \\ \hline\hline
+    QZM -- Régi & 
     \includegraphics[width=50pt]{figures/reconstruction/lo256.png} &
     \includegraphics[width=50pt]{figures/reconstruction/lo25650.png} &
-    \includegraphics[width=50pt]{figures/reconstruction/lo256100.png} &
     \includegraphics[width=50pt]{figures/reconstruction/lo256150.png} &
-    \includegraphics[width=50pt]{figures/reconstruction/lo256250.png} \\
-    $\varepsilon^2$ & & 0.02659 & 0.1341 & 0.00868 & 0.00428 \\
-    Új & 
+    \includegraphics[width=50pt]{figures/reconstruction/lo256250.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lo256350.png} \\
+    $\varepsilon^2$ & & 0.02659 & 0.00868 & 0.00428 & 0.00279 \\
+    QZM -- Új& 
     \includegraphics[width=50pt]{figures/reconstruction/lo256.png} &
     \includegraphics[width=50pt]{figures/reconstruction/ln25650.png} &
-    \includegraphics[width=50pt]{figures/reconstruction/ln256100.png} &
     \includegraphics[width=50pt]{figures/reconstruction/ln256150.png} &
-    \includegraphics[width=50pt]{figures/reconstruction/ln256250.png} \\
-    $\varepsilon^2$ & & 0.01611 & 0.00790 & 0.00463 & 0.00190  \\   
+    \includegraphics[width=50pt]{figures/reconstruction/ln256250.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/ln256350.png} \\
+    $\varepsilon^2$ & & 0.01611 & 0.00461 & 0.00164 & 0.00066  \\   
+    QRHFM &
+    \includegraphics[width=50pt]{figures/reconstruction/lo256.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lf25650.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lf256150.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lf256250.png} &
+    \includegraphics[width=50pt]{figures/reconstruction/lf256350.png} \\
+    $\varepsilon^2$ & & 0.01088 & 0.00351 & 0.00150 & 0.00092  \\ 
     \end{tabular}
 
     \end{figure}
+    \end{footnotesize}
+    \end{adjustwidth}
 \end{frame}
+
 
 \subsection{Képfelismerés}
 \begin{frame}{Képfelismerés}
