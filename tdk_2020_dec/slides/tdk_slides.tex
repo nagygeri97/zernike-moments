@@ -70,6 +70,7 @@
 \usepackage{rotating}
 \frenchspacing
 \usepackage{changepage}
+\usepackage{bibentry}
 
 
 % Fordításhoz: pdflatex
@@ -128,7 +129,9 @@
 %\institute{Eötvös Loránd University (ELTE), Budapest, Hungary}
 %\date{2018}
 
-\pgfplotsset{compat=1.15}
+\pgfplotsset{compat=1.16}
+
+\nobibliography*
 
 \begin{document}
 
@@ -198,7 +201,7 @@ Hagyományos megoldások:
 Értelmezzük az $f : \R^2 \rightarrow \R^3$ képet kvaternió értékű függvényként:
 $$f(x,y) = \qi f_R(x,y) + \qj f_G(x,y) + \qk f_B(x,y)$$
 Különböző momentumok általánosítása kvaterniókra:\\
-QFMM (Fourier-Mellin), QG-CHFM (Csebisev-Fourier), QG-PJFM (Jacobi-Fourier), QBFM (Bessel-Fourier), \\
+QFMM (Fourier-Mellin), QG-CHFM (Csebisev-Fourier), QG-PJFM (Jacobi-Fourier), QBFM (Bessel-Fourier), QRHFM (radial-Fourier), \\
 \textbf{QZM (Zernike)}
 \end{frame}
 
@@ -213,8 +216,19 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 \end{frame}
 
 \begin{frame}{Invariánsok konstrukciója}
-    Chen et al. Quaternion zernike moments and their invariants for color image analysis and object recognition. \textit{Signal Processing}, 2012.\\
-    Forgatás, skálázás és eltolás kombinált invariánsok ($\overline{\Psi}_{n,k}^m$) konstruálása.
+    \bibentry{qzmi} 
+    \bigskip
+
+    %%Chen et al. Quaternion zernike moments and their invariants for color image analysis and object recognition. \textit{Signal Processing}, 2012.\\
+    Csak forgatás ($\Phi_{n,k}^m$), illetve forgatás, skálázás és eltolás kombinált invariánsok ($\overline{\Psi}_{n,k}^m$) konstruálása.
+
+    \begin{gather*}
+    \begin{split}
+        \Phi_{n,k}^m(f) &= Z_{n,m}^R(f)Z_{k,-m}^L(f) = -Z_{n,m}^R(f)(Z_{k,m}^R(f))^*\\    
+        L_{m + 2l,m}^R(f) &= \sum_{t=0}^l\sum_{k=t}^l\left(\sqrt{|Z_{0,0}^R(f)|}\right)^{-(m+2k+2)}c_{m,l}^{t,k}Z_{m+2t,m}^R(f) \\
+        \overline{\Psi}_{n,k}^m(f) &= \overline{L}_{n,m}^R(f)(\overline{L}_{k,m}^R(f))^* \\
+    \end{split}
+    \end{gather*}
 \end{frame}
 
 \section{Diszkretizáció}
@@ -356,6 +370,19 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
     \end{figure}
 \end{frame}
 
+\begin{frame}{Fourier momentumok}
+    \begin{itemize}
+    \item A módszert a Fourier momentumokkal (QRHFM) is összehasonlítottuk rekonstrukció és felismerés szempontjából.
+
+    \item \bibentry{LiuAcc}
+    %%Liu et al. Accurate quaternion radial harmonic Fourier moments for color image reconstruction and object recognition. \textit{Pattern Analysis and Applications}, 2020.
+
+    \item QRHFM-hez triviálisan konstruálható diszkrét ortogonális pontrendszer, polár koordinátákban egyenletesen vett pontokkal.
+
+    \item Csak forgatás invariánsokat konstruáltak ezekhez a momentumokhoz, így ezeket hasonlítottuk össze.
+    \end{itemize}
+\end{frame}
+
 \subsection{Invariancia}
 \begin{frame}{Invariancia}
     \vskip 10mm
@@ -472,7 +499,7 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
 \end{figure}
 \end{frame}
 
-\begin{frame}{Képfelismerés - Gauss zaj}
+\begin{frame}{Gauss zaj}
     \vskip 1cm
     \begin{table}[tbp]
         \centering
@@ -492,7 +519,7 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
     \end{table}
 \end{frame}
 
-\begin{frame}{Képfelismerés - Só-bors zaj}
+\begin{frame}{Só-bors zaj}
     \vskip 1cm
     \begin{table}[tbp]
         \centering
@@ -537,9 +564,9 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
 \begin{frame}{Alkalmazások}
     A momentumok sok területen alkalmazhatók, néhány példa:
     \begin{itemize}
-    \item \textbf{Vízjelek}: a képre a momentumok szintjén helyeznek vízjelet, így ellenálló lesz különböző transzformációknak és zajnak. Ehhez fontos a rekonstrukciós pontosság.
-    \item \textbf{Neurális hálók, gépi tanulás}: A képekből kinyert invariáns momentumok lehet a bemeneti vektor része. A neurális hálók ismert hiányossága a zajra való érzékenység, ezen segíthetnek a momentumok.
-    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására, szaruhártya vizsgálatára, stb.
+    \item \textbf{Vízjelek}: a képre a momentumok szintjén helyeznek vízjelet, így ellenálló lesz különböző transzformációknak és zajnak. Ehhez fontos a rekonstrukciós pontosság.~\cite{watermarking_auth}
+    \item \textbf{Neurális hálók, gépi tanulás}: A képekből kinyert invariáns momentumok lehet a bemeneti vektor része. A neurális hálók ismert hiányossága a zajra való érzékenység, ezen segíthetnek a momentumok.~\cite{nn_noise_robust}
+    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására, szaruhártya vizsgálatára, stb.~\cite{wavefront}
     \end{itemize}
 \end{frame}
 
@@ -554,14 +581,22 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
 \begin{frame}{Összefoglalás}
     \begin{itemize}
     \item Diszkrét ortogonális pontrendszer konstruálása QZM-hez.
-    \item Összehasonlítás a korábbi módszerrel.
+    \item Összehasonlítás a korábbi, valamint más momentumokon alapuló módszerrel is.
         \begin{itemize}
         \item Invariancia
         \item Rekonstrukció
         \item Képfelismerés
         \end{itemize}
     \item Jelentősen jobb rekonstrukciós képesség és robusztusság különféle zajokkal szemben.
+    \item Konferencia előadás (13th Joint Conference on Mathematics and Computer Science)
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Irodalomjegyzék}
+\begin{footnotesize}
+\bibliography{biblio}{}
+\bibliographystyle{unsrtnat}
+\end{footnotesize}
 \end{frame}
 
 % this slide need not be used in the presentation, but must be
