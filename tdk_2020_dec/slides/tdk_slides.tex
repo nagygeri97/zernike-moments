@@ -128,7 +128,7 @@
 %\institute{Eötvös Loránd University (ELTE), Budapest, Hungary}
 %\date{2018}
 
-\pgfplotsset{compat=1.16}
+\pgfplotsset{compat=1.15}
 
 \begin{document}
 
@@ -179,12 +179,12 @@ Témavezető: Németh Zsolt
 \section{Háttér}
 \subsection{Momentumok}
 \begin{frame}{Momentumok}
-Általában valamilyen leíró érték a pixel intenzitások alapján, 
+Általában valamilyen numerikus, leíró érték a pixel intenzitások alapján, 
 például geometriai momentumok: $$M_{ij} = \sum_x\sum_y x^i y^j I(x,y).$$
 \textbf{Zernike momentumok}: az egységkörön definiált, ortogonális Zernike függvények alapján
 $$Z_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)R_{n,m}(r)e^{-\qi m\theta} dr d\theta,$$ ahol $R_{n,m}(r)$ az ortogonális, sugárirányú polinomok.\\
 
-\textbf{Momentumok invariánsok:} forgatás, skálázás és eltolás invariancia 
+\textbf{Momentumok invariánsok:} forgatás, skálázás és eltolás invariáns értékek konstruálhatók.
 \end{frame}
 
 \subsection{Színes képek}
@@ -192,10 +192,10 @@ $$Z_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)R_{n,m}(r)e^{-\qi 
 Hagyományos megoldások:
 \begin{itemize}
     \item A kép szürkeárnyalatossá alakítása.
-    \item Külön-külön a színcsatornákra.
+    \item A színcsatornák elemzése külön-külön.
 \end{itemize}
-Utóbbi évtizedben:\\
-$f : \R^2 \rightarrow \R^3$ kép kvaternió értékű függvényként:
+Újabb módszer az utóbbi évtizedben:\\
+Értelmezzük az $f : \R^2 \rightarrow \R^3$ képet kvaternió értékű függvényként:
 $$f(x,y) = \qi f_R(x,y) + \qj f_G(x,y) + \qk f_B(x,y)$$
 Különböző momentumok általánosítása kvaterniókra:\\
 QFMM (Fourier-Mellin), QG-CHFM (Csebisev-Fourier), QG-PJFM (Jacobi-Fourier), QBFM (Bessel-Fourier), \\
@@ -210,7 +210,11 @@ Mivel a kvaterniók szorzása nem kommutatív, így jobb- és baloldali momentum
 $$Z^R_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)\Phi_{n,m}(r,\theta) dr d\theta,$$
 $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\theta) dr d\theta.$$
 
-Chen et al.: forgatás, skálázás és eltolás kombinált invariánsok ($\overline{\Psi}_{n,k}^m$) konstruálása.
+\end{frame}
+
+\begin{frame}{Invariánsok konstrukciója}
+    Chen et al. Quaternion zernike moments and their invariants for color image analysis and object recognition. \textit{Signal Processing}, 2012.\\
+    Forgatás, skálázás és eltolás kombinált invariánsok ($\overline{\Psi}_{n,k}^m$) konstruálása.
 \end{frame}
 
 \section{Diszkretizáció}
@@ -504,6 +508,27 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
             5\% & 97.87 & 94.90 & 97.87 \\ \hline
             10\% & 99.91 & 93.03 & 98.72 \\ \hline
             15\% & 99.91 & 93.20 & 97.87 \\ \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Forgatás invariáns Zernike és Fourier momentumok}
+    \vskip 1cm
+    \begin{table}[tbp]
+        \centering
+        \begin{tabular}{|p{2cm}|p{1.5cm}|p{2.2cm}<{\raggedright}|p{2cm}|} \hline
+            \textbf{Zaj típusa} & & \textbf{Zernike} (\%) & \textbf{Fourier} (\%) \\ \hline\hline
+            Nincs zaj & & 100.00 & 100.00 \\ \hline\hline
+            Gauss & 80 & 98.12 & 97.52 \\ \cline{2-4}
+            & 90 & 99.01 & 97.02 \\ \cline{2-4}
+            & 100 & 98.91 & 96.63 \\ \cline{2-4}
+            & 110 & 97.62 & 96.92 \\ \cline{2-4}
+            & 120 & 96.23 & 96.63 \\ \hline\hline
+            Só-bors & 10\% & 100.00 & 100.00 \\ \cline{2-4}
+            & 15\% & 100.00 & 100.00 \\ \cline{2-4}
+            & 20\% & 100.00 & 99.70 \\ \cline{2-4}
+            & 25\% & 100.00 & 100.00 \\ \cline{2-4}
+            & 30\% & 100.00 & 100.00 \\ \cline{1-4}
         \end{tabular}
     \end{table}
 \end{frame}
