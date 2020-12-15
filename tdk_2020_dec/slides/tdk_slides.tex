@@ -346,7 +346,7 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 
 \section{Eredmények}
 \begin{frame}{Gyakorlati tesztek}
-    \vskip 5mm
+    \vskip 10mm
     A következő tesztek alapján hasonlítottuk össze a régi és az új módszert:
     \begin{itemize}
     \item Invariancia teszt
@@ -371,16 +371,26 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 \end{frame}
 
 \begin{frame}{Fourier momentumok}
+\begin{small}
+    \vskip 10mm
     \begin{itemize}
     \item A módszert a Fourier momentumokkal (QRHFM) is összehasonlítottuk rekonstrukció és felismerés szempontjából.
-
-    \item \bibentry{LiuAcc}
+    \item \vskip -3mm \bibentry{LiuAcc}
     %%Liu et al. Accurate quaternion radial harmonic Fourier moments for color image reconstruction and object recognition. \textit{Pattern Analysis and Applications}, 2020.
 
     \item QRHFM-hez triviálisan konstruálható diszkrét ortogonális pontrendszer, polár koordinátákban egyenletesen vett pontokkal.
 
     \item Csak forgatás invariánsokat konstruáltak ezekhez a momentumokhoz, így ezeket hasonlítottuk össze.
     \end{itemize}
+    \vskip -2mm
+    \begin{gather*}
+        R_n(r) = \begin{cases}
+            \frac{1}{\sqrt{r}}, &n = 0\\
+            \sqrt{\frac{2}{r}}\cos(\pi n r), &n \text{ páros}\\
+            \sqrt{\frac{2}{r}}\sin(\pi (n+1) r), \ \ &n \text{ páratlan}
+        \end{cases}.
+    \end{gather*}
+\end{small}
 \end{frame}
 
 \subsection{Invariancia}
@@ -543,8 +553,8 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
     \vskip 1cm
     \begin{table}[tbp]
         \centering
-        \begin{tabular}{|p{2cm}|p{1.5cm}|p{2.2cm}<{\raggedright}|p{2cm}|} \hline
-            \textbf{Zaj típusa} & & \textbf{Zernike} (\%) & \textbf{Fourier} (\%) \\ \hline\hline
+        \begin{tabular}{|p{2cm}|p{1.5cm}|p{2.8cm}<{\raggedright}|p{2cm}|} \hline
+            \textbf{Zaj típusa} & & \textbf{Zernike, új} (\%) & \textbf{Fourier} (\%) \\ \hline\hline
             Nincs zaj & & 100.00 & 100.00 \\ \hline\hline
             Gauss & 80 & 98.12 & 97.52 \\ \cline{2-4}
             & 90 & 99.01 & 97.02 \\ \cline{2-4}
@@ -593,6 +603,7 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
 \end{frame}
 
 \begin{frame}{Irodalomjegyzék}
+\nocite{macs}
 \begin{footnotesize}
 \bibliography{biblio}{}
 \bibliographystyle{unsrtnat}
