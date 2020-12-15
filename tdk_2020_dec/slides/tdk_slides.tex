@@ -123,6 +123,8 @@
 %\setbeamercolor{institute}{fg=white}
 %\setbeamercolor{date}{fg=white}
 \setbeamercolor{frametitle}{fg=white}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
 %
 %\title{\bf Presentation heading}
 %\author{Sample Samuel}
@@ -190,6 +192,13 @@ $$Z_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}f(r,\theta)R_{n,m}(r)e^{-\qi 
 \textbf{Momentumok invariánsok:} forgatás, skálázás és eltolás invariáns értékek konstruálhatók.
 \end{frame}
 
+\begin{frame}{Komplex Zernike függvények ábrázolása}
+    \vskip 10mm
+    \begin{figure}
+        \includegraphics[height=0.8\textheight]{figures/ZernikePolynome4.png}
+    \end{figure}
+\end{frame}
+
 \subsection{Színes képek}
 \begin{frame}{Momentumok alkalmazása színes képekre}
 Hagyományos megoldások:
@@ -216,6 +225,7 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 \end{frame}
 
 \begin{frame}{Invariánsok konstrukciója}
+    \vskip 5mm
     \bibentry{qzmi} 
     \bigskip
 
@@ -234,7 +244,7 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 \section{Diszkretizáció}
 \subsection{Korábbi módszer}
 \begin{frame}{Korábbi diszkretizációs módszer}
-    \vskip 5mm
+    \vskip 7mm
     \begin{figure}[tb]
         \begin{subfigure}{.30\textwidth}
         \centering
@@ -276,6 +286,7 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 
 \subsection{Új módszer}
 \begin{frame}{Új diszkretizációs módszer}
+    \vskip 10mm
     Probléma a korábbi diszkretizációval: nincs diszkrét ortogonalitás.
     \vskip 5mm
     Schipp F. és Pap M.: diszkrét ortogonális pontrendszer konstrukciója a klasszikus (komplex értékű) Zernike függvényekhez.
@@ -288,7 +299,7 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 \end{frame}
 
 \begin{frame}{Új diszkretizációs módszer (folyt.)}
-    \vskip 5mm
+    \vskip 8mm
     Legyen $$\mathcal{A}_{k,N} = \int_{-1}^{1} \ell_{k,N}(x)\ dx, \ (k=1,\ldots,N),$$ ahol $\ell_{k,N}$ a Lagrange interpolációs alappolinomok a $\rho_{k,N}$ pontokon.\\
     Ekkor a $w(r_{k,N},\theta_{j,N}) = \frac{\mathcal{A}_{k,N}}{8N}$ súlyokkal véve az integrálközelítést:
     $$\frac{1}{\pi} \int_{0}^1 \int_0^{2\pi} f(r,\theta)\ d\theta dr \approx \int_{X_N} f = \sum_{k=1}^{N} \sum_{j=1}^{4N} f(r_{k,N},\theta_{j,N}) \frac{\mathcal{A}_{k,N}}{8N}.$$
@@ -346,7 +357,7 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 
 \section{Eredmények}
 \begin{frame}{Gyakorlati tesztek}
-    \vskip 10mm
+    \vskip 13mm
     A következő tesztek alapján hasonlítottuk össze a régi és az új módszert:
     \begin{itemize}
     \item Invariancia teszt
@@ -395,7 +406,7 @@ $$Z^L_{n,m}(f) = \frac{n+1}{\pi}\int_0^1\int_0^{2\pi}\Phi_{n,m}(r,\theta)f(r,\th
 
 \subsection{Invariancia}
 \begin{frame}{Invariancia}
-    \vskip 10mm
+    \vskip 12mm
 Alacsony rendű momentumok modulusának, az összes transzformált képekre vett variációs koefficiense $\left(\frac{\sigma}{\mu}\right)$:
 \begin{columns}
     \begin{column}{.5\textwidth}
@@ -411,7 +422,7 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
         $|\overline{\Psi}_{3,3}^1|$ & 3.69\% \\ \hline
         $|\overline{\Psi}_{3,3}^3|$ & 9.40\% \\ \hline
         \end{tabular}
-        \caption{Régi módszer}
+        \caption*{Régi módszer}
         \end{table}
     \end{column}
     \begin{column}{.5\textwidth}
@@ -427,7 +438,7 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
         $|\overline{\Psi}_{3,3}^1|$ & 3.68\%\\ \hline
         $|\overline{\Psi}_{3,3}^3|$ & 9.32\%\\ \hline
         \end{tabular}
-        \caption{Új módszer}
+        \caption*{Új módszer}
         \end{table}
     \end{column}
 \end{columns}
@@ -438,7 +449,7 @@ Alacsony rendű momentumok modulusának, az összes transzformált képekre vett
 
 \subsection{Rekonstrukció}
 \begin{frame}{Képek visszaállítása}
-\vskip 10mm
+\vskip 12mm
 Egy kép rekonstruálható véges számú momentumot használva a következő képlet szerint:
 $$
 f(x,y) \approx \sum_{n=0}^{M}\sum_{m=-n}^{n}Z_{n,m}^R(f)\Phi_{n,m}^*(r_{x,y},\theta_{x,y}).
@@ -451,6 +462,7 @@ Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a hiba (mean squ
 
 
 \begin{frame}{Képek visszaállítása}
+    \vskip 5mm
     \begin{adjustwidth}{-1.5em}{0em}
     \bigskip
     \begin{footnotesize}
@@ -489,7 +501,7 @@ Ha $f$ az eredeti, $\widehat{f}$ a visszaállított kép, akkor a hiba (mean squ
 
 \subsection{Képfelismerés}
 \begin{frame}{Képfelismerés}
-    \vskip 5mm
+    \vskip 12mm
 Cél: a transzformált, zajos képet felismerni az eredeti képek közül.\\
 Különböző nagyságú és típusú zaj:
 \begin{itemize}
@@ -507,6 +519,88 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
     \includegraphics[width=\textwidth]{figures/noise/pepper1.png}
 	\end{subfigure}
 \end{figure}
+\end{frame}
+
+\begin{frame}{Képfelismeréshez használt képek}
+    \vskip 12mm
+    \begin{figure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/7.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/13.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/22.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/26.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/29.png}
+
+        \end{subfigure}
+    \end{figure}
+    \vskip -5mm
+    \begin{figure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/32.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/39.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/55.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/62.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/64.png}
+        
+        \end{subfigure}
+    \end{figure}
+    \vskip -5mm
+    \begin{figure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/65.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/71.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/95.png}
+        
+        \end{subfigure}
+        \begin{subfigure}{55pt}
+            \centering
+        \includegraphics[width=\textwidth]{figures/coil_original/99.png}
+        
+        \end{subfigure}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Forgatás, skálázás, eltolás invariancia -- Gauss zaj}
@@ -572,11 +666,12 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
 
 \section{Alkalmazások}
 \begin{frame}{Alkalmazások}
+    \vskip 5mm
     A momentumok sok területen alkalmazhatók, néhány példa:
     \begin{itemize}
     \item \textbf{Vízjelek}: a képre a momentumok szintjén helyeznek vízjelet, így ellenálló lesz különböző transzformációknak és zajnak. Ehhez fontos a rekonstrukciós pontosság.~\cite{watermarking_auth}
     \item \textbf{Neurális hálók, gépi tanulás}: A képekből kinyert invariáns momentumok lehet a bemeneti vektor része. A neurális hálók ismert hiányossága a zajra való érzékenység, ezen segíthetnek a momentumok.~\cite{nn_noise_robust}
-    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására, szaruhártya vizsgálatára, stb.~\cite{wavefront}
+    \item \textbf{Orvosi/optikai alkalmazások}: lencsék leképezési hibáinak azonosítására, szaruhártya vizsgálatára~\cite{wavefront}
     \end{itemize}
 \end{frame}
 
@@ -589,6 +684,7 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
 \end{frame}
 
 \begin{frame}{Összefoglalás}
+    \vskip 5mm
     \begin{itemize}
     \item Diszkrét ortogonális pontrendszer konstruálása QZM-hez.
     \item Összehasonlítás a korábbi, valamint más momentumokon alapuló módszerrel is.
@@ -599,11 +695,14 @@ Alacsony rendű invariáns momentumok (kvaterniók) komponenseiből kinyert val�
         \end{itemize}
     \item Jelentősen jobb rekonstrukciós képesség és robusztusság különféle zajokkal szemben.
     \item Konferencia előadás (13th Joint Conference on Mathematics and Computer Science)
+    \item G. Nagy, Zs. Németh. \color[rgb]{.2,.2,.7}Robust quaternion zernike moments for colorimage analysis and recognition. \color{black}\textit{Signal Processing,} kézirat.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Irodalomjegyzék}
+    \vskip 7mm
 \nocite{macs}
+\nocite{kezirat}
 \begin{footnotesize}
 \bibliography{biblio}{}
 \bibliographystyle{unsrtnat}
