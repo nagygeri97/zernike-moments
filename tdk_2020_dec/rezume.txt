@@ -1,0 +1,13 @@
+A momentumok és momentum invariánsok széleskörűen használtak például mintaillesztés vagy képfelismerés terén.
+
+A legtöbb klasszikus momentumot szürkeárnyalatos képekre definiálták, a módszerek kiterjesztése többcsatornás, színes képekre egy általánosan megoldatlan feladat. Hagyományosan színes képekre RGB dekompozíció vagy szürkeárnyalatossá konvertálás alkalmazható.
+
+Újabban a kvaterniók algebráját használták fel a szürkeárnyalatos módszer kiterjesztésére. A Zerike momentumok általánosításaként például bevezetésre kerültek a kvaternió Zernike momentumok. Ezek a Zernike momentumok az egységkör belsején definiált, ortogonális rendszert alkotó Zernike függvények segítségével definiáltak.
+
+A Zernike momentumok korábbi diszkretizációs módszere az egységkörlemezen vett, egyenletesen elosztott pontok rendszerén alapult, de ez a megközelítés nem biztosít diszkrét ortogonalitást, ami fontos tulajdonsága az ortogonális függvényeken alapuló módszerek diszkretizációjának.
+
+A dolgozatban egy új diszkretizációs módszert adunk meg a kvaternió Zernike momentumokhoz, azaz egy új pontrendszert az egységkörlemezen, amelyen véve teljesül a kvaternió értékű Zernike függvények diszkrét ortogonalitása. Ez a technika javítja a meglévő módszer robusztusságát a diszkretizáció által bevezetettt hiba csökkentésével.
+
+Emellett az új módszer összehasonlításra kerül az eredetivel. Képek visszaállítása esetén az új módszer jelentősen csökkenti a rekonstrukciós hibát.
+
+A módszerek képfelismerési képességeit összehasonlítva forgatott, skálázott és eltolt képek esetén, különböző mértékű Gauss-típusú zaj esetén az új módszer jelentősen jobb arányban képes felismerni a képeket, még igen magas mértékű zaj esetén is.
