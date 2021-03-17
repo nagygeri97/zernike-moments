@@ -1,0 +1,94 @@
+Dolgozat
+Robust quaternion Zernike moments and their applications in color image analysis and recognition / Robusztus kvaternió Zernike momentumok és alkalmazásuk színes képek elemzésére és felismerésére
+
+
+A dolgozat eredményének rövid összefoglalása:
+A cél színes képek feldolgozása. Kvaternió Zernike momentumok kiszámítására szolgáló új diszkretizáló eljárás kidolgozása. A diszkrét ortogonalitás bizonyítása. A saját eljárás alkalmazása színes képek feldolgozására. Ehhez a saját elméleti eredményen alapuló képfeldolgozó szoftver összeállítása.
+
+
+A dolgozat témája az informatikához köthető.
+Igen
+
+
+A dolgozat új eredményeket tartalmaz.
+Igen
+
+
+Amennyiben tartalmaz új eredményeket, kérjük ismertesse melyek azok:
+Kvaternió Zernike momentumok kiszámítására szolgáló új diszkretizáló eljárás kidolgozása. A diszkrét ortogonalitás bizonyítása. Az elméleti eredményen alapuló képfeldolgozó szoftver összeállítása. A saját javaslat és korábbi eljárások eredményeinek összehasonlítása számítógépes kísérletekkel. Az új módszer előnyének bemutatása normális eloszlású zaj esetén.
+
+
+A dolgozat eredményei alkalmazhatóak.
+Igen
+
+
+Amennyiben alkalmazhatóak, kérjük ismertesse, mely területeken:
+Színes képek feldolgozása.
+
+
+A dolgozatból kiderül, hogy mi volt a hallgató önálló hozzájárulása az eredményekhez.
+Igen
+
+
+A dolgozat hossza megfelelő (nem terjengős és nem szűkszavú).
+Igen
+
+
+A dolgozat ábrái megfelelőek?
+Igen
+
+Igen: az ábrák száma és információtartalma megfelelő.
+Nem: az ábrák feleslegesek, pontatlanok vagy hiányosak.
+
+
+A dolgozat táblázatai megfelelőek?
+Igen
+
+Igen: a táblák száma és információtartalma megfelelő.
+Nem: a táblák feleslegesek, pontatlanok vagy hiányosak.
+
+
+A dolgozat újszerűsége, a feldolgozás színvonala - pontszám szöveges indoklása:
+Haladott matematikai eszközt használ. Új matematikai tételt bizonyít. Ezen alapuló új szoftveres eljárást dolgoz ki. Az új eljárás bizonyos esetekben jobb eredményt hoz a korábbi módszereknél.
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A dolgozat témája, tartalma - pontszám szöveges indoklása:
+A képfeldolgozás aktuális téma. Mind matematikában, mind a képfeldolgozásban komoly háttértudásra alapoz.
+
+Kérjük, legalább két mondatban indokolja.
+
+
+Az eredmények igazoltsága - pontszám szöveges indoklása:
+Van matematikai leírás és bizonyítás. Van szoftver. Van tényleges képeken a működés és a hatásosság ellenőrzése.
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A téma irodalmának feldolgozása - pontszám szöveges indoklása:
+Számos előzményt leír, sok cikket felsorol. A saját eredményt elhelyezi szakirodalom többi eredménye közé.
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A dolgozat formai kivitele, stílusa - pontszám szöveges indoklása:
+Igényesen kidolgozott mű. Szép ábrák vannak.
+
+Kérjük, legalább két mondatban indokolja.
+
+
+Az elért eredmények tudományos értéke - pontszám szöveges indoklása:
+Nemzetközi folyóiratban publikálható. Ténylegesen alkalmazható eredmény.
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A bíráló összefoglaló véleménye a dolgozatról és színvonalának értékelése. A dolgozat erényei és hibái. - pontszám szöveges indoklása:
+A dolgozat professzionális munka. Tényleges jövőbeni haszna lehet, attól függően, hogy a konkurens módszerek hogyan fejlődnek.
+
+Kérjük itt adja meg, ha a dolgozatot díjra alkalmasnak gondolja.
+
+
+A bírálóban a dolgozattal kapcsolatban felmerült kérdések:
+-

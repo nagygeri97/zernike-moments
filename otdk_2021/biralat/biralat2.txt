@@ -1,0 +1,96 @@
+Dolgozat
+Robust quaternion Zernike moments and their applications in color image analysis and recognition / Robusztus kvaternió Zernike momentumok és alkalmazásuk színes képek elemzésére és felismerésére
+
+
+A dolgozat eredményének rövid összefoglalása:
+A dolgozat egy új diszkretizációs módszert ajánl kvaternió Zernike momentumokhoz. A módszer publikusan elérhető adatbázisokon lett kiértékelve és state-of-the-art metódusokkal lett összehasonlítva. A dolgozat eredményeit egy rangos folyóiratba is benyújtották. A dolgozat határozottan releváns és új eredményeket tartalmaz nemzetközi szinten is. 
+
+
+A dolgozat témája az informatikához köthető.
+Igen
+
+
+A dolgozat új eredményeket tartalmaz.
+Igen
+
+
+Amennyiben tartalmaz új eredményeket, kérjük ismertesse melyek azok:
+Egy új diszkretizációs eljárás került ajánlásra kvaternió Zernike momentumokhoz, amely nagyban képes javítani az eredeti módszer robusztusságát a diszkretizáció által bevezetettt hiba csökkentésével. A módszer magas mértékű zaj esetén is igen jól teljesít és jobb klasszifikációs eredményeket biztosít.
+
+
+A dolgozat eredményei alkalmazhatóak.
+Igen
+
+
+Amennyiben alkalmazhatóak, kérjük ismertesse, mely területeken:
+A módszer többek között alkalmazható magas zajjal terhelt mintaillesztési feladatoknál, az optikai lencsék torzításainak kezelésénél, továbbá egy előre mutató eredmény, hogy a módszer a neurális hálózatok területén is fontos szerepet játszhat a zaj kiküszöbölésében. 
+
+
+A dolgozatból kiderül, hogy mi volt a hallgató önálló hozzájárulása az eredményekhez.
+Igen
+
+
+A dolgozat hossza megfelelő (nem terjengős és nem szűkszavú).
+Igen
+
+
+A dolgozat ábrái megfelelőek?
+Igen
+
+Igen: az ábrák száma és információtartalma megfelelő.
+Nem: az ábrák feleslegesek, pontatlanok vagy hiányosak.
+
+
+A dolgozat táblázatai megfelelőek?
+Igen
+
+Igen: a táblák száma és információtartalma megfelelő.
+Nem: a táblák feleslegesek, pontatlanok vagy hiányosak.
+
+
+A dolgozat újszerűsége, a feldolgozás színvonala - pontszám szöveges indoklása:
+A dolgozat határozottan új és jobb eredményeket mutat a jelenlegi state-of-the-art módszerekhez képest, melyet számos kvantitatív és kvalitatív eredményekkel alátámaszt a dolgozat írója. 
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A dolgozat témája, tartalma - pontszám szöveges indoklása:
+A dolgozatban megfogalmazott állításokat pontos és rendkívül részletes matematikai levezetések támasztják alá, mely a téma mély ismeretéről tesz tanúbizonyságot. 
+
+Kérjük, legalább két mondatban indokolja.
+
+
+Az eredmények igazoltsága - pontszám szöveges indoklása:
+Az erdmények több szempontból is megvannak vizsgálva, többféle feladattípusra is ki vannak értékelve, pl.: felismerés, zajszűrés. A kvantitatív méréseket számos látványos ábra támasztja alá. A tesztadatok publikusan elérhető adatbázisokból származnak, ami szintén növeli a dolgozat színvonalát. 
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A téma irodalmának feldolgozása - pontszám szöveges indoklása:
+A dolgozat jól bevezeti a matematikai alapokat és megfelelő szakirodalmi áttekintést nyújt a tématerület megértéséhez. Esetleg kicsit több hangsúlyt kaphatott volna az alkalmazási területek bemutatása. 
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A dolgozat formai kivitele, stílusa - pontszám szöveges indoklása:
+A dolgozat angol nyelvan írodott, könnyen olvasható és jól struktúrált. Magas színvonalú mű. 
+
+Kérjük, legalább két mondatban indokolja.
+
+
+Az elért eredmények tudományos értéke - pontszám szöveges indoklása:
+Az eredmények nemzetközi színvonalt képviselnek, ezt az is alátámasztja hogy az IEEE Signal processing folyóiratba kerültek beküldésre. 
+
+Kérjük, legalább két mondatban indokolja.
+
+
+A bíráló összefoglaló véleménye a dolgozatról és színvonalának értékelése. A dolgozat erényei és hibái. - pontszám szöveges indoklása:
+A dolgozat magas színvonaló, nemzetközi eredményeket tartalmaz. Jól struktúrált és könnyen olvasható. Az állítások rendkívül jól ki vannak értékelve mind kvantitatív mind kvalitatív módon. 
+
+A dolgozatot mindenképpen díjra javaslom. 
+
+Kérjük itt adja meg, ha a dolgozatot díjra alkalmasnak gondolja.
+
+
+A bírálóban a dolgozattal kapcsolatban felmerült kérdések:
+A szerző említi, hogy a módszer használható a neurális hálózatok területén a forward propagation során a zaj hiba csükkentésére. Lát e lehetőséget arra nézve, hogy a módszert a hibavisszaterjesztésnél is figyelembe lehessen venni?
