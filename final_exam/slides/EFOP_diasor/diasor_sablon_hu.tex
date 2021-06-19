@@ -1,0 +1,95 @@
+\documentclass[bigger]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{textpos}
+\frenchspacing
+
+
+
+% Fordításhoz: pdflatex
+
+
+
+\usebackgroundtemplate{%
+\includegraphics[width=\paperwidth,height=\paperheight]{background.jpg}%
+}
+
+%\setbeamercolor{title}{fg=white}
+%\setbeamercolor{author}{fg=white}
+%\setbeamercolor{institute}{fg=white}
+%\setbeamercolor{date}{fg=white}
+\setbeamercolor{frametitle}{fg=white}
+%
+%\title{\bf Presentation heading}
+%\author{Sample Samuel}
+%\institute{Eötvös Loránd University (ELTE), Budapest, Hungary}
+%\date{2018}
+
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{title.jpg}}%
+\begin{frame}
+
+\color{white}{
+
+\textbf{\Large{Prezentáció címe}}
+
+\bigskip
+
+\Large{Előadó neve}
+
+\bigskip
+
+\footnotesize{Eötvös Loránd Tudományegyetem, Informatikai Kar}
+\smallskip
+
+\footnotesize{2018. június 11.}
+\vspace{2em}
+
+% Szakmai beszámolókhoz: (Igazi neveket kérünk feltüntetni.) Más előadáson nem kell.
+\begin{footnotesize}
+Témavezető: Dr. Vezető Vilmos\\
+Szoftvertechnológia, Rendszerek Alkotóműhely\\
+Mesterséges Valós Idejű Érzékelés Munkacsoport\\
+\end{footnotesize}
+\bigskip
+
+% pozícionáljuk a dia aljához közel
+\begin{textblock}{8}(0,2.5)
+\footnotesize{EFOP-3.6.3-VEKOP-16-2017-00001}
+\end{textblock}
+}
+
+
+\end{frame}
+}
+
+\begin{frame}{Dia címe}
+\begin{itemize}
+\item 1
+\item 2
+\item 3
+\end{itemize}
+\end{frame}
+
+% this slide need not be used in the presentation, but must be
+% present when you archieve your talk
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{title.jpg}}%
+\begin{frame}{}
+
+\textbf{\huge\color{white} KÖSZÖNÖM}
+
+\bigskip
+
+\textbf{\huge\color{white} A FIGYELMET!}
+
+\end{frame}
+}
+
+\end{document}

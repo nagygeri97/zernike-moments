@@ -1,0 +1,324 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{textpos}
+\frenchspacing
+
+
+
+% Fordításhoz: pdflatex
+
+\newtheorem{remark}{Remark}
+
+\def\n{n\in\N}
+\def\x{x\in\R}
+\def\N{{\mathbb N}}
+\def\R{{\mathbb R}}
+\def\C{{\mathbb C}}
+\def\Z{{\mathbb Z}}
+\def\D{{\mathbb D}}
+\def\B{{\mathfrak B}}
+\def\T{{\mathbb T}}
+\def\btheta{{\boldsymbol{\vartheta}}}
+\def\bgamma{{\boldsymbol{\gamma}}}
+\def\bl{{\mathbf{l}}}
+\def\bk{{\mathbf{k}}}
+\def\bt{{\mathbf{t}}}
+\def\be{{\mathbf{e}}}
+
+\DeclareMathOperator{\spannedby}{span}
+\DeclareMathOperator{\e}{e}
+\DeclareMathOperator{\soc}{soc}
+
+\def\xkng{x_{k,M}}
+\def\xkkng{x_{k,n}^{(\gamma)}}
+\def\xkkn{x_{k,n}}
+\def\xkN{x_{k,M}}
+\def\xkm{x_{k,M}}
+\def\tkNg{\theta_{k,M}^{(\gamma)}}
+
+\def\ab{(\alpha,\beta)}
+\def\wab{w_{\alpha,\beta}}
+\def\wgd{w_{\gamma,\delta}}
+\def\lkm{\lambda_{k,M}}
+
+\def\la{\langle}
+
+\def\ykng{y_{k,M}}
+
+\newtheorem{defi}{Definition}
+\newtheorem{define}{Definition}
+\newtheorem{allitas}{Statement}
+\newtheorem{alli}{Statement}
+\newtheorem{kov}{Corollary}
+\newtheorem{problema}{Problem}
+
+
+\usebackgroundtemplate{%
+\includegraphics[width=\paperwidth,height=\paperheight]{background.jpg}%
+}
+
+%\setbeamercolor{title}{fg=white}
+%\setbeamercolor{author}{fg=white}
+%\setbeamercolor{institute}{fg=white}
+%\setbeamercolor{date}{fg=white}
+\setbeamercolor{frametitle}{fg=white}
+%
+%\title{\bf Presentation heading}
+%\author{Sample Samuel}
+%\institute{Eötvös Loránd University (ELTE), Budapest, Hungary}
+%\date{2018}
+
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{title.jpg}}%
+\begin{frame}
+
+\color{white}{
+
+\textbf{\Large{Projection Properties of de la Vall\'ee Poussin type operators}}
+
+\bigskip
+
+\Large{Zsolt Németh}
+
+\bigskip
+
+\footnotesize{Dept. of Numerical Analysis, Eötvös Loránd University}
+\smallskip
+
+\footnotesize{31st August, 2018.}
+\vspace{2em}
+
+% Szakmai beszámolókhoz: (Igazi neveket kérünk feltüntetni.) Más előadáson nem kell.
+%\begin{footnotesize}
+%Témavezető: Dr. Vezető Vilmos\\
+%Szoftvertechnológia, Rendszerek Alkotóműhely\\
+%Mesterséges Valós Idejű Érzékelés Munkacsoport\\
+%\end{footnotesize}
+%\bigskip
+
+% pozícionáljuk a dia aljához közel
+\begin{textblock}{8}(0,2.5)
+\footnotesize{EFOP-3.6.3-VEKOP-16-2017-00001}
+\end{textblock}
+}
+
+
+\end{frame}
+}
+
+\frame{
+\frametitle{Trigonometric Fourier series}
+
+\vskip 10mm
+Complex trigonometric system:
+\[
+\varepsilon_j(x):=e^{ijx}\qquad
+(\x,\ j\in\Z)
+\]
+
+Trigonometric Fourier coefficients ($f\in L_1(0,2\pi)$ complex valued function):
+\[
+\hat f(j):=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)e^{-ijt}dt\qquad (j\in\Z).
+\]
+Trigonometric Fourier series of $f$:
+\[
+S[f]:=\sum_{j\in\Z}\hat f(j)\varepsilon_j.
+\]
+The $n$-th partial sum:
+\[
+(S_nf)(x):=\sum_{j=-n}^n\hat f(j)\varepsilon_j(x)\qquad (\x).
+\]
+}
+
+\frame{
+
+\vskip 15mm
+First we consider the Banach space $(C_{2\pi}, \| \cdot \|_\infty)$.
+
+The set of trigonometric polynomials of degree at most $n\in \N$:
+\[
+\mathcal{T}_n:=\text{span}\; \{ \varepsilon_j\ :\ -n\leq j\leq n\; \}.
+\]
+Now $S_n:~C_{2\pi}\to \mathcal{T}_n$ is a (bounded) linear operator with the projection property
+\[(S_n g)(x)=g(x) \qquad (g\in\mathcal{T}_n, x\in\R).\]
+\begin{theorem}[Faber--Marcinkiewicz--Berman]
+Let $T_n:~C_{2\pi}\to \mathcal{T}_n$ denote a linear (trigonometric) projection, i.e. suppose that $T_n g=g$, $(g\in\mathcal{T}_n)$. Then we have
+\[
+\|T_n\| \geq \| S_n \|.
+\]
+\end{theorem}
+
+We remark that $\| S_n \| = \frac{4}{\pi^2}\log n + O(1)$.
+}
+
+
+\frame{
+\frametitle{(Generalized) de la Vall\'ee Poussin means}
+The de la Vall\'ee Poussin means of (trigonometric) Fourier series:
+\[
+V_{n,m}f:=\frac{1}{m+1} \sum_{k=0}^m S_{n+k}f.
+\]
+Special cases: 
+\begin{enumerate}
+  \item partial sum operator $S_n$ ($m=0$);
+  \item Fej\'er means ($n=0$);
+  \item classic de la Vall\'ee Poussin means ($n=m+1$).
+\end{enumerate}
+
+Now we have $V_{n,m}:~C_{2\pi}\to\mathcal{T}_{n+m}$ and $(V_{n,m}g)(x)=g(x)$, where $g\in\mathcal{T}_n,x\in\R$.
+
+In this talk we deal with this type of projection property.
+}
+
+\frame{
+
+\vskip 15mm
+\begin{theorem}[Nikolaev]
+Let $n,m\in\N$, $n\geq 1$ and let $T_{n,m}:~C_{2\pi}\to \mathcal{T}_{n+m}$ denote a de la Vall\'ee Poussin type projection, i.e. a linear operator for which $T_{n,m} g=g$, $(g\in\mathcal{T}_n)$. Then there exists a positive constant $c\in\R$, independent of $n,m$, such that
+\[
+\|T_{n,m}\| \geq c\log\frac{n+m}{m+1}.
+\]
+\end{theorem}
+
+We remark that for de la Vall\'ee Poussin means, $$\|V_{n,m}\| = \frac{4}{\pi^2}\log \frac{n+m}{m+1}+O(1).$$
+
+Question/problem: Is the norm of $V_{n,m}$ minimal among these projections?
+}
+
+\frame{
+
+\vskip 15mm
+\begin{theorem}[Bernstein; Deregowska,Lewandowska]
+If $n=m+1$ and $n>1$, then we have $\|T_{n,n-1}\| \geq \|V_{n,n-1}\|$, i.e. the minimality of the classical DLVP means.
+\end{theorem}
+
+\begin{theorem}[Nikolaev]
+If $n|m+1$ and $n>1$, then the corresponding DLVP operator $V_{n,m}$ is minimal.
+\end{theorem}
+
+\begin{theorem}[Bernstein]
+If $m+1$ is even, then the corresponding DLVP operator $V_{n,m}$ is minimal.
+\end{theorem}
+
+\begin{theorem}[NZs]
+Let $n,m\in\N$, $n\geq 1$ and let $T_{n,m}:~C_{2\pi}\to \mathcal{T}_{n+m}$ denote a de la Vall\'ee Poussin type projection. Then, $\|T_{n,m}\| \geq \|V_{n,m}\|$ holds if and only if $(m+1,2n+m+1)>1$.
+\end{theorem}
+}
+
+\frame{
+\frametitle{Ingredients}
+
+\vskip 8mm
+\begin{enumerate}
+  \item Simple kernel with explicit roots
+  
+  The $n$-th partial sum can be expressed as
+\[
+ \left(S_n f\right)(x)=\left(D_n\ast f\right)(x)=\frac{1}{2\pi}\int_0^{2\pi} f(y) D_n(x-y)~dy,
+\]
+where
+\[
+ D_n(x)=\frac{\sin\frac{2n+1}{2}x}{\sin \frac{x}{2}}, \qquad (x\in\R).
+\]
+
+For the de la Vall\'ee Poussin means: $V_{n,m}=G_{n,m}\ast f$,
+where
+\[
+G_{n,m}(x) = \frac{1}{m+1} \sum_{k=0}^m D_{n+k}(x) = \frac{\sin\frac{m+1}{2}x\ \sin\frac{2n+m+1}{2}x}{(m+1)\sin^2 \frac{x}{2}}.
+\]
+  \item Mimicking Cheney \emph{et al.}: $\|T_{n,m}\|=\frac{1}{2\pi} \|G_{n,m}+y\|_1$, where
+  $y\in\mathcal{T}_{n+m}\setminus\mathcal{T}_{n}$.
+\end{enumerate}
+}
+
+\frame{
+\frametitle{Generalisations}
+\vskip 8mm
+\begin{theorem}[Lambert]
+The Faber--Marcinkiewicz--Berman theorem remains true if we replace $C_{2\pi}$ with $L_1(0,2\pi)$.
+\end{theorem}
+This is a (relatively) simple observation.
+
+Our main result also remains true for functions $f\in L_1(0,2\pi)$.
+
+We also have the algebraic polynomial variants for partial sums of Chebyshev series for $f\in L_1(-1,1)$.
+
+Question: What is a minimal projection in the other cases? How far the DLVP operators are from being minimal?
+
+\begin{theorem}[NZs]
+$\|V_{n,m}\| \leq \|T^*_{n,m}\|+O(1)$.
+\end{theorem}
+}
+
+\frame{
+\frametitle{Multivariate extension}
+
+\vskip 8mm
+Fix $d>1,~d\in\N$, and denote the $d$-dimensional torus by $\T^d=\R^d$ (mod $2\pi\Z^d$) ($\Z=\{0,\pm 1,\pm 2,\ldots\}$).
+
+The Fourier series of $g\in C(\T^d)$:
+\[
+g(\btheta) \sim \sum_\bk \hat{g}(\bk)\e^{i\bk\cdot\btheta}, \qquad \hat{g}(\bk)=\frac{1}{(2\pi)^d} \int_{\T^d} g(\bt)\e^{-i\bk\cdot\bt} d\bt,
+\]
+where $\btheta=(\vartheta_1,\vartheta_2,\ldots,\vartheta_d)\in\T^d$, $\bk=(k_1,k_2,\ldots,k_d)\in\Z^d$ and $\bk\cdot\btheta=\sum_{l=1}^d k_l \vartheta_l$ (scalar product).
+
+The $n$-th \emph{triangular} partial sum:
+\[
+S_{n,d} (g,\btheta) = \sum_{|\bk|_1 \leq n} \hat{g}(\bk)\e^{i\bk\cdot\btheta} \qquad (n\in\N_0=\{0,1,2,\ldots\}),
+\]
+where $|\bk|_1 = \sum_{l=1}^d |k_l|$ (the $l_1$ norm of multiindex $\bk$).
+}
+
+\frame{
+
+\vskip 15mm
+$d$-dimensional de la Vallée Poussin means ($n,m \in\N_0$):
+\[
+V_{n,m,d} (g,\btheta) = \frac{1}{m+1} \sum_{j=0}^m S_{n+j,d} (g,\btheta).
+\]
+
+Denote the set of trigonometric polynomials
+\[
+\sum_{|\bk|_1 \leq n}  a_\bk \e^{i\bk\cdot\btheta},
+\]
+by $\mathcal{T}_{n,d}$, where $\bk=(k_1,k_2,\ldots,k_d)\in \Z^d$.
+
+\begin{theorem}
+Fix $d\geq 1$, $n,m\in\N$, $n\geq 1$. Let $T_{n,m,d}:~C(\T^d) \rightarrow \mathcal{T}_{n+m,d}$ denote a de la Vall\'ee Poussin type linear projection, i.e. $T_{n,m,d}(g,\btheta) = g(\btheta)$, where $g\in\mathcal{T}_{n,d}$. Now
+\[
+\|T_{n,m,d}\| \geq c \left( \log \frac{n+m}{m+1} \right)^d,
+\]
+where $c>0$ independent of $n,m$.
+\end{theorem}
+}
+
+\frame{
+\frametitle{The End}
+\begin{center}
+\huge Happy Birthday to All Celebrants!
+\end{center}
+}
+
+% this slide need not be used in the presentation, but must be
+% present when you archieve your talk
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{title.jpg}}%
+\begin{frame}{}
+
+\textbf{\huge\color{white} THANK YOU}
+
+\bigskip
+
+\textbf{\huge\color{white} FOR YOUR ATTENTION!}
+
+\end{frame}
+}
+
+\end{document}
